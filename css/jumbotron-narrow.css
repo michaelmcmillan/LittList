@@ -1,0 +1,174 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  margin-top:20px;
+  padding-top: 30px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+  text-align:right;
+}
+
+.container {
+	padding-top:70px;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron h1 {
+	font-size:55px;
+}
+
+.jumbotron .btn {
+  font-size: 21px;
+  /*padding: 14px 24px;*/
+  padding-right:30px;
+  padding-left:30px;
+  margin-top:10px;
+}
+
+.jumbotron input {
+  font-size: 17px;
+  padding: 14px 24px;
+  height:50px;
+  margin-top:10px;
+}
+
+#generer-btn {
+	margin-top:10px;
+}
+
+#glyphfix {
+	margin-left:-1px;
+}
+
+/**
+ * APA
+ */
+format[type="apa"] {
+	display:inline-block;
+	text-indent: -2em;
+	margin-left:2em;
+}
+
+format[type="apa"]::first-line {
+	/*font-weight:bold;*/
+	text-indent: 2em;
+}
+
+
+/**
+ * BibTex
+ */
+format[type="bibtex"] {
+	font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+/**
+ * General formatting
+ */
+.preview {
+	background: #fff;
+	/*border: 1px solid #646464;*/
+	/*box-shadow: 0 0 5px rgba(0,0,0,0.6);*/
+	font-family: 'Times New Roman';
+	/*font-size:12px;*/
+	line-height: 1.5em;
+	margin: 0 auto 50px;
+	/*min-height: 900px;*/
+	padding-left: 90px;
+	padding-top:45px;
+	padding-right:90px;
+	padding-bottom:50px;
+	position: relative;
+	/*width: 600px;*/
+	text-align:left;
+}
+
+.modal-body {
+	padding:0px;
+}
+
+.loading {
+	background-image:url('/img/spinner.gif');
+	background-repeat:no-repeat;
+	background-position:center; 
+	height:100px;
+}
+
+.velg {
+	text-align:center;
+}
+
+.velg span {
+	cursor:pointer; 
+	cursor: hand;
+}
+/*
+style="padding: 11px 19px; height:50px; width:400px; font-size: 21px;"
+*/
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}

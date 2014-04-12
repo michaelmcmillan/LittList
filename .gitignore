@@ -1,0 +1,5 @@
+app/
+vendor/
+piwik/
+composer*
+index.php

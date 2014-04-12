@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /vendor
+Disallow: /piwik
+Disallow: /books
+Disallow: /websites
+Disallow: /beta

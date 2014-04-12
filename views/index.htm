@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="kilde">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LittList.no er et verktøy som genererer litteraturlister for deg!">
+    <meta name="keywords" content="litteraturliste, generator, kildehenvisning, litteraturlistegenerator, student, videregående, enkelt, forfatterliste, litteraturliste generator, litteraturlister, suger" />
+    <meta name="author" content="LittList">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta property="og:title" content="LittList" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://littlist.no" />
+    <meta property="og:description" content="LittList.no er et verktøy som genererer litteraturlister for deg!" />
+    <title>LittList.no - Litteraturlistegenerator</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+		
+		<!-- Piwik -->
+		<script type="text/javascript"> 
+		  var _paq = _paq || [];
+		  _paq.push(['trackPageView']);
+		  _paq.push(['enableLinkTracking']);
+		  (function() {
+		    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://kilde.michaelmcmillan.net/piwik//";
+		    _paq.push(['setTrackerUrl', u+'piwik.php']);
+		    _paq.push(['setSiteId', 1]);
+		    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+		    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		  })();
+
+		</script>
+		<noscript><p><img src="http://kilde.michaelmcmillan.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+		<!-- End Piwik Code -->
+		
+		<script>
+		// Include the UserVoice JavaScript SDK (only needed once on a page)
+		UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/YQPvrBGNQsmK78OlkZAg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+		UserVoice = window.UserVoice || [];
+		UserVoice.push(['showTab', 'classic_widget', {
+		  mode: 'feedback',
+		  primary_color: '#8f8f8f',
+		  link_color: '#428bca',
+		  forum_id: 232108,
+		  tab_label: 'Feedback',
+		  tab_color: '#428bca',
+		  tab_position: 'middle-right',
+		  tab_inverted: false
+		}]);
+		</script>
+		
+  </head>
+
+  <body>
+	  <div id="fb-root"></div>
+	  <script>(function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "//connect.facebook.net/nb_NO/all.js#xfbml=1&appId=389597147809261";
+	    fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));</script>
+	  
+    <div class="container">
+      
+	 
+	  <!-- Preview references -->
+	  <div id="references" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	      <div class="modal-content" ng-controller="references">
+	        <div class="modal-body">
+				<div class="preview" contenteditable="true">
+					
+					<p ng-show="formatting != 'bibtex'"><strong>Litteraturliste</strong></p>
+
+					<!-- Harvard -->
+					<format type="harvard" ng-model="formatting" ng-show="formatting == 'harvard'">
+						
+						<!-- Iterate reference alphabetically by authors -->
+						<p ng-repeat="reference in allReferences | orderBy:'authors'">
+						
+							<numbered ng-model="numberReferences" ng-show="numberReferences">
+								[{{$index + 1}}]
+							</numbered>
+					
+							<!-- Reference: Book-->
+							<reference ng-show="reference.type == 'book'">
+								
+								<!-- Authors (iterate) -->
+								<author ng-repeat="author in reference.authors">
+									<!-- If last author -->
+									<last ng-show="$last && !$first"> og </last> 
+									{{author}}
+								</author>
+					
+								<!-- Year of publication -->
+								<pubYear ng-show="reference.aarstall">
+									({{reference.aarstall}})
+								</pubYear>
+					
+								<!-- Title of the book-->
+								<bookTitle ng-show="reference.tittel">
+									<i>{{reference.tittel}}</i>.
+								</bookTitle>
+					
+								<!-- Publication place-->
+								<pubDetails ng-show="reference.trykt">
+									{{reference.trykt}}.
+								</pubDetails>
+							</reference>
+							
+							<!-- Reference: Website -->
+							<reference ng-show="reference.type == 'website'">
+								
+								<!-- Author -->
+								<author ng-if="reference.forfatter">
+									{{reference.forfatter}}
+								</author>
+								
+								<!-- Date of publication -->
+								<pubYear ng-show="reference.date_published">
+									({{reference.date_published}})
+								</pubYear>
+								
+								<pubYear ng-if="!reference.date_published">
+									(Ukjent)
+								</pubYear>
+								
+								<!-- Title of the book-->
+								<websiteTitle ng-show="reference.tittel">
+									<i>{{reference.tittel}}</i>.
+								</websiteTitle>
+								
+								<!-- Available from source -->
+								<availableFrom>
+									Tilgjengelig fra: {{reference.url}}
+								</availableFrom>
+								
+								<downloaded>
+									(Hentet: {{reference.nedlastingsDato}}).
+								</downloaded>
+							
+							</reference>
+							
+						</p>
+					</format>
+					
+					<!-- APA -->
+					<format type="apa" ng-model="formatting" ng-show="formatting == 'apa'">
+						
+						<!-- Iterate books by authors -->
+						<p ng-repeat="reference in allReferences | orderBy:'authors'">
+						
+							<numbered ng-model="numberReferences" ng-show="numberReferences">
+								[{{$index + 1}}]
+							</numbered>
+						
+							<!-- Authors (iterate) -->
+							<author ng-repeat="author in reference.authors">
+							
+								<!-- If last, not first, and  authors <= 7  -->
+								<last ng-show="$last && !$first && $index <= 7"> & </last> 
+							
+								<!-- If 8 or more authors -->
+								<last ng-show="$last && !$first && $index >= 8"> ... </last>
+						
+								{{author}}
+							</author>
+						
+							<!-- Year of publication -->
+							<pubYear ng-show="reference.aarstall">
+								({{reference.aarstall}})
+							</pubYear>
+						
+							<!-- Title of the book-->
+							<bookTitle ng-show="reference.tittel">
+								<i>{{reference.tittel}}</i>.
+							</bookTitle>
+						
+							<!-- Publication place-->
+							<pubDetails ng-show="reference.trykt">
+								{{reference.trykt}}.
+							</pubDetails>
+						
+						</p>
+					</format>
+					
+					<!-- Vancouver -->
+					<format type="vancouver" ng-model="formatting" ng-show="formatting == 'vancouver'">
+						<!-- Iterate books by authors -->
+						<p ng-repeat="reference in allReferences | orderBy:'yearMatched'">
+						
+							<numbered ng-model="numberReferences" ng-show="numberReferences">
+								[{{$index + 1}}]
+							</numbered>
+						
+							<!-- Authors (iterate) -->
+							<author ng-repeat="author in reference.authors">
+								
+								<!-- If less than than 6 authors separate normally-->
+								<last ng-show="$last && !$first && reference.authors.length <= 6"> og </last>
+								
+								<!-- If more than 6 authors separate by "et al."-->
+								<etal ng-show="!$last && reference.authors.length > 6"> et al. </etal>
+								
+								{{author}}
+							</author>
+						
+							<!-- Title of the book-->
+							<bookTitle ng-show="reference.tittel">
+								{{reference.tittel}}.
+							</bookTitle>
+						
+							<!-- Publication place-->
+							<pubDetails ng-show="reference.trykt">
+								{{reference.trykt}};
+							</pubDetails>
+							
+							<!-- Year of publication -->
+							<pubYear ng-show="reference.aarstall">
+							    ({{reference.aarstall}})
+							</pubYear>
+						</p>
+					</format>
+					
+					<!-- BibTex -->
+					<format type="bibtex" ng-model="formatting" ng-show="formatting == 'bibtex'">
+					
+						<!-- Iterate books by authors -->
+						<p ng-repeat="reference in allReferences | orderBy:'yearMatched'">
+							
+							@book{reference{{$index+1}},
+							  <bookTitle ng-show="reference.tittel">
+								  <br/>
+								  title={ 
+									  {{reference.tittel}} 
+								  },
+							  </bookTitle>
+							  
+							  <br/>
+							  author={
+							  <author ng-repeat="author in reference.authors">
+							  	<last ng-show="!$first"> and </last>
+								{{author}}
+							  </author>
+						  	  },
+							  
+	  							<pubYear ng-show="reference.yearMatched">	
+									<br/>
+									year={
+										{{reference.yearMatched}}
+									},
+	  							</pubYear>
+							  
+	  							<pubDetails ng-show="reference.trykt">
+									<br/>
+									publisher={
+										{{reference.trykt}}
+									},
+	  							</pubDetails>
+							</br>
+							}						
+						</p>
+					</format>
+					
+					<!-- Chicago -->
+					<format type="chicago" ng-model="formatting" ng-show="formatting == 'chicago'">
+						
+						<!-- Iterate reference alphabetically by authors -->
+						<p ng-repeat="reference in allReferences | orderBy:'authors'">
+						
+							<numbered ng-model="numberReferences" ng-show="numberReferences">
+								[{{$index + 1}}]
+							</numbered>
+					
+							<!-- Reference: Book-->
+							<reference ng-show="reference.type == 'book'">
+								
+								<!-- Authors (iterate) -->
+								<author ng-repeat="author in reference.chicacgoAuthors">
+									
+									<!-- One author -->
+									<solo ng-show="reference.authors.length == 1">{{author}}, </solo>
+									
+									<!-- Three authors or less -->
+									<threeOrLess ng-show="reference.authors.length <= 3">
+										<last ng-show="$last && !$first"> og </last>
+										
+										<last ng-show="$last">{{author}}.</last>
+										<notLast ng-show="!$last">{{author}}</notLast>
+									</threeOrLess>
+									
+									<!-- Four or more -->
+									<fourOrMore ng-show="reference.authors.length > 3">
+										
+										<!-- Under seven -->
+										<sevenOrLess ng-show="$index < 7">
+											<last ng-show="$last && !$first"> og </last>
+											<last ng-show="$last">{{author}}.</last>
+											<notLast ng-show="!$last">{{author}},</notLast>
+										</sevenOrLess>
+										
+										<!-- Over seven -->
+										<sevenOrMore ng-show="$index >= 7">
+											et al.
+										</sevenOrMore>
+									</fourOrMore>
+									
+								</author>
+					
+								<!-- Title of the book-->
+								<bookTitle ng-show="reference.tittel">
+									<i>{{reference.tittel}}</i>.
+								</bookTitle>
+					
+								<!-- Publication -->
+								<pubDetails ng-show="reference.trykt && !reference.aarstall">
+									({{reference.trykt}}).
+								</pubDetails>
+								
+								<!-- Publication and year-->
+								<pubDetailsAndYear ng-show="reference.trykt && reference.aarstall">
+									({{reference.trykt}}, {{reference.aarstall}}).
+								</pubDetailsAndYear>
+								
+								<!-- Year of publication -->
+								<pubYear ng-show="reference.aarstall && !reference.trykt">
+									({{reference.aarstall}}).
+								</pubYear>
+							</reference>
+							
+							<!-- Reference: Website -->
+							<reference ng-show="reference.type == 'website'">
+								
+								<!-- Author -->
+								<author ng-if="reference.forfatter">
+									{{reference.forfatter}}
+								</author>
+								
+								<!-- Date of publication -->
+								<pubYear ng-show="reference.date_published">
+									({{reference.date_published}})
+								</pubYear>
+								
+								<pubYear ng-if="!reference.date_published">
+									(Ukjent)
+								</pubYear>
+								
+								<!-- Title of the book-->
+								<websiteTitle ng-show="reference.tittel">
+									<i>{{reference.tittel}}</i>.
+								</websiteTitle>
+								
+								<!-- Available from source -->
+								<availableFrom>
+									Tilgjengelig fra: {{reference.url}}
+								</availableFrom>
+								
+								<downloaded>
+									(Hentet: {{reference.nedlastingsDato}}).
+								</downloaded>
+							
+							</reference>
+						</p>
+					</format>
+					
+				</div>
+	        </div>
+	        
+			<div class="modal-footer">	
+			  <div class="pull-left">
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default" ng-click="numberReferences = false">[Av]</button>
+				  <button type="button" class="btn btn-default" ng-click="numberReferences = true" >[På]</button>
+				</div>	
+		  	  </div>
+			  
+			  <div class="btn-group">
+				  <button type="button" class="btn btn-default" ng-click="formatting = 'bibtex'">BibTex</button>
+				  <button type="button" class="btn btn-default" ng-click="formatting = 'chicago'">Chicago</button>
+				  <button type="button" class="btn btn-default" ng-click="formatting = 'vancouver'">Vancouver</button>
+				  <button type="button" class="btn btn-default" ng-click="formatting = 'apa'">APA</button>
+		          <button type="button" class="btn btn-default" ng-click="formatting = 'harvard'">Harvard</button>
+			  </div>
+	        </div>
+	      </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	  </div><!-- /.modal -->
+	  
+	  <div class="row" ng-controller="survey">
+		<form action="https://docs.google.com/a/michaelmcmillan.net/forms/d/1EHE6cpwfpt6Nzp2xCmY2UJv2OesRYA9oiiQ8eCdAX5A/formResponse" method="POST" target="_blank">
+	  		<div class="col-md-12 text-center" id="survey" ng-show="!answered">
+				<h4>Motta en e-post neste gang jeg lager noe!<h4>
+				</div>
+				<div class="col-md-4 col-md-offset-3 text-center">
+					<input type="email" class="form-control" placeholder="E-postadresse" required="" autofocus="" type="email" name="entry.1916347109">
+				</div>
+				<div class="col-md-2 text-center" style="margin-left:-20px;">
+					<button class="btn btn" type="submit">Meld meg på</button>
+				</div>
+				<br/>
+		</form>
+		<br/>
+		<hr>
+	  </div>
+	  
+	 
+	  <div ng-controller="bookSearchResults">
+		  <div class="jumbotron">
+			<div class="row">
+				<div class="col-md-12">
+			        <h1>Litteraturlistegenerator</h1>
+				
+			        <p class="lead">
+						Spar deg selv bryet. Skriv inn hvilke kilder du har brukt,
+						generatoren tar det derifra. 
+					</p>
+				</div>
+			</div>
+			
+			<form class="form-inline" ng-submit="search()" >
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-1">
+						<input type="text" class="form-control" 
+							   placeholder="Søk etter nettside, tittel, ISBN eller forfatter" 
+							   required="" autofocus="" ng-model="query">
+					</div>
+	
+					<div class="col-md-2">
+						<a class="btn btn-lg btn-primary" ng-click="search()" 
+							role="button">Søk</a>
+						
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<a id="generer-btn" class="btn btn-lg btn-default" 
+							data-toggle="modal" data-target="#references" 
+							role="button" ng-click="generateReferenceList()">Generer liste</a>
+					</div>
+				</div>
+				
+		  	</form>
+		 </div>
+		 
+		  <!-- If waiting for HTTP response-->
+		  <div class="loading" ng-show="loading" style="display: none;"></div> 
+		  
+		  <!-- If error occured -->
+		  <div class="error" ng-show="error" style="display: none;">
+			  <div class="alert alert-danger">{{error}}</div>
+		  </div>
+		   
+	   	  <!-- Include view-->
+	   	  <div ng-show="query" ng-view></div>
+	 </div>
+	 
+	
+     <div class="footer">
+	  <div class="row">
+ 	        <div class="col-md-4">
+ 				<div class="pull-left">
+				<p>
+					<img src="img/studenttorget.png" data-toggle="popover" title="StudentTorget.no skrev:" 
+						data-content='"De fleste studenter kjenner igjen følelsen. Du har skrevet en lang oppgave.
+							          Klippet og limt avsnitt, rettet, lest gjennom igjen og igjen. Endelig ferdig trodde du. Men det var du visst ikke. Den evinnelige litteraturlisten må selvsagt legges inn."'> 
+					
+					<img src="img/gemini.png" data-toggle="popover" title="Gemini.no skrev:" 
+						data-content='"[...] Studentene kan finne informasjon om bøkene de har brukt for å skrive oppgaven. Det er enkelt å søke på tittel, forfatter eller ISBN. Informasjonen støtter standard krav for litteraturlister."'> 
+				
+					<img src="img/ime.png" data-toggle="popover" title="IME Fakultetet ved NTNU skrev:" 
+						data-content='"Hva gjør en informatikkstudent når han irriterer seg over hvor tungvindt det er å lage en litteraturliste? Jo, han lager selvsagt 
+									  et IT-verktøy som løser problemet for seg."'>
+				
+					<img src="img/samfunnsvitere.png" data-toggle="popover" title="Samfunnsviterne.no skrev:" data-content='"LittList.no - gjør jobben med litteraturlister litt enklere."'>
+				</p>
+			</div>
+ 		</div>
+		
+		<div class="col-md-4">
+			
+		</div>
+		  
+        <div class="col-md-4">
+			<div class="fb-like" data-href="https://facebook.com/littlist.no" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+			<p>Utviklet av <a href="http://michaelmcmillan.net">Michael McMillan</a></p>
+		</div>
+	  </div>
+    </div>
+
+    </div> <!-- /container -->
+	
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/popover.js"></script>
+	<script src="js/underscore-min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-cookies.js"></script>
+	<script src="js/app.js"></script>
+  </body>
+</html>

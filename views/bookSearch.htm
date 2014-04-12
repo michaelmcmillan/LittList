@@ -1,0 +1,66 @@
+
+<!-- Only show results if any results-->
+<table class="table table-striped" ng-show="query">
+	
+	<!-- Books-columns -->
+	<thead ng-show="books">
+		<tr>
+			<th>Velg</th>
+			<th>Tittel</th>
+			<th>Forfatter</th>
+			<th>Trykket</th>
+			<th>Årstall</th>
+			<th>ISBN</th>
+		</tr>
+	</thead>
+	
+	<!-- Book rows -->
+	<tbody ng-show="books">
+
+			<!-- Iterate each book -->
+			<tr ng-repeat="book in books">
+				<td class="velg">
+				
+					<!-- Add book to references -->
+					<span class="glyphicon glyphicon-plus" ng-click="addReference(book, 'book', $event.target)"></span><br>
+					<span id="glyphfix" class="glyphicon glyphicon-minus" ng-click="removeReference(book, 'book', $event.target)"></span>
+				</td>
+				<td>{{book.tittel}}</td>
+				<td>
+					<!-- Iterate authors -->
+					<p ng-repeat="forfatter in book.forfatter">
+						{{forfatter}}
+					</p>
+				</td>
+				<td>{{book.trykt}}</td>
+				<td>{{book.aarstall}}</td>
+				<td>{{book.isbn}}</td>
+			</tr>
+		</book>
+	</tbody>
+	
+	<!-- Website-columns -->
+	<thead ng-show="website">
+		<tr>
+			<th>Velg</th>
+			<th>Tittel</th>
+			<th>Forfatter</th>
+			<th>Publisert</th>
+			<th>Domene</th>
+		</tr>
+	</thead>
+	
+	<!-- Website rows -->
+	<tbody ng-show="website">
+		<tr>
+			<td class="velg">
+				<span class="glyphicon glyphicon-plus" ng-click="addReference(website, 'website', $event.target)"></span>
+				<span id="glyphfix" class="glyphicon glyphicon-minus" ng-click="removeReference(website, 'website', $event.target)"></span>
+			</td>
+			<td>{{website.tittel}}</td>
+			<td>{{website.forfatter}}</td>
+			<td>{{website.date_published}}
+			<td>{{website.domene}}</td>
+		</tr>
+	</tbody>
+</table>
