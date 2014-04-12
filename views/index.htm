@@ -24,43 +24,42 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 		
-		<!-- Piwik -->
-		<script type="text/javascript"> 
-		  var _paq = _paq || [];
-		  _paq.push(['trackPageView']);
-		  _paq.push(['enableLinkTracking']);
-		  (function() {
-		    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://kilde.michaelmcmillan.net/piwik//";
-		    _paq.push(['setTrackerUrl', u+'piwik.php']);
-		    _paq.push(['setSiteId', 1]);
-		    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
-		    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-		  })();
-
-		</script>
-		<noscript><p><img src="http://kilde.michaelmcmillan.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
-		<!-- End Piwik Code -->
-		
-		<script>
-		// Include the UserVoice JavaScript SDK (only needed once on a page)
-		UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/YQPvrBGNQsmK78OlkZAg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
-
-		UserVoice = window.UserVoice || [];
-		UserVoice.push(['showTab', 'classic_widget', {
-		  mode: 'feedback',
-		  primary_color: '#8f8f8f',
-		  link_color: '#428bca',
-		  forum_id: 232108,
-		  tab_label: 'Feedback',
-		  tab_color: '#428bca',
-		  tab_position: 'middle-right',
-		  tab_inverted: false
-		}]);
-		</script>
-		
+	<!-- Piwik -->
+	<script type="text/javascript"> 
+	  var _paq = _paq || [];
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+	    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://kilde.michaelmcmillan.net/piwik//";
+	    _paq.push(['setTrackerUrl', u+'piwik.php']);
+	    _paq.push(['setSiteId', 1]);
+	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+	    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	<noscript><p><img src="http://kilde.michaelmcmillan.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
+	
+    <!-- UserVoice -->	
+	<script>
+	// Include the UserVoice JavaScript SDK (only needed once on a page)
+	UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/YQPvrBGNQsmK78OlkZAg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+	UserVoice = window.UserVoice || [];
+	UserVoice.push(['showTab', 'classic_widget', {
+	  mode: 'feedback',
+	  primary_color: '#8f8f8f',
+	  link_color: '#428bca',
+	  forum_id: 232108,
+	  tab_label: 'Feedback',
+	  tab_color: '#428bca',
+	  tab_position: 'middle-right',
+	  tab_inverted: false
+	}]);
+	</script>
   </head>
 
   <body>
+      <!-- Facebook Like-button -->
 	  <div id="fb-root"></div>
 	  <script>(function(d, s, id) {
 	    var js, fjs = d.getElementsByTagName(s)[0];
@@ -72,7 +71,6 @@
 	  
     <div class="container">
       
-	 
 	  <!-- Preview references -->
 	  <div id="references" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
@@ -501,6 +499,7 @@
 
     </div> <!-- /container -->
 	
+    <!-- Javascript -->
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/popover.js"></script>
