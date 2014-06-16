@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
 	
 	$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
 	
-	$routeProvider.when('/',
+	$routeProvider.when('/:query?',
 		{ 
 			controller: 'bookSearchResults',
 			templateUrl: 'views/bookSearch.htm'
@@ -57,12 +57,15 @@ app.factory('api', ['$http', function ($http) {
  * bookSearchResults
  * - Display results from book search
  */
-app.controller('bookSearchResults', function ($rootScope, $scope, api) {
+app.controller('bookSearchResults', function ($rootScope, $scope, $routeParams, api) {
 	
 	// Default values
 	$scope.loading = false;
 	$scope.error = false;
 	$rootScope.references = new Array ();
+
+	// query from url
+	$scope.query = ($routeParams.query || '');
 		
 	/**
 	 * Remove results if new search
