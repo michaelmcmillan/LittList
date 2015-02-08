@@ -4,7 +4,7 @@
   "description": "Et verktøy for å lage litteraturlistegenerator på under 10 sekunder.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -R dot"
+    "test": "./node_modules/mocha/bin/mocha -R dot"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
   "license": "ISC",
