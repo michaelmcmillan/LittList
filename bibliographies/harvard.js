@@ -43,7 +43,11 @@ function Harvard (references) {
     }
     
     this.placeFormat = function (referenceIndex) {
-        return references[referenceIndex].getPublicationPlace() + ':';
+        if (references[referenceIndex] instanceof Book) 
+            return Format.book.place(references[referenceIndex].getPublicationPlace());
+ 
+        if (references[referenceIndex] instanceof Website) 
+            console.log ('Not yet supported.');
     }
 }
 

@@ -4,6 +4,10 @@ HarvardFormatting = {
         title: function (title) {
             return '<em>' + title + '</em>';
         },
+        
+        place: function (place) {
+            return place + ':';     
+        },
 
         author: function (authors) {
             var authorLine = '';
