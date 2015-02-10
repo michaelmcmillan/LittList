@@ -1,6 +1,10 @@
 HarvardFormatting = {
     
     book: {
+        title: function (title) {
+            return '<em>' + title + '</em>';
+        },
+
         author: function (authors) {
             var authorLine = '';
             authors.forEach(function (author, index) { 

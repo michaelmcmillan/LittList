@@ -35,15 +35,15 @@ function Harvard (references) {
     }
     
     this.titleFormat = function (referenceIndex) {
-        return '<em>' + references[referenceIndex].getTitle() + '</em>'; 
+        if (references[referenceIndex] instanceof Book) 
+            return Format.book.title(references[referenceIndex].getTitle());
+ 
+        if (references[referenceIndex] instanceof Website) 
+            console.log ('Not yet supported.');
     }
     
     this.placeFormat = function (referenceIndex) {
         return references[referenceIndex].getPublicationPlace() + ':';
-    }
-
-    this.bookToString = function (index) {
-         
     }
 }
 
