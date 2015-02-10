@@ -107,5 +107,5 @@ describe('bibliography#harvard', function () {
         
         assert.equal(bibliography.placeFormat(4), 'Oslo:');
     });
-    
+
 });
