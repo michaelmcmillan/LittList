@@ -39,10 +39,10 @@ describe('bibliography#harvard', function () {
         var bibliography = new Harvard(books);
         bibliography.sort();
         
-        assert.equal(bibliography.getBooks()[0].getAuthors()[0].getName(), 'Jonathan Bick'); 
-        assert.equal(bibliography.getBooks()[1].getAuthors()[0].getName(), 'Richard Dawkins'); 
-        assert.equal(bibliography.getBooks()[2].getAuthors()[0].getName(), 'Dagfinn Døhl Dybvig'); 
-        assert.equal(bibliography.getBooks()[3].getAuthors()[0].getName(), 'Richard Brandson Smith'); 
+        assert.equal(bibliography.getBooks()[0].getAuthors()[0].getSurname(), 'Bick'); 
+        assert.equal(bibliography.getBooks()[1].getAuthors()[0].getSurname(), 'Dawkins'); 
+        assert.equal(bibliography.getBooks()[2].getAuthors()[0].getSurname(), 'Dybvig'); 
+        assert.equal(bibliography.getBooks()[3].getAuthors()[0].getSurname(), 'Smith'); 
     });
 
     it('should format a single author as => Surname, F.', function () {
