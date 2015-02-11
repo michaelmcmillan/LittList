@@ -1,15 +1,23 @@
-var validator = require('url');
+var assert  = require('assert');
+var Website = require('../website.js');
+var Author  = require('../author.js');
 
-function Website (url) {
-    var url = url;
+describe('Website', function () {
+   
+    it('should return the hostname with the first letter capitalized', function () {
+        var ntnu = new Website('http://ntnu.no'); 
+        assert.equal(ntnu.getTitle(), 'Ntnu');
+    });
     
-    this.getHost = function () {
-        return validator.parse(url).host;
-    }
-
-    this.filter = function (url) {
-        
-    }
-}
-
-module.exports = Website;
+    /*
+    it('should ignore any subdomain in the getTitle fallback', function () {
+        var ntnu = new Website('http://wiki.ntnu.no'); 
+        assert.equal(ntnu.getTitle(), 'Ntnu');
+    });
+    */
+    
+    it('should return the set title if defined and not resolve to hostname', function () {
+        var vg = new Website('http://vg.no', 'Verdens Gang');
+        assert.equal(vg.getTitle(), 'Verdens Gang');
+    });
+});
