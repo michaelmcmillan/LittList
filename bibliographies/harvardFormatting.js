@@ -1,5 +1,8 @@
 HarvardFormatting = {
     
+    /**
+     * Book
+     */
     book: {
         title: function (title) {
             return '<em>' + title + '</em>';
@@ -27,6 +30,10 @@ HarvardFormatting = {
         publicationYear: function (year) {
             return '(' + year + ')';                 
         }
+    },
+
+    website: {
+                 
     }
 };
 

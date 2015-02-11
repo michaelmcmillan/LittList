@@ -6,7 +6,7 @@ function Harvard (references) {
     
     var references = references;
 
-    this.getBooks = function () {
+    this.getReferences = function () {
         return references; 
     }
     
