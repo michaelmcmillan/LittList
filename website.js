@@ -1,14 +1,25 @@
 var validator = require('url');
 
-function Website (url) {
-    var url = url;
-    
-    this.getHost = function () {
-        return validator.parse(url).host;
+function Website (url, title) {
+    var url   = url;
+    var title = title; 
+
+    this.getHostname = function () {
+        var hostname = validator.parse(url).hostname;
+        return hostname.charAt(0).toUpperCase() + 
+               hostname.slice(1)
+               .substring(0, hostname.lastIndexOf('.') - 1);
     }
 
-    this.filter = function (url) {
-        
+    this.setTitle = function (websiteTitle) {
+        title = websiteTitle; 
+    }
+
+    this.getTitle = function () {
+        if (title !== undefined)
+            return title;
+        else
+            return this.getHostname();
     }
 }
 
