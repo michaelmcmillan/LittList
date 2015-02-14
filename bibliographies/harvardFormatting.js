@@ -1,8 +1,5 @@
 HarvardFormatting = {
     
-    /**
-     * Book
-     */
     book: {
         title: function (title) {
             return '<em>' + title + '</em>';
@@ -18,7 +15,7 @@ HarvardFormatting = {
                 authorLine += author.getSurname() + ', ' + 
                     author.getInitials(author.getForename())
                     .split('').join('.') + '.';
-                
+
                 if (index == authors.length - 2)
                     authorLine += ' og ';
                 else if (index <  authors.length - 2)
@@ -28,12 +25,14 @@ HarvardFormatting = {
         },
 
         publicationYear: function (year) {
-            return '(' + year + ')';                 
+            return '(' + year + ')';
         }
     },
 
     website: {
-                 
+        title: function (title) {
+            return '<em>' + title + '</em>'; 
+        }
     }
 };
 
