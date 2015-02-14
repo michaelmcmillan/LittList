@@ -23,7 +23,7 @@ function Harvard (references) {
             return Format.book.author(references[referenceIndex].getAuthors());
         
         if (references[referenceIndex] instanceof Website) 
-            console.log ('Not yet supported.');
+            return '';
     }
     
     this.yearFormat = function (referenceIndex) {
@@ -31,7 +31,7 @@ function Harvard (references) {
             return Format.book.publicationYear(references[referenceIndex].getPublicationYear());
  
         if (references[referenceIndex] instanceof Website) 
-            console.log ('Not yet supported.');
+            return '';
     }
     
     this.titleFormat = function (referenceIndex) {
@@ -39,7 +39,7 @@ function Harvard (references) {
             return Format.book.title(references[referenceIndex].getTitle());
  
         if (references[referenceIndex] instanceof Website) 
-            console.log ('Not yet supported.');
+            return '';
     }
     
     this.placeFormat = function (referenceIndex) {
@@ -47,7 +47,7 @@ function Harvard (references) {
             return Format.book.place(references[referenceIndex].getPublicationPlace());
  
         if (references[referenceIndex] instanceof Website) 
-            console.log ('Not yet supported.');
+            return '';
     }
 }
 
