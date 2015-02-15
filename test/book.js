@@ -29,10 +29,10 @@ describe('Book', function () {
         assert.equal(book.getAuthors().length, 0)
    });     
    
-   it('should have at least one author', function () {
+   it('should have at least one author when an author is added', function () {
         var book = new Book('Title');
         book.addAuthor(new Author('Jo Nesbø'));
-        assert.equal(book.getAuthors()[0].getName(), 'Jo Nesbø')
+        assert.equal(book.getAuthors().length, 1)
    }); 
    
    it('should have a place where the book was published', function () {
