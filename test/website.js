@@ -4,7 +4,6 @@ var Author  = require('../author.js');
 
 describe('Website', function () {
    
-    
     it('should return the hostname with the first letter capitalized', function () {
         var ntnu = new Website('http://ntnu.no'); 
         assert.equal(ntnu.getTitle(), 'Ntnu');

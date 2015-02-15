@@ -9,6 +9,7 @@ describe('bibliography#harvard', function () {
     var references = [];
 
     before(function () {
+        
         var exphil = new Book('Det tenkende mennesket');
         exphil.addAuthor(new Author('Dagfinn Døhl Dybvig'));
         exphil.addAuthor(new Author('Magne Dybvig'));
@@ -40,12 +41,6 @@ describe('bibliography#harvard', function () {
         references.push(ntnu);
     });
 
-   /* it('should return the title in italics', function () {
-        var ntnu = new Website('http://ntnu.no', 'Norges teknisk-naturvitenskapelige universitet');     
-        assert.equal(ntnu.getTitle().substring(0, 4), '<em>');
-        assert.equal(ntnu.getTitle().substring(ntnu.getTitle().length - 4), '</em>');
-    });
-   */
    
     it('should sort the references alphabetically by surname', function () {
         var bibliography = new Harvard(references);
@@ -107,11 +102,19 @@ describe('bibliography#harvard', function () {
         assert.equal(bibliography.yearFormat(3), '(2004)');
     });
     
-    it('should italize title', function () {
+    it('should italize the book title', function () {
         var bibliography = new Harvard(references);
         bibliography.sort();
         
         assert.equal(bibliography.titleFormat(2), '<em>The God Delusion</em>');
+    });
+    
+    it('should italize the website title', function () {
+        var bibliography = new Harvard(references);
+        bibliography.sort();
+        
+        assert.equal(bibliography.titleFormat(1).indexOf('<em>'),   0);
+        assert.equal(bibliography.titleFormat(1).substring(bibliography.titleFormat(1).length - '</em>'.length), '</em>'); 
     });
     
     it('should append colon to publication place', function () {
@@ -120,5 +123,4 @@ describe('bibliography#harvard', function () {
         
         assert.equal(bibliography.placeFormat(5), 'Oslo:');
     });
-
 });

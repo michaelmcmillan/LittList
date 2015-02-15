@@ -39,7 +39,7 @@ function Harvard (references) {
             return Format.book.title(references[referenceIndex].getTitle());
  
         if (references[referenceIndex] instanceof Website) 
-            return '';
+            return Format.website.title(references[referenceIndex].getTitle());
     }
     
     this.placeFormat = function (referenceIndex) {
