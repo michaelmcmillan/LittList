@@ -2,7 +2,7 @@ var assert  = require('assert');
 var Book    = require('../book.js');
 var Author  = require('../author.js'); 
 
-describe('Book', function () {
+describe('book', function () {
    it('should be able to be created', function () {
         var book = new Book('Title');
         assert.equal(book instanceof Book, true);
