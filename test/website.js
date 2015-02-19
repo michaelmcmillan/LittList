@@ -14,4 +14,8 @@ describe('website', function () {
         assert.equal(vg.getTitle(), 'Verdens Gang');
     });
 
+    it('should return the name of the website if there\'s no author provided', function () {
+        var itavisen = new Website('http://itavisen.no');
+        assert.equal(itavisen.getTitle(), 'Itavisen');
+    });
 });
