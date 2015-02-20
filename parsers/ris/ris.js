@@ -1,7 +1,7 @@
 function RisParser (source) {
     
-    var risFields  = require('./risFields.js');
-    var risTypes   = require('./risTypes.js');
+    var risFields  = require('./fields.js');
+    var risTypes   = require('./types.js');
     var risPattern = /^([A-Z]{2})\s{2}\-\s?(.*)/;
     
     var matches    = [];
