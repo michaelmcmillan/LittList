@@ -1,5 +1,5 @@
 var assert  = require('assert');
-var Harvard = require('../bibliographies/harvard.js');
+var Harvard = require('../bibliographies/harvard/harvard.js');
 var Book    = require('../references/book.js');
 var Website = require('../references/website.js');
 var Author  = require('../references/author.js');
