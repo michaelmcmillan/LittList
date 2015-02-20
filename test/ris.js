@@ -28,16 +28,40 @@ describe('ris', function () {
         ].join('\n'); 
     });
 
-    it('should throw an exception on an invalid ris-file', function () {
+    it('should throw an exception on an ris-file missing fields', function () {
         var ris = new RisParser('this does not look like ris format'); 
-        
         assert.throws(function () {
             ris.parse();
-        });
+        }, Error);
     });
 
+    it('should throw an exception on an illegal ris-type', function () {
+        var ris = new RisParser('XX  - This tag is an invalid tag.'); 
+        assert.throws(function () {
+            ris.parse();
+        }, Error);
+    });
+    
+    it('should throw an exception on an empty ris-file', function () {
+        var ris = new RisParser(''); 
+        assert.throws(function () {
+            ris.parse();
+        }, Error);
+    });
+    
     it('should properly return what kind of entity the ris format describes (ie. book)', function () {
         var ris = new RisParser('TY  - BOOK'); 
+        assert.equal(ris.parse().TY, 'BOOK');
+    });
+    
+    it('should return the publisher', function () {
+        var ris = new RisParser('PB  - Cappelen Damn'); 
+        assert.equal(ris.parse().PB, 'Cappelen Damn');
+    });
+    
+    it('should correctly parse a multi-line ris file', function () {
+        var ris = new RisParser(['PB  - Cappelen Damn', 'TY  - BOOK'].join('\n')); 
+        assert.equal(ris.parse().PB, 'Cappelen Damn');
         assert.equal(ris.parse().TY, 'BOOK');
     });
 });
