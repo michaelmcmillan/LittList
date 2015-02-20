@@ -1,5 +1,5 @@
-var Book    = require('../book.js');
-var Website = require('../website.js'); 
+var Book    = require('../references/book.js');
+var Website = require('../references/website.js'); 
 var Format  = require('./harvardFormatting.js');
 
 function Harvard (references) {

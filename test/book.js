@@ -1,6 +1,6 @@
 var assert  = require('assert');
-var Book    = require('../book.js');
-var Author  = require('../author.js'); 
+var Book    = require('../references/book.js');
+var Author  = require('../references/author.js'); 
 
 describe('book', function () {
    it('should be able to be created', function () {
