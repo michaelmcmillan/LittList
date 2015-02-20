@@ -14,7 +14,9 @@ function Harvard (references) {
         references.sort(function (referenceOne, referenceTwo) {
             var firstSurname  = referenceOne.getAuthors()[0].getName().split(' ').reverse()[0];
             var secondSurname = referenceTwo.getAuthors()[0].getName().split(' ').reverse()[0];
-            return firstSurname.localeCompare(secondSurname);  
+            if (firstSurname < secondSurname) return -1;
+            if (firstSurname > secondSurname) return  1;
+            return 0;
         }); 
     }
     
