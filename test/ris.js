@@ -1,5 +1,5 @@
 var assert    = require('assert');
-var RisParser = require('../parsers/ris.js');
+var RisParser = require('../parsers/ris/ris.js');
 
 describe('ris', function () {
 
