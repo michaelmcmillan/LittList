@@ -28,42 +28,35 @@ describe('ris', function () {
         ].join('\n'); 
     });
 
-    it('should throw an exception on an ris-file missing fields', function () {
+    it('should throw an exception on a ris-file missing fields', function () {
         var ris = new RisParser('this does not look like ris format'); 
         assert.throws(function () {
             ris.parse();
-        }, Error);
+        }, /No fields found/);
     });
 
-    it('should throw an exception on an illegal ris-type', function () {
+    it('should throw an exception on an illegal field', function () {
         var ris = new RisParser('XX  - This tag is an invalid tag.'); 
         assert.throws(function () {
             ris.parse();
-        }, Error);
+        }, /Illegal field/);
     });
     
-    it('should allow no value on the ER field', function () {
-        var ris = new RisParser('TY  - BUUUUK\nER   -'); 
+    it('should not allow an illegal TY (reference type)', function () {
+        var ris = new RisParser('TY  - BUUUUK\nER  -'); 
         assert.throws(function () {
             ris.parse();
-        }, Error);
-    });
-    
-    it('should throw an exception on an illegal reference type', function () {
-        var ris = new RisParser('TY  - BUUUUK\nER   -'); 
-        assert.throws(function () {
-            ris.parse();
-        }, Error);
+        }, /reference type/);
     });
     
     it('should throw an exception on an empty ris-file', function () {
         var ris = new RisParser(''); 
         assert.throws(function () {
             ris.parse();
-        }, Error);
+        }, /empty/);
     });
     
-    it('should properly return what kind of entity the ris format describes (ie. book)', function () {
+    it('should properly return what kind of type the ris format describes (ie. book)', function () {
         var ris = new RisParser(['TY  - BOOK', 'ER  -'].join('\n')); 
         assert.equal(ris.parse().TY, 'BOOK');
     });
@@ -83,10 +76,10 @@ describe('ris', function () {
         var risWithoutER = new RisParser(['TY  - BOOK', 'PB  - Cappelen Damn'].join('\n')); 
         assert.throws(function () {
             risWithoutER.parse();
-        }, Error);
+        }, /field is not ER/);
     });
     
-    it('should have an ER-field ending the reference.', function () {
+    it('should not throw an exception if ER-field is the last field.', function () {
         var risWithER = new RisParser(['TY  - BOOK', 'PB  - Cappelen Damn', 'ER  -'].join('\n')); 
         assert.doesNotThrow(function () {
             risWithER.parse(); 
@@ -97,6 +90,6 @@ describe('ris', function () {
         var ris = new RisParser(['PB  - Cappelen Damn', 'TY  - BOOK', 'ER  -'].join('\n')); 
         assert.throws(function () {
             ris.parse();
-        }, Error);
+        }, /field is not TY/);
     });
 });
