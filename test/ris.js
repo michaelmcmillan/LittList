@@ -48,10 +48,17 @@ describe('ris', function () {
     });
     
     it('throws an exception if ER-field is not the last field.', function () {
-        var risWithoutER = new RisParser(['TY  - BOOK', 'PB  - Cappelen Damn'].join('\n')); 
+        var risWithoutER = new RisParser(['TY  - BOOK', 'ER  -', 'PB  - Cappelen Damn'].join('\n')); 
         assert.throws(function () {
             risWithoutER.parse();
         }, /field is not ER/);
+    });
+    
+    it('throws an exception if uneven occurences of TY/ER fields.', function () {
+        var risWithoutER = new RisParser(['TY  - BOOK', 'TY  - BOOK', 'ER  -'].join('\n')); 
+        assert.throws(function () {
+            risWithoutER.parse();
+        }, /Uneven occurences/);
     });
     
     it('should not throw an exception if ER-field is the last field.', function () {
@@ -66,5 +73,18 @@ describe('ris', function () {
         assert.throws(function () {
             ris.parse();
         }, /field is not TY/);
+    });
+
+    xit('should return an array of ris entities if multiple references are provided', function () {
+        var ris = new RisParser([
+            'TY  - BOOK',
+            'PB  - Cappelen Damn',
+            'ER  -',
+            
+            'TY  - BOOK',
+            'PB  - Aschehoug',
+            'ER  -'].join('\n')); 
+        ris.parse();
+        //assert.equal(ris.parse().length, 2);
     });
 });
