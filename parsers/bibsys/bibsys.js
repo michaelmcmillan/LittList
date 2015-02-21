@@ -18,7 +18,7 @@ function Bibsys () {
         });
     }
 
-    this.getRis = function () {
+    this.getRis = function (callback) {
         
         var args = [
             'cmd=sendtil',
@@ -37,6 +37,7 @@ function Bibsys () {
         
         request.post(options, function (err, res) {
             console.log(res.body);
+            callback(res.body);
         });
     }
 }
