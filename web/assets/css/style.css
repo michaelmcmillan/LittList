@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 100%;
+}
+
+form#query {
+    margin: 0 auto;
+}
