@@ -74,17 +74,4 @@ describe('ris', function () {
             ris.parse();
         }, /field is not TY/);
     });
-
-    xit('should return an array of ris entities if multiple references are provided', function () {
-        var ris = new RisParser([
-            'TY  - BOOK',
-            'PB  - Cappelen Damn',
-            'ER  -',
-            
-            'TY  - BOOK',
-            'PB  - Aschehoug',
-            'ER  -'].join('\n')); 
-        ris.parse();
-        //assert.equal(ris.parse().length, 2);
-    });
 });
