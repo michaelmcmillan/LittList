@@ -1,5 +1,8 @@
 module.exports = {
     TY: 'Type of reference (must be the first tag)',
+    ID: 'Identification number for the reference. Not an official field',
+    Y1: 'Year of publication. Not an official field',
+    A1: 'First Author (each author on its own line preceded by the tag)',
     A2: 'Secondary Author (each author on its own line preceded by the tag)',
     A3: 'Tertiary Author (each author on its own line preceded by the tag)',
     A4: 'Subsidiary Author (each author on its own line preceded by the tag)',
