@@ -8,6 +8,7 @@ function Bibsys () {
     var action  = 'ask/action/result?';
     var options = {
         followAllRedirects: true,
+        maxRedirects: 2,
         headers: {
             cookie: '' 
         }
@@ -20,7 +21,7 @@ function Bibsys () {
     this.search = function (query, callback) {
         request.get(host + action + 'kilde=biblio&q=' + query, function (err, res) {
              options.headers.cookie = self.parseSession(res.headers['set-cookie']);
-             self.getRis();
+             self.getRis(callback);
         });
     }
 
@@ -34,14 +35,12 @@ function Bibsys () {
         })).join('&');
     
         options.url = host + action + args;
-
+        
         request.post(options, function (err, res) {
             var splits = res.body.split(/(^ER\s{2}\-\s\n)/gm);  
-            console.log(splits.length);
-
-            for (i = 0; i < splits.length - 1; i = i + 2) {
-                var ris = new risParser(splits[i] + splits[i + 1]);
-                
+            
+            for (c = 0; c < splits.length - 1; c += 2) {
+                var ris = new risParser(splits[c] + splits[c + 1]);
                 console.log(ris.parse());
             }
         });
@@ -49,6 +48,8 @@ function Bibsys () {
 }
 
 var bibsys = new Bibsys();
-bibsys.search('food');
+bibsys.search('food', function () {
+    
+});
 
 module.exports = Bibsys;
