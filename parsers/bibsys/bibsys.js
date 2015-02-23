@@ -1,19 +1,25 @@
-var request = require('request');
+var request   = require('request');
+var risParser = require('../ris/ris.js');
 
 function Bibsys () {
     
-    var self   = this;
-    var host   = 'http://ask.bibsys.no/';
-    var action = 'ask/action/result?';
-    var session;
-    
+    var self    = this;
+    var host    = 'http://ask.bibsys.no/';
+    var action  = 'ask/action/result?';
+    var options = {
+        followAllRedirects: true,
+        headers: {
+            cookie: '' 
+        }
+    } 
+
     this.parseSession = function (cookieResponse) {
         return cookieResponse[0].match(/JSESSIONID\=[A-Z0-9]*\;/);
     }
 
     this.search = function (query, callback) {
         request.get(host + action + 'kilde=biblio&q=' + query, function (err, res) {
-             session = self.parseSession(res.headers['set-cookie']);
+             options.headers.cookie = self.parseSession(res.headers['set-cookie']);
              self.getRis();
         });
     }
@@ -27,22 +33,22 @@ function Bibsys () {
             return 'valg=' + num;
         })).join('&');
     
-        var options = {
-            url: host + action + args,
-            followAllRedirects: true,
-            headers: {
-                cookie: session
-            }
-        } 
-        
+        options.url = host + action + args;
+
         request.post(options, function (err, res) {
-            console.log(res.body);
-            callback(res.body);
+            var splits = res.body.split(/(^ER\s{2}\-\s\n)/gm);  
+            console.log(splits.length);
+
+            for (i = 0; i < splits.length - 1; i = i + 2) {
+                var ris = new risParser(splits[i] + splits[i + 1]);
+                
+                console.log(ris.parse());
+            }
         });
     }
 }
 
 var bibsys = new Bibsys();
-bibsys.search('sult');
+bibsys.search('food');
 
 module.exports = Bibsys;
