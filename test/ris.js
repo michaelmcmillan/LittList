@@ -11,7 +11,7 @@ describe('ris', function () {
     });
 
     it('should throw an exception on an illegal field', function () {
-        var ris = new RisParser('XX  - This tag is an invalid tag.'); 
+        var ris = new RisParser(['TY  - BOOK', 'XX  - This tag is an invalid field.', 'ER  -'].join('\n')); 
         assert.throws(function () {
             ris.parse();
         }, /Illegal field/);
