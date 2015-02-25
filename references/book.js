@@ -1,7 +1,7 @@
 function Book (title) {
-    
-    var title   = title; 
-    var authors = [];
+    var bookModel = {}; 
+    var title     = title; 
+    var authors   = [];
     var publicationYear;
     var publicationPlace;
     var edition; 
@@ -40,6 +40,14 @@ function Book (title) {
     
     this.getAuthors = function () {
         return authors; 
+    }
+
+    this.load = function (id) {
+     
+    }
+
+    this.save = function () {
+    
     }
 }
 
