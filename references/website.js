@@ -1,10 +1,21 @@
+var factory   = new require('../database/factory.js'); 
 var validator = require('url');
 
 function Website (url, title) {
+    
+    var websiteModel; 
     var url     = url;
     var title   = title; 
     var authors = [];
+    
+    this.load = function (id) {
+        websiteModel = factory.website.get(1);
+    }
 
+    this.save = function () {
+    
+    }
+    
     this.getHostname = function () {
         var hostname = validator.parse(url).hostname;
         return hostname.charAt(0).toUpperCase() + 
