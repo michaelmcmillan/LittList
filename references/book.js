@@ -1,11 +1,21 @@
+var factory = new require('../database/factory.js'); 
+
 function Book (title) {
-    var bookModel = {}; 
+    var bookModel; 
     var title     = title; 
     var authors   = [];
     var publicationYear;
     var publicationPlace;
     var edition; 
 
+    this.load = function (id) {
+        bookModel = factory.book.get(1);
+    }
+
+    this.save = function () {
+    
+    }
+    
     this.getTitle = function () {
         return title;
     }
@@ -42,13 +52,6 @@ function Book (title) {
         return authors; 
     }
 
-    this.load = function (id) {
-     
-    }
-
-    this.save = function () {
-    
-    }
 }
 
 module.exports = Book;
