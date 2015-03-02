@@ -1,7 +1,7 @@
 var config = require('../config.js');
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize(
+module.exports = new Sequelize(
     config.database.database,
     config.database.username,
     config.database.password, {
@@ -15,15 +15,3 @@ var sequelize = new Sequelize(
         },
     }
 );
-
-var BookModel = sequelize.define('Book', {
-    isbn:            { type: Sequelize.STRING },
-    title:           { type: Sequelize.STRING },
-    author:          { type: Sequelize.STRING },
-    publisher:       { type: Sequelize.STRING },
-    publicationYear: { type: Sequelize.STRING },
-});
-
-BookModel.sync().then(function () {
-    console.log ('Model created.');
-});
