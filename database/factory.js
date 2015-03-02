@@ -1,4 +1,4 @@
-var bookModel = require('./bookModel.js');
+var bookModel = require('./models/book.js');
 
 function Factory () {
     
