@@ -67,6 +67,7 @@ module.exports = [
     'sa', 'sa', 'sc',
     'sc', 'sc', 'sd',
     'se', 'sg', 'sh',
+    'simple',
     'si', 'si', 'sk',
     'sl', 'sm', 'sn',
     'so', 'sq', 'sr',
