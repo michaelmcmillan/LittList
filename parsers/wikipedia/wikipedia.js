@@ -34,7 +34,7 @@ function Wikipedia () {
         return this.stripHashbang(url); 
     }
 
-    this.parseReferencesFromArticle (articleContent) {
+    this.parseReferencesFromArticle = function (articleContent) {
     
     }
 }
