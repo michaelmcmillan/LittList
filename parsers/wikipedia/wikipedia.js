@@ -1,6 +1,7 @@
 var request   = require('request');
 var url       = require('url');
 var languages = require('./languages.js');
+var cheerio   = require('cheerio');
 
 function Wikipedia () {
     
@@ -34,8 +35,9 @@ function Wikipedia () {
         return this.stripHashbang(url); 
     }
 
-    this.parseReferencesFromArticle = function (articleContent) {
-    
+    this.parseRefTags = function (articleContent) {
+        var $ = cheerio.load(articleContent);  
+        return $('ref');
     }
 }
 
