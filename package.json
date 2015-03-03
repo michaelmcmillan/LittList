@@ -12,6 +12,7 @@
     "mocha": "^2.1.0"
   },
   "dependencies": {
+    "cheerio": "^0.18.0",
     "ejs": "^2.2.4",
     "express": "^4.11.2",
     "iconv-lite": "^0.4.7",
