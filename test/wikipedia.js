@@ -81,10 +81,10 @@ describe('wikipedia', function () {
         );
     });
 
-    it('url encodes a wiki page title ignoring #hashbangs', function () {
+    it('url encodes a wiki page title with another charset', function () {
         var wikipedia = new Wikipedia();  
         assert.equal(
-            wikipedia.urlEncodePage('Kölsch#Produksjon'),
+            wikipedia.urlEncodePage('Kölsch'),
             'K%C3%B6lsch' 
         );
     });

@@ -6,7 +6,6 @@ var cheerio   = require('cheerio');
 function Wikipedia () {
     
     var urlFilter = 'wikipedia.org/wiki/';
-    var supportedLanguages = ['en', 'no'];
     var userAgent = 'LittList.no';
     var host      = 'wikipedia.org';
     var endpoint  =  '/w/api.php';
@@ -17,8 +16,6 @@ function Wikipedia () {
     ].join('&');
     
     this.urlEncodePage = function (wikiPage) {
-        if (wikiPage.indexOf('#') !== -1)
-            wikiPage = wikiPage.substring(0, wikiPage.lastIndexOf('#'));
         return encodeURIComponent(wikiPage);
     }
 
@@ -30,7 +27,7 @@ function Wikipedia () {
     }
     
     this.stripHashbang = function (url) {
-        if (url.lastIndexOf('#') !== -1)
+        if (url.indexOf('#') !== -1)
             return url.substring(0, url.lastIndexOf('#'));
         else
             return url;
