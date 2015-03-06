@@ -88,4 +88,14 @@ describe('wikipedia', function () {
             'K%C3%B6lsch' 
         );
     });
+    
+    it('extracts the language code of the wikipedia page', function () {
+        var wikipedia = new Wikipedia();  
+        assert.equal(wikipedia.getLanguageCodeFromURL('no.wikipedia.org/wiki/Borgerkrigen_i_Syria'),
+            'no' 
+        );
+        assert.equal(wikipedia.getLanguageCodeFromURL('en.wikipedia.org/wiki/Beer'),
+            'en' 
+        );
+    });
 });
