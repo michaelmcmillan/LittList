@@ -13,9 +13,15 @@ function Wikipedia () {
     var arguments = '?' + [
         'format=json',
         'action=parse',
-        'page=Main%20Page',
+        'page='
     ].join('&');
     
+    this.urlEncodePage = function (wikiPage) {
+        if (wikiPage.indexOf('#') !== -1)
+            wikiPage = wikiPage.substring(0, wikiPage.lastIndexOf('#'));
+        return encodeURIComponent(wikiPage);
+    }
+
     this.isWikipediaURL = function (url) {
         for (i = 0; i < languages.length; i++)
             if (url.indexOf(languages[i] + '.' + urlFilter) !== -1)

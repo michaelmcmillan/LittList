@@ -24,7 +24,7 @@ describe('wikipedia', function () {
         var wikipedia = new Wikipedia();  
         console.log(wikipedia.parseRefTags(wikipediaParagraph).text());
     });
-    
+     
     it('retrieves the article title from a wikipedia link', function () {
         var wikipedia = new Wikipedia();  
         assert.equal(
@@ -70,6 +70,22 @@ describe('wikipedia', function () {
         assert.equal(
             wikipedia.isWikipediaURL('no.wikipedia.org/wiki/Borgerkrigen_i_Syria#Utbruddet'),
             true 
+        );
+    });
+
+    it('url encodes a wiki page title', function () {
+        var wikipedia = new Wikipedia();  
+        assert.equal(
+            wikipedia.urlEncodePage('Undergjæret_øl'),
+            'Undergj%C3%A6ret_%C3%B8l' 
+        );
+    });
+
+    it('url encodes a wiki page title ignoring #hashbangs', function () {
+        var wikipedia = new Wikipedia();  
+        assert.equal(
+            wikipedia.urlEncodePage('Kölsch#Produksjon'),
+            'K%C3%B6lsch' 
         );
     });
 });
