@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "cheerio": "^0.18.0",
-    "ejs": "^2.2.4",
     "express": "^4.11.2",
+    "express-handlebars": "^1.2.2",
     "iconv-lite": "^0.4.7",
     "mysql": "^2.5.4",
     "request": "^2.53.0",

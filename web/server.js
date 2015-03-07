@@ -1,23 +1,30 @@
-var express = require('express');
-var config  = require('../config.js');
-var port    = config.web.port;
-var app     = express();
+var express    = require('express');
+var handlebars = require('express-handlebars'); 
+var config     = require('../config.js');
+var port       = config.web.port;
+var app        = express();
 
 app.use(express.static(__dirname + '/assets'));
 app.set('views', __dirname + '/views');
-app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'handlebars');
+app.engine('handlebars', handlebars({
+    // This is a horrible hack due to shortcomings
+    // of express-handlebars dir handling.
+    defaultLayout: '../../web/views/layouts/main'
+}));
 
 app.get('/', function (req, res) {
-    res.render('index.html'); 
+    if (req.query.q) {
+        res.render('results', {
+            query: req.query.q
+        }); 
+    } else {
+        res.render('index'); 
+    }
 });
 
-app.get('/search/:query', function (req, res) {
-    var query = req.params.query;
-    res.json({
-        books: [
-            {}, {}, {}
-        ]
-    });
+app.get('/liste/:id', function (req, res) {
+    console.log('Liste lastet.');
 });
 
 app.listen(port, function () {
