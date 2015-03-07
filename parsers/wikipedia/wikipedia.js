@@ -5,6 +5,7 @@ var languages = require('./languages.js');
 var cheerio   = require('cheerio');
 
 function Wikipedia () {
+
     var self = this; 
     var urlFilter  = 'wikipedia.org/wiki/';
     var reqOptions = {
@@ -27,7 +28,8 @@ function Wikipedia () {
          
         var wikiReferences = {
             websites: [],
-            books:    []
+            books:    [],
+            all:      []
         }
         
         var pageTitle = this.getArticleFromURL(url);
@@ -49,12 +51,16 @@ function Wikipedia () {
 
                 var matches = tagData.match(/{{(.*?)}}/);
                 if (matches === null) return;
- 
+                 
                 var urlMatch = urlRegexp.match(matches[0])[0];
                 if (urlMatch !== undefined) {
                     urlMatch = self.stripPipe(urlMatch);
                     wikiReferences.websites.push(urlMatch);
                 }
+                
+                var isbnMatch = matches[0].match(/\|isbn=([0-9|-]*).*?/im);
+                if (isbnMatch !== null)
+                    wikiReferences.books.push(isbnMatch[1]);
             });
 
             console.log(wikiReferences);
