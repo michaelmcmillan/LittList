@@ -13,7 +13,6 @@ function Wikipedia () {
             'User-Agent': 'LittList.no'
         }
     }; 
-    var userAgent  = 'LittList.no';
     var protocol   = 'https://';
     var host       = 'wikipedia.org';
     var endpoint   =  '/w/index.php';
@@ -23,9 +22,7 @@ function Wikipedia () {
     ].join('&');
     
     this.getReferences = function (url) {
-        if (this.isWikipediaURL(url) === false)
-            throw new Error ('Not a wikipedia url.');
-         
+        
         var wikiReferences = {
             websites: [],
             books:    [],
