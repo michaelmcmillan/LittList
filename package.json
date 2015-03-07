@@ -4,6 +4,7 @@
   "description": "Et verktøy for å lage litteraturlistegenerator på under 10 sekunder.",
   "main": "index.js",
   "scripts": {
+    "start": "iojs web/server.js",
     "test": "if [ $TRAVIS ]; then ./node_modules/mocha/bin/mocha; else ./node_modules/mocha/bin/mocha -R dot; fi"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
