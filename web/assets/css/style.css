@@ -16,24 +16,25 @@ body {
 .title {
     margin-top:5px;
     font-weight:300;
+    font-size: 36px;
 }
 
 #container {
     border-top: 4px solid #2a92d4;
-    padding-top: 100px;
     width: 100%;
 }
 
 .search {
+    padding-top: 100px;
     text-align: center;
     width: 70%;
     margin: 0 auto;
 }
 
-
 form#query {
     margin: 0 auto;
     width: 50%;
+    max-width:800px;
     height: 50px;
     border: 1px solid #cccdc8;
     border-radius: 2px;
@@ -41,11 +42,12 @@ form#query {
     background: white;
 }
 
-form#query > p {
+.search > p {
     font-size:16px;
+    color: #9a9a9a;
 }
 
-form#query, form#query > p {
+form#query, .search > p {
     margin-top:25px;
 }
 
@@ -58,6 +60,22 @@ form#query > input {
     height: 100%;
 }
 
-form#query > p {
-    color: #9a9a9a;
+.results {
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.results > a > .logo {
+    margin-left: 25px;
+    margin-top: 15px;
+    width: 50px;
+    height: 50px;
+    display:inline-block;
+    float: left;
+}
+
+.results > form#query {
+    display:inline-block;
+    height: 35px;
+    margin: 25px;
 }
