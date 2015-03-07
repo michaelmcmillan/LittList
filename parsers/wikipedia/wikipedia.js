@@ -25,7 +25,7 @@ function Wikipedia () {
         if (this.isWikipediaURL(url) === false)
             throw new Error ('Not a wikipedia url.');
          
-        var references = {
+        var wikiReferences = {
             websites: [],
             books:    []
         }
@@ -38,18 +38,26 @@ function Wikipedia () {
         reqOptions.url = apiURL; 
         request.get(reqOptions, function (err, data) {
             if (err) throw err;
+            
             var text = data.body;     
             var refTags = self.parseRefTags(text);
 
             refTags.each(function (index, refTag) {
-                if (refTag.children[0].data === undefined) return;
+ 
                 var tagData = refTag.children[0].data;
-                
+                if (tagData === undefined) return;
+
                 var matches = tagData.match(/{{(.*?)}}/);
-                if (matches === null)      return;
-                
-                console.log(urlRegexp.match(matches[0])[0]);    
+                if (matches === null) return;
+ 
+                var urlMatch = urlRegexp.match(matches[0])[0];
+                if (urlMatch !== undefined) {
+                    urlMatch = self.stripPipe(urlMatch);
+                    wikiReferences.websites.push(urlMatch);
+                }
             });
+
+            console.log(wikiReferences);
         }); 
     }
     
@@ -62,6 +70,13 @@ function Wikipedia () {
             if (url.indexOf(languages[i] + '.' + urlFilter) !== -1)
                 return true;
         return false;
+    }
+    
+    this.stripPipe = function (url) {
+        if (url.indexOf('|') !== -1)
+            return url.substring(0, url.indexOf('|'));
+        else
+            return url;
     }
     
     this.stripHashbang = function (url) {
@@ -90,6 +105,6 @@ function Wikipedia () {
 }
 
 var wikipedia = new Wikipedia();
-wikipedia.getReferences('http://no.wikipedia.org/wiki/Adolf_Hitler');
+wikipedia.getReferences('http://no.wikipedia.org/wiki/Jens_Stoltenberg');
 
 module.exports = Wikipedia;
