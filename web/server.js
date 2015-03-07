@@ -8,7 +8,7 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', function (req, res) {
-    response.render('index.html'); 
+    res.render('index.html'); 
 });
 
 app.get('/search/:query', function (req, res) {
