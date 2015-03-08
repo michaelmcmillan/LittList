@@ -8,6 +8,7 @@ var Author    = require('../../references/author.js');
 function Bibsys () {
     
     var self    = this;
+    var maxHits = 20;
     var host    = 'http://ask.bibsys.no/';
     var action  = 'ask/action/result?';
     var options = {
@@ -27,8 +28,15 @@ function Bibsys () {
         query = encodeURIComponent(query);
         request.get(host + action + 'kilde=biblio&treffPrSide=20&q=' + query, function (err, res) {
              options.headers.cookie = self.parseSession(res.headers['set-cookie']);
+             
+             // Find number of results to avoid flooding index picker
              var $ = cheerio.load(res.body);
-             self.getRis(callback, parseInt($('#antallTreffId').text()));
+             var hits = parseInt($('#antallTreffId').text());
+
+             if (hits < maxHits) 
+                 self.getRis(callback, hits);
+             else
+                 self.getRis(callback, maxHits);
         });
     }
 
