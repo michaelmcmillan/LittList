@@ -23,6 +23,7 @@ function Bibsys () {
     }
 
     this.search = function (query, callback) {
+        query = encodeURIComponent(query);
         request.get(host + action + 'kilde=biblio&q=' + query, function (err, res) {
              options.headers.cookie = self.parseSession(res.headers['set-cookie']);
              self.getRis(callback);
