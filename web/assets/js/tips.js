@@ -21,7 +21,7 @@
         btns[i].addEventListener('click', function (event) {
             var element = event.srcElement;
             var sibling = element.parentNode.children;
-            self.index = Array.prototype.indexOf.call(sibling, element) - 3;
+            self.index = Array.prototype.indexOf.call(sibling, element) - btns.length;
             rotateTips(self.index);
         });
     }    
