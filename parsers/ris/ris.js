@@ -50,12 +50,40 @@ function RisParser (source) {
         
         // Split fields and values and count TY/ER occurences
         for (i = 0, TY = 0, ER = 0; i < matches.length; i++) {
-            
+             
             if (matches[i]    === null) continue;
             if (matches[i][1] === 'TY') TY += 1; 
             if (matches[i][1] === 'ER') ER += 1; 
+            
+            var fieldKey = matches[i][1];
 
-            fields[matches[i][1]] = matches[i][2];
+            // If field already has a value 
+            if (fieldKey !== 'TY'
+            &&  fieldKey !== 'ER'
+            &&  fields[fieldKey] !== undefined) {
+                
+                var oldValue = fields[fieldKey];
+                
+                // Turn into an array and push the old string in 
+                if (typeof oldValue === "string") { 
+                    fields[fieldKey] = [];
+                    fields[fieldKey].push(oldValue);
+                    
+                // Copy over previous array values
+                } else if (fields[fieldKey] instanceof Array) {
+                    fields[fieldKey] = oldValue;
+                } 
+                
+                // At this point we know fields[fieldKey] is an array.
+                // So we finally add the new matched value
+                fields[fieldKey].push(matches[i][2]);
+            
+            // If field key does not already exist
+            } else {
+
+                // Assign the field the matched value 
+                fields[fieldKey] = matches[i][2];
+            }
         }
         
         if (TY !== ER)

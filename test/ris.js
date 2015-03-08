@@ -74,4 +74,23 @@ describe('ris', function () {
             ris.parse();
         }, /field is not TY/);
     });
+
+    it('should group two repeated fields in an array', function () {
+        var ris = new RisParser(['TY  - BOOK', 'A1  - Jo Nesbø', 'A1  - Stephen Hawking', 'ER  -'].join('\n'));
+        assert.equal(ris.parse().A1[0], 'Jo Nesbø');
+        assert.equal(ris.parse().A1[1], 'Stephen Hawking');
+    }); 
+    
+    it('should group multiple repeated fields in an array', function () {
+        var ris = new RisParser(['TY  - BOOK', 'A1  - Jo Nesbø', 'A1  - Stephen Hawking', 'A1  - Mike McMillan', 'ER  -'].join('\n'));
+        assert.equal(ris.parse().A1[0], 'Jo Nesbø');
+        assert.equal(ris.parse().A1[1], 'Stephen Hawking');
+        assert.equal(ris.parse().A1[2], 'Mike McMillan');
+    }); 
+    
+    it('should not group repeated TY/ER fields in an array', function () {
+        var ris = new RisParser(['TY  - BOOK', 'TY  - ELEC', 'ER  -', 'ER  -'].join('\n'));
+        assert.equal(typeof ris.parse().TY, 'string');
+        assert.equal(typeof ris.parse().ER, 'string');
+    }); 
 });
