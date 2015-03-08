@@ -1,8 +1,19 @@
 (function () { 
-    var self   = this;
-    var tips   = document.querySelectorAll('.tips > .tip');
-    var btns   = document.querySelectorAll('.tips > span');
-    this.index = 0;
+    var self    = this;
+    var tips    = document.querySelectorAll('.tips > .tip');
+    var btns    = document.querySelectorAll('.tips > span');
+    this.index  = 0;
+    var pasties = {
+        wiki: 'https://no.wikipedia.org/wiki/Jens_Stoltenberg',
+        snl : 'https://snl.no/Norge', 
+    } 
+    
+    Object.keys(pasties).forEach(function (pastie) {
+        document.getElementById(pastie).addEventListener('click', function (event) {
+            event.stopPropagation();
+            document.querySelector('input[name=q]').value = pasties[pastie];
+        });
+    }); 
 
     var rotateTips = function (index) {
         var current = index % (tips.length);
