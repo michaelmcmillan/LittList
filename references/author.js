@@ -5,7 +5,7 @@ function Author (name) {
     this.filter = function () {
         name = name
             .replace(/\d+/g, '') 
-            .replace(/^\-|\-$/g, '') 
+            .replace(/^\-|\-\s?$/g, '') 
             .trim();
     };
     

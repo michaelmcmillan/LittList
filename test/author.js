@@ -22,6 +22,11 @@ describe('author', function () {
         assert.equal(shakespear.getName(), 'Jo Nesbø');
     });
 
+    it('should strip dashes followed by non-letters which are not part of a name', function () {
+        var shakespear = new Author('Jo Nesbø - '); 
+        assert.equal(shakespear.getName(), 'Jo Nesbø');
+    });
+    
     it('should correctly generate initials', function () {
         var nesbø = new Author('Jo Nesbø'); 
         assert.equal(nesbø.getInitials(nesbø.getForename()), 'J');
