@@ -43,8 +43,8 @@ function Bibsys () {
            
             // Split each response, risParse it and callback results 
             for (c = 0; c < splits.length - 1; c += 2) {
-                var ris = new risParser(splits[c] + splits[c + 1]);
-                parsedRis.push(ris.parse(), false);
+                var ris = new risParser(splits[c] + splits[c + 1], false);
+                parsedRis.push(ris.parse());
             }
             callback(parsedRis);
         });
@@ -79,7 +79,7 @@ function Bibsys () {
 var bibsys = new Bibsys();
 bibsys.search('Det tenkende mennesket', function (parsedCollection) {
     var books = bibsys.convertRisToModels(parsedCollection); 
-    console.log(books);
+    console.log(books[2].getAuthors()[0].getName());
 });
 
 module.exports = Bibsys;
