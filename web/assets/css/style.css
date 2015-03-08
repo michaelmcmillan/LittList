@@ -8,6 +8,11 @@ body {
     font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', 'Open Sans', FreeSans, Arial, sans-serif;
 }
 
+a, a:visited {
+    text-decoration:none;
+    color: #2a92d4
+}
+
 .logo {
     width: 125px;
     height: 175px;
