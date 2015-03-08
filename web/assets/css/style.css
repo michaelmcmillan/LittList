@@ -10,7 +10,7 @@ body {
 
 .logo {
     width: 125px;
-    height: 125px;
+    height: 175px;
 }
 
 .title {
@@ -42,12 +42,12 @@ form#query {
     background: white;
 }
 
-.search > p {
+.tips > p {
     font-size:16px;
     color: #9a9a9a;
 }
 
-form#query, .search > p {
+form#query, .tips > p {
     margin-top:25px;
 }
 
@@ -82,4 +82,22 @@ form#query > input[name="q"] {
 
 form#query > input[type="submit"] {
     display:inline-block;
+}
+
+.tips {
+    margin-top:10px;
+}
+
+.tips > span {
+    cursor: pointer;
+    color: gray;
+    font-size: 25px;
+}
+
+.tips > p {
+    display: none;
+}
+
+.tips > span.active {
+    color: black;
 }
