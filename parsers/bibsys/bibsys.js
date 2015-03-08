@@ -26,17 +26,18 @@ function Bibsys () {
 
     this.search = function (query, callback) {
         query = encodeURIComponent(query);
-        request.get(host + action + 'kilde=biblio&treffPrSide=20&q=' + query, function (err, res) {
-             options.headers.cookie = self.parseSession(res.headers['set-cookie']);
-             
-             // Find number of results to avoid flooding index picker
-             var $ = cheerio.load(res.body);
-             var hits = parseInt($('#antallTreffId').text());
+        request.get(host + action + 'kilde=biblio&treffPrSide='+ maxHits +'&q=' + query,
+            function (err, res) {
+                options.headers.cookie = self.parseSession(res.headers['set-cookie']);
+                 
+                // Find number of results to avoid flooding index picker
+                var $ = cheerio.load(res.body);
+                var hits = parseInt($('#antallTreffId').text());
 
-             if (hits < maxHits) 
-                 self.getRis(callback, hits);
-             else
-                 self.getRis(callback, maxHits);
+                if (hits < maxHits) 
+                    self.getRis(callback, hits);
+                else
+                    self.getRis(callback, maxHits);
         });
     }
 
