@@ -1,5 +1,6 @@
 var request   = require('request');
 var iconv     = require('iconv-lite');
+var cheerio   = require('cheerio');
 var risParser = require('../ris/ris.js');
 var Book      = require('../../references/book.js');
 var Author    = require('../../references/author.js');
@@ -24,19 +25,22 @@ function Bibsys () {
 
     this.search = function (query, callback) {
         query = encodeURIComponent(query);
-        request.get(host + action + 'kilde=biblio&q=' + query, function (err, res) {
+        request.get(host + action + 'kilde=biblio&treffPrSide=20&q=' + query, function (err, res) {
              options.headers.cookie = self.parseSession(res.headers['set-cookie']);
-             self.getRis(callback);
+             var $ = cheerio.load(res.body);
+             self.getRis(callback, parseInt($('#antallTreffId').text()));
         });
     }
 
-    this.getRis = function (callback) {
+    this.getRis = function (callback, hits) {
         
-        // GET parammeters needed to get 10 books 
+        var hitsArr = [];
+        for (i = 0; i < hits; i++) hitsArr.push(i);
+
         var args = [
             'cmd=sendtil',
             'eksportFormat=refmanager',
-        ].concat([0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (num) {
+        ].concat(hitsArr.map(function (num) {
             return 'valg=' + num;
         })).join('&');
         
@@ -95,9 +99,11 @@ function Bibsys () {
         return books;
     }
 }
+
 /*
 var bibsys = new Bibsys();
-bibsys.search('discrete math', function (books) {
+bibsys.search('chris mcmillan', function (books) {
+    console.log(books.length);
     books.forEach(function (book) {
         console.log(book.toString()); 
     });
