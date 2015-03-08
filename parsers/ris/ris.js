@@ -38,7 +38,11 @@ function RisParser (source, strict) {
     }
    
     this.parse = function () {
-
+        
+        // Combine linebroken lines
+        source = source.replace(/\n\s{6}/, ' ');
+        
+        // Parse each line with risPattern
         source.split('\n').forEach(function (line) {
             matches.push(line.match(risPattern));
         });
