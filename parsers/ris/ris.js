@@ -1,8 +1,9 @@
-function RisParser (source) {
+function RisParser (source, strict) {
     
     var risFields  = require('./fields.js');
     var risTypes   = require('./types.js');
     var risPattern = /^([a-zA-Z0-9]{2})\s{2}\-\s?(.*)/;
+    var strict     = (strict === undefined || strict === true ? true : false);
 
     var matches    = [];
     var fields     = {};
@@ -91,7 +92,10 @@ function RisParser (source) {
 
         fieldKeys = Object.keys(fields);
         
-        if (validRisFormat())
+        // Validate if strict mode is enabled
+        if (strict && validRisFormat())
+            return fields;
+        else if (!strict) 
             return fields;
     }
 }
