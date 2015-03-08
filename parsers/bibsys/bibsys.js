@@ -1,4 +1,5 @@
 var request   = require('request');
+var iconv     = require('iconv-lite');
 var risParser = require('../ris/ris.js');
 var Book      = require('../../references/book.js');
 var Author    = require('../../references/author.js');
@@ -11,6 +12,7 @@ function Bibsys () {
     var options = {
         followAllRedirects: true,
         maxRedirects: 2,
+        encoding: null,
         headers: {
             cookie: '' 
         }
@@ -39,6 +41,9 @@ function Bibsys () {
         options.url = host + action + args;
         request.post(options, function (err, res) {
             var parsedRis = [];
+
+            // Charset encoding
+            res.body = iconv.decode(res.body, 'iso-8859-15');
             var splits = res.body.split(/(^ER\s{2}\-\s\n)/gm);  
            
             // Split each response, risParse it and callback results 
