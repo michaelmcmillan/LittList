@@ -1,9 +1,11 @@
-var factory = new require('../database/factory.js'); 
+var factory       = new require('../database/factory.js'); 
+var ISBNValidator = require('isbn').ISBN;
 
 function Book (title) {
     var bookModel; 
     var title     = title; 
     var authors   = [];
+    var ISBN;
     var publicationYear;
     var publicationPlace;
     var edition; 
@@ -38,6 +40,15 @@ function Book (title) {
     
     this.setPublicationPlace = function (place) {
         publicationPlace = place; 
+    }
+    
+    this.getISBN = function () {
+        return ISBN || false;
+    }
+
+    this.setISBN = function (ISBNno) {
+        if (ISBNValidator.parse(ISBNno))
+            ISBN = ISBNno;
     }
     
     this.setPublicationYear = function (year) {

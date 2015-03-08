@@ -48,4 +48,16 @@ describe('book', function () {
 
         assert.equal(book.getEdition(), '2. utg.');
    }); 
+   
+   it('should accept ISBN-13 codes', function () {
+        var book = new Book('Det tenkende mennesket');
+        book.setISBN('9788251918640');
+        assert.equal(book.getISBN(), '9788251918640');
+   }); 
+   
+   it('not accept invalid ISBN-13 codes', function () {
+        var book = new Book('Det tenkende mennesket');
+        book.setISBN('9788234918649');
+        assert.equal(book.getISBN(), false);
+   }); 
 });
