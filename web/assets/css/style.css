@@ -51,7 +51,7 @@ form#query, .search > p {
     margin-top:25px;
 }
 
-form#query > input {
+form#query > input[name="q"] {
     display: block;
     font-size: 1.1em;
     outline: none;
@@ -78,4 +78,8 @@ form#query > input {
     display:inline-block;
     height: 35px;
     margin: 25px;
+}
+
+form#query > input[type="submit"] {
+    display:inline-block;
 }
