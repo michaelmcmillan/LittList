@@ -52,7 +52,7 @@ function Bibsys () {
                 var ris = new risParser(splits[c] + splits[c + 1], false);
                 parsedRis.push(ris.parse());
             }
-            callback(parsedRis);
+            callback(self.convertRisToModels(parsedRis));
         });
     }
     
@@ -61,6 +61,7 @@ function Bibsys () {
         if (commaPosition !== -1) 
             return authorName.substring(commaPosition + 2) + ' ' +  
                    authorName.substring(0, commaPosition);
+        return authorName;
     }
 
     this.convertRisToModels = function (parsedRis) {
@@ -70,12 +71,14 @@ function Bibsys () {
         parsedRis.forEach(function (risBook) {
 
             var book = new Book(risBook.T1);
+            book.setISBN(risBook.SN);
             
             // If only one author
             if (typeof risBook.A1 === 'string') {
                 var authorName = self.untangleAuthorName(risBook.A1);
                 book.addAuthor(new Author(authorName));
             }
+            
             // If multiple authors add them all
             else if (risBook.A1 instanceof Array) {
                 risBook.A1.forEach(function (author) {
@@ -83,7 +86,7 @@ function Bibsys () {
                     book.addAuthor(new Author(authorName));
                 });
             }
-
+            
             // Push the scaffolded model onto the array 
             books.push(book);
         });
@@ -91,11 +94,12 @@ function Bibsys () {
         return books;
     }
 }
-
+/*
 var bibsys = new Bibsys();
-bibsys.search('discrete math', function (parsedCollection) {
-    var books = bibsys.convertRisToModels(parsedCollection); 
-    console.log(books[2].getTitle());
+bibsys.search('discrete math', function (books) {
+    books.forEach(function (book) {
+        console.log(book.toString()); 
+    });
 });
-
+*/
 module.exports = Bibsys;
