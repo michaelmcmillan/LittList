@@ -93,4 +93,9 @@ describe('ris', function () {
         assert.equal(typeof ris.parse().TY, 'string');
         assert.equal(typeof ris.parse().ER, 'string');
     }); 
+    
+    it('should combine lines which are breaked due to length', function () {
+        var ris = new RisParser(['TY  - BOOK', 'T1  - Critical maths for innovative societies: the role of metacognitive\n      pedagogies', 'ER  -'].join('\n'));
+        assert.equal(ris.parse().T1, 'Critical maths for innovative societies: the role of metacognitive pedagogies');
+    }); 
 });
