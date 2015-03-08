@@ -4,13 +4,14 @@
   "description": "Et verktøy for å lage litteraturlistegenerator på under 10 sekunder.",
   "main": "index.js",
   "scripts": {
-    "start": "iojs web/server.js",
+    "start": "iojs ./node_modules/supervisor/lib/cli-wrapper.js web/server.js",
     "test": "if [ $TRAVIS ]; then ./node_modules/mocha/bin/mocha; else ./node_modules/mocha/bin/mocha -R dot; fi"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "supervisor": "^0.6.0"
   },
   "dependencies": {
     "cheerio": "^0.18.0",
