@@ -30,6 +30,7 @@ function Bibsys () {
     }
 
     this.getRis = function (callback) {
+        
         // GET parammeters needed to get 10 books 
         var args = [
             'cmd=sendtil',
@@ -54,6 +55,13 @@ function Bibsys () {
             callback(parsedRis);
         });
     }
+    
+    this.untangleAuthorName = function (authorName) {
+        var commaPosition = authorName.indexOf(', ');
+        if (commaPosition !== -1) 
+            return authorName.substring(commaPosition + 2) + ' ' +  
+                   authorName.substring(0, commaPosition);
+    }
 
     this.convertRisToModels = function (parsedRis) {
         var books = [];
@@ -64,15 +72,18 @@ function Bibsys () {
             var book = new Book(risBook.T1);
             
             // If only one author
-            if (typeof risBook.A1 === 'string')
-                book.addAuthor(new Author(risBook.A1));
-
+            if (typeof risBook.A1 === 'string') {
+                var authorName = self.untangleAuthorName(risBook.A1);
+                book.addAuthor(new Author(authorName));
+            }
             // If multiple authors add them all
-            else if (risBook.A1 instanceof Array)
+            else if (risBook.A1 instanceof Array) {
                 risBook.A1.forEach(function (author) {
-                    book.addAuthor(new Author(author));
+                    var authorName = self.untangleAuthorName(author);
+                    book.addAuthor(new Author(authorName));
                 });
-            
+            }
+
             // Push the scaffolded model onto the array 
             books.push(book);
         });
@@ -82,9 +93,9 @@ function Bibsys () {
 }
 
 var bibsys = new Bibsys();
-bibsys.search('Det tenkende mennesket', function (parsedCollection) {
+bibsys.search('discrete math', function (parsedCollection) {
     var books = bibsys.convertRisToModels(parsedCollection); 
-    console.log(books[2].getAuthors()[0].getName());
+    console.log(books[2].getTitle());
 });
 
 module.exports = Bibsys;
