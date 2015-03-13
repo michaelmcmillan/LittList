@@ -1,8 +1,8 @@
 var assert  = require('assert');
 var Harvard = require('../bibliographies/harvard/harvard.js');
-var Book    = require('../references/book.js');
-var Website = require('../references/website.js');
-var Author  = require('../references/author.js');
+var Book    = require('../models/book.js');
+var Website = require('../models/website.js');
+var Author  = require('../models/author.js');
 
 describe('bibliography#harvard', function () {
     

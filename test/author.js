@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Author = require('../references/author.js');
+var Author = require('../models/author.js');
 
 describe('author', function () {
     it('should strip away numbers', function () {

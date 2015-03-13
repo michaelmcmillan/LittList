@@ -1,6 +1,6 @@
 var assert  = require('assert');
-var Website = require('../references/website.js');
-var Author  = require('../references/author.js');
+var Website = require('../models/website.js');
+var Author  = require('../models/author.js');
 
 describe('website', function () {
    

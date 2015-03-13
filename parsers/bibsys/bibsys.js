@@ -2,8 +2,8 @@ var request   = require('request');
 var iconv     = require('iconv-lite');
 var cheerio   = require('cheerio');
 var risParser = require('../ris/ris.js');
-var Book      = require('../../references/book.js');
-var Author    = require('../../references/author.js');
+var Book      = require('../../models/book.js');
+var Author    = require('../../models/author.js');
 
 function Bibsys () {
     
