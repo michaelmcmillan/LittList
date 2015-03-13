@@ -1,5 +1,5 @@
-var bookModel    = require('./models/book.js');
-var websiteModel = require('./models/website.js');
+var bookModel    = require('./schemas/book.js');
+var websiteModel = require('./schemas/website.js');
 
 function Factory () {
     
