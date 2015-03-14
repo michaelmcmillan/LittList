@@ -9,5 +9,13 @@ module.exports = {
         username: '',
         password: '',
         host:     '',
+    },
+
+    logger: {
+        pushbullet: {
+            apiKey:  '',
+            title:   '',
+            devices: '',
+        }
     }
 }
