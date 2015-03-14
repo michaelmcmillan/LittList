@@ -1,4 +1,5 @@
 var config  = require('../../config.js');
+var Author  = require('../../models/author.js');
 var request = require('request');
 
 function SNL () {
@@ -14,7 +15,7 @@ function SNL () {
     var protocol   = 'https://';
     var host       = 'snl.no';
     
-    this.getAsReference = function (url) {
+    this.search = function (url, callback) {
         var pageTitle = this.getArticleFromURL(url);
         var apiURL    = protocol + host + '/' + pageTitle + '.json'; 
 
@@ -31,10 +32,10 @@ function SNL () {
             meta.title = data.body.title;
             meta.pubDate = data.body.changed_at;
             data.body.authors.forEach(function (author) {
-                meta.authors.push(author['full_name']);
+                meta.authors.push(new Author(author['full_name']));
             });
 
-            console.log(meta);
+            callback(meta);
         });
     }
     

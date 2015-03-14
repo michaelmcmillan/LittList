@@ -12,7 +12,6 @@ function QueryController (req, res) {
     /* Wikipedia */
     if (wikipedia.isWikipediaURL(queryString)) {
         wikipedia.search(queryString, function (results) {
-            console.log(results);
             if (results.length !== 0) {
                 res.render('wikipedia-results', {
                     query: queryString,
@@ -27,6 +26,20 @@ function QueryController (req, res) {
     
     /* SNL */
     } else if (snl.isSNLURL(queryString)) {
+        snl.search(queryString, function (results) {
+            console.log(results);
+            if (results !== 0) {
+                res.render('snl-results', {
+                    query: queryString,
+                    results: results
+                });
+            } else {
+                res.render('no-results', {
+                    query: queryString
+                });
+            }
+        });
+
         console.log('snl folks');
     
     /* Bibsys */
