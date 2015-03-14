@@ -1,3 +1,4 @@
+var config    = require('../../config.js');
 var urlRegexp = require('url-regexp');
 var request   = require('request');
 var url       = require('url');
@@ -10,7 +11,7 @@ function Wikipedia () {
     var urlFilter  = 'wikipedia.org/wiki/';
     var reqOptions = {
         headers: {
-            'User-Agent': 'LittList.no'
+            'User-Agent': config.crawlers.useragent 
         }
     }; 
     var protocol   = 'https://';

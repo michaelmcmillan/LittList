@@ -1,3 +1,4 @@
+var config    = require('../../config.js');
 var request   = require('request');
 var iconv     = require('iconv-lite');
 var cheerio   = require('cheerio');
@@ -12,6 +13,7 @@ function Bibsys () {
     var host    = 'http://ask.bibsys.no/';
     var action  = 'ask/action/result?';
     var options = {
+        'User-Agent': config.crawlers.useragent 
         followAllRedirects: true,
         maxRedirects: 2,
         encoding: null,

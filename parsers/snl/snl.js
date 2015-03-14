@@ -1,3 +1,4 @@
+var config  = require('../../config.js');
 var request = require('request');
 
 function SNL () {
@@ -7,7 +8,7 @@ function SNL () {
     var reqOptions = {
         json: true,
         headers: {
-            'User-Agent': 'LittList.no'
+            'User-Agent': config.crawlers.useragent 
         }
     }; 
     var protocol   = 'https://';

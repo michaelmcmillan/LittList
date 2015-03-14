@@ -4,11 +4,15 @@ module.exports = {
     },
 
     database: {
-        dialect:  'mysql',
+        dialect:  '',
         database: '',
         username: '',
         password: '',
         host:     '',
+    },
+    
+    crawlers: {
+        useragent: ''
     },
 
     logger: {
