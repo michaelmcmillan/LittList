@@ -13,7 +13,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 app.use('/', routes);
 app.engine('handlebars', handlebars({
-    defaultLayout: __dirname + '/views/layouts/main'
+    defaultLayout: __dirname + '/views/layouts/main',
+    partialsDir:   __dirname + '/views/partials/'
 }));
 
 /* Lift-off */

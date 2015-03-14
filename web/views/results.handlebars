@@ -1,19 +1,13 @@
-        <div class="results">
-            <a href="/"><img class="logo" src="/img/logo-small.png"></a>
+        {{> searchbar}} 
 
-            <form id="query" method="get">
-                <input type="text" name="q" value="{{{query}}}">
-            </form>
-        </div>
-        
         <div class="entries">
         {{#each results}}    
             <div class="entry">
                 <h2 class="title">{{getTitle}}</h2>
                 <p>
-                {{#each getAuthors}}
-                    {{getForename}} {{getSurname}}, 
-                {{/each}}
+                    {{#each getAuthors}}
+                        {{getForename}} {{getSurname}}, 
+                    {{/each}}
                 </p>
             </div>
         {{/each}}
