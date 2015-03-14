@@ -2,6 +2,14 @@ var logger = require('winston');
 var config = require(__dirname + '/../config.js');
 require('winston-pushbullet').Pushbullet;
 
+function currentStamp () {
+    var d = new Date();
+    return '' +
+    ("0" + d.getHours()).slice(-2)   + ":" + 
+    ("0" + d.getMinutes()).slice(-2) + ":" + 
+    ("0" + d.getSeconds()).slice(-2);
+}
+
 logger.setLevels({
     debug: 0,
     info:  1,
@@ -26,7 +34,9 @@ logger.add(logger.transports.DailyRotateFile, {
 });
 
 logger.add(logger.transports.Console, {
-    level: 'debug', colorize: true
+    level: 'debug',
+    colorize: true,
+    timestamp: currentStamp 
 });
 
 logger.add(logger.transports.Pushbullet, {
