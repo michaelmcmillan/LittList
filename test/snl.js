@@ -22,4 +22,9 @@ describe('Store norske leksikon', function () {
         var snl = new SNL();
         assert.equal(snl.getArticleFromURL('http://snl.no/Erna_Solberg#Karriere'), 'Erna_Solberg');
     });
+    
+    it('should pass if url is from snl.no without protocol', function () {
+        var snl = new SNL();  
+        assert.equal(snl.isSNLURL('snl.no/Jens_Stoltenberg'), true);
+    });
 });

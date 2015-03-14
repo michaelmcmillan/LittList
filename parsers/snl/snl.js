@@ -39,7 +39,7 @@ function SNL () {
     }
     
     this.isSNLURL = function (url) {
-        return !!url.indexOf(urlFilter)
+        return !!(url.indexOf(urlFilter) !== -1)
         && (url.substring(url.indexOf(urlFilter))
         .match(/\//g)||[]).length === 1;
     }
@@ -57,7 +57,7 @@ function SNL () {
     }
 }
 
-var snl = new SNL();
-snl.getAsReference('https://snl.no/Jens_Stoltenberg');
+//var snl = new SNL();
+//snl.getAsReference('https://snl.no/Jens_Stoltenberg');
 
 module.exports = SNL;
