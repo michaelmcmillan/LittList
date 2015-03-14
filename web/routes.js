@@ -1,8 +1,4 @@
-var controllers = {
-    index: require('./controllers/index.js'),
-    query: require('./controllers/query.js'), 
-    list:  require('./controllers/list.js'),
-}
+var controllers = require('./controllers.js'); 
 
 module.exports = (function () {
     var router = require('express').Router();
