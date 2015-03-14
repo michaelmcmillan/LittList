@@ -108,7 +108,7 @@ function Wikipedia () {
     }
 }
 
-var wikipedia = new Wikipedia();
-wikipedia.getReferences('http://no.wikipedia.org/wiki/Jens_Stoltenberg');
+//var wikipedia = new Wikipedia();
+//wikipedia.getReferences('http://no.wikipedia.org/wiki/Jens_Stoltenberg');
 
 module.exports = Wikipedia;
