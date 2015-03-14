@@ -3,6 +3,7 @@ var express     = require('express');
 var handlebars  = require('express-handlebars'); 
 var config      = require('../config.js');
 var routes      = require('./routes.js'); 
+var logger      = require('../log/logger.js');
 var port        = config.web.port;
 var app         = express();
 
@@ -17,5 +18,5 @@ app.engine('handlebars', handlebars({
 
 /* Lift-off */
 app.listen(port, function () {
-    console.log('[*] LittList listening on port', port);
+    logger.info('LittList is now listening on port', port);
 });
