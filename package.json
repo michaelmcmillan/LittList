@@ -22,6 +22,8 @@
     "mysql": "^2.5.4",
     "request": "^2.53.0",
     "sequelize": "^2.0.3",
-    "url-regexp": "^1.0.2"
+    "url-regexp": "^1.0.2",
+    "winston": "^0.9.0",
+    "winston-pushbullet": "^0.1.0"
   }
 }
