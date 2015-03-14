@@ -13,7 +13,7 @@ function Bibsys () {
     var host    = 'http://ask.bibsys.no/';
     var action  = 'ask/action/result?';
     var options = {
-        'User-Agent': config.crawlers.useragent 
+        'User-Agent': config.crawlers.useragent, 
         followAllRedirects: true,
         maxRedirects: 2,
         encoding: null,

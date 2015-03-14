@@ -4,7 +4,7 @@ module.exports = {
     },
 
     database: {
-        dialect:  '',
+        dialect:  'mysql',
         database: '',
         username: '',
         password: '',
