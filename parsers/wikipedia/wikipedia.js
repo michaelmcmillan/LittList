@@ -22,7 +22,7 @@ function Wikipedia () {
         'title='
     ].join('&');
     
-    this.getReferences = function (url) {
+    this.search = function (url, callback) {
         
         var wikiReferences = {
             websites: [],
@@ -58,10 +58,10 @@ function Wikipedia () {
                 
                 var isbnMatch = matches[0].match(/\|isbn=([0-9|-]*).*?/im);
                 if (isbnMatch !== null)
-                    wikiReferences.books.push(isbnMatch[1]);
+                    wikiReferences.books.push(self.stripPipe(isbnMatch[1]));
             });
 
-            console.log(wikiReferences);
+            callback(wikiReferences);
         }); 
     }
     
