@@ -1,10 +1,8 @@
 var controllers = require('./controllers.js'); 
+var router = require('express').Router();
 
 module.exports = (function () {
-    var router = require('express').Router();
-
     router.get('/', controllers.index);
     router.get('/liste/:id', controllers.list);
-
     return router;
 })();
