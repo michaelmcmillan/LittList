@@ -38,14 +38,27 @@ describe('book', function () {
    it('should have a place where the book was published', function () {
         var book = new Book('Snømannen');
         book.setPublicationPlace('Oslo');
-
         assert.equal(book.getPublicationPlace(), 'Oslo');
    }); 
    
+   it('should strip away any non-alphanumerical chars from pub.place', function () {
+        var book = new Book('Snømannen');
+        book.setPublicationPlace('[Oslo]*¨^!#"');
+        assert.equal(book.getPublicationPlace(), 'Oslo');
+   }); 
+   
+   it('should only allow numbers as the publication year', function () {
+        var book = new Book('Snømannen');
+        book.setPublicationYear('2015///');
+        assert.equal(book.getPublicationYear(), '2015');
+
+        book.setPublicationYear('.2015///');
+        assert.equal(book.getPublicationYear(), '2015');
+   });
+
    it('should have an edition number', function () {
         var book = new Book('Det tenkende mennesket');
         book.setEdition('2. utg.');
-
         assert.equal(book.getEdition(), '2. utg.');
    }); 
    
@@ -55,7 +68,7 @@ describe('book', function () {
         assert.equal(book.getISBN(), '9788251918640');
    }); 
    
-   it('not accept invalid ISBN-13 codes', function () {
+   it('should not accept invalid ISBN-13 codes', function () {
         var book = new Book('Det tenkende mennesket');
         book.setISBN('9788234918649');
         assert.equal(book.getISBN(), false);

@@ -6,6 +6,7 @@ function Book (title) {
     var title     = title; 
     var authors   = [];
     var ISBN;
+    var publisher;
     var publicationYear;
     var publicationPlace;
     var edition; 
@@ -20,6 +21,10 @@ function Book (title) {
     
     this.getTitle = function () {
         return title;
+    }
+    
+    this.getPublisher = function () {
+        return publisher;
     }
     
     this.getPublicationPlace = function () {
@@ -38,10 +43,20 @@ function Book (title) {
         edition = bookEdition; 
     }
     
-    this.setPublicationPlace = function (place) {
-        publicationPlace = place; 
+    this.setPublisher = function (bookPublisher) {
+        publisher = bookPublisher; 
     }
     
+    this.setPublicationPlace = function (place) {
+        publicationPlace = place.replace(/\W/g, ''); 
+    }
+    
+    this.setPublicationYear = function (year) {
+        year = '' + year;
+        year = year.replace(/[^0-9]/g, '');
+        publicationYear = parseInt(year); 
+    }
+
     this.getISBN = function () {
         return ISBN || false;
     }
@@ -51,10 +66,6 @@ function Book (title) {
             ISBN = ISBNno;
     }
     
-    this.setPublicationYear = function (year) {
-        publicationYear = parseInt(year); 
-    }
-
     this.addAuthor = function (author) {
         authors.push(author); 
     }
