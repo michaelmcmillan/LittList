@@ -1,25 +1,35 @@
         {{> searchbar}} 
         
-        <div class="entries">
+        <div class="page">
 
-            <div class="controls">
-                <li class="ion-navicon-round" data-pack="default" data-tags="menu, hamburger, slide menu"></li> 
+            <div class="entries">
+
+                {{#each results}}    
+                    <div class="entry">
+                        
+                        <div class="controls">
+                            <span class="add ion-android-add-circle"></span> 
+                        </div>
+
+                        <div class="meta">
+                            <h2 class="title">{{getTitle}}</h2>
+
+                            {{#if getPublisher}} Forlag: {{getPublisher}} {{/if}}
+                            {{#if getPublicationPlace}} Sted: {{getPublicationPlace}} {{/if}}
+                            {{#if getPublicationYear}} Utgitt: {{getPublicationYear}} {{/if}}
+                            {{#if getEdition}} Utgave: {{getEdition}} {{/if}}
+
+                            <p>
+                                {{#each getAuthors}}
+                                    {{getForename}} {{getSurname}}, 
+                                {{/each}}
+                            </p>
+                        </div>
+                    </div>
+                {{/each}}
             </div>
 
-            <h2>Søkeresultater</h2>
+            <div class="bibliography">
 
-            {{#each results}}    
-                <div class="entry">
-                    <h2 class="title">{{getTitle}}</h2>
-                    <p>
-                        {{#each getAuthors}}
-                            {{getForename}} {{getSurname}}, 
-                        {{/each}}
-                    </p>
-                </div>
-            {{/each}}
-        </div>
-
-        <div class="bibliography">
-            <h2>Litteraturliste</h2>
+            </div>
         </div>
