@@ -223,16 +223,32 @@ form#query > input[type="submit"] {
     background-image: url('/img/testimonials/studenttorget.png');
 }
 
+#studenttorget.testimonial:hover {
+    background-image: url('/img/testimonials/studenttorget_hover.png');
+}
+
 #universitetsavisa.testimonial {
     background-image: url('/img/testimonials/universitetsavisa.png');
+}
+
+#universitetsavisa.testimonial:hover {
+    background-image: url('/img/testimonials/universitetsavisa_hover.png');
 }
 
 #gemini.testimonial {
     background-image: url('/img/testimonials/gemini.png');
 }
 
+#gemini.testimonial:hover {
+    background-image: url('/img/testimonials/gemini_hover.png');
+}
+
 #oblad.testimonial {
     background-image: url('/img/testimonials/oblad.png');
+}
+
+#oblad.testimonial:hover {
+    background-image: url('/img/testimonials/oblad_hover.png');
 }
 
 .page {
