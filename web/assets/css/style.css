@@ -83,12 +83,16 @@ form#query > input[name="q"] {
     height: 100%;
 }
 
-.results {
+.searchbar {
     background-color: white;
     border-bottom: 1px solid #dbdbdb;
 }
 
-.results > a > .logo {
+.searchbar > form#query {
+    width: 400px;
+}
+
+.searchbar > a > .logo {
     margin-left: 25px;
     margin-top: 15px;
     width: 50px;
@@ -97,7 +101,7 @@ form#query > input[name="q"] {
     float: left;
 }
 
-.results > form#query {
+.searchbar > form#query {
     display:inline-block;
     height: 35px;
     margin: 25px;
@@ -126,44 +130,49 @@ form#query > input[type="submit"] {
 }
 
 .entries {
-    width: 50%;
+    margin-top:25px;
+    width: 66.6%;
 }
 
-.entries > .controls {
+.entry > .controls {
     display: inline-block;
-    width: 100px;
+    width: 40px;
+    height: 50px;
+    float:left;
+}
+
+.controls > .add {
+    font-size:30px;
+    margin-right: 20px;
+    color: #2a92d4;
 }
 
 .entries > .entry {
     margin-bottom: 25px;
 }
 
-.entry:hover {
+.entry {
+    cursor:pointer;
+    padding:10px;
+}
+
+.entry > .meta {
+    display:inline-block;
+    width:75%;
+}
+
+.entry > .meta:hover {
     background: #e3e3e3;
 }
 
-.entry > .title {
+.meta > .title {
     font-size:18px;
     font-weight:500;
-    color: #333;
 }
 
 .entries {
     display:inline-block;
     float:left;
-}
-
-.bibliography {
-    display:inline-block;
-    width:50%;
-    min-height: 400px;
-}
-.bibliography, .entries {
-    margin-top: 30px;
-}
-
-.bibliography > h2, .entries > h2 {
-    text-align:center;
 }
 
 .testimonials {
@@ -224,4 +233,29 @@ form#query > input[type="submit"] {
 
 #oblad.testimonial {
     background-image: url('/img/testimonials/oblad.png');
+}
+
+.page {
+    margin-left:100px;
+}
+
+.list {
+    padding-top:100px;
+    background-color: #f7f7f7;
+}
+
+.a4 {
+    padding: 50px 60px;
+    border: 1px solid #d4d4d4;
+    background-color:white;
+    box-shadow: 0 0 2px rgba(0,0,0,.15);
+    max-width: 670px;
+    min-height: 1000px;
+    margin: 0px auto 0px;
+    font-family: 'Times New Roman';
+    line-height: 1.5em;
+}
+
+.a4 > * {
+    font-weight:200; 
 }
