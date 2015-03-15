@@ -87,15 +87,34 @@ function Bibsys () {
         parsedRis.forEach(function (risBook) {
 
             var book = new Book(risBook.T1);
-            book.setISBN(risBook.SN);
             
-            // If only one author
+            // ISBN
+            if (risBook.SN !== undefined)
+                book.setISBN(risBook.SN);
+
+            // Publisher
+            if (risBook.PB !== undefined)
+                book.setPublisher(risBook.PB);
+            
+            // Publication place  
+            if (risBook.CY !== undefined)
+                book.setPublicationPlace(risBook.CY);
+
+            // Publication year  
+            if (risBook.Y1 !== undefined)
+                book.setPublicationYear(risBook.Y1);
+
+            // Edition  
+            if (risBook.VL !== undefined)
+                book.setEdition(risBook.VL);
+            
+            // Single author 
             if (typeof risBook.A1 === 'string') {
                 var authorName = self.untangleAuthorName(risBook.A1);
                 book.addAuthor(new Author(authorName));
             }
             
-            // If multiple authors add them all
+            // Multiple authors
             else if (risBook.A1 instanceof Array) {
                 risBook.A1.forEach(function (author) {
                     var authorName = self.untangleAuthorName(author);
