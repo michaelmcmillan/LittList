@@ -39,8 +39,6 @@ function QueryController (req, res) {
                 });
             }
         });
-
-        console.log('snl folks');
     
     /* Bibsys */
     } else {

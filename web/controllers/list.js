@@ -1,5 +1,11 @@
+var logger    = require('../../log/logger.js');
+
 function ListController (req, res) {
-    console.log('Liste lastet.');
+    if (req.method === 'GET') {
+        res.render('list'); 
+    } else if (req.method === 'POST') {
+        res.render('list');
+    }
 }
 
 module.exports = ListController;
