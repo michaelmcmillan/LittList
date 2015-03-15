@@ -1,14 +1,25 @@
         {{> searchbar}} 
-
+        
         <div class="entries">
-        {{#each results}}    
-            <div class="entry">
-                <h2 class="title">{{getTitle}}</h2>
-                <p>
-                    {{#each getAuthors}}
-                        {{getForename}} {{getSurname}}, 
-                    {{/each}}
-                </p>
+
+            <div class="controls">
+                <li class="ion-navicon-round" data-pack="default" data-tags="menu, hamburger, slide menu"></li> 
             </div>
-        {{/each}}
+
+            <h2>Søkeresultater</h2>
+
+            {{#each results}}    
+                <div class="entry">
+                    <h2 class="title">{{getTitle}}</h2>
+                    <p>
+                        {{#each getAuthors}}
+                            {{getForename}} {{getSurname}}, 
+                        {{/each}}
+                    </p>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="bibliography">
+            <h2>Litteraturliste</h2>
         </div>

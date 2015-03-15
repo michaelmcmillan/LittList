@@ -1,10 +1,11 @@
-        <div class="search">
+            <div class="search">
+                <a href="/"><img class="logo" src="/img/logo.png"></a>
 
-            <a href="/"><img class="logo" src="/img/logo.png"></a>
+                <form id="query" method="get">
+                    <input type="text" name="q" autofocus>
+                </form>
 
-            <form id="query" method="get">
-                <input type="text" name="q" autofocus>
-            </form>
+                {{> tips}}
+            </div>
 
-            {{> tips}}
-        </div>
+            {{> testimonials}}
