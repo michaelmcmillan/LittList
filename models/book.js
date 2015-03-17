@@ -2,7 +2,7 @@ var factory       = new require('../database/factory.js');
 var ISBNValidator = require('isbn').ISBN;
 
 function Book (title) {
-    var bookModel; 
+
     var title     = title; 
     var authors   = [];
     var ISBN;
@@ -11,14 +11,6 @@ function Book (title) {
     var publicationPlace;
     var edition; 
 
-    this.load = function (id) {
-        bookModel = factory.book.get(1);
-    }
-
-    this.save = function () {
-    
-    }
-    
     this.getTitle = function () {
         return title;
     }
@@ -78,6 +70,18 @@ function Book (title) {
         return this.getTitle();
     }
 
+    this.load = function (id) {
+        factory.book.get(id, function (dbBook) {
+            isbn = dbBook.isbn;
+            title = dbBook.title;
+            publisher = dbBook.publisher;
+            publicationYear = dbBook.publicationYear;
+        });
+    }
+
+    this.save = function () {
+        factory.book.save(this); 
+    }
 }
 
 module.exports = Book;
