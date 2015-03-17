@@ -2,27 +2,30 @@
         
         <div class="page">
             <div class="entries">
-                {{#each results}}    
-                    <div class="entry">
-                        <div class="controls">
-                            <span class="add ion-android-add-circle"></span>
+                <form id="list" method="post">
+                    {{#each results}}    
+                        <div class="entry">
+                            <div class="controls">
+                                <span class="add ion-android-add-circle"></span>
+                            </div>
+
+                            <div class="meta">
+                                <h2 class="title">{{getTitle}}</h2>
+
+                                {{#if getPublisher}} Forlag: {{getPublisher}} {{/if}}
+                                {{#if getPublicationPlace}} Sted: {{getPublicationPlace}} {{/if}}
+                                {{#if getPublicationYear}} Utgitt: {{getPublicationYear}} {{/if}}
+                                {{#if getEdition}} Utgave: {{getEdition}} {{/if}}
+
+                                <p>
+                                    {{#each getAuthors}}
+                                        {{getForename}} {{getSurname}}, 
+                                    {{/each}}
+                                </p>
+                            </div>
                         </div>
-
-                        <div class="meta">
-                            <h2 class="title">{{getTitle}}</h2>
-
-                            {{#if getPublisher}} Forlag: {{getPublisher}} {{/if}}
-                            {{#if getPublicationPlace}} Sted: {{getPublicationPlace}} {{/if}}
-                            {{#if getPublicationYear}} Utgitt: {{getPublicationYear}} {{/if}}
-                            {{#if getEdition}} Utgave: {{getEdition}} {{/if}}
-
-                            <p>
-                                {{#each getAuthors}}
-                                    {{getForename}} {{getSurname}}, 
-                                {{/each}}
-                            </p>
-                        </div>
-                    </div>
-                {{/each}}
+                    {{/each}}
+                </form>
             </div>
         </div>
+        <script type="text/javascript" src="/js/results.js"></script>
