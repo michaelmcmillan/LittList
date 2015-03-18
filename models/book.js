@@ -63,7 +63,7 @@ function Book (title) {
     }
     
     this.getAuthors = function () {
-        return authorsx; 
+        return authors; 
     }
     
     this.toString = function () {
