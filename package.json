@@ -8,7 +8,7 @@
     "test": "if [ $TRAVIS ]; then npm run-script unit-test && npm run-script integration-test; else npm run-script unit-test-dot; fi",
     "unit-test": "./node_modules/mocha/bin/mocha \"test/unit/*.js\"",
     "unit-test-dot": "./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot;", 
-    "integration-test": "nohup node web/server.js >/dev/null 2>&1 & echo \"Running integration tests.\"; casperjs test/integration/*.js; kill -9 $!"
+    "integration-test": "nohup node web/server.js >/dev/null 2>&1 & echo \"Running integration tests.\"; casperjs test test/integration/*.js; kill -9 $!"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
   "license": "ISC",
