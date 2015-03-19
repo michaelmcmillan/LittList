@@ -1,6 +1,6 @@
 module.exports = {
     web: {
-        port: 8000     
+        port: 8080     
     },
 
     database: {
