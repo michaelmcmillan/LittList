@@ -7,3 +7,10 @@ node_js:
   - "node"
   - "iojs-v1.0.4" 
   - "iojs"
+
+before_script:
+  - node web/server.js & 
+  - sleep 5
+
+script:
+  - ./node_modules/casperjs/bin/casperjs test test/integration/*.js

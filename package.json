@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/supervisor/lib/cli-wrapper.js -x iojs web/server.js",
-    "test": "if [ $TRAVIS ]; then npm run-script unit-test; npm run-script integration-test; else npm run-script unit-test-dot; fi",
-    "unit-test": "./node_modules/mocha/bin/mocha \"test/unit/*.js\"",
-    "unit-test-dot": "./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot;", 
-    "integration-test": "node web/server.js & echo \"Starting server.\"; sleep 5; casperjs test test/integration/*.js --fail-fast; kill -9 $! || true"
+    "test": "npm run-script unit-test",
+    "unit-test": "./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot;", 
+    "integration-test": "node web/server.js & echo \"Starting server.\"; casperjs test test/integration/*.js; kill -9 $!"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
   "license": "ISC",
