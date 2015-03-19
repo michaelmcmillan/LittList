@@ -13,7 +13,6 @@ var logger      = require('../log/logger.js');
 app.use(express.static(__dirname + '/assets'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
-app.use('/', routes);
 
 app.use(session({
     resave: false,
@@ -25,6 +24,8 @@ app.engine('handlebars', handlebars({
     defaultLayout: __dirname + '/views/layouts/main',
     partialsDir:   __dirname + '/views/partials/'
 }));
+
+app.use('/', routes);
 
 /* Lift-off */
 app.listen(config.web.port, function () {
