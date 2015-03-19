@@ -14,7 +14,7 @@ casper.test.begin('Searching for a popular book returns more than 1 result', 2, 
     });
     
     casper.then(function () {
-        test.assertExist('.xxxentry');
+        test.assertExist('.entry');
     });
 
     casper.run(function() {
