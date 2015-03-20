@@ -14,7 +14,7 @@ CREATE TABLE `References` (
 );
 
 CREATE TABLE `Authors` (
-    reference_id int NOT NULL PRIMARY KEY REFERENCES `References` (id),
+    reference_id int NOT NULL REFERENCES `References` (id),
     name varchar(255)
 );
 
