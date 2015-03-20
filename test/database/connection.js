@@ -5,6 +5,7 @@ var config = require(__dirname + '/../../config.js');
 var schema = __dirname + '/../../database/schema.sql'; 
 
 describe('MySQL', function () {
+    this.timeout(15000);
 
     var connection = mysql.createConnection({
         host: config.database.test.host,
