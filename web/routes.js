@@ -2,8 +2,9 @@ var controllers = require('./controllers.js');
 var router = require('express').Router();
 
 module.exports = (function () {
+
     /* Root */
-    router.get('/',   controllers.general.index);
+    router.get('/', controllers.general.index);
 
     /* General */
     router.get('/om', controllers.general.about);

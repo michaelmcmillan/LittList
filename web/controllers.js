@@ -1,5 +1,7 @@
 module.exports = {
-    query:      require('./controllers/query.js'), 
+    query: {
+        funnel: require('./controllers/query/funnel.js')
+    },
 
     general: {
         index:  require('./controllers/general/index.js'),
