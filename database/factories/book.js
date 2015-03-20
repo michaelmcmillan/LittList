@@ -37,6 +37,8 @@ var BookFactory = {
                 isbn: book.raw().ISBN,
                 edition: book.raw().edition
             }, function (err, result) {
+                if (err) throw err;
+
                 if (book.raw().authors.length === 0) {
                     cb(result);
                 } else {

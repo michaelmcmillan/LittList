@@ -8,6 +8,7 @@ var AuthorFactory = {
         database.query('SELECT * FROM Authors ' +
             'WHERE Authors.reference_id = ?', id,
         function (err, rows, fields) {
+            if (err) throw err;
             var authors = [];
             rows.forEach(function (row) {
                 authors.push(new Author(row.name));
@@ -21,6 +22,7 @@ var AuthorFactory = {
             reference_id: reference_id,
             name: author.raw().name,
         }, function (err, result) {
+            if (err) throw err;
             cb(result);
         });
     }
