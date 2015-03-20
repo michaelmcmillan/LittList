@@ -73,4 +73,10 @@ describe('book', function () {
         book.setISBN('9788234918649');
         assert.equal(book.getISBN(), false);
    }); 
+   
+   it('should successfully add multiple authors with setAuthors (plural)', function () {
+        var book = new Book('Title');
+        book.addAuthors([new Author('Jo Nesbø'), new Author('Dagfinn Dybdahl')]);
+        assert.equal(book.getAuthors().length, 2)
+   }); 
 });
