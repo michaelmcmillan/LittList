@@ -4,15 +4,20 @@ module.exports = {
     },
 
     database: {
-        dialect:  'mysql',
         database: '',
         username: '',
         password: '',
         host:     '',
+        test: {
+            database: 'test_littlist',
+            username: 'root',
+            password: '',
+            host: 'localhost'
+        }
     },
     
     crawlers: {
-        useragent: ''
+        useragent: 'LittList v1.0'
     },
 
     logger: {
