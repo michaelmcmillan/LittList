@@ -9,7 +9,7 @@ describe('MySQL', function () {
 
     var connection = mysql.createConnection({
         host: config.database.test.host,
-        user: config.database.test.username,
+        user: config.database.test.user,
         password: config.database.test.password,
         multipleStatements: true
     });
