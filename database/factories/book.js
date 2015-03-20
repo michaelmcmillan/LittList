@@ -27,15 +27,22 @@ var BookFactory = {
         database.query('INSERT INTO `References` SET ?', {
             title: book.raw().title 
         }, function (err, result) {
+            var reference_id = result.insertId;
             database.query('INSERT INTO Books SET ?', {
-                reference_id: result.insertId,
+                reference_id: reference_id,
                 publisher: book.raw().publisher,
                 publication_year: book.raw().publicationYear,
                 publication_place: book.raw().publicationPlace,
                 isbn: book.raw().ISBN,
                 edition: book.raw().edition
             }, function (err, result) {
-                cb(result);
+                if (book.raw().authors.length === 0) {
+                    cb(result);
+                } else {
+                    book.raw().authors.forEach(function (author) {
+                        AuthorFactory.create(reference_id, author, cb);
+                    });
+                }
             });
         });
     }
