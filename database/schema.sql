@@ -23,7 +23,7 @@ CREATE TABLE `Books` (
     publisher varchar(255),
     publication_year int,
     publication_place varchar(255),
-    isbn varchar(13),
+    isbn varchar(20),
     edition varchar(255)
 );
 
