@@ -29,10 +29,10 @@ logger.addColors({
 logger.remove(logger.transports.Console);
 
 if (process.env['TRAVIS'] === undefined)
-logger.add(logger.transports.DailyRotateFile, {
-    filename: './log/logs/littlist.',
-    datePattern: 'yyyy-MM-dd.log',
-});
+    logger.add(logger.transports.DailyRotateFile, {
+        filename: './log/logs/littlist.',
+        datePattern: 'yyyy-MM-dd.log',
+    });
 
 logger.add(logger.transports.Console, {
     level: 'debug',
