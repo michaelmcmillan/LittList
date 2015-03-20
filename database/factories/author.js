@@ -2,6 +2,7 @@ var database = require('../bootstrap.js');
 var Author   = require('../../models/author.js');
 
 var AuthorFactory = {
+    database: database,
 
     read: function (id, cb) {
         database.query('SELECT * FROM Authors ' +
@@ -9,9 +10,18 @@ var AuthorFactory = {
         function (err, rows, fields) {
             var authors = [];
             rows.forEach(function (row) {
-                authors.push(new Author(row.forename + ' ' + row.surname));
+                authors.push(new Author(row.name));
             });
             cb(authors);
+        });
+    },
+
+    create: function (reference_id, author, cb) {
+        database.query('INSERT INTO Authors SET ?', {
+            reference_id: reference_id,
+            name: author.raw().name,
+        }, function (err, result) {
+            cb(result);
         });
     }
 }
