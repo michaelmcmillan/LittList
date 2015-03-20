@@ -1,6 +1,6 @@
 function Author (name) {
    
-    var name = name;
+    var name = name || '';
     
     this.filter = function () {
         name = name
@@ -18,7 +18,7 @@ function Author (name) {
     }
 
     this.getForename = function () {
-        return name.substring(0, name.length - this.getSurname().length)
+        return name.substring(0, name.length - this.getSurname().length).trim()
     }
     
     this.getSurname = function () {

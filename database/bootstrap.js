@@ -1,18 +1,14 @@
 var config = require('../config.js');
-var Sequelize = require('sequelize');
 var logger = require('../log/logger.js');
+var mysql  = require('mysql');
+        
+var connection = mysql.createConnection({
+    host: config.database.host,
+    user: config.database.username,
+    database: config.database.database,
+    password: config.database.password
+});
 
-module.exports = new Sequelize(
-    config.database.database,
-    config.database.username,
-    config.database.password, {
-        logging: logger.debug,        
-        host:    config.database.host,
-        dialect: config.database.dialect,
-        pool: {
-            max: 5,
-            min: 0,
-            idle: 10000
-        },
-    }
-);
+connection.connect();
+
+module.exports = connection;

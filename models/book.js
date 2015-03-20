@@ -1,4 +1,3 @@
-var factory       = new require('../database/factory.js'); 
 var ISBNValidator = require('isbn').ISBN;
 
 function Book (title) {
@@ -10,6 +9,7 @@ function Book (title) {
     var publicationYear;
     var publicationPlace;
     var edition; 
+    var self = this;
 
     this.getTitle = function () {
         return title;
@@ -62,25 +62,33 @@ function Book (title) {
         authors.push(author); 
     }
     
+    this.addAuthors = function (authors) {
+        authors.forEach(function (author) {
+            self.addAuthor(author); 
+        });
+    }
+    
     this.getAuthors = function () {
         return authors; 
     }
     
+    this.raw = function () {
+        return {
+            title: title,
+            edition: edition,
+            publisher: publisher,
+            publicationYear: publicationYear,
+            publicationPlace: publicationPlace,
+            ISBN: ISBN 
+        };
+    }
+
     this.toString = function () {
-        return this.getTitle();
-    }
-
-    this.load = function (id) {
-        factory.book.get(id, function (dbBook) {
-            isbn = dbBook.isbn;
-            title = dbBook.title;
-            publisher = dbBook.publisher;
-            publicationYear = dbBook.publicationYear;
-        });
-    }
-
-    this.save = function () {
-        factory.book.save(this); 
+        return [
+            this.getTitle(),
+            this.getEdition(),
+            this.getPublisher()
+        ].join(', ');
     }
 }
 

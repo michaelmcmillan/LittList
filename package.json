@@ -6,9 +6,10 @@
   "scripts": {
     "start": "./node_modules/supervisor/lib/cli-wrapper.js -x iojs web/server.js",
     "test": "if [ $TRAVIS ]; then npm run-script unit-test; else npm run-script unit-test-dot; fi",
-    "unit-test": "./node_modules/mocha/bin/mocha \"test/unit/*.js\";", 
-    "unit-test-dot": "./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot;", 
-    "integration-test": "node web/server.js & echo \"Starting server.\"; casperjs test test/integration/*.js; kill -9 $!"
+    "unit-test": "./node_modules/mocha/bin/mocha \"test/unit/*.js\";",
+    "unit-test-dot": "./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot;",
+    "integration-test": "node web/server.js & echo \"Starting server.\"; casperjs test test/integration/*.js; kill -9 $!",
+    "database-test": "./node_modules/mocha/bin/mocha test/database/connection.js \"test/database/*.js\";"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
   "license": "ISC",
@@ -25,9 +26,8 @@
     "express-session": "^1.10.3",
     "iconv-lite": "^0.4.7",
     "isbn": "git://github.com/makepanic/isbnjs#0e9b3db5",
-    "mysql": "^2.5.4",
+    "mysql": "^2.5.5",
     "request": "^2.53.0",
-    "sequelize": "^2.0.3",
     "url-regexp": "^1.0.2",
     "winston": "^0.9.0",
     "winston-pushbullet": "^0.1.0"
