@@ -10,7 +10,7 @@ SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE `References` (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title varchar(255),
-    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP 
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE `Authors` (
@@ -35,7 +35,7 @@ CREATE TABLE `Websites` (
 CREATE TABLE `Queries` (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     search varchar(255) UNIQUE NOT NULL,
-    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP 
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE `Results` (
