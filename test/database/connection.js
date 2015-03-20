@@ -27,12 +27,15 @@ describe('MySQL', function () {
         connection.query('DROP DATABASE IF EXISTS ' + config.database.test.database + ';', 
 
         function (err, results) {
+            if (err) throw err;
             connection.query('CREATE DATABASE ' + config.database.test.database + ';',
 
             function (err, results) {
+                if (err) throw err;
                 connection.query('USE ' + config.database.test.database + ';',
 
                 function (err, results) {
+                    if (err) throw err;
                     done();
                 });
             });
