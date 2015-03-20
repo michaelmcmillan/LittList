@@ -8,7 +8,7 @@ var BookFactory = require('../../database/factories/book.js');
 describe('bookFactory', function () {
     it('changes database to the testdatabase', function (done) {
         BookFactory.database.changeUser({
-            database: config.database.test_database
+            database: config.database.test.database
         }, function (err) {
             done();
         });

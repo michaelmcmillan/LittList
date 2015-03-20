@@ -7,9 +7,9 @@ var schema = __dirname + '/../../database/schema.sql';
 describe('MySQL', function () {
 
     var connection = mysql.createConnection({
-        host: config.database.host,
-        user: config.database.username,
-        password: config.database.password,
+        host: config.database.test.host,
+        user: config.database.test.username,
+        password: config.database.test.password,
         multipleStatements: true
     });
 
@@ -23,13 +23,13 @@ describe('MySQL', function () {
     });
 
     it('creates the test database', function (done) {
-        connection.query('DROP DATABASE IF EXISTS ' + config.database.test_database + ';', 
+        connection.query('DROP DATABASE IF EXISTS ' + config.database.test.database + ';', 
 
         function (err, results) {
-            connection.query('CREATE DATABASE ' + config.database.test_database + ';',
+            connection.query('CREATE DATABASE ' + config.database.test.database + ';',
 
             function (err, results) {
-                connection.query('USE ' + config.database.test_database + ';',
+                connection.query('USE ' + config.database.test.database + ';',
 
                 function (err, results) {
                     done();

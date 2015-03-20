@@ -7,7 +7,7 @@ var AuthorFactory = require('../../database/factories/author.js');
 describe('authorFactory', function () {
     it('changes database to the testdatabase', function (done) {
         AuthorFactory.database.changeUser({
-            database: config.database.test_database
+            database: config.database.test.database
         }, function (err) {
             done();
         });
