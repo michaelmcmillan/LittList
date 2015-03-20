@@ -15,8 +15,7 @@ CREATE TABLE `References` (
 
 CREATE TABLE `Authors` (
     reference_id int UNIQUE NOT NULL PRIMARY KEY REFERENCES `References` (id),
-    forename varchar(255),
-    surname varchar(255)
+    name varchar(255)
 );
 
 CREATE TABLE `Books` (
