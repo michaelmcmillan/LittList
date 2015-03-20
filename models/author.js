@@ -29,6 +29,12 @@ function Author (name) {
         return name; 
     }
     
+    this.raw = function () {
+        return {
+            name: name
+        };
+    }
+
     this.toString = function () {
         return name;
     }
