@@ -27,6 +27,7 @@ var BookFactory = {
         database.query('INSERT INTO `References` SET ?', {
             title: book.raw().title 
         }, function (err, result) {
+            if (err) throw err;
             var reference_id = result.insertId;
             database.query('INSERT INTO Books SET ?', {
                 reference_id: reference_id,
