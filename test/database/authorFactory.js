@@ -14,7 +14,7 @@ describe('authorFactory', function () {
     });
 
     it('creates an author entry in the database for reference 1', function (done) {
-        var author = new Author('Jo Nesbø');
+        var author = new Author('Magnus Dybvig');
         AuthorFactory.create(1, author, function (results) {
             done();
         });
