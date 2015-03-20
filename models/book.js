@@ -79,7 +79,8 @@ function Book (title) {
             publisher: publisher,
             publicationYear: publicationYear,
             publicationPlace: publicationPlace,
-            ISBN: ISBN 
+            ISBN: ISBN,
+            authors: authors
         };
     }
 
