@@ -17,7 +17,7 @@ describe('MySQL', function () {
     it('connects to the database', function (done) {
         connection.connect();
         connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
-            if (err) throw err
+            if (err) throw err;
             assert(rows[0].solution == 2);
             done();
         });  
