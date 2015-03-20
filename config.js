@@ -5,12 +5,12 @@ module.exports = {
 
     database: {
         database: '',
-        username: '',
+        user:     '',
         password: '',
         host:     '',
         test: {
             database: 'test_littlist',
-            username: 'root',
+            user: 'root',
             password: '',
             host: 'localhost'
         }

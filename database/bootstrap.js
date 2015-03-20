@@ -3,7 +3,9 @@ var logger = require('../log/logger.js');
 var mysql  = require('mysql');
 
 if (process.env['TRAVIS'] !== undefined)
-    config.database = config.database.test;
+    var connection = mysql.createConnection(config.database.test);
+else
+    var connection = mysql.createConnection(config.database);
 
 var connection = mysql.createConnection({
     host: config.database.host,
