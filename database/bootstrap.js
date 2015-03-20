@@ -12,7 +12,6 @@ var connection = mysql.createConnection({
     password: config.database.password
 });
 
-if (
 connection.connect();
 
 module.exports = connection;
