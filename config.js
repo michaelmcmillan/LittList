@@ -10,7 +10,7 @@ module.exports = {
         host:     '',
         test: {
             database: 'test_littlist',
-            user: 'root',
+            user: 'travis',
             password: '',
             host: 'localhost'
         }
