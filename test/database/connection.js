@@ -45,7 +45,8 @@ describe('MySQL', function () {
     it('creates test tables', function (done) {
         var sql = fs.readFileSync(schema).toString();
         connection.query(sql, function (err, results) {
-            if (!err) done();
+            if (err) throw err;
+            done();
         });
     });
 }); 
