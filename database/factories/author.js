@@ -25,7 +25,17 @@ var AuthorFactory = {
             if (err) throw err;
             cb(result);
         });
-    }
+    },
+
+    createAuthors: function (referenceId, authors, done) {
+        if (authors.length === 0) return done(referenceId);
+        for (i = 0; i < authors.length; i++) {
+            this.create(referenceId, authors[i], function () {
+                authors.pop();
+                if (authors.length === 0) done(referenceId); 
+            });
+        }
+    },
 }
 
 module.exports = AuthorFactory;

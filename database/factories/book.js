@@ -1,6 +1,8 @@
 var database = require('../bootstrap.js');
+var Author     = require('../../models/author.js');
 var Book     = require('../../models/book.js');
 var AuthorFactory = require('./author.js');
+var ReferenceFactory = require('./reference.js');
 
 var BookFactory = {
     database: database,
@@ -12,6 +14,7 @@ var BookFactory = {
         function (err, rows, fields) {
             var row = rows[0];
             var book = new Book(row.title);
+            book.setId(row.id);
             book.setISBN(row.ISBN);
             book.setEdition(row.edition);
             book.setPublisher(row.publisher);
@@ -22,40 +25,67 @@ var BookFactory = {
             });
         });
     },
+    
+    readAll: function (referenceIds, done) {
+        var self = this;
+        if (referenceIds.length === 0) done([]);    
+        
+        var books = [];
+        for (i = 0; i < referenceIds.length; i++) {
+            self.read(referenceIds[i], function (book) {
+                books.push(book);
+                referenceIds.pop();
+                if (referenceIds.length === 0) done(books);
+            }); 
+        }
+    },
 
-    create: function (book, cb) {
-        database.query('INSERT INTO `References` SET ?', {
-            title: book.raw().title 
-        }, function (err, result) {
+    createBook: function (referenceId, book, done) {
+        var self = this;
+        database.query('INSERT INTO Books SET ?', {
+            reference_id:      referenceId,
+            publisher:         book.raw().publisher,
+            publication_year:  book.raw().publicationYear,
+            publication_place: book.raw().publicationPlace,
+            isbn:              book.raw().ISBN,
+            edition:           book.raw().edition
+        }, function (err, BookResult) {
             if (err) throw err;
-            var reference_id = result.insertId;
-            database.query('INSERT INTO Books SET ?', {
-                reference_id: reference_id,
-                publisher: book.raw().publisher,
-                publication_year: book.raw().publicationYear,
-                publication_place: book.raw().publicationPlace,
-                isbn: book.raw().ISBN,
-                edition: book.raw().edition
-            }, function (err, result) {
-                if (err) throw err;
-
-                if (book.raw().authors.length === 0) {
-                    cb(result);
-                } else {
-                    book.raw().authors.forEach(function (author) {
-                        AuthorFactory.create(reference_id, author, cb);
-                    });
-                }
-            });
+            var authors = book.raw().authors;
+            AuthorFactory.createAuthors(referenceId, authors, done);
         });
+    },
+
+    create: function (book, done) {
+        var self = this;
+        ReferenceFactory.create(book.raw().title, function (ReferenceResult) {
+            self.createBook(ReferenceResult.insertId, book, done);
+        }); 
+    },
+
+    createBooks: function (books, done) {
+        var self = this;
+
+        if (books.length === 0) return done();
+
+        var referenceIds = [];
+        for (i = 0; i < books.length; i++) {
+            this.create(books[i], function (referenceId) {
+                referenceIds.push(referenceId);
+                books.pop();
+                if (books.length === 0)
+                    self.readAll(referenceIds, done); 
+            });
+        }
     }
 }
-module.exports = BookFactory;
 
-/*
-BookFactory.read(2, function (book) {
-    console.log(book.toString());
+var book = new Book('auuee');
+book.addAuthor(new Author('Stjerne banan'));
+book.addAuthor(new Author('Banan banan'));
+
+BookFactory.create(book, function (referenceId) {
+    console.log('everything is finally over created', referenceId);
 });
 
-BookFactory.create(new Book('Snømannen'));
-*/
+module.exports = BookFactory;

@@ -1,7 +1,7 @@
 var ISBNValidator = require('isbn').ISBN;
 
 function Book (title) {
-
+    var id;
     var title     = title; 
     var authors   = [];
     var ISBN;
@@ -10,6 +10,14 @@ function Book (title) {
     var publicationPlace;
     var edition; 
     var self = this;
+    
+    this.getId = function () {
+        return id;
+    }
+
+    this.setId = function (databaseId) {
+        id = databaseId;
+    }
 
     this.getTitle = function () {
         return title;

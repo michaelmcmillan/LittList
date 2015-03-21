@@ -24,7 +24,6 @@ describe('queryFactory', function () {
         QueryFactory.create(searchString, function (queryResult) {
             ResultFactory.create(queryResult.insertId, 1, function () {
                 QueryFactory.read(searchString, function (query) {
-                    console.log(query);
                     done();
                 });
             });
