@@ -7,7 +7,7 @@
     "start": "./node_modules/supervisor/lib/cli-wrapper.js -x iojs web/server.js",
     "test": "./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot;",
     "setup-database-test": "mysql -u $(node -pe 'require(\"./config.js\").database.test.user') -e \"DROP DATABASE IF EXISTS $(node -pe 'require(\"./config.js\").database.test.database'); CREATE DATABASE $(node -pe 'require(\"./config.js\").database.test.database'); USE $(node -pe 'require(\"./config.js\").database.test.database'); $(cat database/schema.sql)\"",
-    "integration-test": "(export TRAVIS=True; node web/server.js & echo \"Starting server.\"; casperjs test test/integration/*.js; kill -9 $!)",
+    "integration-test": "(export TRAVIS=True; node web/server.js & echo \"Starting server.\"; sleep 5; casperjs test test/integration/*.js; kill -9 $!)",
     "database-test": "(export TRAVIS=True; npm run-script setup-database-test && ./node_modules/mocha/bin/mocha \"test/database/*.js\";)"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
