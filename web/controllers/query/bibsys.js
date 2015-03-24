@@ -8,10 +8,8 @@ function BibsysController (req, res) {
     var queryString = req.query.q;
     var bibsys = new Bibsys();
     
-    // Check if query is cached
-
     // Not cached, so lets cache the query
-    QueryFactory.create(queryString, function (query_id) {
+    //QueryFactory.create(queryString, function (query_id) {
 
         // Retrieve books from Bibsys
         bibsys.search(queryString, function (books) {
@@ -26,7 +24,7 @@ function BibsysController (req, res) {
                 });
             });
         });
-    });
+    //});
 
     // 2. get books
     // 3. store results
