@@ -5,7 +5,6 @@ var AuthorFactory = require('./author.js');
 var ReferenceFactory = require('./reference.js');
 
 var BookFactory = {
-    database: database,
 
     read: function (id, cb) {
         database.query('SELECT * FROM Books ' +

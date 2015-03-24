@@ -1,7 +1,6 @@
 var database = require('../bootstrap.js');
 
 var ResultFactory = {
-    database: database,
 
     create: function (query_id, reference_id, cb) {
         database.query('INSERT INTO Results SET ?', {

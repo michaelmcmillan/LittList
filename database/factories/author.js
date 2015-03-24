@@ -2,7 +2,6 @@ var database = require('../bootstrap.js');
 var Author   = require('../../models/author.js');
 
 var AuthorFactory = {
-    database: database,
 
     read: function (id, cb) {
         database.query('SELECT * FROM Authors ' +

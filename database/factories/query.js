@@ -1,8 +1,6 @@
 var database = require('../bootstrap.js');
 
 var QueryFactory = {
-    database: database,
-
     read: function (search, cb) {
         database.query('SELECT * FROM Queries ' +
             'JOIN Results on Results.query_id = Queries.id ' + 
