@@ -7,7 +7,7 @@ var QueryFactory = {
         database.query('SELECT * FROM Queries ' +
             'JOIN Results on Results.query_id = Queries.id ' + 
             'JOIN `References` on Results.reference_id = `References`.id ' +
-            'WHERE search = "det tenkende mennesket"', search,
+            'WHERE search = "?"', search,
         function (err, rows, fields) {
             if (err) throw err;
             cb(rows);

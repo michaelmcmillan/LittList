@@ -25,18 +25,18 @@ var BookFactory = {
             });
         });
     },
-    
+
     readAll: function (referenceIds, done) {
         var self = this;
-        if (referenceIds.length === 0) done([]);    
-        
+        if (referenceIds.length === 0) done([]);
+
         var books = [];
         for (i = 0; i < referenceIds.length; i++) {
             self.read(referenceIds[i], function (book) {
                 books.push(book);
                 referenceIds.pop();
                 if (referenceIds.length === 0) done(books);
-            }); 
+            });
         }
     },
 
@@ -60,7 +60,7 @@ var BookFactory = {
         var self = this;
         ReferenceFactory.create(book.raw().title, function (ReferenceResult) {
             self.createBook(ReferenceResult.insertId, book, done);
-        }); 
+        });
     },
 
     createBooks: function (books, done) {
@@ -74,18 +74,10 @@ var BookFactory = {
                 referenceIds.push(referenceId);
                 books.pop();
                 if (books.length === 0)
-                    self.readAll(referenceIds, done); 
+                    self.readAll(referenceIds, done);
             });
         }
     }
 }
-
-var book = new Book('auuee');
-book.addAuthor(new Author('Stjerne banan'));
-book.addAuthor(new Author('Banan banan'));
-
-BookFactory.create(book, function (referenceId) {
-    console.log('everything is finally over created', referenceId);
-});
 
 module.exports = BookFactory;
