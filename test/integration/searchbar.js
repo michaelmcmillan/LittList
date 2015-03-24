@@ -5,12 +5,12 @@ casper.test.begin('Searching for a popular book returns more than 1 result', 2, 
 
     casper.start(domain, function () {
         this.fill('form#query', {
-            q: "ingvar ambjørnsen"
+            q: "ambjørnsen"
         }, true);
     });
 
     casper.then(function () {
-        test.assertUrlMatch(/q=ingvar/, 'reached the results page');
+        test.assertUrlMatch(/q=ambjørnsen/, 'reached the results page');
     });
     
     casper.then(function () {
