@@ -14,5 +14,6 @@ before_script:
 
 script:
   - npm test
-  - ./node_modules/mocha/bin/mocha test/database/connection.js "test/database/*.js"
-  - ./node_modules/casperjs/bin/casperjs test test/integration/*.js
+  - npm run-script setup-database-test
+  - npm run-script database-test
+  - npm run-script integration-test
