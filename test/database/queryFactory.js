@@ -11,13 +11,6 @@ describe('queryFactory', function () {
         });
     });
     
-    it('can lookup based on a querystring', function (done) {
-        var searchString = 'universitet';
-        QueryFactory.read(searchString, function (queryResult) {
-            done();
-        });
-    });
-
     it('can have results', function (done) {
         var searchString = 'det tenkende mennesket';
         QueryFactory.create(searchString, function (queryResult) {
@@ -26,6 +19,14 @@ describe('queryFactory', function () {
                     done();
                 });
             });
+        });
+    });
+    
+    it('can lookup based on a querystring', function (done) {
+        var searchString = 'det tenkende mennesket';
+        QueryFactory.read(searchString, function (queryResult) {
+            assert.notEqual(queryResult, []);
+            done();
         });
     });
 }); 
