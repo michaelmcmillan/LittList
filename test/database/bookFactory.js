@@ -6,13 +6,6 @@ var Author      = require('../../models/author.js');
 var BookFactory = require('../../database/factories/book.js');
 
 describe('bookFactory', function () {
-    it('changes database to the testdatabase', function (done) {
-        BookFactory.database.changeUser({
-            database: config.database.test.database
-        }, function (err) {
-            done();
-        });
-    });
 
     it('creates a book entry in the database', function (done) {
         var book = new Book('Snømannen');

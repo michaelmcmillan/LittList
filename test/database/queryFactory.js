@@ -5,20 +5,19 @@ var QueryFactory = require('../../database/factories/query.js');
 var ResultFactory = require('../../database/factories/result.js');
 
 describe('queryFactory', function () {
-    it('changes database to the testdatabase', function (done) {
-        QueryFactory.database.changeUser({
-            database: config.database.test.database
-        }, function (err) {
-            done();
-        });
-    });
-    
     it('can create new queries', function (done) {
         QueryFactory.create('ingvar ambjørnsen', function (result) {
             done();
         });
     });
     
+    it('can lookup based on a querystring', function (done) {
+        var searchString = 'universitet';
+        QueryFactory.read(searchString, function (queryResult) {
+            done();
+        });
+    });
+
     it('can have results', function (done) {
         var searchString = 'det tenkende mennesket';
         QueryFactory.create(searchString, function (queryResult) {
@@ -29,5 +28,4 @@ describe('queryFactory', function () {
             });
         });
     });
-
 }); 
