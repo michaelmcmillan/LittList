@@ -48,6 +48,7 @@ function Book (title) {
     }
     
     this.setPublicationPlace = function (place) {
+        place = place || '';
         publicationPlace = place.replace(/\W/g, ''); 
     }
     
