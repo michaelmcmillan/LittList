@@ -1,26 +1,43 @@
 var database = require('../bootstrap.js');
+var BookFactory = require('./book.js');
 
 var QueryFactory = {
 
-    read: function (search, cb) {
-        database.query('SELECT * FROM Queries ' +
-            'JOIN Results on Results.query_id = Queries.id ' + 
-            'JOIN `References` on Results.reference_id = `References`.id ' +
+    read: function (search, type, done) {
+        var types = ['book', 'website'];
+        type = type.toLowerCase();
+        if (types.indexOf(type) === -1) {
+            done([]);
+            return false;
+        }
+
+        database.query('SELECT id FROM Queries ' +
             'WHERE search = ?', [search],
         function (err, rows, fields) {
             if (err) throw err;
-            cb(rows);
+            
+            var referenceIds = [];
+            rows.forEach(function (row) {
+                referenceIds.push(row.id);
+            });
+
+            if (type === 'book')
+                BookFactory.readAll(referenceIds, done);
         });
     },
 
-    create: function (search, cb) {
+    create: function (search, done) {
         database.query('INSERT INTO Queries SET ?', {
             search: search,
         }, function (err, result) {
             if (err) throw err;
-            cb(result);
+            done(result);
         });
     }
 }
+
+QueryFactory.read('det tenkende mennesket', 'book', function (e) {
+    console.log(e);
+});
 
 module.exports = QueryFactory;
