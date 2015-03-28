@@ -5,7 +5,7 @@ var QueryFactory = require('../../database/factories/query.js');
 var ResultFactory = require('../../database/factories/result.js');
 
 describe('queryFactory', function () {
-    it('can create new queries', function (done) {
+    xit('can create new queries', function (done) {
         QueryFactory.create('ingvar ambjørnsen', function (result) {
             done();
         });
