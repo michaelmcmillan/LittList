@@ -12,4 +12,3 @@ script:
   - npm test
   - npm run-script setup-database-test
   - npm run-script database-test
-  - npm run-script integration-test
