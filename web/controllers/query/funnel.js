@@ -11,10 +11,6 @@ function FunnelController (req, res) {
     var wikipedia = new Wikipedia()
     var bibsys    = new Bibsys()
     var snl       = new SNL();
-    
-    QueryFactory.read(req.query.q, function (row) {
-        console.log(row);
-    });
 
     if (wikipedia.isWikipediaURL(req.query.q))
         WikipediaController(req, res);
