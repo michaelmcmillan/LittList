@@ -28,6 +28,7 @@ function Bibsys () {
 
     this.search = function (query, callback) {
         query = encodeURIComponent(query);
+
         request.get(host + action + 'kilde=biblio&treffPrSide='+ maxHits +'&q=' + query,
             function (err, res) {
                 options.headers.cookie = self.parseSession(res.headers['set-cookie']);
@@ -35,8 +36,11 @@ function Bibsys () {
                 // Find number of results to avoid flooding index picker
                 var $ = cheerio.load(res.body);
                 var hits = parseInt($('#antallTreffId').text());
-
-                if (hits < maxHits) 
+                
+                // Restrict RIS download to number of allowed hits
+                if (hits === 0 || isNaN(hits))
+                    return callback(new Error('Fant ingen treff.'));
+                else if (hits < maxHits) 
                     self.getRis(callback, hits);
                 else
                     self.getRis(callback, maxHits);
@@ -68,7 +72,8 @@ function Bibsys () {
                 var ris = new risParser(splits[c] + splits[c + 1], false);
                 parsedRis.push(ris.parse());
             }
-            callback(self.convertRisToModels(parsedRis));
+
+            callback(undefined, self.convertRisToModels(parsedRis));
         });
     }
     
