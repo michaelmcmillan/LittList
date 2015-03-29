@@ -6,7 +6,7 @@ var ResultFactory = require('../../database/factories/result.js');
 describe('resultFactory', function () {
     
     it('can create new result records', function (done) {
-        ResultFactory.create(1, 1, function (result) {
+        ResultFactory.create(1, 1, function (err, result) {
             done();
         });
     });

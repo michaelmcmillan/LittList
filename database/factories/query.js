@@ -36,8 +36,4 @@ var QueryFactory = {
     }
 }
 
-QueryFactory.read('det tenkende mennesket', 'book', function (e) {
-    console.log(e);
-});
-
 module.exports = QueryFactory;

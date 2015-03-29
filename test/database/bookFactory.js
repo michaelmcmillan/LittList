@@ -11,20 +11,20 @@ describe('bookFactory', function () {
         var book = new Book('Snømannen');
         book.addAuthor(new Author('Jo Nesbø'));
         book.setPublicationPlace('Oslo');
-        BookFactory.create(book, function (book) {
+        BookFactory.create(book, function (err, book) {
             done();
         });
     });
 
     it('reads the created book back from the database', function (done) {
-        BookFactory.read(1, function (book) {
+        BookFactory.read(1, function (err, book) {
             assert.equal(book.getTitle(), 'Snømannen');
             done();
         });
     });
     
     it('reads the authors name from the inserted book', function (done) {
-        BookFactory.read(1, function (book) {
+        BookFactory.read(1, function (err, book) {
             assert.equal(book.getAuthors()[0].getForename(), 'Jo');
             done();
         });

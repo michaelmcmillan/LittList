@@ -6,11 +6,13 @@ var ReferenceFactory = require('./reference.js');
 
 var BookFactory = {
 
-    read: function (id, cb) {
+    read: function (id, done) {
         database.query('SELECT * FROM Books ' +
             'JOIN `References` ON Books.reference_id = References.id ' +
             'WHERE Books.reference_id = ?', id,
         function (err, rows, fields) {
+            if (err) return done(err);
+
             var row = rows[0];
             var book = new Book(row.title);
             book.setId(row.id);
@@ -20,21 +22,23 @@ var BookFactory = {
             book.setPublicationPlace(row.publication_place);
             AuthorFactory.read(row.reference_id, function (authors) {
                 book.addAuthors(authors);
-                cb(book);
+                done(undefined, book);
             });
         });
     },
 
     readAll: function (referenceIds, done) {
         var self = this;
+        var books = [];
         if (referenceIds.length === 0) done([]);
 
-        var books = [];
         for (i = 0; i < referenceIds.length; i++) {
-            self.read(referenceIds[i], function (book) {
+            self.read(referenceIds[i], function (err, book) {
+                if (err) return done(err);
                 books.push(book);
                 referenceIds.pop();
-                if (referenceIds.length === 0) done(books);
+                if (referenceIds.length === 0)
+                    return done(undefined, books);
             });
         }
     },
@@ -49,7 +53,7 @@ var BookFactory = {
             isbn:              book.raw().ISBN,
             edition:           book.raw().edition
         }, function (err, BookResult) {
-            if (err) throw err;
+            if (err) return done(err);
             var authors = book.raw().authors;
             AuthorFactory.createAuthors(referenceId, authors, done);
         });
