@@ -5,6 +5,7 @@ var QueryFactory  = require('../../../database/factories/query.js');
 var ResultFactory = require('../../../database/factories/result.js'); 
 
 function BibsysController (req, res) {
+
     var queryString = req.query.q;
     var bibsys = new Bibsys();
     
@@ -12,10 +13,11 @@ function BibsysController (req, res) {
     //QueryFactory.create(queryString, function (query_id) {
 
         // Retrieve books from Bibsys
-        bibsys.search(queryString, function (books) {
+        bibsys.search(queryString, function (err, books) {
+            if (err) throw err;
             
             // Store all the books 
-            BookFactory.createBooks(books, function (createdBooks) {
+            BookFactory.createBooks(books, function (err, createdBooks) {
 
                 // Render the results page
                 res.render('results', {
