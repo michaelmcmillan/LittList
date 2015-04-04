@@ -6,16 +6,15 @@ var QueryFactory = {
     read: function (search, type, done) {
         var types = ['book', 'website'];
         type = type.toLowerCase();
-        if (types.indexOf(type) === -1) {
-            done([]);
-            return false;
-        }
+        if (types.indexOf(type) === -1)
+            return done([]);
 
         database.query('SELECT id FROM Queries ' +
             'WHERE search = ?', [search],
         function (err, rows, fields) {
-            if (err) throw err;
-            
+            if (err) return done(err);
+            if (rows.length === 0) return done([]); 
+
             var referenceIds = [];
             rows.forEach(function (row) {
                 referenceIds.push(row.id);
@@ -27,11 +26,12 @@ var QueryFactory = {
     },
 
     create: function (search, done) {
+        var self = this;
         database.query('INSERT INTO Queries SET ?', {
             search: search,
         }, function (err, result) {
-            if (err) throw err;
-            done(result);
+            if (err) return done(err);
+            self.read(search, 'book', done);
         });
     }
 }
