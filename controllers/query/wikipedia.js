@@ -1,5 +1,5 @@
-var logger    = require('../../../log/logger.js');
-var Wikipedia = require('../../../parsers/wikipedia/wikipedia.js'); 
+var logger    = require('../../log/logger.js');
+var Wikipedia = require('../../parsers/wikipedia/wikipedia.js'); 
 
 function WikipediaController (req, res) {
     var queryString = req.query.q;

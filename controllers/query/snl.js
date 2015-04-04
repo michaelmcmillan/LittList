@@ -1,5 +1,5 @@
-var logger = require('../../../log/logger.js');
-var SNL    = require('../../../parsers/snl/snl.js');
+var logger = require('../../log/logger.js');
+var SNL    = require('../../parsers/snl/snl.js');
 
 function SNLController (req, res) {
     var queryString = req.query.q;

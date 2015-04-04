@@ -1,14 +1,19 @@
-var logger        = require('../../../log/logger.js');
-var Bibsys        = require('../../../parsers/bibsys/bibsys.js');
-var BookFactory   = require('../../../database/factories/book.js'); 
-var QueryFactory  = require('../../../database/factories/query.js'); 
-var ResultFactory = require('../../../database/factories/result.js'); 
+var logger        = require('../../log/logger.js');
+var Bibsys        = require('../../parsers/bibsys/bibsys.js');
+var BookFactory   = require('../../database/factories/book.js'); 
+var QueryFactory  = require('../../database/factories/query.js'); 
+var ResultFactory = require('../../database/factories/result.js'); 
 
 function BibsysController (req, res) {
 
     var queryString = req.query.q;
     var bibsys = new Bibsys();
     
+    // Check if cache exists for this querystring
+    QueryFactory.read(queryString, 'book', function (err, cache) {
+        console.log(cache); 
+    });
+
     // Not cached, so lets cache the query
     //QueryFactory.create(queryString, function (query_id) {
 

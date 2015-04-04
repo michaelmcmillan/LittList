@@ -1,4 +1,4 @@
-var log = require('../../../log/logger.js');
+var log = require('../../log/logger.js');
 
 function AboutController (req, res) {
     res.render('index'); 
