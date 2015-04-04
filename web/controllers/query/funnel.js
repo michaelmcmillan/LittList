@@ -6,6 +6,15 @@ var Wikipedia           = require('../../../parsers/wikipedia/wikipedia.js');
 var SNLController       = require('./snl.js');
 var SNL                 = require('../../../parsers/snl/snl.js');
 
+/*
+ * This controller works as a funnel for the 
+ * Bibsys, SNL and Wikipedia controllers. All
+ * incoming search requests pass through here.
+ *
+ * In addition to checking what type of query
+ * it is, it will also see if the query is cached
+ * to avoid doing redundant work.
+ */
 function FunnelController (req, res) {
 
     var wikipedia = new Wikipedia()
