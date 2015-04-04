@@ -1,7 +1,7 @@
-var assert       = require('assert');
-var mysql        = require('mysql');
-var config       = require('../../config.js');
-var QueryFactory = require('../../database/factories/query.js');
+var assert        = require('assert');
+var mysql         = require('mysql');
+var config        = require('../../config.js');
+var QueryFactory  = require('../../database/factories/query.js');
 var ResultFactory = require('../../database/factories/result.js');
 
 describe('queryFactory', function () {
