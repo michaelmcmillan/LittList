@@ -30,7 +30,8 @@ var BookFactory = {
     readAll: function (referenceIds, done) {
         var self = this;
         var books = [];
-        if (referenceIds.length === 0) done([]);
+        if (referenceIds.length === 0)
+            return done(undefined, []);
 
         for (i = 0; i < referenceIds.length; i++) {
             self.read(referenceIds[i], function (err, book) {
@@ -43,30 +44,27 @@ var BookFactory = {
         }
     },
 
-    createBook: function (referenceId, book, done) {
-        var self = this;
-        database.query('INSERT INTO Books SET ?', {
-            reference_id:      referenceId,
-            publisher:         book.raw().publisher,
-            publication_year:  book.raw().publicationYear,
-            publication_place: book.raw().publicationPlace,
-            isbn:              book.raw().ISBN,
-            edition:           book.raw().edition
-        }, function (err, BookResult) {
-            if (err) return done(err);
-            var authors = book.raw().authors;
-            AuthorFactory.createAuthors(referenceId, authors, done);
-        });
-    },
-
     create: function (book, done) {
         var self = this;
+        console.log(book.raw().title);
         ReferenceFactory.create(book.raw().title, function (ReferenceResult) {
-            self.createBook(ReferenceResult.insertId, book, done);
+            var referenceId = ReferenceResult.insertId;
+            database.query('INSERT INTO Books SET ?', {
+                reference_id:      referenceId,
+                publisher:         book.raw().publisher,
+                publication_year:  book.raw().publicationYear,
+                publication_place: book.raw().publicationPlace,
+                isbn:              book.raw().ISBN,
+                edition:           book.raw().edition
+            }, function (err, BookResult) {
+                if (err) return done(err);
+                var authors = book.raw().authors;
+                AuthorFactory.createAuthors(referenceId, authors, done);
+            });
         });
     },
 
-    createBooks: function (books, done) {
+    createAll: function (books, done) {
         var self = this;
 
         if (books.length === 0) return done();
