@@ -12,22 +12,23 @@ var SNL                 = require('../../parsers/snl/snl.js');
  * incoming search requests pass through here.
  *
  * In addition to checking what type of query
- * it is, it will also see if the query is cached
- * to avoid doing redundant work.
+ * it is, each controller will also see if the
+ * query is cached to avoid doing redundant work.
  */
-function FunnelController (req, res) {
+function FunnelController (req, res, next) {
     
-    // external components we can query
-    var wikipedia = new Wikipedia()
-    var bibsys    = new Bibsys()
+    // External components we can query
+    var wikipedia = new Wikipedia();
+    var bibsys    = new Bibsys();
     var snl       = new SNL();
-
+    
+    // Determine the type
     if (wikipedia.isWikipediaURL(req.query.q))
         WikipediaController(req, res);
 
     else if (snl.isSNLURL(req.query.q))
         SNLController(req, res);
-
+    
     else
         BibsysController(req, res);
 }

@@ -4,39 +4,46 @@ var BookFactory   = require('../../database/factories/book.js');
 var QueryFactory  = require('../../database/factories/query.js'); 
 var ResultFactory = require('../../database/factories/result.js'); 
 
-function BibsysController (req, res) {
+function BibsysController (req, res, next) {
 
     var queryString = req.query.q;
     var bibsys = new Bibsys();
     
-    // Check if cache exists for this querystring
-    QueryFactory.read(queryString, 'book', function (err, cache) {
-        console.log(cache); 
-    });
+    QueryFactory.read(queryString, 'book', function (err, cachedBooks) {
+        if (err) return next(err);
 
-    // Not cached, so lets cache the query
-    //QueryFactory.create(queryString, function (query_id) {
-
-        // Retrieve books from Bibsys
-        bibsys.search(queryString, function (err, books) {
-            if (err) throw err;
+        // If the cache returned books lets not ask Bibsys
+        if (cachedBooks.length > 0) {
+            res.render('results', {
+                query: queryString,
+                results: cachedBooks 
+            });
             
-            // Store all the books 
-            BookFactory.createBooks(books, function (err, createdBooks) {
+        // Empty cache means we ask Bibsys
+        } else {
+        
+            bibsys.search(queryString, function (err, books) {
+                if (err) return next(err);
+                
+                // Store all the books 
+                BookFactory.createAll(books, function (err, createdBooks) {
+                    if (err) return next(err);
 
-                // Render the results page
-                res.render('results', {
-                    query: queryString,
-                    results: createdBooks 
+                    // First render the results page
+                    res.render('results', {
+                        query: queryString,
+                        results: createdBooks 
+                    });
+
+                    // Secondly cache the results
+                    QueryFactory.create(queryString, createdBooks, function (err) {
+                        if (err) throw err; 
+                        console.log('successfully cached!');
+                    });
                 });
             });
-        });
-    //});
-
-    // 2. get books
-    // 3. store results
-    // 4. results <=> query
-
+        }
+    });
 }
 
 module.exports = BibsysController;
