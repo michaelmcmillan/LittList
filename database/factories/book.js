@@ -46,9 +46,10 @@ var BookFactory = {
 
     create: function (book, done) {
         var self = this;
-        console.log(book.raw().title);
+
         ReferenceFactory.create(book.raw().title, function (ReferenceResult) {
             var referenceId = ReferenceResult.insertId;
+
             database.query('INSERT INTO Books SET ?', {
                 reference_id:      referenceId,
                 publisher:         book.raw().publisher,
