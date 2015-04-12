@@ -3,17 +3,23 @@ module.exports = {
         port: 8080     
     },
 
-    database: {
-        database: '',
-        user:     '',
-        password: '',
-        host:     '',
-        test: {
-            database: 'test_littlist',
-            user: 'travis',
-            password: '',
-            host: 'localhost'
-        }
+    database: function () {
+        if (process.env['TEST'] === undefined)
+            return {
+                database: '',
+                user:     '',
+                password: '',
+                host:     '',
+                multipleStatements: true
+            }
+        else
+            return {
+                database: 'test_littlist',
+                user: 'travis',
+                password: '',
+                host: 'localhost',
+                multipleStatements: true
+            }
     },
     
     crawlers: {
@@ -23,7 +29,7 @@ module.exports = {
     logger: {
         pushbullet: {
             apiKey:  '',
-            title:   '',
+            title:   'LittList.no',
             devices: '',
         }
     }
