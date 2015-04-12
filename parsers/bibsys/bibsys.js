@@ -128,7 +128,7 @@ function Bibsys () {
                 });
             }
             
-            // Finallt push the book model onto the array 
+            // Finally push the book model onto the array 
             books.push(book);
         });
         return books;
