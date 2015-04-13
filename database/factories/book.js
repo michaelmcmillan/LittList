@@ -5,8 +5,19 @@ var AuthorFactory = require('./author.js');
 var ReferenceFactory = require('./reference.js');
 
 var BookFactory = {
+    
+    constructBook: function (row) {
+        var book = new Book(row.title);
+        book.setId(row.id);
+        book.setISBN(row.ISBN);
+        book.setEdition(row.edition);
+        book.setPublisher(row.publisher);
+        book.setPublicationPlace(row.publication_place);
+        return book;
+    },
 
     read: function (id, done) {
+        var self = this;
         database.query('SELECT * FROM Books ' +
             'JOIN `References` ON Books.reference_id = References.id ' +
             'WHERE Books.reference_id = ?', id,
@@ -14,12 +25,7 @@ var BookFactory = {
             if (err) return done(err);
 
             var row = rows[0];
-            var book = new Book(row.title);
-            book.setId(row.id);
-            book.setISBN(row.ISBN);
-            book.setEdition(row.edition);
-            book.setPublisher(row.publisher);
-            book.setPublicationPlace(row.publication_place);
+            var book = self.constructBook(row);
             AuthorFactory.read(row.reference_id, function (authors) {
                 book.addAuthors(authors);
                 done(undefined, book);
