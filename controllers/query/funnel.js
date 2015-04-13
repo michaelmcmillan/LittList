@@ -16,7 +16,6 @@ var SNL                 = require('../../parsers/snl/snl.js');
  * query is cached to avoid doing redundant work.
  */
 function FunnelController (req, res, next) {
-    
     // External components we can query
     var wikipedia = new Wikipedia();
     var bibsys    = new Bibsys();
@@ -24,13 +23,13 @@ function FunnelController (req, res, next) {
     
     // Determine the type
     if (wikipedia.isWikipediaURL(req.query.q))
-        WikipediaController(req, res);
+        WikipediaController(req, res, next);
 
     else if (snl.isSNLURL(req.query.q))
-        SNLController(req, res);
+        SNLController(req, res, next);
     
     else
-        BibsysController(req, res);
+        BibsysController(req, res, next);
 }
 
 module.exports = FunnelController;
