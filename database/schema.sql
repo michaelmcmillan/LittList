@@ -41,7 +41,7 @@ CREATE TABLE `Queries` (
 CREATE TABLE `Results` (
     query_id int NOT NULL,
     reference_id int NOT NULL, 
-    FOREIGN KEY (query_id) REFERENCES `Queries` (id),
-    FOREIGN KEY (reference_id) REFERENCES `References` (id)
+    FOREIGN KEY (query_id) REFERENCES `Queries` (id) ON DELETE CASCADE,
+    FOREIGN KEY (reference_id) REFERENCES `References` (id) ON DELETE CASCADE
 );
 
