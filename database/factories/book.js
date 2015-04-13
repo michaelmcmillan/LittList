@@ -46,7 +46,7 @@ var BookFactory = {
             rows.forEach(function (row) {
                 var book = self.constructBook(row);
                 AuthorFactory.read(row.reference_id, function (authors) {
-                    console.log(referenceIds.pop());
+                    referenceIds.pop();
                     book.addAuthors(authors);
                     books.push(book);
                     if (referenceIds.length === 0)
