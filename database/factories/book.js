@@ -39,15 +39,21 @@ var BookFactory = {
         if (referenceIds.length === 0)
             return done(undefined, []);
 
-        for (i = 0; i < referenceIds.length; i++) {
-            self.read(referenceIds[i], function (err, book) {
-                if (err) return done(err);
-                books.push(book);
-                referenceIds.pop();
-                if (referenceIds.length === 0)
-                    return done(undefined, books);
-            });
-        }
+        database.query('SELECT * FROM Books ' +
+        'JOIN `References` ON Books.reference_id = References.id ' +
+        'WHERE Books.reference_id in (?)', [referenceIds],
+        function (err, rows, fields) {
+            rows.forEach(function (row) {
+                var book = self.constructBook(row);
+                AuthorFactory.read(row.reference_id, function (authors) {
+                    console.log(referenceIds.pop());
+                    book.addAuthors(authors);
+                    books.push(book);
+                    if (referenceIds.length === 0)
+                        return done(undefined, books);
+                });
+            }); 
+        });
     },
 
     create: function (book, done) {
