@@ -2,6 +2,7 @@
 var express     = require('express');
 var session     = require('express-session');
 var handlebars  = require('express-handlebars'); 
+var bodyParser  = require('body-parser')
 var app         = express();
 
 /* Application */
@@ -10,6 +11,7 @@ var routes      = require('./routes.js');
 var logger      = require('../log/logger.js');
 
 /* Bootstrap */
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/assets'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
