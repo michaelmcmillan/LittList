@@ -123,4 +123,12 @@ describe('bibliography#harvard', function () {
         
         assert.equal(bibliography.placeFormat(5), 'Oslo:');
     });
+
+    it('should be able to push new references onto the list after creation', function () {
+        var bibliography = new Harvard(references);
+        var numberOfReferences = references.length;
+        bibliography.addReference(new Book('Another book'));
+        var numberOfReferencesInBibliography = bibliography.getReferences().length;
+        assert.equal(numberOfReferencesInBibliography, numberOfReferences + 1);
+    });
 });

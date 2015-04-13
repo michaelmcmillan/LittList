@@ -4,10 +4,14 @@ var Format  = require('./harvardFormatting.js');
 
 function Harvard (references) {
     
-    var references = references;
+    var references = references || [];
 
     this.getReferences = function () {
         return references; 
+    }
+
+    this.addReference = function (reference) {
+        references.push(reference); 
     }
     
     this.sort = function () {
