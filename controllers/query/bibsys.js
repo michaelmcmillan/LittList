@@ -2,13 +2,12 @@ var logger        = require('../../log/logger.js');
 var Bibsys        = require('../../parsers/bibsys/bibsys.js');
 var BookFactory   = require('../../database/factories/book.js'); 
 var QueryFactory  = require('../../database/factories/query.js'); 
-var ResultFactory = require('../../database/factories/result.js'); 
 
 function BibsysController (req, res, next) {
 
     var queryString = req.query.q;
     var bibsys = new Bibsys();
-    
+
     QueryFactory.read(queryString, 'book', function (err, cachedBooks) {
         if (err) return next(err);
 
