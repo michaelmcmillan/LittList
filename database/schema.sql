@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS `Books`;
 DROP TABLE IF EXISTS `Websites`; 
 DROP TABLE IF EXISTS `Queries`;
 DROP TABLE IF EXISTS `Results`;
+DROP TABLE IF EXISTS `Lists`;
 SET FOREIGN_KEY_CHECKS=1; 
  
 CREATE TABLE `References` (
@@ -25,6 +26,21 @@ CREATE TABLE `Books` (
     publication_place varchar(255),
     isbn varchar(20),
     edition varchar(255)
+);
+
+CREATE TABLE `Lists` (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    url varchar(255),
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
+);
+
+CREATE TABLE `Content` (
+    list_id int UNIQUE NOT NULL,
+    reference_id int UNIQUE NOT NULL,
+    url varchar(255),
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    FOREIGN KEY (list_id) REFERENCES `Lists` (id) ON DELETE CASCADE,
+    FOREIGN KEY (reference_id) REFERENCES `References` (id) ON DELETE CASCADE
 );
 
 CREATE TABLE `Websites` (
