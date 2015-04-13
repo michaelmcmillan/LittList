@@ -20,7 +20,7 @@ describe('wikipedia', function () {
     });
     
     // http://martin-thoma.com/python-check-wiki-references-for-citation-template/
-    xit('retrieves the ref-tags of a wikipedia text', function () {
+    xit('get wikireferences (see comment) ^', function () {
         var wikipedia = new Wikipedia();  
         console.log(wikipedia.parseRefTags(wikipediaParagraph).text());
     });
