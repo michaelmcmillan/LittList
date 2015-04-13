@@ -6,7 +6,9 @@
                     {{#each results}}    
                         <div data-id="2" class="entry">
                             <div class="controls">
-                                <span class="add ion-android-add-circle"></span>
+                                <button name="add"    value="{{getId}}">Legg til</button>
+                                <button name="remove" value="{{getId}}">Fjern</button>
+                                <!-- <span class="add ion-android-add-circle"></span> -->
                             </div>
 
                             <div class="meta">
