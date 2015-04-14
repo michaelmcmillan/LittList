@@ -38,8 +38,6 @@ CREATE TABLE `Lists` (
 CREATE TABLE `Contents` (
     list_id int UNIQUE NOT NULL,
     reference_id int UNIQUE NOT NULL,
-    url varchar(255),
-    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     FOREIGN KEY (list_id) REFERENCES `Lists` (id) ON DELETE CASCADE,
     FOREIGN KEY (reference_id) REFERENCES `References` (id) ON DELETE CASCADE
 );
