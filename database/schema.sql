@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS `Websites`;
 DROP TABLE IF EXISTS `Queries`;
 DROP TABLE IF EXISTS `Results`;
 DROP TABLE IF EXISTS `Lists`;
+DROP TABLE IF EXISTS `Contents`;
 SET FOREIGN_KEY_CHECKS=1; 
  
 CREATE TABLE `References` (
@@ -34,7 +35,7 @@ CREATE TABLE `Lists` (
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
 
-CREATE TABLE `Content` (
+CREATE TABLE `Contents` (
     list_id int UNIQUE NOT NULL,
     reference_id int UNIQUE NOT NULL,
     url varchar(255),
