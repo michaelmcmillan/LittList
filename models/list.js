@@ -21,6 +21,10 @@ function List () {
         return bibliography.constructor.name;
     }
 
+    this.setUrl = function (newUrl) {
+        url = newUrl;
+    }
+
     this.getUrl = function () {
         return url; 
     }

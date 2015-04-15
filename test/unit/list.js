@@ -22,8 +22,13 @@ describe('List', function () {
     });
 
     it('should generate a unique url upon creation of length 5', function () {
-        var list = new List(); 
         assert.equal(new List().getUrl().length >= 5, true);
+    });
+
+    it('should be possible to set the url in the model', function () {
+        var list = new List(); 
+        list.setUrl('eRgcd2')
+        assert.equal(list.getUrl(), 'eRgcd2');
     });
 
     it('should not be a collision in urls', function () {
