@@ -18,4 +18,17 @@ describe('website', function () {
         var itavisen = new Website('http://itavisen.no');
         assert.equal(itavisen.getTitle(), 'Itavisen');
     });
+
+    it('should be possible to set the id of a website', function () {
+        var vg = new Website('http://vg.no');
+        vg.setId(1);
+        assert.equal(vg.getId(), 1);
+    });
+
+    it('should be possible to change the id of a website', function () {
+        var vg = new Website('http://vg.no');
+        vg.setId(1);
+        vg.setId(3);
+        assert.equal(vg.getId(), 3);
+    });
 });
