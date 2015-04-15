@@ -13,6 +13,13 @@ function Harvard (references) {
     this.addReference = function (reference) {
         references.push(reference); 
     }
+
+    this.removeReference = function (referenceToRemove) {
+        references.forEach(function (reference, index) {
+            if (reference.getId() === referenceToRemove.getId())
+                references.splice(index, 1);
+        });
+    }
     
     this.sort = function () {
         references.sort(function (referenceOne, referenceTwo) {
