@@ -67,7 +67,7 @@ describe('List', function () {
         list.removeReference(book);
 
         assert.equal(list.getReferences().length, 1);
-        assert.equal(list.getReferences()[0], website);
+        assert.equal(list.getReferences()[0], website.getId());
     });
 
     it('should have a createdAt attribute upon creation that is now', function () {

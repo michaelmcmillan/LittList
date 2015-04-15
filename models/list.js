@@ -5,6 +5,7 @@ function List () {
     
     var id;
     var url = crypto.randomBytes(5).toString('hex');
+    var references = [];
     var bibliography = new Harvard();
     var user;
     var created = new Date();
@@ -17,12 +18,16 @@ function List () {
         id = newId;
     }
 
-    this.getBibliographyStyle = function () {
-        return bibliography.constructor.name;
+    this.getUrl = function () {
+        return url; 
     }
 
     this.setUrl = function (newUrl) {
         url = newUrl;
+    }
+
+    this.getBibliographyStyle = function () {
+        return bibliography.constructor.name;
     }
 
     this.getUrl = function () {
@@ -33,16 +38,22 @@ function List () {
         return created; 
     }
     
-    this.getReferences = function () {
+    this.getBibliography = function () {
         return bibliography.getReferences(); 
+    }
+
+    this.getReferences = function () {
+        return references;
     }
     
     this.addReference = function (reference) {
-        return bibliography.addReference(reference);
+        references.push(reference.getId());
+        bibliography.addReference(reference);
     }
 
     this.removeReference = function (reference) {
-        return bibliography.removeReference(reference);
+        references.splice(references.indexOf(reference.getId()), 1);
+        bibliography.removeReference(reference);
     }
 }
 
