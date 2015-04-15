@@ -2,6 +2,7 @@ var validator = require('url');
 
 function Website (url, title) {
 
+    var id;
     var url     = url;
     var title   = title; 
     var authors = [];
@@ -19,6 +20,14 @@ function Website (url, title) {
     
     this.addAuthor = function (author) {
         authors.push(author);
+    }
+
+    this.getId = function () {
+        return id;
+    }
+
+    this.setId = function (newId) {
+        id = newId; 
     }
 
     this.getAuthors = function () {
