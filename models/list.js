@@ -1,17 +1,13 @@
 var Harvard = require('../bibliographies/harvard/harvard.js');
 var crypto = require('crypto');
 
-function List (bibliography) {
+function List () {
     
     var id;
     var url = crypto.randomBytes(5).toString('hex');
-    var bibliography;
+    var bibliography = new Harvard();
     var user;
     var created = new Date();
-
-    if (bibliography !== undefined
-    && (bibliography instanceof Harvard === false))
-        throw new Error ('Provided bibliography is not a valid type.');
 
     this.getId = function () {
         return id; 
@@ -19,6 +15,10 @@ function List (bibliography) {
 
     this.setId = function (newId) {
         id = newId;
+    }
+
+    this.getBibliographyStyle = function () {
+        return bibliography.constructor.name;
     }
 
     this.getUrl = function () {
@@ -35,6 +35,10 @@ function List (bibliography) {
     
     this.addReference = function (reference) {
         return bibliography.addReference(reference);
+    }
+
+    this.removeReference = function (reference) {
+        return bibliography.removeReference(reference);
     }
 }
 
