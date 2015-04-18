@@ -36,8 +36,8 @@ CREATE TABLE `Lists` (
 );
 
 CREATE TABLE `Contents` (
-    list_id int UNIQUE NOT NULL,
-    reference_id int UNIQUE NOT NULL,
+    list_id int NOT NULL,
+    reference_id int NOT NULL,
     FOREIGN KEY (list_id) REFERENCES `Lists` (id) ON DELETE CASCADE,
     FOREIGN KEY (reference_id) REFERENCES `References` (id) ON DELETE CASCADE
 );
