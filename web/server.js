@@ -23,7 +23,7 @@ app.use(session({
     secret: 'e',
     store: new sessionStore(config.database()),
     resave: true,
-    saveUninitialized: false
+    saveUninitialized: true 
 }));
 
 /* Templating */
