@@ -1,13 +1,17 @@
 var logger = require('../../log/logger.js');
+var ListFactory = require('../../database/factories/list.js');
 
 function ViewListController (req, res) {
-    console.log(req.session);
-    /* If no list is specified */
-    if (req.params.id === undefined) {
+
+    // No list exists for the current session
+    if (req.session.list === undefined)
+        return res.redirect('/');
+    
+    // Load the list for the current session 
+    ListFactory.read(req.session.list, function (err, list) {
+        console.log(list.getReferences()); 
         res.render('list');
-    } else {
-        res.render('list');
-    }
+    });
 }
 
 module.exports = ViewListController;
