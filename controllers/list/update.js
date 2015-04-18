@@ -1,20 +1,21 @@
 var logger = require('../../log/logger.js');
 var List   = require('../../models/list.js');
 var Book   = require('../../models/book.js');
+var ListFactory = require('../../database/factories/list.js');
 
 function UpdateListController (req, res, next) {
     
-    // The user is adding a reference to the list
-    if (req.body.add !== undefined) {
-        console.log(req.session.list);
-    }
+    ListFactory.read(req.session.list, function (err, list) {
+        if (req.body.add !== undefined)
+            list.addReference(req.body.add); 
+        
+        if (req.body.remove !== undefined)
+            list.removeReference(req.body.remove); 
 
-    // Finally redirect back to results page
-    // or to the frontpage based on referer 
-    if (req.headers.referer !== undefined)
-        res.redirect(req.headers.referer);
-    else
-        res.redirect('/');
+        ListFactory.update(list, function (err, list) {
+            res.redirect('/');
+        });
+    });
 }
 
 module.exports = UpdateListController;
