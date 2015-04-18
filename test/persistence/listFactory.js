@@ -10,8 +10,7 @@ var ListFactory = require('../../database/factories/list.js');
 describe('listFactory', function () {
 
     it('creates a list entry in the database with proper content', function (done) {
-        var bibliography = new Harvard();
-        var list = new List(bibliography);
+        var list = new List();
         var book = new Book('Snømannen');
         book.setId(1);
 
@@ -31,8 +30,35 @@ describe('listFactory', function () {
     
     it('reads the authors name from the book in the list', function (done) {
         ListFactory.read(1, function (err, list) {
-            assert.equal(list.getReferences()[0].getTitle(), 'Snømannen');
+            assert.equal(list.getBibliography()[0].getTitle(), 'Snømannen');
             done();
+        });
+    });
+
+    it('can remove contents in an existing list', function (done) {
+        ListFactory.read(1, function (err, list) {
+            assert.equal(list.getReferences().length, 1); 
+            list.removeReference(1);
+
+            ListFactory.update(list, function (err, updatedList) {
+                assert.equal(updatedList.getReferences().length, 0);
+                done();
+            });
+        });
+    });
+
+    it('can add contents in an existing list', function (done) {
+        var book = new Book('Snømannen');
+        book.setId(1);
+
+        ListFactory.read(1, function (err, list) {
+            assert.equal(list.getReferences().length, 0);
+            list.addReference(book);
+
+            ListFactory.update(list, function (err, updatedList) {
+                assert.equal(updatedList.getReferences().length, 1); 
+                done();
+            });
         });
     });
 }); 
