@@ -9,8 +9,9 @@ function ViewListController (req, res) {
     
     // Load the list for the current session 
     ListFactory.read(req.session.list, function (err, list) {
-        console.log(list.getReferences()); 
-        res.render('list');
+        res.render('list', {
+            references: list.getReferences()
+        });
     });
 }
 
