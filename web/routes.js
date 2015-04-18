@@ -10,9 +10,9 @@ module.exports = (function () {
     router.get('/om', controllers.general.about);
     
     /* List */
-    router.get('/liste',     controllers.list.view);
-    router.get('/liste/:id', controllers.list.view);
-    router.post('/liste',    controllers.list.create);
+    router.get('/liste',      controllers.list.view);
+    router.get('/liste/:url', controllers.list.view);
+    router.post('/liste',     controllers.list.create);
 
     return router;
 })();
