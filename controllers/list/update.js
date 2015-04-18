@@ -10,7 +10,11 @@ function UpdateListController (req, res, next) {
     }
 
     // Finally redirect back to results page
-    res.redirect('/');
+    // or to the frontpage based on referer 
+    if (req.headers.referer !== undefined)
+        res.redirect(req.headers.referer);
+    else
+        res.redirect('/');
 }
 
 module.exports = UpdateListController;
