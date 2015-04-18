@@ -40,9 +40,8 @@ describe('List', function () {
     });
     
     it('should be possible to add a book to the list', function () {
-        var book = new Book('Elling');
         var list = new List();
-        list.addReference(book);
+        list.addReference(1);
         assert.equal(list.getReferences().length, 1);
     });
 
@@ -54,37 +53,15 @@ describe('List', function () {
     });
     
     it('should be possible to remove a reference from the list', function () {
-        var website = new Website('http://vg.no');
-        website.setId(1);
-
-        var book    = new Book('Elling');
-        book.setId(2);
-
         var list = new List();
-        list.addReference(website);
-        list.addReference(book);
-        
-        list.removeReference(book);
-
+        list.addReference(1);
+        list.addReference(2);
+        list.removeReference(1);
         assert.equal(list.getReferences().length, 1);
-        assert.equal(list.getReferences()[0], website.getId());
     });
 
     it('should have a createdAt attribute upon creation that is now', function () {
         assert.equal(new List().getCreatedAt().toString(), new Date().toString());
-    });
-    
-    it('should use Harvard as the default bibliography style', function () {
-        var list = new List(); 
-        assert.equal(list.getBibliographyStyle(), 'Harvard');
-    });
-
-    xit('should be possible to change the bibliography style', function () {
-        // Have a method in list.js ie. changeBibliography() which yanks out
-        // references in the current list and adds them to the new one.
-        // Finally it should set the internal bibliography to the new one.
-        
-        // *READ* This is not implemented because there is only one bib.
     });
 });
 

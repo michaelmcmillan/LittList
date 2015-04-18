@@ -1,4 +1,3 @@
-var Harvard = require('../bibliographies/harvard/harvard.js');
 var crypto = require('crypto');
 
 function List () {
@@ -6,8 +5,6 @@ function List () {
     var id;
     var url = crypto.randomBytes(5).toString('hex');
     var references = [];
-    var bibliography = new Harvard();
-    var user;
     var created = new Date();
 
     this.getId = function () {
@@ -26,10 +23,6 @@ function List () {
         url = newUrl;
     }
 
-    this.getBibliographyStyle = function () {
-        return bibliography.constructor.name;
-    }
-
     this.getUrl = function () {
         return url; 
     }
@@ -37,25 +30,18 @@ function List () {
     this.getCreatedAt = function () {
         return created; 
     }
-    
-    this.getBibliography = function () {
-        return bibliography.getReferences(); 
-    }
 
     this.getReferences = function () {
         return references;
     }
     
     this.addReference = function (reference) {
-        references.push(reference.getId());
-        bibliography.addReference(reference);
+        references.push(reference);
     }
 
     this.removeReference = function (reference) {
-        var id = references.indexOf(reference);
-        references.splice(references.indexOf(id), 1);
-        var obj = { getId: function () { return reference; } }
-        bibliography.removeReference(obj);
+        var key = references.indexOf(reference);
+        references.splice(references.indexOf(key), 1);
     }
 }
 
