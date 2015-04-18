@@ -13,7 +13,8 @@ function UpdateListController (req, res, next) {
             list.removeReference(req.body.remove); 
 
         ListFactory.update(list, function (err, list) {
-            res.redirect('/');
+            logger.info('Updated list with id ' + list.getId());
+            res.redirect('/liste');
         });
     });
 }
