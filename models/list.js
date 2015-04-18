@@ -52,8 +52,10 @@ function List () {
     }
 
     this.removeReference = function (reference) {
-        references.splice(references.indexOf(reference.getId()), 1);
-        bibliography.removeReference(reference);
+        var id = references.indexOf(reference);
+        references.splice(references.indexOf(id), 1);
+        var obj = { getId: function () { return reference; } }
+        bibliography.removeReference(obj);
     }
 }
 
