@@ -9,10 +9,10 @@ function UpdateListController (req, res, next) {
         if (err) return next(err);
 
         if (req.body.add !== undefined)
-            list.addReference(req.body.add); 
+            list.addReference(parseInt(req.body.add, 10)); 
         
         if (req.body.remove !== undefined)
-            list.removeReference(req.body.remove); 
+            list.removeReference(parseInt(req.body.remove, 10)); 
 
         ListFactory.update(list, function (err, list) {
             if (err) return next(err);
