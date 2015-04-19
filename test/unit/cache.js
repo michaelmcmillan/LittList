@@ -29,10 +29,12 @@ describe('Cache', function () {
 
         it('should not query bibsys if there is cache', function (done) {
             var reqMock = { query: { q: "ingvar ambjørnsen" } };
-            var resMock = { render: function (view, params) {
-                assert.equal(params.results.length, 1);
+            var resMock = {};
+            
+            BibsysController.__set__('ResultController', function (result, req, res, next) {
+                assert.equal(result.length, 1);  
                 done();
-            }};
+            });
 
             BibsysController.__set__('QueryFactory', {
                 read: function (queryString, type, done) {
