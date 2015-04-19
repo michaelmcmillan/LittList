@@ -6,9 +6,11 @@
                     {{#each results}}    
                         <div data-id="2" class="entry">
                             <div class="controls">
-                                <button name="add"    value="{{getId}}">Legg til</button>
+                            {{#if isInList}}
                                 <button name="remove" value="{{getId}}">Fjern</button>
-                                <!-- <span class="add ion-android-add-circle"></span> -->
+                            {{else}}
+                                <button name="add"    value="{{getId}}">Legg til</button>
+                            {{/if}}
                             </div>
 
                             <div class="meta">

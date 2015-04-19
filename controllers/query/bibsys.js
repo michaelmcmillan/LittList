@@ -1,7 +1,9 @@
-var logger        = require('../../log/logger.js');
-var Bibsys        = require('../../parsers/bibsys/bibsys.js');
-var BookFactory   = require('../../database/factories/book.js'); 
-var QueryFactory  = require('../../database/factories/query.js'); 
+var logger           = require('../../log/logger.js');
+var Bibsys           = require('../../parsers/bibsys/bibsys.js');
+var BookFactory      = require('../../database/factories/book.js'); 
+var QueryFactory     = require('../../database/factories/query.js'); 
+var ListFactory      = require('../../database/factories/list.js'); 
+var ResultController = require('./result.js'); 
 
 function BibsysController (req, res, next) {
 
@@ -15,11 +17,8 @@ function BibsysController (req, res, next) {
         if (cachedBooks.length > 0) {
             logger.log('debug', 'Returning Bibsys cache with %d books for "%s"',
                 cachedBooks.length, queryString);
-
-            res.render('results', {
-                query: queryString,
-                results: cachedBooks 
-            });
+            
+            return ResultController(cachedBooks, req, res, next);
             
         // Empty cache means we ask Bibsys
         } else {
@@ -35,13 +34,9 @@ function BibsysController (req, res, next) {
                 BookFactory.createAll(books, function (err, createdBooks) {
                     if (err) return next(err);
 
-                    // First render the results page
-                    res.render('results', {
-                        query: queryString,
-                        results: createdBooks 
-                    });
+                    ResultController(createdBooks, req, res, next);
                     
-                    // Secondly cache the results
+                    // Cache the results to the query string
                     QueryFactory.create(queryString, createdBooks, function (err, cachedBooks) {
                         if (err) return next(err); 
                     });
