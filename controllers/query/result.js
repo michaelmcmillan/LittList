@@ -7,7 +7,7 @@ function ResultController (results, shouldCacheResults, req, res, next) {
     
     // This function caches and renders the html based on
     // the presence of an active session
-    var renderResultsView = function (queryString, results, cache) {
+    var renderResultsView = function (queryString, results, cache, count) {
 
         // Sort the results by id so that the results
         // are consistent when we redirect the client back.
@@ -20,8 +20,9 @@ function ResultController (results, shouldCacheResults, req, res, next) {
         res.render('results', {
             query: queryString,
             results: results,
-            pass: {
-                query: queryString 
+            data: {
+                query: queryString, 
+                count: count || 0 
             }
         }, function (err, html) {
             if (cache) {
@@ -55,7 +56,11 @@ function ResultController (results, shouldCacheResults, req, res, next) {
                 results[index].isInList = inList; 
             });
             
-            renderResultsView(queryString, results, shouldCacheResults); 
+            // Get the total count of references added to the
+            // list. This gets passed on to the searchbar badge.
+            var count = list.getReferences().length;
+
+            renderResultsView(queryString, results, shouldCacheResults, count); 
         });
     }
 }
