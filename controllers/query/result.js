@@ -8,19 +8,24 @@ function ResultController (results, shouldCacheResults, req, res, next) {
     // This function caches and renders the html based on
     // the presence of an active session
     var renderResultsView = function (queryString, results, cache) {
-        logger.log('debug', 'Rendering results view with %d results', results.length);
-        
+
         // Sort the results by id so that the results
         // are consistent when we redirect the client back.
         results.sort(function (firstResult, secondResult) {
             return firstResult.getId() - secondResult.getId();
         });
-
+        
+        // Render the template with a callback for when its 
+        // done. The callback is there because of async fs
         res.render('results', {
             query: queryString,
             results: results 
         }, function (err, html) {
             if (cache) {
+
+                // Store the results in the database so that
+                // the next query with this querystring does
+                // not need to ask external components like bibsys
                 QueryFactory.create(queryString, results, function (err) {
                     if (err) return next(err); 
                     res.send(html);
@@ -31,15 +36,17 @@ function ResultController (results, shouldCacheResults, req, res, next) {
         });
     }
     
-    // When there is no session we simply return the 
-    // results to the client.
+    // No active session
     if (req.session.list === undefined) { 
         renderResultsView(queryString, results, shouldCacheResults); 
 
-    // If there is an active client we mark the results that
-    // are already in the list to diff between add/remove btns.
+    // Active session
     } else {
         ListFactory.read(req.session.list, function (err, list) {
+
+            // Mark results that are already in the list
+            // to display remove button (for added ones) and
+            // add button (for "removed" ones)
             results.forEach(function(result, index) {
                 var inList = (list.getReferences().indexOf(result.getId()) !== -1);
                 results[index].isInList = inList; 
