@@ -8,7 +8,7 @@ function CreateListController (req, res, next) {
     // Generate a list for this session if it does not exist
     if (req.session.list === undefined) {
         ListFactory.create(new List(), function (err, listId) {
-            logger.info('Created a new list with id ' + listId);
+            logger.log('debug', 'Created a new list with id %d', listId);
             req.session.list = listId;     
             req.session.save(function () {
                 UpdateListController(req, res, next);

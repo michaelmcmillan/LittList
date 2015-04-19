@@ -19,7 +19,7 @@ logger.setLevels({
 });
 
 logger.addColors({
-    debug: 'green',
+    debug: 'red',
     info:  'cyan',
     silly: 'magenta',
     warn:  'yellow',
