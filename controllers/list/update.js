@@ -15,11 +15,14 @@ function UpdateListController (req, res, next) {
         ListFactory.update(list, function (err, list) {
             logger.log('debug', 'Updated list contents', {
                 id: list.getId(),
-                added: req.body.add,
-                removed: req.body.remove
+                added:   req.body.add    || null,
+                removed: req.body.remove || null
             });
-
-            res.redirect('/liste');
+            
+            if (req.headers.referer !== undefined)
+                res.redirect(req.headers.referer);
+            else
+                res.redirect('/liste');
         });
     });
 }
