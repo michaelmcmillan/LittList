@@ -23,7 +23,6 @@ function BibsysController (req, res, next) {
         // Empty cache means we ask Bibsys
         } else {
             logger.profile('Bibsys query');
-            logger.log('debug', 'Querying Bibsys for "%s"', queryString);
         
             bibsys.search(queryString, function (err, books) {
                 if (err) return next(err);
