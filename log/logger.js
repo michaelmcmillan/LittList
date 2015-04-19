@@ -28,17 +28,19 @@ logger.addColors({
 
 logger.remove(logger.transports.Console);
 
-if (process.env['TRAVIS'] === undefined)
+if (process.env['TRAVIS'] === undefined
+&&  process.env['TEST']   === undefined) {
     logger.add(logger.transports.DailyRotateFile, {
         filename: './log/logs/littlist.',
         datePattern: 'yyyy-MM-dd.log',
     });
 
-logger.add(logger.transports.Console, {
-    level: 'debug',
-    colorize: true,
-    timestamp: currentStamp 
-});
+    logger.add(logger.transports.Console, {
+        level: 'debug',
+        colorize: true,
+        timestamp: currentStamp 
+    });
+}
 
 logger.add(logger.transports.Pushbullet, {
     handleExceptions: true,
