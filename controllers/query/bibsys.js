@@ -15,7 +15,7 @@ function BibsysController (req, res, next) {
         
         // If the cache returned books lets not ask Bibsys
         if (cachedBooks.length > 0) {
-            logger.log('debug', 'Returning Bibsys cache with %d books for "%s"',
+            logger.log('debug', 'Found Bibsys cache with %d books for "%s"',
                 cachedBooks.length, queryString);
                 
             ResultController(cachedBooks, false, req, res, next);
