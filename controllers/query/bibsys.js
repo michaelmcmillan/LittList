@@ -13,7 +13,7 @@ function BibsysController (req, res, next) {
 
         // If the cache returned books lets not ask Bibsys
         if (cachedBooks.length > 0) {
-            logger.log('info', 'Returning Bibsys cache for "%s"', queryString);
+            logger.log('debug', 'Returning Bibsys cache for "%s"', queryString);
 
             res.render('results', {
                 query: queryString,
@@ -22,11 +22,11 @@ function BibsysController (req, res, next) {
             
         // Empty cache means we ask Bibsys
         } else {
-            logger.log('info', 'Querying Bibsys for "%s"', queryString);
+            logger.log('debug', 'Querying Bibsys for "%s"', queryString);
         
             bibsys.search(queryString, function (err, books) {
                 if (err) return next(err);
-                logger.log('info', 'Bibsys returned %d results for "%s"', books.length, queryString);
+                logger.log('debug', 'Bibsys returned %d results for "%s"', books.length, queryString);
 
                 // Store all the books 
                 BookFactory.createAll(books, function (err, createdBooks) {

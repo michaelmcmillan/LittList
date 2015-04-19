@@ -37,5 +37,12 @@ app.use('/', routes);
 
 /* Lift-off */
 app.listen(config.web.port, function () {
-    logger.info('LittList is now listening on port', config.web.port);
+    logger.log('info', 'LittList is now listening on port %d', config.web.port);
 });
+
+/* Landing */
+process.on('SIGTERM', function () {
+    logger.log('info', 'LittList is now shutting down');
+    process.exit()
+});
+
