@@ -5,12 +5,20 @@ function ResultController (results, req, res, next) {
 
     var queryString = req.query.q;
     
-    if (req.session.list === undefined) { 
+    var renderResults = function (queryString, results) {
+
+        results.sort(function (firstResult, secondResult) {
+            return firstResult.getId() - secondResult.getId();
+        });
+
         res.render('results', {
             query: queryString,
             results: results 
         });
+    }
 
+    if (req.session.list === undefined) { 
+        renderResults(queryString, results);
     } else {
         ListFactory.read(req.session.list, function (err, list) {
             results.forEach(function(result, index) {
@@ -18,10 +26,7 @@ function ResultController (results, req, res, next) {
                 results[index].isInList = inList; 
             });
 
-            res.render('results', {
-                query: queryString,
-                results: results 
-            });
+            renderResults(queryString, results);
         });
     }
 }
