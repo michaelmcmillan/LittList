@@ -9,6 +9,7 @@ function Book (title) {
     var publicationYear;
     var publicationPlace;
     var edition; 
+    this.isInList = false;
     var self = this;
     
     this.getId = function () {
