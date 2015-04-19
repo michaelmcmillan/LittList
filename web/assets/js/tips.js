@@ -30,7 +30,7 @@
 
     for (i = 0; i < btns.length; i++) {
         btns[i].addEventListener('click', function (event) {
-            var element = event.srcElement;
+            var element = event.target || event.srcElement;
             var sibling = element.parentNode.children;
             self.index = Array.prototype.indexOf.call(sibling, element) - btns.length;
             rotateTips(self.index);
