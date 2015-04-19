@@ -136,15 +136,10 @@ form#query > input[type="submit"] {
 
 .entry > .controls {
     display: inline-block;
-    width: 40px;
+    width: 50px;
     height: 50px;
     float:left;
-}
-
-.controls > .add {
-    font-size:30px;
-    margin-right: 20px;
-    color: #2a92d4;
+    margin-right: 15px;
 }
 
 .entries > .entry {
@@ -157,16 +152,13 @@ form#query > input[type="submit"] {
 }
 
 .entry > .meta {
+    min-height: 60px;
     display:inline-block;
     width:75%;
 }
 
-.entry > .meta:hover {
-    background: #e3e3e3;
-}
-
 .meta > .title {
-    font-size:18px;
+    font-size:16px;
     font-weight:500;
 }
 
@@ -281,4 +273,64 @@ form#query > input[type="submit"] {
 
 .a4 > * {
     font-weight:200; 
+}
+
+.controls > button, form#list > button {
+    outline: 0;
+    width:50px;
+    line-height:2;
+    border-radius: 3.6px;
+    cursor: pointer;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.controls > button[name="add"] {
+    color: white;
+    border-color: #4495d4;
+    background-color: #60A5DA;
+}
+
+.controls > button[name="add"]:hover {
+    background-color: #3F90CF;
+}
+
+.controls > button[name="remove"] {
+    border-color: #ddd;
+    background-color:#fafafa;
+    color: #000;
+}
+
+.controls > button[name="remove"]:hover {
+    background-color: #fff;
+}
+
+form#list {
+    display: inline-block;
+}
+
+form#list > button {
+    font-weight:300;
+    font-size:15px;
+    border-color: #4495d4;
+    background-color: #60A5DA;
+    color:#fff;
+    width:150px;
+    height:35px;
+}
+
+form#list > button:hover {
+    background-color: #3F90CF;
+}
+
+.count {
+    float: right;
+    background: #e74c3c;
+    width: 2em;
+    border-radius: 50%;
+    font-size: 0.75em;
+    line-height: 2;
+    text-align: center;
 }
