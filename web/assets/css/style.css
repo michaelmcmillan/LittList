@@ -150,6 +150,7 @@ form#query > input[type="submit"] {
 .entry {
     cursor:pointer;
     padding:10px;
+    padding-left:0px;
 }
 
 .entry > .meta {
@@ -276,7 +277,7 @@ form#query > input[type="submit"] {
     font-weight:200; 
 }
 
-.controls > button, form#list > button {
+.controls > button, form#listlink > button {
     outline: 0;
     width:50px;
     line-height:2;
@@ -308,12 +309,12 @@ form#query > input[type="submit"] {
     background-color: #fff;
 }
 
-form#list {
+form#listlink {
     display: inline-block;
     margin:25px;
 }
 
-form#list > button {
+form#listlink > button {
     position: relative;
     font-weight:300;
     font-size:15px;
