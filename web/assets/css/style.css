@@ -90,6 +90,7 @@ form#query > input[name="q"] {
 
 .searchbar > form#query {
     width: 400px;
+    float: left;
 }
 
 .searchbar > a > .logo {
@@ -309,6 +310,7 @@ form#query > input[type="submit"] {
 
 form#list {
     display: inline-block;
+    margin:25px;
 }
 
 form#list > button {
