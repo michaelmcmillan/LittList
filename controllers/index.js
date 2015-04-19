@@ -1,4 +1,4 @@
-var log = require('../log/logger.js');
+var logger = require('../log/logger.js');
 var FunnelController = require('./query/funnel.js');
 
 function IndexController (req, res, next) {

@@ -37,11 +37,10 @@ function BibsysController (req, res, next) {
                         query: queryString,
                         results: createdBooks 
                     });
-
+                    
                     // Secondly cache the results
-                    QueryFactory.create(queryString, createdBooks, function (err) {
+                    QueryFactory.create(queryString, createdBooks, function (err, cachedBooks) {
                         if (err) return next(err); 
-                        logger.log('info', 'Cached %d books to the database', createdBooks.length);
                     });
                 });
             });
