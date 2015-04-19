@@ -19,7 +19,10 @@ function ResultController (results, shouldCacheResults, req, res, next) {
         // done. The callback is there because of async fs
         res.render('results', {
             query: queryString,
-            results: results 
+            results: results,
+            pass: {
+                query: queryString 
+            }
         }, function (err, html) {
             if (cache) {
 
