@@ -1,4 +1,4 @@
-var logger = require('../../log/logger.js');
+var logger      = require('../../log/logger.js');
 var ListFactory = require('../../database/factories/list.js');
 
 function ViewListController (req, res) {
