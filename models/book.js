@@ -50,7 +50,7 @@ function Book (title) {
     
     this.setPublicationPlace = function (place) {
         place = place || '';
-        publicationPlace = place.replace(/\W/g, ''); 
+        publicationPlace = place.replace(/[^a-zA-Z0-9\s]+/g, ''); 
     }
     
     this.setPublicationYear = function (year) {

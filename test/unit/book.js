@@ -40,6 +40,12 @@ describe('book', function () {
         book.setPublicationPlace('Oslo');
         assert.equal(book.getPublicationPlace(), 'Oslo');
    }); 
+
+   it('should keep whitespace in name', function () {
+        var book = new Book('4 hour work week');
+        book.setPublicationPlace('New York');
+        assert.equal(book.getPublicationPlace(), 'New York');
+   }); 
    
    it('should strip away any non-alphanumerical chars from pub.place', function () {
         var book = new Book('Snømannen');
