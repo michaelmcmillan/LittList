@@ -17,8 +17,8 @@ function BibsysController (req, res, next) {
         if (cachedBooks.length > 0) {
             logger.log('debug', 'Returning Bibsys cache with %d books for "%s"',
                 cachedBooks.length, queryString);
-            
-            return ResultController(cachedBooks, req, res, next);
+                
+            ResultController(cachedBooks, false, req, res, next);
             
         // Empty cache means we ask Bibsys
         } else {
@@ -33,13 +33,10 @@ function BibsysController (req, res, next) {
                 // Store all the books 
                 BookFactory.createAll(books, function (err, createdBooks) {
                     if (err) return next(err);
+                    logger.log('debug', 'Created %d books in the database', createdBooks.length);
 
-                    ResultController(createdBooks, req, res, next);
-                    
                     // Cache the results to the query string
-                    QueryFactory.create(queryString, createdBooks, function (err, cachedBooks) {
-                        if (err) return next(err); 
-                    });
+                    ResultController(createdBooks, true, req, res, next);
                 });
             });
         }

@@ -6,6 +6,8 @@ var ListFactory = require('../../database/factories/list.js');
 function UpdateListController (req, res, next) {
     
     ListFactory.read(req.session.list, function (err, list) {
+        if (err) return next(err);
+
         if (req.body.add !== undefined)
             list.addReference(req.body.add); 
         
@@ -13,6 +15,8 @@ function UpdateListController (req, res, next) {
             list.removeReference(req.body.remove); 
 
         ListFactory.update(list, function (err, list) {
+            if (err) return next(err);
+
             logger.log('debug', 'Updated list contents', {
                 id: list.getId(),
                 added:   req.body.add    || null,
