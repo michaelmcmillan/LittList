@@ -40,8 +40,9 @@ function List () {
     }
 
     this.removeReference = function (reference) {
-        var key = references.indexOf(reference);
-        references.splice(references.indexOf(key), 1);
+        var index = references.indexOf(reference);
+        if (index >= 0)
+            references.splice(index, 1);
     }
 }
 

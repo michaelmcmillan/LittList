@@ -58,6 +58,8 @@ describe('List', function () {
         list.addReference(2);
         list.removeReference(1);
         assert.equal(list.getReferences().length, 1);
+        assert.equal(list.getReferences()[0], 2);
+        assert.equal(list.getReferences()[1], undefined);
     });
 
     it('should have a createdAt attribute upon creation that is now', function () {
