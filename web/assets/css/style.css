@@ -207,7 +207,7 @@ form#query > input[type="submit"] {
 .testimonial {
     margin:0 auto;
     display:inline-block;
-    height:100px;
+    height:80px;
     width: 200px;
     background-repeat: no-repeat;
     background-position: center;
