@@ -44,7 +44,6 @@ describe('bibliography#harvard', function () {
    
     it('should sort the references alphabetically by surname', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.getReferences()[0].getAuthors()[0].getSurname(), 'Bick'); 
         assert.equal(bibliography.getReferences()[1].getAuthors()[0].getSurname(), 'Bovim'); 
@@ -55,63 +54,54 @@ describe('bibliography#harvard', function () {
 
     it('should format a single author as => Surname, F.', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.authorFormat(0), 'Bick, J.');
     });
     
     it('should format a forename consisting of two names correctly', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.authorFormat(4), 'Smith, R.B.');
     });
     
     it('should separate two authors with "og" (and)', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.authorFormat(3), 'Dybvig, D.D. og Dybvig, M.');
     });
     
     it('should separate the last author with "og" (and)', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.authorFormat(3), 'Dybvig, D.D. og Dybvig, M.');
     });
     
     it('should separate first authors with comma and the last author with "og" (and)', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.authorFormat(5), 'Ågesen, Å., Åli, Å. og Ånke, Å.');
     });
 
     it('should correctly display publication year in parenthesis', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.yearFormat(2), '(2006)');
     });
     
     it('should correctly display publication year in parenthesis', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.yearFormat(3), '(2004)');
     });
     
     it('should italize the book title', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.titleFormat(2), '<em>The God Delusion</em>');
     });
     
     it('should italize the website title', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
         
         assert.equal(bibliography.titleFormat(1).indexOf('<em>'),   0);
         assert.equal(bibliography.titleFormat(1).substring(bibliography.titleFormat(1).length - '</em>'.length), '</em>'); 
@@ -119,8 +109,6 @@ describe('bibliography#harvard', function () {
     
     it('should append colon to publication place', function () {
         var bibliography = new Harvard(references);
-        bibliography.sort();
-        
         assert.equal(bibliography.placeFormat(5), 'Oslo:');
     });
 

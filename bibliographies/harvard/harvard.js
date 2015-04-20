@@ -6,6 +6,23 @@ function Harvard (references) {
     
     var references = references || [];
 
+    this.sort = function () {
+        references = references.sort(function (referenceOne, referenceTwo) {
+            var firstAuthor   = referenceOne.getAuthors()[0];
+            var secondAuthor  = referenceTwo.getAuthors()[0];
+            if (firstAuthor === undefined || secondAuthor === undefined)
+                return 0;
+
+            var firstSurname  = firstAuthor .getName().split(' ').reverse()[0];
+            var secondSurname = secondAuthor.getName().split(' ').reverse()[0];
+            if (firstSurname < secondSurname) return -1;
+            if (firstSurname > secondSurname) return  1;
+            return 0;
+        }); 
+    }
+    
+    this.sort();
+
     this.getReferences = function () {
         return references; 
     }
@@ -19,16 +36,6 @@ function Harvard (references) {
             if (reference.getId() === referenceToRemove.getId())
                 references.splice(index, 1);
         });
-    }
-    
-    this.sort = function () {
-        references.sort(function (referenceOne, referenceTwo) {
-            var firstSurname  = referenceOne.getAuthors()[0].getName().split(' ').reverse()[0];
-            var secondSurname = referenceTwo.getAuthors()[0].getName().split(' ').reverse()[0];
-            if (firstSurname < secondSurname) return -1;
-            if (firstSurname > secondSurname) return  1;
-            return 0;
-        }); 
     }
     
     this.authorFormat = function (referenceIndex) {
@@ -61,6 +68,24 @@ function Harvard (references) {
  
         if (references[referenceIndex] instanceof Website) 
             return '';
+    }
+
+    this.toString = function () {
+        var self = this;
+        var formattedList = '';
+
+        references.forEach(function (reference, index) {
+            var lineInList = '';
+
+            lineInList += self.titleFormat(index);
+            lineInList += self.placeFormat(index);
+            lineInList += self.yearFormat(index);
+            lineInList += '<br/>';
+
+            formattedList += lineInList;
+        });
+
+        return formattedList;
     }
 }
 
