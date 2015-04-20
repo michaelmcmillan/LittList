@@ -51,11 +51,14 @@ function ResultController (results, shouldCacheResults, req, res, next) {
             // Mark results that are already in the list
             // to display remove button (for added ones) and
             // add button (for "removed" ones)
+            logger.profile('n^2 check');
             results.forEach(function(result, index) {
-                var inList = (list.getReferences().indexOf(result.getId()) !== -1);
-                results[index].isInList = inList; 
+                list.getReferences().forEach(function (reference) {
+                    if (result.getId() === reference.getId())
+                        results[index].isInList = true;
+                });
             });
-            
+            logger.profile('n^2 check'); 
             // Get the total count of references added to the
             // list. This gets passed on to the searchbar badge.
             var count = list.getReferences().length;
