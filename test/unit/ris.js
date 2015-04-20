@@ -98,4 +98,14 @@ describe('ris', function () {
         var ris = new RisParser(['TY  - BOOK', 'T1  - Critical maths for innovative societies: the role of metacognitive\n      pedagogies', 'ER  -'].join('\n'));
         assert.equal(ris.parse().T1, 'Critical maths for innovative societies: the role of metacognitive pedagogies');
     }); 
+    
+    it('should combine linebroken lines into one field', function () {
+        var raw = "TY  - BOOK\n" + 
+                  "PB  - Norges teknisk-naturvitenskapelige universitet, Fakultet for samfunnsvitenskap og\n" + 
+                  "      teknologiledelse, Institutt for sosiologi og statsvitenskap\n" + 
+                  "ER  -";
+        var ris = new RisParser(raw);
+        assert.equal(ris.parse().PB, 'Norges teknisk-naturvitenskapelige universitet, Fakultet for samfunnsvitenskap ' +
+            'og teknologiledelse, Institutt for sosiologi og statsvitenskap');
+    });
 });
