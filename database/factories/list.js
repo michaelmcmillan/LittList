@@ -25,17 +25,22 @@ var ListFactory = {
             list.setUrl(row.url);
             
             database.query('SELECT * FROM Contents ' +
-                'JOIN `References` ON Contents.reference_id = References.id ' +
+                'JOIN `Books` ON Books.reference_id = Contents.reference_id ' +
                 'JOIN `Lists` ON Contents.list_id = Lists.id ' +
                 'WHERE Lists.id = ?', row.id,
             function (err, rows, fields) {
                 if (err) return done(err);
-
+                 
+                var referenceIds = []; 
                 rows.forEach(function (row) {
-                    list.addReference(row.reference_id);
+                    referenceIds.push(row.reference_id);
                 });
 
-                return done(undefined, list);
+                BookFactory.readAll(referenceIds, function (err, books) {
+                    if (err) return done(err);    
+                    list.addReference(books);
+                    return done(undefined, list);
+                });
             });
         });
     },
@@ -47,9 +52,14 @@ var ListFactory = {
             if (err) return done(err);            
  
             // Differentiate between whats stored and whats not
-            var contentInDatabase = readList.getReferences();
-            var passedInContent   = list.getReferences();
-            
+            var contentInDatabase = readList.getReferences().map(function (reference) {
+                return reference.getId();
+            });
+
+            var passedInContent   = list.getReferences().map(function (reference) {
+                return reference.getId();
+            });
+
             // Find the diff between content passed and content in db
             var added   = passedInContent.diff(contentInDatabase);
             var removed = contentInDatabase.diff(passedInContent);
@@ -106,8 +116,8 @@ var ListFactory = {
 
             // Link the contents (referenceIds) to the list
             var contentEntries = [];
-            list.getReferences().forEach(function (reference_id) {
-                contentEntries.push([list_id, reference_id]);
+            list.getReferences().forEach(function (reference) {
+                contentEntries.push([list_id, reference.getId()]);
             });
             
             // Execute query by inserting contentEntries
