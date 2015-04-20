@@ -3,7 +3,8 @@ var ListFactory = require('../../database/factories/list.js');
 
 function ViewListController (req, res) {
 
-    // No list exists for the current session
+    // Redirect to frontpage when no list
+    // exists for the current session
     if (req.session.list === undefined)
         return res.redirect('/');
     
