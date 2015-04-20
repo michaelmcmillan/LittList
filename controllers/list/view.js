@@ -1,4 +1,5 @@
 var logger      = require('../../log/logger.js');
+var Harvard     = require('../../bibliographies/harvard/harvard.js');
 var ListFactory = require('../../database/factories/list.js');
 
 function ViewListController (req, res) {
@@ -12,6 +13,7 @@ function ViewListController (req, res) {
     ListFactory.read(req.session.list, function (err, list) {
         res.render('list', {
             references: list.getReferences(),
+            list: new Harvard(list.getReferences()),
             count: list.getReferences().length
         });
     });
