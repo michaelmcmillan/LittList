@@ -36,13 +36,21 @@ function List () {
     }
     
     this.addReference = function (reference) {
-        references.push(reference);
+        var self = this;
+
+        if (reference.constructor === Array) {
+            reference.forEach(function (ref) {
+                self.addReference(ref);
+            });
+        } else {
+            references.push(reference);
+        }
     }
 
-    this.removeReference = function (reference) {
-        var index = references.indexOf(reference);
-        if (index >= 0)
-            references.splice(index, 1);
+    this.removeReference = function (referenceToRemove) {
+        references = references.filter(function (reference) {
+            return reference.getId() !== referenceToRemove;
+        });
     }
 }
 

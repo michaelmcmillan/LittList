@@ -18,6 +18,7 @@ function Book (title) {
 
     this.setId = function (databaseId) {
         id = databaseId;
+        return this;
     }
 
     this.getTitle = function () {

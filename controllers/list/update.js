@@ -8,9 +8,11 @@ function UpdateListController (req, res, next) {
     ListFactory.read(req.session.list, function (err, list) {
         if (err) return next(err);
 
-        if (req.body.add !== undefined)
-            list.addReference(parseInt(req.body.add, 10)); 
-        
+        if (req.body.add !== undefined) {
+            var book = new Book().setId(parseInt(req.body.add, 10));
+            list.addReference(book); 
+        } 
+
         if (req.body.remove !== undefined)
             list.removeReference(parseInt(req.body.remove, 10)); 
 

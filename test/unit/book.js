@@ -85,4 +85,9 @@ describe('book', function () {
         book.addAuthors([new Author('Jo Nesbø'), new Author('Dagfinn Dybdahl')]);
         assert.equal(book.getAuthors().length, 2)
    }); 
+
+    it('should be possible to chain creation of new book and setId', function () {
+        var book = new Book('Snømannen').setId(1);      
+        assert.equal(book.getId(), 1);
+    });
 });

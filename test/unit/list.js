@@ -41,12 +41,15 @@ describe('List', function () {
     
     it('should be possible to add a book to the list', function () {
         var list = new List();
-        list.addReference(1);
+        var book = new Book();
+        book.setId(1);
+        list.addReference(book);
         assert.equal(list.getReferences().length, 1);
     });
 
     it('should be possible to add a website to the list', function () {
         var website = new Website('http://vg.no');
+        website.setId(2);
         var list = new List();
         list.addReference(website);
         assert.equal(list.getReferences().length, 1);
@@ -54,14 +57,33 @@ describe('List', function () {
     
     it('should be possible to remove a reference from the list', function () {
         var list = new List();
-        list.addReference(1);
-        list.addReference(2);
+        var firstBook   = new Book();
+        var secondBook = new Book();
+        var thirdBook   = new Book();
+        firstBook.setId(1);
+        secondBook.setId(2);
+        thirdBook.setId(3);
+        
+        list.addReference(firstBook);
+        list.addReference(secondBook);
         list.removeReference(1);
+
         assert.equal(list.getReferences().length, 1);
-        assert.equal(list.getReferences()[0], 2);
+        assert.equal(list.getReferences()[0], secondBook);
         assert.equal(list.getReferences()[1], undefined);
     });
 
+    it('should be possible to remove a reference from the list', function () {
+        var list = new List();
+        var firstBook   = new Book();
+        var secondBook = new Book();
+        firstBook.setId(1);
+        secondBook.setId(2);
+        
+        list.addReference([firstBook, secondBook]);
+
+        assert.equal(list.getReferences().length, 2);
+    });
     it('should have a createdAt attribute upon creation that is now', function () {
         assert.equal(new List().getCreatedAt().toString(), new Date().toString());
     });
