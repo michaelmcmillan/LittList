@@ -1,6 +1,6 @@
 var Book = require('./book.js');
 
-function CLS (reference) {
+function CSL (reference) {
     
     var items = {};
 
@@ -17,4 +17,4 @@ function CLS (reference) {
     return items; 
 }
 
-module.exports = CLS;
+module.exports = CSL;
