@@ -3,7 +3,6 @@ var mysql       = require('mysql');
 var config      = require('../../config.js');
 var Book        = require('../../models/book.js');
 var Author      = require('../../models/author.js');
-var Harvard     = require('../../bibliographies/harvard/harvard.js');
 var List        = require('../../models/list.js');
 var ListFactory = require('../../database/factories/list.js');
 
