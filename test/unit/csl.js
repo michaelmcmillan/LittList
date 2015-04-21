@@ -1,6 +1,6 @@
 var assert = require('assert');
 var Book   = require('../../models/book.js');
-var CSLConverter = require('../../models/cls.js');
+var CSLConverter = require('../../models/csl.js');
 
 describe('CSL-JSON', function () {
 
