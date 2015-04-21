@@ -1,5 +1,6 @@
 var assert = require('assert');
 var Book   = require('../../models/book.js');
+var Author = require('../../models/author.js');
 var CSLConverter = require('../../models/csl.js');
 
 describe('CSL-JSON', function () {
@@ -21,7 +22,31 @@ describe('CSL-JSON', function () {
 
     it('should have the books publication as publisher', function () {
         var book = new Book('Snømannen').setId(1);
-        book.setPublicationPlace('Times Magazine');
+        book.setPublisher('Times Magazine');
         assert.equal(CSLConverter(book)[1].publisher, 'Times Magazine');
+    });
+
+    it('should have the publication place as the publisher-place', function () {
+        var book = new Book('Snømannen').setId(1);
+        book.setPublicationPlace('Oslo');
+        assert.equal(CSLConverter(book)[1]['publisher-place'], 'Oslo');
+    });
+
+    it('should store authors as an array consisting of author objects', function () {
+        var book = new Book('Snømannen').setId(1);
+        book.addAuthor(new Author('Jo Nesbø'));
+        assert.equal(CSLConverter(book)[1].author.length, 1);
+    });
+
+    it('should store authors forename as given (name)', function () {
+        var book = new Book('Snømannen').setId(1);
+        book.addAuthor(new Author('Jo Nesbø'));
+        assert.equal(CSLConverter(book)[1].author[0].given, 'Jo');
+    });
+
+    it('should store authors surname as family (name)', function () {
+        var book = new Book('Snømannen').setId(1);
+        book.addAuthor(new Author('Jo Nesbø'));
+        assert.equal(CSLConverter(book)[1].author[0].family, 'Nesbø');
     });
 });
