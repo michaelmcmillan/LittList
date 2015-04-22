@@ -6,7 +6,7 @@ function List () {
     var url = crypto.randomBytes(5).toString('hex');
     var references = [];
     var created = new Date();
-    var bibliographyStyle = 'harvard1.cls';
+    var bibliographyStyle = 'harvard1.csl';
 
     this.getId = function () {
         return id; 
@@ -59,8 +59,8 @@ function List () {
     }
 
     this.setBibliographyStyle = function (style) {
-        if (style.substring(style.length - 4) !== '.cls')
-            throw new Error('Style must end with .cls');
+        if (style.substring(style.length - 4) !== '.csl')
+            throw new Error('Style must end with .csl');
 
         bibliographyStyle = style;
     }

@@ -88,15 +88,15 @@ describe('List', function () {
         assert.equal(new List().getCreatedAt().toString(), new Date().toString());
     });
 
-    it('should have harvard1.cls as the default bibliography style', function () {
+    it('should have harvard1.csl as the default bibliography style', function () {
         var list = new List();
-        assert.equal(list.getBibliographyStyle(), 'harvard1.cls');
+        assert.equal(list.getBibliographyStyle(), 'harvard1.csl');
     });
 
     it('should be possible to set the bibliography style as long as it is a valid filename', function () {
         var list = new List();
-        list.setBibliographyStyle('harvard1.cls');
-        assert.equal(list.getBibliographyStyle(), 'harvard1.cls');
+        list.setBibliographyStyle('harvard1.csl');
+        assert.equal(list.getBibliographyStyle(), 'harvard1.csl');
     });
 
     it('should throw exception if bibliography style is an invalid filename', function () {
