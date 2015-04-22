@@ -282,9 +282,8 @@ form#query > input[type="submit"] {
     font-weight:200; 
 }
 
-.controls > button, div#listlink > button {
+button {
     outline: 0;
-    width:50px;
     line-height:2;
     border-radius: 3.6px;
     cursor: pointer;
@@ -292,6 +291,18 @@ form#query > input[type="submit"] {
     padding-bottom: 2px;
     border-style: solid;
     border-width: 1px;
+    
+    font-size:13px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-color: #ddd;
+    background-color:#fff;
+    color: #000;
+    white-space: nowrap;
+}
+
+button:hover {
+    background-color: #fff;
 }
 
 .controls > button[name="add"] {
