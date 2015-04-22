@@ -13,8 +13,9 @@ describe('listFactory', function () {
         var book = new Book();
         book.setId(1);
         list.addReference(book);
-        ListFactory.create(list, function (err, book) {
+        ListFactory.create(list, function (err, list) {
             if (err) throw err;
+            assert.equal(list.getBibliographyStyle(), 'harvard1.csl');
             done();
         });
     });
@@ -32,7 +33,7 @@ describe('listFactory', function () {
         ListFactory.read(1, function (err, list) {
             assert.equal(list.getReferences().length, 1); 
             list.removeReference(1);
-
+            
             ListFactory.update(list, function (err, updatedList) {
                 assert.equal(updatedList.getReferences().length, 0);
                 done();
@@ -49,6 +50,16 @@ describe('listFactory', function () {
 
             ListFactory.update(list, function (err, updatedList) {
                 assert.equal(updatedList.getReferences().length, 1); 
+                done();
+            });
+        });
+    });
+
+    it('can change the bibliography style upon update', function (done) {
+        ListFactory.read(1, function (err, list) {
+            list.setBibliographyStyle('chicago.csl');
+            ListFactory.update(list, function (err, updatedList) {
+                assert.equal(updatedList.getBibliographyStyle(), 'chicago.csl'); 
                 done();
             });
         });

@@ -32,6 +32,7 @@ CREATE TABLE `Books` (
 CREATE TABLE `Lists` (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     url varchar(255),
+    style varchar(255) NOT NULL,
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
 

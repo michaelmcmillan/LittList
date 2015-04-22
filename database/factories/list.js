@@ -23,6 +23,7 @@ var ListFactory = {
             var list = new List();
             list.setId(row.id);
             list.setUrl(row.url);
+            list.setBibliographyStyle(row.style);
             
             database.query('SELECT * FROM Contents ' +
                 'JOIN `Books` ON Books.reference_id = Contents.reference_id ' +
@@ -50,7 +51,7 @@ var ListFactory = {
         
         self.read(list.getId(), function (err, readList) {
             if (err) return done(err);            
- 
+            
             // Differentiate between whats stored and whats not
             var contentInDatabase = readList.getReferences().map(function (reference) {
                 return reference.getId();
@@ -65,11 +66,27 @@ var ListFactory = {
             var removed = contentInDatabase.diff(passedInContent);
             
             // If no changes has been made, simply return the list as is
-            if (removed.length === 0 && added.length === 0)
+            if (removed.length === 0 
+            &&  added.length === 0
+            &&  list.getBibliographyStyle() === 'harvard1.csl')
                 return self.read(list.getId(), done);
 
             // Async queue
             var queue = 0;
+            
+            // Update the bibliography style
+            if (list.getBibliographyStyle() !== 'harvard1.csl') {
+                ++queue;
+                database.query('UPDATE Lists SET style = ' + 
+                    database.escape(list.getBibliographyStyle()) + ' ' +  
+                    'WHERE id = ?', {
+                        id: list.getId()
+                }, function (err, rows, fields) {
+                    if (err) return done(err);
+                    if (--queue === 0)
+                        return self.read(list.getId(), done);
+                });
+            }
 
             // Delete the removed references
             if (removed.length !== 0) {
@@ -108,7 +125,8 @@ var ListFactory = {
         
         // Create the actual List entry
         database.query('INSERT INTO Lists SET ?', {
-            url: list.getUrl()
+            url: list.getUrl(),
+            style: list.getBibliographyStyle()
         }, function (err, rows, field) {
             
             // Get the id from the created list
