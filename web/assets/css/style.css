@@ -262,6 +262,7 @@ form#query > input[type="submit"] {
 }
 
 .settings {
+    text-align:right;
     max-width: 790px;
     margin: 0px auto 20px;
 }
