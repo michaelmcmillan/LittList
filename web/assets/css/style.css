@@ -277,7 +277,7 @@ form#query > input[type="submit"] {
     font-weight:200; 
 }
 
-.controls > button, form#listlink > button {
+.controls > button, div#listlink > button {
     outline: 0;
     width:50px;
     line-height:2;
@@ -309,12 +309,12 @@ form#query > input[type="submit"] {
     background-color: #fff;
 }
 
-form#listlink {
+div#listlink {
     display: inline-block;
     margin:25px;
 }
 
-form#listlink > button {
+div#listlink > button {
     position: relative;
     font-weight:300;
     font-size:15px;
@@ -325,11 +325,11 @@ form#listlink > button {
     height:35px;
 }
 
-form#listlink > button:hover {
+div#listlink > button:hover {
     background-color: #3F90CF;
 }
 
-form#listlink > button[data-badge]:after {
+div#listlink > button[data-badge]:after {
     content:attr(data-badge);
     position:absolute;
     top:-10px;

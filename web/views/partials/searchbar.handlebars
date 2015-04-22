@@ -3,7 +3,7 @@
             <form id="query" method="get" action="/">
                 <input type="text" name="q" value="{{{query}}}">
             </form>
-            <form id="listlink" method="get" action="/liste">
-                <button type="submit" data-badge="{{count}}">Vis litteraturliste</button>
+            <div id="listlink">
+                <button onclick="document.location='/liste'" type="submit" data-badge="{{count}}">Vis litteraturliste</button>
             </form>
         </div>
