@@ -261,6 +261,11 @@ form#query > input[type="submit"] {
     background-color: #f7f7f7;
 }
 
+.settings {
+    max-width: 670px;
+    margin: 0px auto 0px;
+}
+
 .a4 {
     padding: 50px 60px;
     border: 1px solid #d4d4d4;
