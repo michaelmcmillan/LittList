@@ -28,6 +28,7 @@
     "express-handlebars": "^1.2.2",
     "express-mysql-session": "^0.3.2",
     "express-session": "^1.10.3",
+    "glob": "^5.0.5",
     "iconv-lite": "^0.4.7",
     "isbn": "git://github.com/makepanic/isbnjs#0e9b3db5",
     "mysql": "^2.5.5",
