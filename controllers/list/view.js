@@ -1,6 +1,6 @@
 var logger      = require('../../log/logger.js');
-var Harvard     = require('../../bibliographies/harvard/harvard.js');
 var ListFactory = require('../../database/factories/list.js');
+var BibliographyGenerator = require('../../bibliographies/bibliographyGenerator.js');
 
 function ViewListController (req, res) {
 
@@ -11,10 +11,15 @@ function ViewListController (req, res) {
     
     // Load the list for the current session 
     ListFactory.read(req.session.list, function (err, list) {
-        res.render('list', {
-            references: list.getReferences(),
-            list: new Harvard(list.getReferences()),
-            count: list.getReferences().length
+        
+        // Use citeproc to generate the bibliography
+        BibliographyGenerator(list, function (bibliography) {
+            
+            res.render('list', {
+                references: list.getReferences(),
+                list: bibliography,
+                count: list.getReferences().length
+            }); 
         });
     });
 }

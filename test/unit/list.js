@@ -3,7 +3,6 @@ var Book    = require('../../models/book.js');
 var Website = require('../../models/website.js');
 var Author  = require('../../models/author.js');
 var List    = require('../../models/list.js');
-var Harvard = require('../../bibliographies/harvard/harvard.js');
 
 describe('List', function () {
     
