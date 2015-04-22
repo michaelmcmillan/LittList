@@ -4,9 +4,9 @@
     <div class="settings">
         <form method="post" action="/liste">
             <select name="style">
-                <option value="harvard">Harvard</option>
-                <option value="oxford">Oxford</option>
-                <option value="chichago">Chichago</option>
+                {{#each supportedStyles}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
             </select>
             <button type="submit">Lagre endringer</button>
         </form>
