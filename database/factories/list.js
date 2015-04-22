@@ -63,6 +63,10 @@ var ListFactory = {
             // Find the diff between content passed and content in db
             var added   = passedInContent.diff(contentInDatabase);
             var removed = contentInDatabase.diff(passedInContent);
+            
+            // If no changes has been made, simply return the list as is
+            if (removed.length === 0 && added.length === 0)
+                return self.read(list.getId(), done);
 
             // Async queue
             var queue = 0;
