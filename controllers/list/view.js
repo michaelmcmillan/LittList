@@ -28,6 +28,11 @@ function ViewListController (req, res) {
             var stylesLocation = config.bibliography.styles.allowed;
             supportedStyles(config.bibliography.styles.allowed, config.bibliography.styles.location, 
                 function (err, styles) {
+                    
+                    // Mark the style used as selected 
+                    styles.forEach(function (style) {
+                        style.selected = (style.file === list.getBibliographyStyle());
+                    });
 
                     // Finally render the list with references,
                     // the generated bibliography and supported styles

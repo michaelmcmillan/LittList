@@ -23,7 +23,7 @@ function UpdateListController (req, res, next) {
         if (req.body.style !== undefined) {
             var allowedStyleFiles = Object.keys(config.bibliography.styles.allowed);
             if (allowedStyleFiles.indexOf(req.body.style) !== -1)
-                ; // Not implemented yet
+                list.setBibliographyStyle(req.body.style);
         }
 
         // Update the model with the above changes to the database
