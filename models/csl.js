@@ -11,9 +11,9 @@ function CSL (list) {
         if (reference instanceof Book) {
             var id = reference.getId(); 
 
-            items[id]                    = {};
-            items[id].id                 = reference.getId();
-            items[id].type               = 'book'; 
+            items[id]      = {};
+            items[id].id   = reference.getId();
+            items[id].type = 'book'; 
 
             if (reference.getTitle() !== undefined)
                 items[id].title = reference.getTitle();
