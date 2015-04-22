@@ -262,8 +262,8 @@ form#query > input[type="submit"] {
 }
 
 .settings {
-    max-width: 670px;
-    margin: 0px auto 0px;
+    max-width: 790px;
+    margin: 0px auto 20px;
 }
 
 .a4 {
