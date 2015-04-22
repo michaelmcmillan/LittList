@@ -13,8 +13,13 @@ function ViewListController (req, res) {
     ListFactory.read(req.session.list, function (err, list) {
         
         // Use citeproc to generate the bibliography
+        logger.profile('bibliography generation');
         BibliographyGenerator(list, function (bibliography) {
             
+            logger.profile('bibliography generation', {
+                id: list.getId()
+            });
+
             res.render('list', {
                 references: list.getReferences(),
                 list: bibliography,
