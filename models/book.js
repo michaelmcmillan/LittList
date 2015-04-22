@@ -68,11 +68,12 @@ function Book (newTitle) {
     }
 
     this.getISBN = function () {
-        return ISBN || false;
+        return ISBN;
     }
 
     this.setISBN = function (ISBNno) {
-        if (ISBNValidator.parse(ISBNno))
+        console.log(ISBNno);
+//        if (ISBNValidator.parse(ISBNno))
             ISBN = ISBNno;
     }
     

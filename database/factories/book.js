@@ -9,7 +9,7 @@ var BookFactory = {
     constructBook: function (row) {
         var book = new Book(row.title);
         book.setId(row.id);
-        book.setISBN(row.ISBN);
+        book.setISBN(row.isbn);
         book.setEdition(row.edition);
         book.setPublisher(row.publisher);
         book.setPublicationPlace(row.publication_place);
