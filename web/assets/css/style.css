@@ -267,6 +267,10 @@ form#query > input[type="submit"] {
     margin: 0px auto 20px;
 }
 
+.settings > form > select {
+    font-size:48px;
+}
+
 .a4 {
     padding: 50px 60px;
     border: 1px solid #d4d4d4;
@@ -288,8 +292,6 @@ button {
     line-height:2;
     border-radius: 3.6px;
     cursor: pointer;
-    padding-top: 2px;
-    padding-bottom: 2px;
     border-style: solid;
     border-width: 1px;
     
