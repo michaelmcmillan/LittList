@@ -6,7 +6,7 @@ function List () {
     var url = crypto.randomBytes(5).toString('hex');
     var references = [];
     var created = new Date();
-    var bibliographyStyle;
+    var bibliographyStyle = 'harvard1.cls';
 
     this.getId = function () {
         return id; 
