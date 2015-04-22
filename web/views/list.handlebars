@@ -1,5 +1,16 @@
 {{> searchbar }}
+
 <div class="list">
+    <div class="settings">
+        <form method="post" action="/liste">
+            <select name="style">
+                {{#each supportedStyles}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <button type="submit">Lagre endringer</button>
+        </form>
+    </div>
     <div class="a4">
         <h2>Litteraturliste</h2>
         {{{list}}}

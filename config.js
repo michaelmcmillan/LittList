@@ -2,6 +2,18 @@ module.exports = {
     web: {
         port: 8080     
     },
+    
+    bibliography: {
+        styles: {
+            allowed: { 
+
+            },
+            location: __dirname + '/bibliographies/styles/'
+        },
+        locales: {
+            location: __dirname + '/bibliographies/locales/'
+        }
+    },
 
     database: function () {
         if (process.env['TEST'] === undefined)

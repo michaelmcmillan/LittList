@@ -261,6 +261,16 @@ form#query > input[type="submit"] {
     background-color: #f7f7f7;
 }
 
+.settings {
+    text-align:right;
+    max-width: 790px;
+    margin: 0px auto 20px;
+}
+
+.settings > form > select {
+    font-size:48px;
+}
+
 .a4 {
     padding: 50px 60px;
     border: 1px solid #d4d4d4;
@@ -277,16 +287,25 @@ form#query > input[type="submit"] {
     font-weight:200; 
 }
 
-.controls > button, div#listlink > button {
+button {
     outline: 0;
-    width:50px;
     line-height:2;
     border-radius: 3.6px;
     cursor: pointer;
-    padding-top: 2px;
-    padding-bottom: 2px;
     border-style: solid;
     border-width: 1px;
+    
+    font-size:13px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-color: #ddd;
+    background-color:#fff;
+    color: #000;
+    white-space: nowrap;
+}
+
+button:hover {
+    background-color: #fff;
 }
 
 .controls > button[name="add"] {
