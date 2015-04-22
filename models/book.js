@@ -1,8 +1,8 @@
 var ISBNValidator = require('isbn').ISBN;
 
-function Book (title) {
+function Book (newTitle) {
     var id;
-    var title     = title; 
+    var title; 
     var authors   = [];
     var ISBN;
     var publisher;
@@ -12,6 +12,13 @@ function Book (title) {
     this.isInList = false;
     var self = this;
     
+    var filterTitle = function (unfilteredTitle) {
+        if (unfilteredTitle !== undefined)
+            title = unfilteredTitle.trim();
+    }
+    
+    filterTitle(newTitle);
+
     this.getId = function () {
         return id;
     }

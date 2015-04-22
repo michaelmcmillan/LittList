@@ -18,6 +18,11 @@ describe('book', function () {
         assert.equal(book.getTitle(), 'Snømannen');
    }); 
    
+   it('should strip all trailing whitespace from the title', function () {
+        var book = new Book('Det Du Ikke Får Vite Om Maten Din  ');
+        assert.equal(book.getTitle(), 'Det Du Ikke Får Vite Om Maten Din');
+   }); 
+
    it('should have a year of publication', function () {
         var book = new Book('Snømannen');
         book.setPublicationYear(2007);
