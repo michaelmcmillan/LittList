@@ -6,6 +6,7 @@ function List () {
     var url = crypto.randomBytes(5).toString('hex');
     var references = [];
     var created = new Date();
+    var bibliographyStyle;
 
     this.getId = function () {
         return id; 
@@ -51,6 +52,17 @@ function List () {
         references = references.filter(function (reference) {
             return reference.getId() !== referenceToRemove;
         });
+    }
+
+    this.getBibliographyStyle = function () {
+        return bibliographyStyle;
+    }
+
+    this.setBibliographyStyle = function (style) {
+        if (style.substring(style.length - 4) !== '.cls')
+            throw new Error('Style must end with .cls');
+
+        bibliographyStyle = style;
     }
 }
 

@@ -83,8 +83,22 @@ describe('List', function () {
 
         assert.equal(list.getReferences().length, 2);
     });
+
     it('should have a createdAt attribute upon creation that is now', function () {
         assert.equal(new List().getCreatedAt().toString(), new Date().toString());
+    });
+
+    it('should be possible to set the bibliography style as long as it is a valid filename', function () {
+        var list = new List();
+        list.setBibliographyStyle('harvard1.cls');
+        assert.equal(list.getBibliographyStyle(), 'harvard1.cls');
+    });
+
+    it('should throw exception if bibliography style is an invalid filename', function () {
+        var list = new List();
+        assert.throws(function () {
+            list.setBibliographyStyle('harvard yo give me that style');
+        });
     });
 });
 
