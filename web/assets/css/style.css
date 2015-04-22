@@ -353,3 +353,19 @@ div#listlink > button[data-badge]:after {
     line-height: 2;
     text-align: center;
 }
+
+.csl-entry > div { 
+  display: inline;
+}
+
+.csl-entry {
+    margin-right: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.csl-entry > div.csl-indent {
+  display: block;
+  padding-top: 1em;
+  padding-left: 1em;
+}
