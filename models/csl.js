@@ -14,9 +14,15 @@ function CSL (list) {
             items[id]                    = {};
             items[id].id                 = reference.getId();
             items[id].type               = 'book'; 
-            items[id].title              = reference.getTitle() || '';
-            items[id].publisher          = reference.getPublisher() || '';
-            items[id]['publisher-place'] = reference.getPublicationPlace() || '';
+
+            if (reference.getTitle() !== undefined)
+                items[id].title = reference.getTitle();
+
+            if (reference.getPublisher() !== undefined && reference.getPublisher() !== null)
+                items[id].publisher = reference.getPublisher();
+
+            if (reference.getPublicationPlace() !== undefined && reference.getPublicationPlace() !== null)
+                items[id]['publisher-place'] = reference.getPublicationPlace();
         }
     
         // Iterates over all authors in the reference
@@ -24,15 +30,20 @@ function CSL (list) {
         if (reference.getAuthors().length > 0) {
             items[id].author = [];
             reference.getAuthors().forEach(function (author) {
-                items[id].author.push({
-                    family: author.getSurname()  || '',
-                    given:  author.getForename() || ''
-                });
+                var authorItem = {};
+                
+                if (author.getSurname() !== undefined)
+                    authorItem.family = author.getSurname();
+
+                if (author.getForename() !== undefined)
+                    authorItem.given = author.getForename();
+                
+                if (Object.keys(authorItem).length !== 0)
+                    items[id].author.push(authorItem);
             });
         }
     });
 
-    return items; 
-}
+    return items; }
 
 module.exports = CSL;
