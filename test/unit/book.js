@@ -79,12 +79,6 @@ describe('book', function () {
         assert.equal(book.getISBN(), '9788251918640');
    }); 
    
-   it('should not accept invalid ISBN-13 codes', function () {
-        var book = new Book('Det tenkende mennesket');
-        book.setISBN('9788234918649');
-        assert.equal(book.getISBN(), false);
-   }); 
-   
    it('should successfully add multiple authors with setAuthors (plural)', function () {
         var book = new Book('Title');
         book.addAuthors([new Author('Jo Nesbø'), new Author('Dagfinn Dybdahl')]);

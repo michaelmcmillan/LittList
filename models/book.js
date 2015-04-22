@@ -72,9 +72,7 @@ function Book (newTitle) {
     }
 
     this.setISBN = function (ISBNno) {
-        console.log(ISBNno);
-//        if (ISBNValidator.parse(ISBNno))
-            ISBN = ISBNno;
+        ISBN = ISBNno;
     }
     
     this.addAuthor = function (author) {
