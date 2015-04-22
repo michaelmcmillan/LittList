@@ -9,7 +9,10 @@ function supportedStyles (allowedStyles, stylesLocation, done) {
         
         files.forEach(function(file) {
             if (allowedStyles[file] !== undefined)
-                styles.push(allowedStyles[file]);            
+                styles.push({
+                    name: allowedStyles[file],
+                    file: file
+                });            
         });
         
         return done(undefined, styles);

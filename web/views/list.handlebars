@@ -5,7 +5,7 @@
         <form method="post" action="/liste">
             <select name="style">
                 {{#each supportedStyles}}
-                <option value="{{this}}">{{this}}</option>
+                <option value="{{file}}">{{name}}</option>
                 {{/each}}
             </select>
             <button type="submit">Bytt referansestil</button>

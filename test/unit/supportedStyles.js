@@ -26,7 +26,8 @@ describe('supportedStyles', function () {
         });        
 
         supportedStyles(allowedStyles, bogusStylesDir, function (err, styles, locales) {
-            assert.equal(styles[0], 'Harvard');
+            assert.equal(styles[0].name, 'Harvard');
+            assert.equal(styles[0].file, 'harvard1.csl');
             done();
         }); 
     }); 
