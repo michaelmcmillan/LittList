@@ -268,7 +268,26 @@ form#query > input[type="submit"] {
 }
 
 .settings > form > select {
-    font-size:48px;
+   border-radius: 3.6px;
+   background: transparent;
+   width: 150px;
+   padding: 5px 35px 5px 5px;
+   font-size: 14px;
+   border: 1px solid #ddd;
+   height: 34px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background: url(/img/arrow-down.png) 96% / 15% no-repeat #fff;
+   outline: none;
+}
+
+/*target Internet Explorer 9 and Internet Explorer 10:*/
+@media screen and (min-width:0\0) { 
+    select {
+        background:none;
+        padding: 5px;
+    }
 }
 
 .a4 {
@@ -295,7 +314,9 @@ button {
     border-style: solid;
     border-width: 1px;
     
-    font-size:13px;
+    font-size:14px;
+    padding-top:2px;
+    padding-bottom:2px;
     padding-right: 5px;
     padding-left: 5px;
     border-color: #ddd;
