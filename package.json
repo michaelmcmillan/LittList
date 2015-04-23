@@ -22,7 +22,7 @@
     "bcryptjs": "^2.1.0",
     "body-parser": "^1.12.2",
     "cheerio": "^0.18.0",
-    "citeproc": "^1.0.2",
+    "citeproc": "^1.0.4",
     "crypto": "0.0.3",
     "express": "^4.11.2",
     "express-handlebars": "^1.2.2",
