@@ -404,6 +404,8 @@ div#listlink > button[data-badge]:after {
 }
 
 .csl-entry {
+    cursor: pointer;
+    cursor: hand;
     margin-right: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
