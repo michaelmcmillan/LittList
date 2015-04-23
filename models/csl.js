@@ -18,6 +18,13 @@ function CSL (list) {
             if (reference.getTitle() !== undefined)
                 items[id].title = reference.getTitle();
 
+            if (reference.getPublicationYear() !== undefined)
+                items[id].issued = {
+                    'date-parts': [
+                        [reference.getPublicationYear()]
+                    ]
+                };
+            
             if (reference.getPublisher() !== undefined && reference.getPublisher() !== null)
                 items[id].publisher = reference.getPublisher();
 

@@ -12,6 +12,7 @@ var BookFactory = {
         book.setISBN(row.isbn);
         book.setEdition(row.edition);
         book.setPublisher(row.publisher);
+        book.setPublicationYear(row.publication_year);
         book.setPublicationPlace(row.publication_place);
         return book;
     },
