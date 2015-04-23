@@ -1,5 +1,6 @@
         {{> searchbar data}} 
         <div class="page">
+        {{#if results}}
             <div class="entries">
                 <form id="list" action="/liste" method="post">
                     {{#each results}}    
@@ -31,4 +32,8 @@
                     {{/each}}
                 </form>
             </div>
+            {{else}}
+            no results
+            dddw
+            {{/if}}
         </div>
