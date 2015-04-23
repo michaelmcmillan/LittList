@@ -68,20 +68,19 @@ var ListFactory = {
             // If no changes has been made, simply return the list as is
             if (removed.length === 0 
             &&  added.length === 0
-            &&  list.getBibliographyStyle() === 'harvard1.csl')
+            &&  list.getBibliographyStyle() === readList.getBibliographyStyle()) {
                 return self.read(list.getId(), done);
+            }
 
             // Async queue
             var queue = 0;
             
             // Update the bibliography style
-            if (list.getBibliographyStyle() !== 'harvard1.csl') {
+            if (list.getBibliographyStyle() !== undefined) {
                 ++queue;
-                database.query('UPDATE Lists SET style = ' + 
-                    database.escape(list.getBibliographyStyle()) + ' ' +  
-                    'WHERE id = ?', {
-                        id: list.getId()
-                }, function (err, rows, fields) {
+                database.query('UPDATE Lists SET style = ? WHERE id = ?',
+                    [list.getBibliographyStyle(), list.getId()],
+                    function (err, rows, fields) {
                     if (err) return done(err);
                     if (--queue === 0)
                         return self.read(list.getId(), done);
