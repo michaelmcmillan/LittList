@@ -11,6 +11,11 @@ module.exports = {
     list:  {
         view:   require('./list/view.js'),
         create: require('./list/create.js')
+    },
+
+    error: {
+        notFound:  require('./error/notFound.js'),
+        exception: require('./error/exception.js')
     }
 };
 

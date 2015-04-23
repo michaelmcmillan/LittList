@@ -130,9 +130,13 @@ form#query > input[type="submit"] {
     color: black;
 }
 
-.entries {
+.entries, .error {
     margin-top:25px;
     width: 66.6%;
+}
+
+.error {
+    font-size:18px;
 }
 
 .entry > .controls {

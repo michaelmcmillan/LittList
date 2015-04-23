@@ -10,6 +10,7 @@ var app          = express();
 var config       = require('../config.js');
 var routes       = require('./routes.js'); 
 var logger       = require('../log/logger.js');
+var controllers  = require('../controllers/controllers.js'); 
 
 /* Bootstrap */
 app.use(bodyParser.urlencoded({extended: true}));
@@ -34,6 +35,8 @@ app.engine('handlebars', handlebars({
 
 /* Routes */
 app.use('/', routes);
+app.use(controllers.error.notFound);
+app.use(controllers.error.exception);
 
 /* Lift-off */
 app.listen(config.web.port, function () {
