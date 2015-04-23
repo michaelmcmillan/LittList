@@ -32,7 +32,7 @@ function UpdateListController (req, res, next) {
 
             logger.log('debug', 'Updated list contents', {
                 id:      list.getId(),
-                style:   req.body.style  || null
+                style:   req.body.style  || null,
                 added:   req.body.add    || null,
                 removed: req.body.remove || null
             });
