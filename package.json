@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/supervisor/lib/cli-wrapper.js -x iojs web/server.js",
-    "test": "(export TEST=True; ./node_modules/mocha/bin/mocha \"test/unit/*.js\") # -R dot;",
+    "test": "(export TEST=True; ./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot);",
     "integration-test": "npm run-script setup-database-test && npm run-script database-test; # (export TEST=True; node web/server.js & echo \"Starting server.\"; sleep 5; casperjs test test/integration/*.js; kill -9 $!)",
     "setup-database-test": "(export TEST=True; mysql -u $(node -pe 'require(\"./config.js\").database().user') -e \"DROP DATABASE IF EXISTS $(node -pe 'require(\"./config.js\").database().database'); CREATE DATABASE $(node -pe 'require(\"./config.js\").database().database'); USE $(node -pe 'require(\"./config.js\").database().database'); $(cat database/schema.sql)\");",
     "database-test": "(export TEST=True; ./node_modules/mocha/bin/mocha \"test/persistence/*.js\";)"
