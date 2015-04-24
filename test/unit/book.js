@@ -12,6 +12,17 @@ describe('book', function () {
         var book = new Book('Title');
         assert.equal(book.getTitle(), 'Title');
    }); 
+
+   it('should use empty string as title if no title is provided in constructor', function () {
+        var book = new Book();
+        assert.equal(book.getTitle(), '');
+   }); 
+
+   it('should not throw exception if the title provided is null', function () {
+        assert.doesNotThrow(function () {
+            var book = new Book(null);
+        });
+   }); 
    
    it('should have another title', function () {
         var book = new Book('Snømannen');

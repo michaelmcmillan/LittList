@@ -13,7 +13,9 @@ function Book (newTitle) {
     var self = this;
     
     var filterTitle = function (unfilteredTitle) {
-        if (unfilteredTitle !== undefined)
+        if (unfilteredTitle === null || unfilteredTitle === undefined)
+            title = '';
+        else 
             title = unfilteredTitle.trim();
     }
     
