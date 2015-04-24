@@ -33,6 +33,12 @@ app.engine('handlebars', handlebars({
     partialsDir:   __dirname + '/views/partials/'
 }));
 
+/* Attach ip to req */
+app.use(function (req, res, next) {
+    req.ip = req.connection.remoteAddress;
+    next();
+});
+
 /* Routes */
 app.use('/', routes);
 app.use(controllers.error.notFound);
