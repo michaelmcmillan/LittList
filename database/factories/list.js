@@ -6,12 +6,14 @@ var AuthorFactory    = require('./author.js');
 var ReferenceFactory = require('./reference.js');
 var BookFactory      = require('./book.js');
 
-Array.prototype.diff = function(a) {
-    return this.filter(function(i) {return a.indexOf(i) < 0;});
-};
-
 var ListFactory = {
     
+    diff: function (a, b) {
+        return a.filter(function(i) {
+            return b.indexOf(i) < 0;
+        });
+    },
+
     read: function (id, done) {
         var self = this;
         database.query('SELECT * FROM Lists ' + 
@@ -62,8 +64,8 @@ var ListFactory = {
             });
 
             // Find the diff between content passed and content in db
-            var added   = passedInContent.diff(contentInDatabase);
-            var removed = contentInDatabase.diff(passedInContent);
+            var added   = self.diff(passedInContent, contentInDatabase);
+            var removed = self.diff(contentInDatabase, passedInContent);
             
             // If no changes has been made, simply return the list as is
             if (removed.length === 0 
