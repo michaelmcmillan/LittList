@@ -176,6 +176,10 @@ form#query > input[type="submit"] {
     font-weight:500;
 }
 
+.meta > span {
+    display: block;
+}
+
 .entries {
     display:inline-block;
     float:left;
