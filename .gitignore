@@ -2,5 +2,5 @@ node_modules
 notes.md
 *.swp
 config.js
-log/logs/*
+log/logs/*.log
 npm-debug.log
