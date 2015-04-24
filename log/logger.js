@@ -33,6 +33,7 @@ logger.remove(logger.transports.Console);
 if (process.env['CI']   === undefined
 &&  process.env['TEST'] === undefined) {
     logger.add(logger.transports.DailyRotateFile, {
+        handleExceptions: true,
         filename: './log/logs/littlist.',
         datePattern: 'yyyy-MM-dd.log',
     });
@@ -45,7 +46,6 @@ if (process.env['CI']   === undefined
 }
 
 logger.add(logger.transports.Pushbullet, {
-    handleExceptions: true,
     level: 'error',
     apikey:  config.logger.pushbullet.apiKey, 
     title:   config.logger.pushbullet.title,
