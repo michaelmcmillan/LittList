@@ -46,6 +46,12 @@ describe('book', function () {
         assert.equal(book.getPublicationPlace(), 'Oslo');
    }); 
 
+   it('should include letters like "æ", "ø" and "å" in publication place', function () {
+        var book = new Book('Snømannen');
+        book.setPublicationPlace('Århækkestød');
+        assert.equal(book.getPublicationPlace(), 'Århækkestød');
+   }); 
+
    it('should keep whitespace in name', function () {
         var book = new Book('4 hour work week');
         book.setPublicationPlace('New York');
