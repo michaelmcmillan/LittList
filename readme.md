@@ -32,6 +32,9 @@ npm run-script database-test
 ### Configuration
 <code>config.js</code> contains all the configuration options you need to change to get the software running. It comes with a couple of settings as default out of the box. You only need to change the database settings for whatever environment (CI, test or production) you want to run LittList in.
 
+### Contributors
+* Arve Seljebu (@arve0)
+
 ### Credits
 A huge thanks to Rintze M. Zelle, Sebastian Karcher, Frank G. Bennett, Jr.,
 and Bruce D'Arcus of CSL and citeproc-js for putting down so many hours of work into creating a remarkable piece of software.
