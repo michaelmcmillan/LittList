@@ -35,6 +35,6 @@
     "request": "^2.53.0",
     "url-regexp": "^1.0.2",
     "winston": "^0.9.0",
-    "winston-pushbullet": "^0.1.0"
+    "winston-pushbullet": "git://github.com:michaelmcmillan/winston-pushbullet.git"
   }
 }

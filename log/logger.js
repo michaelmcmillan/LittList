@@ -47,6 +47,7 @@ if (process.env['CI']   === undefined
 
 logger.add(logger.transports.Pushbullet, {
     level: 'error',
+    handleExceptions: true,
     apikey:  config.logger.pushbullet.apiKey, 
     title:   config.logger.pushbullet.title,
     devices: config.logger.pushbullet.devices
