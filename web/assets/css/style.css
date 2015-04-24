@@ -75,12 +75,16 @@ form#query, .tips > p {
 }
 
 form#query > input[name="q"] {
-    display: block;
+    display: inline-block;
     font-size: 1.1em;
     outline: none;
     border: none;
-    width: 100%;
+    width: 75%;
     height: 100%;
+}
+
+form#query > button[type="submit"] {
+    width: 15%;
 }
 
 .searchbar {
