@@ -411,6 +411,14 @@ div#listlink > button[data-badge]:after {
     text-align: center;
 }
 
+.csl-entry > div.manage {
+    display: inline-block;
+    float: left;
+    height:50px;
+    width:50px;
+    margin-left:-50px;
+}
+
 .csl-entry > div { 
   display: inline;
 }
