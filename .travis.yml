@@ -1,23 +1,25 @@
 sudo: false
 language: node_js
 node_js:
-  - "0.12"
-  - "0.11"
-  - "0.10"
-  - "node"
-  - "iojs-v1.0.4" 
-  - "iojs"
-
-# Handle git submodules yourself
+- '0.12'
+- '0.11'
+- '0.10'
+- node
+- iojs-v1.0.4
+- iojs
 git:
-   submodules: false
-
-# Use sed to replace the SSH URL with the public URL, then initialize submodules
+  submodules: false
 before_install:
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-  - git submodule update --init --recursive
-
+- sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+- git submodule update --init --recursive
 script:
-  - npm test
-  - npm run-script setup-database-test
-  - npm run-script database-test
+- npm test
+- npm run-script setup-database-test
+- npm run-script database-test
+env:
+  global:
+    secure: NobLNK5KoL59BOEtQbh+JtCCCKmqTMspaeu6KRKoMCqlY7tIS/ldRckO2l3c0Zt/r4S/BrtDJC+PAmTa1gzrJ4bccy9dPfAfGGRYQVe4dD0zIxV8770KCD4/J0uSleo7z8jzsJwmkbE1qftHnDypDZGk4MQLvfyfVVJXbqcpJJk=
+after_success:
+- "openssl aes-256-cbc -k '$DEPLOY_KEY' -in ./deploy_id_rsa_enc_travis -d -a -out ./deploy_id_rsa"
+- ssh-add ./deploy_id_rsa
+
