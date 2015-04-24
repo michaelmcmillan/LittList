@@ -314,7 +314,7 @@ form#query > input[type="submit"] {
     line-height: 1.5em;
 }
 
-.a4 > * {
+.a4 > * > * {
     font-weight:200; 
 }
 
