@@ -16,6 +16,7 @@ logger.setLevels({
     silly: 2,
     warn:  3,
     error: 4,
+    notify: 5
 });
 
 logger.addColors({
@@ -23,13 +24,14 @@ logger.addColors({
     info:  'cyan',
     silly: 'magenta',
     warn:  'yellow',
-    error: 'red'
+    error: 'red',
+    notify: 'gray'
 });
 
 logger.remove(logger.transports.Console);
 
-if (process.env['TRAVIS'] === undefined
-&&  process.env['TEST']   === undefined) {
+if (process.env['CI']   === undefined
+&&  process.env['TEST'] === undefined) {
     logger.add(logger.transports.DailyRotateFile, {
         filename: './log/logs/littlist.',
         datePattern: 'yyyy-MM-dd.log',
