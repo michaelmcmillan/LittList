@@ -24,6 +24,14 @@ module.exports = {
                 host:     '',
                 multipleStatements: true
             }
+        else if (process.env['CI'] === true)
+            return {
+                database: 'test',
+                user:     process.env['MYSQL_USER'],
+                password: process.env['MYSQL_PASSWORD'],
+                host:     'localhost',
+                multipleStatements: true
+            }
         else
             return {
                 database: 'test_littlist',
