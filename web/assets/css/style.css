@@ -314,7 +314,7 @@ form#query > input[type="submit"] {
     line-height: 1.5em;
 }
 
-.a4 > * {
+.a4 > * > * {
     font-weight:200; 
 }
 
@@ -411,13 +411,19 @@ div#listlink > button[data-badge]:after {
     text-align: center;
 }
 
+.csl-entry > div.manage {
+    display: inline-block;
+    float: left;
+    height:50px;
+    width:50px;
+    margin-left:-50px;
+}
+
 .csl-entry > div { 
   display: inline;
 }
 
 .csl-entry {
-    cursor: pointer;
-    cursor: hand;
     margin-right: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
