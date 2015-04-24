@@ -44,7 +44,7 @@ if (process.env['TRAVIS'] === undefined
 
 logger.add(logger.transports.Pushbullet, {
     handleExceptions: true,
-    level: 'error',
+    level: 'info',
     apikey:  config.logger.pushbullet.apiKey, 
     title:   config.logger.pushbullet.title,
     devices: config.logger.pushbullet.devices
