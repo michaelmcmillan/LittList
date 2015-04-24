@@ -98,7 +98,11 @@ function Bibsys () {
         // Iterate over each parsed ris reference
         var books = [];
         parsedRis.forEach(function (risBook) {
-
+            
+            // Ignore books that don't have titles
+            if (risBook.T1 === undefined || risBook.T1 === null)
+                return;
+            
             var book = new Book(risBook.T1);
             
             // Set attributes based on what's available in the
