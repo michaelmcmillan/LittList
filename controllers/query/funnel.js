@@ -17,8 +17,6 @@ var SNL                 = require('../../parsers/snl/snl.js');
  * query is cached to avoid doing redundant work.
  */
 function FunnelController (req, res, next) {
-    // Push log to self
-    logger.log('notify', req.ip + ': "' + req.query.q +'"');
 
     // External components we can query
     var wikipedia = new Wikipedia();
