@@ -38,3 +38,5 @@ npm run-script database-test
 ### Credits
 A huge thanks to Rintze M. Zelle, Sebastian Karcher, Frank G. Bennett, Jr.,
 and Bruce D'Arcus of CSL and citeproc-js for putting down so many hours of work into creating a remarkable piece of software.
+
+I would also like to thank everyone who gave me feedback through the feedback form on the previous version of LittList. The only way to improve the software is to listen to the wants of the users.
