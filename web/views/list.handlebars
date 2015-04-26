@@ -3,6 +3,7 @@
 <div class="list">
     <div class="settings">
         <form method="post" action="/liste">
+            <button class="copy">Kopier litteraturlisten</button>
             <select name="style">
                 {{#each supportedStyles}}
                 <option {{#if selected}} selected {{/if}} value="{{file}}">{{name}}</option>
@@ -17,4 +18,6 @@
             {{{list}}}
         </form>
     </div>
+    <script type="text/javascript" src="/js/ZeroClipboard.min.js"></script>
+    <script type="text/javascript" src="/js/copy.js"></script>
 </div>
