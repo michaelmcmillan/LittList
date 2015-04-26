@@ -26,7 +26,6 @@ client.on('ready', function (readyEvent) {
     });
 
     client.on('aftercopy', function (event) {
-        _paq.push(['trackEvent', 'list', 'copied']);
         alert('Litteraturlisten er kopiert til utklippstavlen! Lim den inn i dokumentet ditt.');
     });
 });
