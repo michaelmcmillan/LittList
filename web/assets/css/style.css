@@ -423,11 +423,6 @@ div#listlink > a.button[data-badge]:after {
     height:50px;
     width:50px;
     margin-left:-50px;
-    cursor:default;
-    -moz-user-select: none; 
-    -khtml-user-select: none; 
-    -webkit-user-select: none; 
-    -o-user-select: none; 
 }
 
 .csl-entry > div { 
@@ -438,6 +433,11 @@ div#listlink > a.button[data-badge]:after {
     margin-right: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
+    cursor:default;
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select: none; 
 }
 
 .csl-entry > div.csl-indent {
