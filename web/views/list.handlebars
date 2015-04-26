@@ -2,8 +2,8 @@
 
 <div class="list">
     <div class="settings">
-        <button id="copy-button" data-clipboard-text="Copy Me!" class="copy">Kopier litteraturlisten</button>
         <form method="post" action="/liste">
+            <button class="copy">Kopier litteraturlisten</button>
             <select name="style">
                 {{#each supportedStyles}}
                 <option {{#if selected}} selected {{/if}} value="{{file}}">{{name}}</option>
