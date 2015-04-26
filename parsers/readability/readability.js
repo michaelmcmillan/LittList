@@ -8,9 +8,6 @@ function Readability (apiKey) {
     var host    = 'https://readability.com';
     var baseURL = '/api/content/v1/parser';
     
-    if (apiKey === undefined)
-        throw new Error('Mangler nøkkel til api\'et');
-
     this.getRequestPath = function (url) {
         return '?url=' + url + '&token=' + apiKey; 
     }
@@ -59,6 +56,9 @@ function Readability (apiKey) {
 
     this.search = function (url, done) {
         var self = this;
+
+        if (apiKey === undefined)
+            throw new Error('Mangler nøkkel til api\'et');
 
         var apiURL = host + baseURL + this.getRequestPath(url);
         request(apiURL, function (error, response, data) {

@@ -71,9 +71,9 @@ describe('Readability', function () {
         }, /ingen respons/i);
     });
 
-    it('should throw exception if api key is not provided', function () {
+    it('should throw exception if api key is not provided when trying to search', function () {
         assert.throws(function () {
-           new Readability();
+           new Readability().search('http://vg.no');
         }, /mangler nøkkel/i);
     });
 
