@@ -4,7 +4,7 @@
 > A bibliography generator that removes the suckiness of having to manually write bibliographies.
 
 ### How does it work?
-LittList is a web application that is available to anyone at [Littlist.no](http://beta.littlist.no). It acts like a search engine: You query for something you want to reference in your bibliography and it will respond with results. You can then add those results and LittList will automatically generate a proper and validated bibliography you can copy and paste straight into your paper.
+LittList is a web application that is available to anyone at [Littlist.no](http://littlist.no). It acts like a search engine: You query for something you want to reference in your bibliography and it will respond with results. You can then add those results and LittList will automatically generate a proper and validated bibliography you can copy and paste straight into your paper.
 
 ### Install
 ````bash
