@@ -50,47 +50,44 @@ var WebsiteFactory = {
         });
     },
 
-    /*
     readAll: function (referenceIds, done) {
         var self = this;
-        var books = [];
+        var websites = [];
         if (referenceIds.length === 0)
             return done(undefined, []);
 
-        database.query('SELECT * FROM Books ' +
-        'JOIN `References` ON Books.reference_id = References.id ' +
-        'WHERE Books.reference_id in (?)', [referenceIds],
+        database.query('SELECT * FROM Websites ' +
+        'JOIN `References` ON Websites.reference_id = References.id ' +
+        'WHERE Websites.reference_id in (?)', [referenceIds],
         function (err, rows, fields) {
             rows.forEach(function (row) {
-                var book = self.constructBook(row);
+                var website = self.constructWebsite(row);
                 AuthorFactory.read(row.reference_id, function (authors) {
                     referenceIds.pop();
-                    book.addAuthors(authors);
-                    books.push(book);
+                    website.addAuthors(authors);
+                    website.push(website);
                     if (referenceIds.length === 0)
-                        return done(undefined, books);
+                        return done(undefined, websites);
                 });
             }); 
         });
     },
 
-
-    createAll: function (books, done) {
+    createAll: function (websites, done) {
         var self = this;
 
-        if (books.length === 0) return done();
+        if (websites.length === 0) return done();
 
         var referenceIds = [];
-        for (i = 0; i < books.length; i++) {
-            this.create(books[i], function (referenceId) {
+        for (i = 0; i < websites.length; i++) {
+            this.create(websites[i], function (referenceId) {
                 referenceIds.push(referenceId);
-                books.pop();
-                if (books.length === 0)
+                websites.pop();
+                if (websites.length === 0)
                     self.readAll(referenceIds, done);
             });
         }
     }
-    */
 }
 
 module.exports = WebsiteFactory;
