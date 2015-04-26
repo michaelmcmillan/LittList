@@ -13,7 +13,7 @@ function Readability (apiKey) {
     }
    
     this.isURL = function (url) {
-        var allowedPrefixes = ['https://', 'http://', '//'];
+        var allowedPrefixes = ['https://', 'http://', 'www.', '//'];
         var legalURL        = false;
 
         for (i = 0; i < allowedPrefixes.length; i++)
@@ -59,6 +59,9 @@ function Readability (apiKey) {
 
         if (apiKey === undefined)
             throw new Error('Mangler nøkkel til api\'et');
+
+        if (url.indexOf('www.') === 0)
+            url = 'http://' + url;
 
         var apiURL = host + baseURL + this.getRequestPath(url);
         request(apiURL, function (error, response, data) {

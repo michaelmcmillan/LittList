@@ -141,6 +141,17 @@ describe('Readability', function () {
         });
     });
     
+    it('should prepend http:// to urls starting with "www."', function (done) {
+        Readability.__set__('request', function (url, cb) {
+            assert.equal(url.indexOf('http://www.vg.no') !== -1, true);
+            done();
+        });
+
+        var readability = new Readability('secret');
+        readability.search('www.vg.no', function (err, website) {
+            // None
+        });
+    });
     describe('isURL', function () {
 
         it('should be true if the url starts with http://', function () {
@@ -156,6 +167,11 @@ describe('Readability', function () {
         it('should be true if the url starts with //', function () {
             var readability = new Readability('secret');
             assert.equal(readability.isURL('//vg.no'), true);
+        });
+
+        it('should be true if the url starts with www.', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('www.vg.no'), true);
         });
 
         it('should be false if the url does not start with any of the above', function () {
