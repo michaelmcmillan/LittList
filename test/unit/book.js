@@ -96,7 +96,7 @@ describe('book', function () {
         assert.equal(book.getISBN(), '9788251918640');
    }); 
    
-   it('should successfully add multiple authors with setAuthors (plural)', function () {
+   it('should successfully add multiple authors with addAuthors (plural)', function () {
         var book = new Book('Title');
         book.addAuthors([new Author('Jo Nesbø'), new Author('Dagfinn Dybdahl')]);
         assert.equal(book.getAuthors().length, 2)
