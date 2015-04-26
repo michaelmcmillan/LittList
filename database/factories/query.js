@@ -1,5 +1,6 @@
 var database = require('../bootstrap.js');
 var BookFactory = require('./book.js');
+var WebsiteFactory = require('./website.js');
 
 var QueryFactory = {
 
@@ -24,6 +25,9 @@ var QueryFactory = {
 
                 if (type === 'book')
                     return BookFactory.readAll(referenceIds, done);
+
+                if (type === 'website')
+                    return WebsiteFactory.readAll(referenceIds, done);
             });
         });
     },

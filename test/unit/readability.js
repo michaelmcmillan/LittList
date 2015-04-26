@@ -63,6 +63,14 @@ describe('Readability', function () {
         assert.equal(readability.convertToWebsite(apiResponse).getAuthors().length, 1);
     });
 
+    it('should not construct an author model if the api response has null as value in author field', function () {
+        var readability = new Readability('secret');
+        var apiResponse = {
+            author: null,
+        };
+        assert.equal(readability.convertToWebsite(apiResponse).getAuthors().length, 0);
+    });
+
     it('should throw exception if the response object is undefined', function () {
         var readability = new Readability('secret');
         var apiResponse = undefined; 
@@ -71,9 +79,9 @@ describe('Readability', function () {
         }, /ingen respons/i);
     });
 
-    it('should throw exception if api key is not provided', function () {
+    it('should throw exception if api key is not provided when trying to search', function () {
         assert.throws(function () {
-           new Readability();
+           new Readability().search('http://vg.no');
         }, /mangler nøkkel/i);
     });
 
@@ -132,4 +140,32 @@ describe('Readability', function () {
             done();
         });
     });
+    
+    describe('isURL', function () {
+
+        it('should be true if the url starts with http://', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('http://vg.no'), true);
+        });
+
+        it('should be true if the url starts with https://', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('https://vg.no'), true);
+        });
+
+        it('should be true if the url starts with //', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('//vg.no'), true);
+        });
+
+        it('should be false if the url does not start with any of the above', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('vg.no'), false);
+        });
+
+        it('should be false if the url contains whitespace', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('http://vg.no i norske hjem'), false);
+        });
+     });
 });

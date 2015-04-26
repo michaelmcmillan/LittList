@@ -8,11 +8,22 @@ function Readability (apiKey) {
     var host    = 'https://readability.com';
     var baseURL = '/api/content/v1/parser';
     
-    if (apiKey === undefined)
-        throw new Error('Mangler nøkkel til api\'et');
-
     this.getRequestPath = function (url) {
         return '?url=' + url + '&token=' + apiKey; 
+    }
+   
+    this.isURL = function (url) {
+        var allowedPrefixes = ['https://', 'http://', '//'];
+        var legalURL        = false;
+
+        for (i = 0; i < allowedPrefixes.length; i++)
+            if (url.indexOf(allowedPrefixes[i]) === 0)
+                legalURL = true;
+        
+        if (url.indexOf(' ') !== -1)
+            legalURL = false;
+
+        return legalURL;
     }
 
     this.convertToWebsite = function (apiResponse) {
@@ -23,21 +34,21 @@ function Readability (apiKey) {
         var website = new Website();
         
         if (apiResponse.title !== undefined
-        ||  apiResponse.title !== null)
+        &&  apiResponse.title != null)
             website.setTitle(apiResponse.title);
         
         if (apiResponse.url !== undefined
-        ||  apiResponse.url !== null)
+        &&  apiResponse.url != null)
             website.setURL(apiResponse.url);
 
         if (apiResponse.author !== undefined 
-        ||  apiResponse.author !== null) {
+        &&  apiResponse.author != null) {
             var author = new Author(apiResponse.author);
             website.addAuthor(author);
         }
 
         if (apiResponse.date_published !== undefined
-        ||  apiResponse.date_published !== null)
+        &&  apiResponse.date_published != null)
             website.setPublicationDate(new Date(apiResponse.date_published));
         
         return website;
@@ -45,6 +56,9 @@ function Readability (apiKey) {
 
     this.search = function (url, done) {
         var self = this;
+
+        if (apiKey === undefined)
+            throw new Error('Mangler nøkkel til api\'et');
 
         var apiURL = host + baseURL + this.getRequestPath(url);
         request(apiURL, function (error, response, data) {

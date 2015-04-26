@@ -31,4 +31,10 @@ describe('website', function () {
         vg.setId(3);
         assert.equal(vg.getId(), 3);
     });
+
+    it('should successfully add multiple authors with addAuthors (plural)', function () {
+        var website = new Website('http://vg.no');
+        website.addAuthors([new Author('Jo Nesbø'), new Author('Dagfinn Dybdahl')]);
+        assert.equal(website.getAuthors().length, 2)
+   }); 
 });

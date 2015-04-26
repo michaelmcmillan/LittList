@@ -45,7 +45,8 @@ CREATE TABLE `Contents` (
 
 CREATE TABLE `Websites` (
     reference_id int UNIQUE NOT NULL PRIMARY KEY REFERENCES `References` (id),
-    url varchar(255) UNIQUE NOT NULL
+    url varchar(255) UNIQUE NOT NULL,
+    publication_date timestamp 
 );
 
 CREATE TABLE `Queries` (
