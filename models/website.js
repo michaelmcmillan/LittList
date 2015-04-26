@@ -23,6 +23,13 @@ function Website (url, title) {
         authors.push(author);
     }
 
+    this.addAuthors = function (authors) {
+        var self = this;
+        authors.forEach(function (author) {
+            self.addAuthor(author); 
+        });
+    }
+
     this.getId = function () {
         return id;
     }
