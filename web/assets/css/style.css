@@ -423,7 +423,8 @@ div#listlink > a.button[data-badge]:after {
     height:50px;
     width:50px;
     margin-left:-50px;
-     -moz-user-select: none; 
+    cursor:default;
+    -moz-user-select: none; 
     -khtml-user-select: none; 
     -webkit-user-select: none; 
     -o-user-select: none; 
