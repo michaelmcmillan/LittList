@@ -365,7 +365,7 @@ button:hover {
     background-color: #fff;
 }
 
-button.change-style {
+button.change-style, button.copy {
     font-size:14px;
 
 }

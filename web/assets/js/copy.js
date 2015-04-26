@@ -1,5 +1,9 @@
 var client = new ZeroClipboard (document.querySelector('button.copy'));
 
+document.querySelector('button.copy').addEventListener('click', function (event) {
+    event.preventDefault();
+});
+
 client.on('ready', function (readyEvent) {
     
     var extractBibliographyHTML = function () {
@@ -22,6 +26,6 @@ client.on('ready', function (readyEvent) {
     });
 
     client.on('aftercopy', function (event) {
-
+        alert('Litteraturlisten er kopiert til utklippstavlen! Lim den inn i dokumentet ditt.');
     });
 });
