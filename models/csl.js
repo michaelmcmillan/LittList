@@ -1,4 +1,5 @@
 var Book = require('./book.js');
+var Website = require('./website.js');
 
 function CSL (list) {
     
@@ -30,6 +31,27 @@ function CSL (list) {
 
             if (reference.getPublicationPlace() !== undefined && reference.getPublicationPlace() !== null)
                 items[id]['publisher-place'] = reference.getPublicationPlace();
+        }
+        
+        // Converts a Website model to a CSL-JSON
+        // compatible data format.
+        if (reference instanceof Website) {
+            var id = reference.getId(); 
+
+            items[id]      = {};
+            items[id].id   = reference.getId();
+            items[id].type = 'webpage'; 
+            items[id].URL  = reference.getURL(); 
+
+            if (reference.getTitle() !== undefined)
+                items[id].title = reference.getTitle();
+
+            if (reference.getPublicationDate() != null)
+                items[id].issued = {
+                    'date-parts': [
+                        [reference.getPublicationDate().getFullYear()]
+                    ]
+                };
         }
     
         // Iterates over all authors in the reference
