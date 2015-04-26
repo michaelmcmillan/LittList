@@ -130,10 +130,6 @@ form#query > input[type="submit"] {
     font-size: 25px;
 }
 
-.tips > p {
-    display: none;
-}
-
 .tips > span.active {
     color: black;
 }
