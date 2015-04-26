@@ -9,6 +9,9 @@ module.exports = (function () {
     /* General */
     router.get('/om', controllers.general.about);
     
+    /* ISBN */
+    router.get('/isbn/:isbn', controllers.query.isbn);
+
     /* List */
     router.get('/liste',      controllers.list.view);
     router.get('/liste/:url', controllers.list.view);

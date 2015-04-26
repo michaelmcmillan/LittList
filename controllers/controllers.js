@@ -1,5 +1,6 @@
 module.exports = {
     query: {
+        isbn :  require('./query/isbn.js'),
         funnel: require('./query/funnel.js')
     },
 
