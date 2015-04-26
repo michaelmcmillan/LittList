@@ -132,4 +132,32 @@ describe('Readability', function () {
             done();
         });
     });
+    
+    describe('isURL', function () {
+
+        it('should be true if the url starts with http://', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('http://vg.no'), true);
+        });
+
+        it('should be true if the url starts with https://', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('https://vg.no'), true);
+        });
+
+        it('should be true if the url starts with //', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('//vg.no'), true);
+        });
+
+        it('should be false if the url does not start with any of the above', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('vg.no'), false);
+        });
+
+        it('should be false if the url contains whitespace', function () {
+            var readability = new Readability('secret');
+            assert.equal(readability.isURL('http://vg.no i norske hjem'), false);
+        });
+     });
 });

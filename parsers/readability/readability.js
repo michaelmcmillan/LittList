@@ -14,6 +14,20 @@ function Readability (apiKey) {
     this.getRequestPath = function (url) {
         return '?url=' + url + '&token=' + apiKey; 
     }
+   
+    this.isURL = function (url) {
+        var allowedPrefixes = ['https://', 'http://', '//'];
+        var legalURL        = false;
+
+        for (i = 0; i < allowedPrefixes.length; i++)
+            if (url.indexOf(allowedPrefixes[i]) === 0)
+                legalURL = true;
+        
+        if (url.indexOf(' ') !== -1)
+            legalURL = false;
+
+        return legalURL;
+    }
 
     this.convertToWebsite = function (apiResponse) {
 
