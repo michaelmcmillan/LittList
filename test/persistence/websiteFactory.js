@@ -11,7 +11,8 @@ describe('websiteFactory', function () {
         var website = new Website('http://vg.no');
         website.addAuthor(new Author('Mads Andersen'));
         website.setTitle('Verdens Gang');
-        WebsiteFactory.create(website, function (err, website) {
+        WebsiteFactory.create(website, function (err, createdWebsite) {
+            assert.equal(createdWebsite.getId(), 2);
             done();
         });
     });

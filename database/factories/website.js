@@ -45,7 +45,9 @@ var WebsiteFactory = {
             }, function (err, rows, fields) {
                 if (err) return done(err);
                 var authors = website.getAuthors();
-                return AuthorFactory.createAuthors(referenceId, authors, done);
+                AuthorFactory.createAuthors(referenceId, authors, function (referenceId) {
+                    return self.read(referenceId, done);
+                }); 
             });
         });
     },
