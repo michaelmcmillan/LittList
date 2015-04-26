@@ -34,21 +34,21 @@ function Readability (apiKey) {
         var website = new Website();
         
         if (apiResponse.title !== undefined
-        ||  apiResponse.title !== null)
+        &&  apiResponse.title != null)
             website.setTitle(apiResponse.title);
         
         if (apiResponse.url !== undefined
-        ||  apiResponse.url !== null)
+        &&  apiResponse.url != null)
             website.setURL(apiResponse.url);
 
         if (apiResponse.author !== undefined 
-        ||  apiResponse.author !== null) {
+        &&  apiResponse.author != null) {
             var author = new Author(apiResponse.author);
             website.addAuthor(author);
         }
 
         if (apiResponse.date_published !== undefined
-        ||  apiResponse.date_published !== null)
+        &&  apiResponse.date_published != null)
             website.setPublicationDate(new Date(apiResponse.date_published));
         
         return website;

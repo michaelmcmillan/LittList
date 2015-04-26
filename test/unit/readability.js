@@ -63,6 +63,14 @@ describe('Readability', function () {
         assert.equal(readability.convertToWebsite(apiResponse).getAuthors().length, 1);
     });
 
+    it('should not construct an author model if the api response has null as value in author field', function () {
+        var readability = new Readability('secret');
+        var apiResponse = {
+            author: null,
+        };
+        assert.equal(readability.convertToWebsite(apiResponse).getAuthors().length, 0);
+    });
+
     it('should throw exception if the response object is undefined', function () {
         var readability = new Readability('secret');
         var apiResponse = undefined; 
