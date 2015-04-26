@@ -65,7 +65,7 @@ var WebsiteFactory = {
                 AuthorFactory.read(row.reference_id, function (authors) {
                     referenceIds.pop();
                     website.addAuthors(authors);
-                    website.push(website);
+                    websites.push(website);
                     if (referenceIds.length === 0)
                         return done(undefined, websites);
                 });
