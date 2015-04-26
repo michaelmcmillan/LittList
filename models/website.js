@@ -6,6 +6,7 @@ function Website (url, title) {
     var url     = url;
     var title   = title; 
     var authors = [];
+    var publicationDate;
     
     this.isWebsite = function (url) {
          
@@ -24,6 +25,22 @@ function Website (url, title) {
 
     this.getId = function () {
         return id;
+    }
+
+    this.getURL = function () {
+        return url;
+    }
+    
+    this.getPublicationDate = function () {
+        return publicationDate;
+    }
+
+    this.setPublicationDate = function (date) {
+        publicationDate = date;
+    }
+
+    this.setURL = function (newURL) {
+        url = newURL; 
     }
 
     this.setId = function (newId) {
