@@ -5,6 +5,8 @@ var List             = require('../../models/list.js');
 var AuthorFactory    = require('./author.js');
 var ReferenceFactory = require('./reference.js');
 var BookFactory      = require('./book.js');
+var WebsiteFactory   = require('./website.js');
+
 
 var ListFactory = {
     
@@ -27,13 +29,16 @@ var ListFactory = {
             list.setUrl(row.url);
             list.setBibliographyStyle(row.style);
             
+            // Async queue
+            var queue = 2;
+            
+            // Get the books in the list
             database.query('SELECT * FROM Contents ' +
                 'JOIN `Books` ON Books.reference_id = Contents.reference_id ' +
                 'JOIN `Lists` ON Contents.list_id = Lists.id ' +
                 'WHERE Lists.id = ?', row.id,
             function (err, rows, fields) {
                 if (err) return done(err);
-                 
                 var referenceIds = []; 
                 rows.forEach(function (row) {
                     referenceIds.push(row.reference_id);
@@ -42,7 +47,30 @@ var ListFactory = {
                 BookFactory.readAll(referenceIds, function (err, books) {
                     if (err) return done(err);    
                     list.addReference(books);
-                    return done(undefined, list);
+
+                    if (--queue === 0)
+                        return done(undefined, list);
+                });
+            });
+
+            // Get the websites in the list
+            database.query('SELECT * FROM Contents ' +
+                'JOIN `Websites` ON Websites.reference_id = Contents.reference_id ' +
+                'JOIN `Lists` ON Contents.list_id = Lists.id ' +
+                'WHERE Lists.id = ?', row.id,
+            function (err, rows, fields) {
+                if (err) return done(err);
+                var referenceIds = []; 
+                rows.forEach(function (row) {
+                    referenceIds.push(row.reference_id);
+                });
+
+                WebsiteFactory.readAll(referenceIds, function (err, websites) {
+                    if (err) return done(err);    
+                    list.addReference(websites);
+
+                    if (--queue === 0)
+                        return done(undefined, list);
                 });
             });
         });
