@@ -24,8 +24,6 @@ function ViewListController (req, res) {
             });
 
             // Fetch the available reference styles
-            var allowedStyles  = config.bibliography.styles.allowed;
-            var stylesLocation = config.bibliography.styles.allowed;
             supportedStyles(config.bibliography.styles.allowed, config.bibliography.styles.location, 
                 function (err, styles) {
                     
