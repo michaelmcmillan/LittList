@@ -4,6 +4,6 @@
                 <input type="text" name="q" value="{{{query}}}">
             </form>
             <div id="listlink">
-                <a href="/liste" class="button" data-badge="{{count}}">Vis litteraturliste</a>
+                <a href="/liste" class="button" {{#if count}} data-badge="{{count}}" {{/if}}>Vis litteraturliste</a>
             </div>
         </div>
