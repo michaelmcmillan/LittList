@@ -67,11 +67,11 @@ form#query {
 
 .tips > p {
     font-size:16px;
-    color: #9a9a9a;
+    color: #534A4A;
 }
 
 form#query, .tips > p {
-    margin-top:25px;
+    margin-top:45px;
 }
 
 form#query > input[name="q"] {
@@ -448,4 +448,23 @@ div#listlink > a.button[data-badge]:after {
   display: block;
   padding-top: 1em;
   padding-left: 1em;
+}
+
+.page > .posts {
+    margin-top:25px;
+    margin-bottom:25px;
+    width:500px;
+}
+
+.post > .meta > .title {
+    font-size:20px;
+}
+
+.post > .content {
+    margin-top:15px;
+    line-height:1.5em;
+}
+
+.post > .content > p {
+    margin-top:10px;
 }
