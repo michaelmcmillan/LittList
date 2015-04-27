@@ -35,7 +35,7 @@ function SNL () {
                 website.setTitle(data.title);
     
             if (data.changed_at != null)
-                website.setPublicationDate(data.changed_at);
+                website.setPublicationDate(new Date(data.changed_at));
 
             if (data.authors != null && data.authors.length > 0)
                 data.authors.forEach(function (author) {
