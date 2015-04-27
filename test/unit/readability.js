@@ -80,9 +80,9 @@ describe('Readability', function () {
     });
 
     it('should throw exception if api key is not provided when trying to search', function () {
-        assert.throws(function () {
-           new Readability().search('http://vg.no');
-        }, /mangler nøkkel/i);
+        new Readability().search('http://vg.no', function (err) {
+            assert.equal(err.message.indexOf('nøkkel') !== -1, true);
+        });
     });
 
     it('should return an error in the callback if the api responds with 404', function (done) {
@@ -155,9 +155,9 @@ describe('Readability', function () {
 
     it('should return error if url ends with .pdf', function () {
         var readability = new Readability('secret');
-        assert.throws(function () {
-            readability.search('www.vg.no/article.pdf');
-        }, /pdf/i);
+        readability.search('www.vg.no/article.pdf', function (err) {
+            assert.equal(err.message.indexOf('PDF') !== -1, true);   
+        });
     });
 
     describe('isURL', function () {

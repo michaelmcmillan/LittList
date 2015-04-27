@@ -58,10 +58,10 @@ function Readability (apiKey) {
         var self = this;
 
         if (apiKey === undefined)
-            throw new Error('Mangler nøkkel til api\'et');
+            return done(new Error('Mangler nøkkel til api\'et'));
         
         if (url.substr(-4) === '.pdf')
-            throw new Error('PDF støttes dessverre ikke');
+            return done(new Error('PDF støttes dessverre ikke'));
 
         if (url.indexOf('www.') === 0)
             url = 'http://' + url;
