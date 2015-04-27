@@ -34,10 +34,11 @@ function FunnelController (req, res, next) {
     /*if (wikipedia.isWikipediaURL(req.query.q))
         WikipediaController(req, res, next);
 
-    else if (snl.isSNLURL(req.query.q))
+    else*/
+    if (snl.isSNLURL(req.query.q))
         SNLController(req, res, next);
     
-    else*/ if (readability.isURL(req.query.q))
+    else if (readability.isURL(req.query.q))
         ReadabilityController(req, res, next);
 
     else

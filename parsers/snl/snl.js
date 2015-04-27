@@ -1,41 +1,50 @@
 var config  = require('../../config.js');
 var Author  = require('../../models/author.js');
+var Website  = require('../../models/website.js');
 var request = require('request');
 
 function SNL () {
 
     var self = this; 
     var urlFilter  = 'snl.no/';
+    var protocol   = 'https://';
+    var host       = 'snl.no';
     var reqOptions = {
         json: true,
         headers: {
             'User-Agent': config.crawlers.useragent 
         }
     }; 
-    var protocol   = 'https://';
-    var host       = 'snl.no';
     
-    this.search = function (url, callback) {
+    this.search = function (url, done) {
         var pageTitle = this.getArticleFromURL(url);
         var apiURL    = protocol + host + '/' + pageTitle + '.json'; 
 
         reqOptions.url = apiURL; 
-        request.get(reqOptions, function (err, data) {
-            if (err) throw err;
-
-            var meta = {
-                title: '',
-                pubDate: '',
-                authors: []
-            };
+        request.get(reqOptions, function (err, response, data) {
+            if (err) return done(err);
+            if ([404, 501].indexOf(response.statusCode) !== -1)
+                return done(Error('Siden finnes ikke på SNL.no'));
             
-            meta.title = data.body.title;
-            meta.pubDate = data.body.changed_at;
-            data.body.authors.forEach(function (author) {
-                meta.authors.push(new Author(author['full_name']));
-            });
+            var website = new Website();
 
-            callback(meta);
+            if (data.url != null)
+                website.setURL(data.url);
+
+            if (data.title != null)
+                website.setTitle(data.title);
+    
+            if (data.changed_at != null)
+                website.setPublicationDate(new Date(data.changed_at));
+
+            if (data.authors != null && data.authors.length > 0)
+                data.authors.forEach(function (author) {
+                    if (author.full_name != null) {
+                        website.addAuthor(new Author(author['full_name']));
+                    }
+                });
+
+            done(undefined, website);
         });
     }
     
@@ -57,8 +66,5 @@ function SNL () {
             return url;
     }
 }
-
-//var snl = new SNL();
-//snl.getAsReference('https://snl.no/Jens_Stoltenberg');
 
 module.exports = SNL;
