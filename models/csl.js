@@ -52,6 +52,14 @@ function CSL (list) {
                         [reference.getPublicationDate().getFullYear()]
                     ]
                 };
+
+            items[id].accessed = {
+                'date-parts': [
+                    [new Date().getFullYear()],
+                    [new Date().getMonth()+ 1],
+                    [new Date().getDate()]
+                ]
+            }
         }
     
         // Iterates over all authors in the reference
