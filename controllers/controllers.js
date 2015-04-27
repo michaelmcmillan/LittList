@@ -5,7 +5,6 @@ module.exports = {
 
     general: {
         index:     require('./general/index.js'),
-        about:     require('./general/about.js')
     },
 
     list:  {
