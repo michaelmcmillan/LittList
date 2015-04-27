@@ -24,7 +24,7 @@ function SNL () {
         request.get(reqOptions, function (err, response, data) {
             if (err) return done(err);
             if ([404, 501].indexOf(response.statusCode) !== -1)
-                return done(Error('Siden finnes ikke på SNL.no'));
+                return done(new Error('Siden finnes ikke på SNL.no'));
             
             var website = new Website();
 
@@ -57,7 +57,9 @@ function SNL () {
 
     this.getArticleFromURL = function (url) {
         url = this.stripHashbang(url);
-        return url.substring(url.indexOf(urlFilter) + urlFilter.length);
+        url = url.substring(url.indexOf(urlFilter) + urlFilter.length);
+        url = encodeURIComponent(url);
+        return url;
     }
 
     this.stripHashbang = function (url) {
