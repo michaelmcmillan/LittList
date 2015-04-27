@@ -6,9 +6,6 @@ module.exports = (function () {
     /* Root */
     router.get('/',           controllers.general.index);
 
-    /* General */
-    router.get('/om',         controllers.general.about);
-    
     /* List */
     router.get('/liste',      controllers.list.view);
     router.get('/liste/:url', controllers.list.view);
