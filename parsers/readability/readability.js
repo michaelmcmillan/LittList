@@ -26,7 +26,7 @@ function Readability (apiKey) {
         return legalURL;
     }
 
-    this.convertToWebsite = function (apiResponse) {
+    this.convertToWebsite = function (apiResponse, queryString) {
 
         if (apiResponse === undefined) 
             throw new Error('Ingen respons fra api\'et.');
@@ -39,7 +39,7 @@ function Readability (apiKey) {
         
         if (apiResponse.url !== undefined
         &&  apiResponse.url != null)
-            website.setURL(apiResponse.url);
+            website.setURL(queryString);
 
         if (apiResponse.author !== undefined 
         &&  apiResponse.author != null) {
@@ -82,7 +82,7 @@ function Readability (apiKey) {
                 return done(new Error('Ekstern feil. Prøv igjen senere.'));
             
             var apiResponse = JSON.parse(data);
-            var websiteToReturn = self.convertToWebsite(apiResponse);
+            var websiteToReturn = self.convertToWebsite(apiResponse, url);
 
             done(undefined, websiteToReturn);
         });

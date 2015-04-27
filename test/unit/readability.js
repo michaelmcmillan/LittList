@@ -39,14 +39,6 @@ describe('Readability', function () {
         assert.equal(readability.convertToWebsite(apiResponse).getTitle(), 'Blowing Smoke with Boxing\'s Big Voice');
     });
 
-    it('should return the website model with the returned website url', function () {
-        var readability = new Readability('secret');
-        var apiResponse = {
-            url: "http://www.gq.com/sports/profiles/201202/david-diamante-interview-cigar-lounge-brooklyn-new-jersey-nets?currentPage=all",
-        };
-        assert.equal(readability.convertToWebsite(apiResponse).getURL().indexOf('201202') !== -1, true);
-    });
-
     it('should pass on the published date to the website model as long as its defined', function () {
         var readability = new Readability('secret');
         var apiResponse = {
