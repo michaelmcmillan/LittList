@@ -152,6 +152,14 @@ describe('Readability', function () {
             // None
         });
     });
+
+    it('should return error if url ends with .pdf', function () {
+        var readability = new Readability('secret');
+        assert.throws(function () {
+            readability.search('www.vg.no/article.pdf');
+        }, /pdf/i);
+    });
+
     describe('isURL', function () {
 
         it('should be true if the url starts with http://', function () {

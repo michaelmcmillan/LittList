@@ -59,6 +59,9 @@ function Readability (apiKey) {
 
         if (apiKey === undefined)
             throw new Error('Mangler nøkkel til api\'et');
+        
+        if (url.substr(-4) === '.pdf')
+            throw new Error('PDF støttes dessverre ikke');
 
         if (url.indexOf('www.') === 0)
             url = 'http://' + url;
