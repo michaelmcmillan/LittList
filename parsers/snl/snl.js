@@ -39,7 +39,8 @@ function SNL () {
 
             if (data.authors != null && data.authors.length > 0)
                 data.authors.forEach(function (author) {
-                    if (author.full_name != null) {
+                    if (author.full_name != null
+                    &&  author.full_name.indexOf('Store norske leksikon') !== 0) {
                         website.addAuthor(new Author(author['full_name']));
                     }
                 });
