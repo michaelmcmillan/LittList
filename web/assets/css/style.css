@@ -71,7 +71,7 @@ form#query {
 }
 
 form#query, .tips > p {
-    margin-top:25px;
+    margin-top:45px;
 }
 
 form#query > input[name="q"] {
