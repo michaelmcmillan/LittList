@@ -449,3 +449,22 @@ div#listlink > a.button[data-badge]:after {
   padding-top: 1em;
   padding-left: 1em;
 }
+
+.page > .posts {
+    margin-top:25px;
+    margin-bottom:25px;
+    width:500px;
+}
+
+.post > .meta > .title {
+    font-size:20px;
+}
+
+.post > .content {
+    margin-top:15px;
+    line-height:1.5em;
+}
+
+.post > .content > p {
+    margin-top:10px;
+}
