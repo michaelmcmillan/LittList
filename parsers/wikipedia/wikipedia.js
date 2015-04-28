@@ -36,32 +36,13 @@ function Wikipedia () {
                         apiArguments + pageTitle; 
 
         reqOptions.url = apiURL; 
+        console.log(apiURL);
         request.get(reqOptions, function (err, data) {
             if (err) throw err;
             
             var text = data.body;     
-            var refTags = self.parseRefTags(text);
 
-            refTags.each(function (index, refTag) {
- 
-                var tagData = refTag.children[0].data;
-                if (tagData === undefined) return;
-
-                var matches = tagData.match(/{{(.*?)}}/);
-                if (matches === null) return;
-                 
-                var urlMatch = urlRegexp.match(matches[0])[0];
-                if (urlMatch !== undefined) {
-                    urlMatch = self.stripPipe(urlMatch);
-                    wikiReferences.websites.push(urlMatch);
-                }
-                
-                var isbnMatch = matches[0].match(/\|isbn=([0-9|-]*).*?/im);
-                if (isbnMatch !== null)
-                    wikiReferences.books.push(self.stripPipe(isbnMatch[1]));
-            });
-
-            callback(wikiReferences);
+            callback(undefined, text);
         }); 
     }
     
@@ -107,8 +88,5 @@ function Wikipedia () {
         return $('ref');
     }
 }
-
-//var wikipedia = new Wikipedia();
-//wikipedia.getReferences('http://no.wikipedia.org/wiki/Jens_Stoltenberg');
 
 module.exports = Wikipedia;
