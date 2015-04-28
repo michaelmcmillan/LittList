@@ -6,8 +6,7 @@
   "scripts": {
     "start": "./node_modules/supervisor/lib/cli-wrapper.js -x iojs web/server.js",
     "test": "(export TEST=True; ./node_modules/mocha/bin/mocha \"test/unit/*.js\" -R dot);",
-    "integration-test": "npm run-script database-test;",
-    "database-test": "(export TEST=True; ./node_modules/mocha/bin/mocha \"test/persistence/setupDatabase.js\" \"test/persistence/bookFactory.js\" \"test/persistence/websiteFactory.js\" \"test/persistence/listFactory.js\";)"
+    "integration-test": "(export TEST=True; ./node_modules/mocha/bin/mocha -R dot \"test/unit/*.js\" \"test/persistence/setupDatabase.js\" \"test/persistence/bookFactory.js\" \"test/persistence/websiteFactory.js\" \"test/persistence/listFactory.js\";)"
   },
   "author": "Michael McMillan <email@michaelmcmillan.net> (http://michaelmcmillan.net)",
   "license": "ISC",
