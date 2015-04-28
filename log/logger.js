@@ -43,14 +43,14 @@ if (process.env['CI']   === undefined
         colorize: true,
         timestamp: currentStamp 
     });
-}
 
-logger.add(logger.transports.Pushbullet, {
-    level: 'error',
-    handleExceptions: true,
-    apikey:  config.logger.pushbullet.apiKey, 
-    title:   config.logger.pushbullet.title,
-    devices: config.logger.pushbullet.devices
-});
+    logger.add(logger.transports.Pushbullet, {
+        level: 'error',
+        handleExceptions: true,
+        apikey:  config.logger.pushbullet.apiKey, 
+        title:   config.logger.pushbullet.title,
+        devices: config.logger.pushbullet.devices
+    });
+}
 
 module.exports = logger;
