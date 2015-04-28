@@ -3,28 +3,58 @@ var cheerio = require('cheerio');
 function WikiParser (html) {
     
     var self   = this;
+    var html   = html || '';
     var $      = cheerio.load(html);
-    var html   = html;
     var liTags;  
-    
+
     this.getArticleHTML = function () {
         return html;
     }
-
+    
+    this.parseLiTags = function () {
+        liTags = $('li[id^="cite_note-"]');
+    }
+    
     this.getLiTags = function () {
-        liTags = $('li');
-        return liTags; 
+        return liTags;
     }
     
-    this.filterCitationTags = function () {
-        liTags.not(function (index, liTag) {
-           return ($(this).attr('id').indexOf('cite_note') === 0);
-        });
+    this.extractURLFromLiTag = function (liTag) {
+        var hrefTag = $(liTag).find('a.external');
+        return hrefTag.attr('href');
+    }
 
-        return liTags.length;
+
+    this.extractAccessedDateFromLiTag = function (liTag) {
+        var accessDateTag = $('span.reference-accessdate');
+        return accessDateTag.text();
     }
-    
-    this.getLiTags();
+
+    this.extractTextFromLiTag = function (liTag) {
+        var textTag = $('span.reference-text');
+        var text = textTag.text().trim();
+
+        var accessDate = this.extractAccessedDateFromLiTag(liTag);
+        if (text.indexOf(accessDate) !== -1) {
+            text = text.replace(accessDate, '');
+        }
+
+        return text;
+    }
+
+    this.getCitation = function (index) {
+        var currentLiTag = liTags[index];
+
+        if (currentLiTag == undefined)
+            throw new Error('Fant ingen li-tags med den indexen');
+
+        return {
+            url:  this.extractURLFromLiTag (currentLiTag),
+            text: this.extractTextFromLiTag(currentLiTag) 
+        }
+    }
+
+    this.parseLiTags();
 }
 
 module.exports = WikiParser;
