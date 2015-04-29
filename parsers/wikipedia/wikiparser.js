@@ -2,9 +2,10 @@ var cheerio = require('cheerio');
 
 function WikiParser (html) {
     
-    var self   = this;
-    var html   = html || '';
-    var $      = cheerio.load(html);
+    var self    = this;
+    var html    = html || '';
+    var $       = cheerio.load(html);
+    this.length = 0;
     var liTags;  
 
     this.getArticleHTML = function () {
@@ -13,6 +14,7 @@ function WikiParser (html) {
     
     this.parseLiTags = function () {
         liTags = $('li[id^="cite_note-"]');
+        this.length = liTags.length;
     }
     
     this.getLiTags = function () {

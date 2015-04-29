@@ -1,9 +1,10 @@
-var config    = require('../../config.js');
-var urlRegexp = require('url-regexp');
-var request   = require('request');
-var url       = require('url');
-var languages = require('./languages.js');
-var cheerio   = require('cheerio');
+var config     = require('../../config.js');
+var urlRegexp  = require('url-regexp');
+var request    = require('request');
+var url        = require('url');
+var languages  = require('./languages.js');
+var cheerio    = require('cheerio');
+var Wikiparser = require('./wikiparser.js');
 
 function Wikipedia () {
 
@@ -14,11 +15,12 @@ function Wikipedia () {
             'User-Agent': config.crawlers.useragent 
         }
     }; 
+
     var protocol   = 'https://';
     var host       = 'wikipedia.org';
     var endpoint   =  '/w/index.php';
     var apiArguments = '?' + [
-        'action=raw',
+        'action=render',
         'title='
     ].join('&');
     
@@ -40,9 +42,13 @@ function Wikipedia () {
         request.get(reqOptions, function (err, data) {
             if (err) throw err;
             
-            var text = data.body;     
+            var html = data.body;     
+            var wikiparser = new Wikiparser(html);
 
-            callback(undefined, text);
+            console.log(wikiparser.getCitation(0));
+            console.log(wikiparser.getCitation(1));
+
+            callback(undefined, 'lol');
         }); 
     }
     
@@ -88,5 +94,10 @@ function Wikipedia () {
         return $('ref');
     }
 }
+
+var wikipedia = new Wikipedia();
+wikipedia.search('http://no.wikipedia.org/wiki/Jens_Stoltenberg', function (err, done) {
+    
+});
 
 module.exports = Wikipedia;
