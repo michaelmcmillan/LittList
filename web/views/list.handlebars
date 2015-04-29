@@ -1,6 +1,11 @@
 {{> searchbar }}
 
 <div class="list">
+    
+    {{#if displayFeedback}}
+        {{> feedback }}
+    {{/if}}
+
     <div class="settings">
         <form method="post" action="/liste">
             <select name="style">
