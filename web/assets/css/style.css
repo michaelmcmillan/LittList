@@ -362,7 +362,8 @@ form#query > input[type="submit"] {
 .settings {
     text-align:right;
     max-width: 790px;
-    margin: 100px auto 20px;
+    margin: 0px auto 20px;
+    padding-top:100px;
 }
 
 .settings > form > select {
