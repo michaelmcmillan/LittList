@@ -25,8 +25,7 @@ npm test
 To run the integration tests (currently only persistence tests for the database) run the following.
 
 ````bash
-npm run-script setup-database-test
-npm run-script database-test
+npm run-script integration-test
 ````
 
 ### Configuration
