@@ -1,3 +1,8 @@
+CREATE TABLE `Feedback` (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    text varchar(512) NOT NULL
+);
+
 CREATE TABLE `References` (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title varchar(255),
