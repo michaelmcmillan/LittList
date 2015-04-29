@@ -298,14 +298,71 @@ form#query > input[type="submit"] {
 }
 
 .list {
-    padding-top:100px;
     background-color: #f7f7f7;
+}
+
+.feedback {
+    padding-top:25px;
+    width:500px;
+    margin:0 auto;
+}
+
+.feedback > .header {
+    text-align:center;
+}
+
+.feedback > .header > h1 {
+    font-size:32px;
+    font-weight:500;
+}
+
+.feedback > .header > h2 {
+    font-size:16px;
+    font-weight:500;
+}
+
+.feedback > .how-did-it-go {
+    margin-top:25px; 
+    border-top:2px solid;
+    border-color:#ddd;
+}
+
+.feedback > .how-did-it-go > h3 {
+    margin-top:25px;
+    text-align:center;
+    font-size:20px;
+    font-weight:500;
+}
+.feedback > .how-did-it-go > form {
+    text-align:center;
+    margin-top:10px;
+}
+
+.feedback > .how-did-it-go > form > textarea {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width:350px;
+    padding:10px;
+    outline:none;
+    line-height: 2;
+    border-radius: 3.6px;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 14px;
+}
+
+.feedback > .how-did-it-go > form > button {
+    height:35px;
+    width:200px;
+    font-size:14px;
 }
 
 .settings {
     text-align:right;
     max-width: 790px;
-    margin: 0px auto 20px;
+    margin: 100px auto 20px;
 }
 
 .settings > form > select {
