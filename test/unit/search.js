@@ -1,6 +1,6 @@
 var assert = require('assert');
 var rewire = require("rewire");
-var IndexController = rewire('../../controllers/index.js');
+var IndexController = rewire('../../controllers/general/index.js');
 
 describe('Search', function () {
     var reqMock = { query: {}}
