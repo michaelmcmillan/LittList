@@ -533,3 +533,8 @@ div#listlink > a.button[data-badge]:after {
 .post > .content > p {
     margin-top:10px;
 }
+
+.github-fork-ribbon {
+    background-color: #60A5DA !important;
+}
+
