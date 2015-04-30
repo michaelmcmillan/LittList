@@ -293,6 +293,14 @@ form#query > input[type="submit"] {
     background-image: url('/img/testimonials/oblad_hover.png');
 }
 
+#norskundervisning.testimonial {
+    background-image: url('/img/testimonials/norskundervisning.png');
+}
+
+#norskundervisning.testimonial:hover {
+    background-image: url('/img/testimonials/norskundervisning_hover.png');
+}
+
 .page {
     margin-left:100px;
 }
