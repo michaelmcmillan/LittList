@@ -39,7 +39,9 @@ function ResultController (results, shouldCacheResults, req, res, next) {
                 // the next query with this querystring does
                 // not need to ask external components like bibsys
                 QueryFactory.create(queryString, results, function (err) {
-                    if (err) logger.error(err.message); 
+                    // This is where the err for dup_entry is thrown,
+                    // as of right now we just swallow this.
+                    if (err) logger.info(err.message); 
                 });
             }
         });
