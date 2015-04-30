@@ -8,6 +8,7 @@ function FeedbackCreateController (req, res, next) {
     
     FeedbackFactory.create(req.body.feedback, function (err) {
         if (err) logger.error(err.message);
+        logger.notify('Tilbakemelding fra bruker.');
     });
 
     res.redirect('/liste');
