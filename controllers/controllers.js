@@ -20,6 +20,10 @@ module.exports = {
         create:    require('./feedback/create.js')
     },
 
+    reviews: {
+        view:      require('./reviews/view.js')
+    },
+
     error: {
         notFound:  require('./error/notFound.js'),
         exception: require('./error/exception.js')
