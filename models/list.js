@@ -49,9 +49,18 @@ function List () {
     }
 
     this.removeReference = function (referenceToRemove) {
-        references = references.filter(function (reference) {
-            return reference.getId() !== referenceToRemove;
-        });
+        var self = this;
+        if (referenceToRemove instanceof Array)
+            referenceToRemove.forEach(function (singleReferenceToRemove) {
+                self.removeReference(singleReferenceToRemove);
+            });
+        else
+            references = references.filter(function (reference) {
+                if (typeof referenceToRemove == "string")
+                    referenceToRemove = parseInt(referenceToRemove, 10)
+
+                return reference.getId() !== referenceToRemove;
+            });
     }
 
     this.getBibliographyStyle = function () {

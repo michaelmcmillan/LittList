@@ -72,6 +72,38 @@ describe('List', function () {
         assert.equal(list.getReferences()[1], undefined);
     });
 
+    it('should be possible to remove an array of references from the list', function () {
+        var list = new List();
+        var firstBook   = new Book();
+        var secondBook = new Book();
+        var thirdBook   = new Book();
+        firstBook.setId(1);
+        secondBook.setId(2);
+        thirdBook.setId(3);
+        
+        list.addReference(firstBook);
+        list.addReference(secondBook);
+        list.addReference(thirdBook);
+        list.removeReference([1, 2]);
+
+        assert.equal(list.getReferences().length, 1);
+    });
+
+    it('should cast a string to ant int on remove', function () {
+        var list = new List();
+        var firstBook    = new Book();
+        var secondBook   = new Book();
+
+        firstBook.setId(1);
+        secondBook.setId(2);
+        list.addReference(firstBook);
+        list.addReference(secondBook);
+        list.removeReference('1');
+
+        assert.equal(list.getReferences().length, 1);
+        assert.equal(list.getReferences()[0].getId(), 2);
+    });
+
     it('should be possible to remove a reference from the list', function () {
         var list = new List();
         var firstBook   = new Book();
