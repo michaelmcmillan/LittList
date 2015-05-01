@@ -9,7 +9,7 @@ describe('Wikipedia citeparser', function () {
     });
 
     it('should parse tags with an id that starts with "cite_note-"', function () {
-        var wikiparser = new WikiParser('<html><li id="cite_note-1">This is a reference</li></html>');
+        var wikiparser = new WikiParser('<li id="cite_note-1">This is a reference</li>');
         assert.equal(wikiparser.getLiTags().length, 1);
     });
     
@@ -54,7 +54,7 @@ describe('Wikipedia citeparser', function () {
     });
 
     it('should not matter what language the content is in when extracting text', function () {
-           var wikiHtml = '<li id="cite_note-79"><span class="mw-cite-backlink">' + 
+        var wikiHtml = '<li id="cite_note-79"><span class="mw-cite-backlink">' + 
                '<b><a href="#cite_ref-79">^</a>' + 
                '</b></span> <span class="reference-text"><span class="citation web">' + 
                '<a rel="nofollow" class="external text" ' + 
@@ -66,5 +66,33 @@ describe('Wikipedia citeparser', function () {
         var wikiparser = new WikiParser(wikiHtml);
         assert.equal(wikiparser.getCitation(0).url, 'http://www.bbc.co.uk/history/british/victorians/foundling_01.shtml');
         assert.equal(wikiparser.getCitation(0).text, '"The Foundling Hospital". BBC History. 17 February 2011.');
+    });
+
+    it('should get footnotes tags (sup) from text', function () {
+        var wikiHtml   = 'Nordmenn har i gjennomsnitt verdens fjerde høyeste inntekt, ' + 
+            'og er verdens største produsent av olje og gass per capita utenfor Midt-Østen. ' +
+            'Petroleumsindustrien står for omlag en fjerdedel av Norges brutto nasjonalprodukt. ' +
+            'Norge opprettholder en velferdsmodell lik den man finner i de andre nordiske landene, ' + 
+            'hvor helsetjenester og høyere utdanning er statsfinansiert, og landet har et ' + 
+            'omfattende velferdssystem for sine innbyggere. ' + 
+            'Siden 2001<sup id="cite_ref-2" class="reference"><a href="#cite_note-2">[2]</a></sup>' +
+            'har FN rangert Norge som verden beste land å bo i.';
+        var wikiparser = new WikiParser(wikiHtml);
+        assert.equal(wikiparser.getFootnote(0).id, 2);
+    });
+
+    it('should extract sup and its corresponding citation', function () {
+        var wikiHtml = 'Siden 2001<sup id="cite_ref-2" class="reference">' +
+            '<a href="#cite_note-2">[2]</a></sup>' +
+            'har FN rangert Norge som verden beste land å bo i. ' +
+            '<li id="cite_note-2"><b><a href="#cite_ref-2">^</a></b>' +
+            '<span class="reference-text"><a rel="nofollow" class="external free"' + 
+            'href="http://hdr.undp.org/en/media/HDI_2008_EN_Tables.pdf">' + 
+            'http://hdr.undp.org/en/media/HDI_2008_EN_Tables.pdf</a>' + 
+            '<i>Human Development Report</i>, hdr.undp.org. Besøkt 30. desember 2012' +
+            '<span class="bjeller" style="color: gray;cursor:help;" title="engelsk">' + 
+            '<small>(en)</small></span></span></li>';
+        var wikiparser = new WikiParser(wikiHtml);
+        assert.equal(wikiparser.getFootnoteWithCitation(0).id, 2);
     });
 });
