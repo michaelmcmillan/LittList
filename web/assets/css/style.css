@@ -438,12 +438,16 @@ button:hover {
     background-color: #fff;
 }
 
-button.change-style, button.copy {
+button.remove {
+    margin-right:25px;
+}
+
+button.change-style, button.copy, button.remove {
     font-size:14px;
 
 }
 
-select[name="style"], button.change-style {
+select[name="style"], button.change-style, button.remove {
     float:left;
 }
 
@@ -510,11 +514,13 @@ div#listlink > a.button[data-badge]:after {
     margin-right: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
+    /*
     cursor:default;
     -moz-user-select: none; 
     -khtml-user-select: none; 
     -webkit-user-select: none; 
     -o-user-select: none; 
+    */
 }
 
 .csl-entry > div.csl-indent {
