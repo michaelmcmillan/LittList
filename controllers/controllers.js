@@ -15,6 +15,10 @@ module.exports = {
     posts: {
         view:      require('./posts/view.js')
     },
+    
+    feedback: {
+        create:    require('./feedback/create.js')
+    },
 
     error: {
         notFound:  require('./error/notFound.js'),

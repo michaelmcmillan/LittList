@@ -22,6 +22,11 @@ describe('Store norske leksikon', function () {
         var snl = new SNL();
         assert.equal(snl.getArticleFromURL('http://snl.no/Erna_Solberg#Karriere'), 'Erna_Solberg');
     });
+
+    it('should support articles with utf-8 characters in the article title', function () {
+        var snl = new SNL();
+        assert.equal(snl.getArticleFromURL('https://snl.no/René_Descartes'), 'Ren%C3%A9_Descartes');
+    });
     
     it('should pass if url is from snl.no without protocol', function () {
         var snl = new SNL();  

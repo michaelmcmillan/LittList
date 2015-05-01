@@ -31,6 +31,9 @@ function ViewListController (req, res) {
                     styles.forEach(function (style) {
                         style.selected = (style.file === list.getBibliographyStyle());
                     });
+                    
+                    // Find out if feedback form should be displayed
+                    var displayFeedback = req.query.feedback === '' ? true : false;
 
                     // Finally render the list with references,
                     // the generated bibliography and supported styles
@@ -38,7 +41,8 @@ function ViewListController (req, res) {
                         references:      list.getReferences(),
                         list:            bibliography,
                         supportedStyles: styles,
-                        count:           list.getReferences().length
+                        count:           list.getReferences().length,
+                        displayFeedback: displayFeedback
                     }); 
             });
         });
