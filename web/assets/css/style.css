@@ -214,7 +214,7 @@ form#query > input[type="submit"] {
     background-color: #f7f7f7;
     position: absolute;
     bottom: 0;
-    padding: 10px 0;
+    padding: 25px 0 0 0;
     width: 100%;
     text-align:center;
 }
@@ -224,25 +224,6 @@ form#query > input[type="submit"] {
     font-size:14px;
     font-weight:300;
     color: #808080;
-}
-
-.testimonials:before {
-    content: "";
-    display: block;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color: transparent;
-    border-right-width: 28px;
-    border-left-width: 28px;
-    border-top-width: 22px;
-    border-bottom-width: 0;
-    border-top-color: #fff;
 }
 
 .testimonial {
@@ -262,43 +243,53 @@ form#query > input[type="submit"] {
 }
 
 #studenttorget.testimonial {
-    background-image: url('/img/testimonials/studenttorget.png');
+    background: url('/img/testimonials/studenttorget_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #studenttorget.testimonial:hover {
-    background-image: url('/img/testimonials/studenttorget_hover.png');
+    background-position: 0 -60px;
 }
 
 #universitetsavisa.testimonial {
-    background-image: url('/img/testimonials/universitetsavisa.png');
+    background: url('/img/testimonials/universitetsavisa_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #universitetsavisa.testimonial:hover {
-    background-image: url('/img/testimonials/universitetsavisa_hover.png');
+    background-position: 0 -60px;
 }
 
 #gemini.testimonial {
-    background-image: url('/img/testimonials/gemini.png');
+    background: url('/img/testimonials/gemini_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #gemini.testimonial:hover {
-    background-image: url('/img/testimonials/gemini_hover.png');
+    background-position: 0 -60px;
 }
 
 #oblad.testimonial {
-    background-image: url('/img/testimonials/oblad.png');
+    background: url('/img/testimonials/oblad_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #oblad.testimonial:hover {
-    background-image: url('/img/testimonials/oblad_hover.png');
+    background-position: 0 -60px;
 }
 
 #norskundervisning.testimonial {
-    background-image: url('/img/testimonials/norskundervisning.png');
+    background: url('/img/testimonials/norskundervisning_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #norskundervisning.testimonial:hover {
-    background-image: url('/img/testimonials/norskundervisning_hover.png');
+    background-position: 0 -60px;
 }
 
 .page {
