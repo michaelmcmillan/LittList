@@ -523,6 +523,77 @@ div#listlink > a.button[data-badge]:after {
   padding-left: 1em;
 }
 
+
+.page > .reviews {
+    margin-top:25px;
+    margin-bottom:25px;
+    height:1000px;
+    width:800px;
+}
+
+.reviews > .social {
+    width:50%;
+    margin-top:20px;
+    float:left;
+    display:inline-block;
+}
+
+.reviews > .media {
+    margin-left:10%;
+    width:40%;
+    margin-top:20px;
+    display:inline-block;
+}
+
+.quote {
+    margin-bottom:40px;
+}
+
+.media > .logo {
+    margin-right:10px;
+    height:initial;
+    margin-bottom:20px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.media > .logo > img  {
+    height:50px;
+}
+
+.twitter > .tweet > p, .media > .excerpt > p {
+    font-style:italic;
+}
+
+.twitter > .profile-picture {
+    display:inline-block;
+    float:left;
+    margin-right:10px;
+}
+
+.twitter > .profile-picture > img {
+    width:50px;
+}
+
+.twitter > .account {
+    display:inline-block;
+    width:240px;
+    font-size:14px;
+}
+
+.twitter > .tweet {
+    margin-top:20px;
+    margin-left:60px;
+}
+
+.twitter > .account > span {
+    display:block;
+}
+
+.page > .reviews > h1 {
+    font-size:20px;
+}
+
 .page > .posts {
     margin-top:25px;
     margin-bottom:25px;
