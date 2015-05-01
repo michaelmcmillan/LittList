@@ -1,7 +1,7 @@
         <div class="searchbar">
             <a href="/"><img class="logo" src="/img/logo-small.png"></a>
             <form id="query" method="get" action="/">
-                <input type="text" name="q" value="{{{query}}}">
+                <input type="text" name="q" {{#if query}} value="{{{query}}}" {{else}} placeholder="Søk etter bøker, nettsider eller forfattere"{{/if}}>
             </form>
             <div id="listlink">
                 <a href="/liste" class="button" {{#if count}} data-badge="{{count}}" {{/if}}>Vis litteraturliste</a>
