@@ -38,14 +38,14 @@
             "name": "Ola-Matti Mittigård",
             "tweet": "Genialt.",
             "handle": "mittigard",
-            "picture": "https://pbs.twimg.com/profile_images/2634845804/438ec2e9a3955762ebcdb43f516926d4.png",
+            "picture": "/img/reviews/ola.png",
             "status_id": "423539171571924992"
         },
         {
             "name": "Sigrun Espe",
             "tweet": "Genial - littlist.no genererer litteraturlister automatisk. Kvar var du når eg var student?",
             "handle": "SigrunEspe",
-            "picture": "https://pbs.twimg.com/profile_images/1052306212/SigrunEspebw.jpg",
+            "picture": "/img/reviews/sigrun.jpg",
             "status_id": "407512705793142785"
         },
         {
@@ -53,7 +53,7 @@
             "bio": "Kommunikasjonsrådgiver",
             "tweet": "Et et genialt verktøy for den aller kjipeste delen av oppgaveskrivingen",
             "handle": "idanygard",
-            "picture": "https://pbs.twimg.com/profile_images/378800000125818305/be092d679ebc3951b861239d7481de29_reasonably_small.png",
+            "picture": "/img/reviews/ida.png",
             "status_id": "406085574227808256"
         },
         {
@@ -61,7 +61,7 @@
             "bio": "Lærer ved Dalane Videregående",
             "tweet": "Jøss. littlist.no er strålende.",
             "handle": "Hthengs",
-            "picture": "https://pbs.twimg.com/profile_images/574866816641540096/iFLEk79R.jpeg",
+            "picture": "/img/reviews/halvor.jpeg",
             "status_id": "593745410386239488"
         },
         {
@@ -69,7 +69,7 @@
             "bio": "Lektor med tilleggsutdanning innen norsk og faglitterær skriving.",
             "tweet": "La litteraturlistegeneratoren gjøre livet ditt enklere. Lager korrekte litteraturlister for deg på lettvint vis.",
             "handle": "KjetilDybvik",
-            "picture": "https://pbs.twimg.com/profile_images/378800000202244654/de735a7f40430ee5d0cad47aa6c4b589.png",
+            "picture": "/img/reviews/kjetil.png",
             "status_id": "593740017480146944"
         },
         {
@@ -77,7 +77,7 @@
             "bio": "Salgskonsulent",
             "tweet": "Superkudos til NTNU-studenten for dette enkle, men særdeles nyttige verktøyet for studenter.",
             "handle": "DanielKaspersen",
-            "picture": "https://pbs.twimg.com/profile_images/589532391435276288/TyLKOc_n.jpg",
+            "picture": "/img/reviews/daniel.jpg",
             "status_id": "407892872747184128"
         },
         {
@@ -85,7 +85,7 @@
             "bio": "Student",
             "tweet": "Skriver du hjemmeeksamen og synes litteraturlister er noe herk? Sjekk ut: http://littlist.no",
             "handle": "Awsman_",
-            "picture": "https://pbs.twimg.com/profile_images/515132893832572929/fOCC6Zvm.jpeg",
+            "picture": "/img/reviews/åsmund.jpeg",
             "status_id": "406394663080185856"
         },
         {
@@ -93,7 +93,7 @@
             "bio": "Student",
             "tweet": "Lag litteraturlister på null komma niks!! \"Litteraturlister suger.\"",
             "handle": "JulieGPe",
-            "picture": "https://pbs.twimg.com/profile_images/378800000738401387/c96d21d20d031997c24da4f92cb755f1.jpeg",
+            "picture": "/img/reviews/julie.jpeg",
             "status_id": "406394663080185856"
         }
     ]
