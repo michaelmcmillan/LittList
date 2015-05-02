@@ -4,6 +4,7 @@ var request    = require('request');
 var url        = require('url');
 var languages  = require('./languages.js');
 var cheerio    = require('cheerio');
+var WikiParser = require('./wikiparser.js');
 
 function Wikipedia () {
 
@@ -37,13 +38,14 @@ function Wikipedia () {
                         apiArguments + pageTitle; 
 
         reqOptions.url = apiURL; 
-        console.log(apiURL);
         request.get(reqOptions, function (err, data) {
-            if (err) throw err;
+            if (err) return next(err);
             
-            var html = data.body;     
+            var apiResponseHTML = data.body;     
+            var wikiparser  = new WikiParser(apiResponseHTML);
+            var htmlTheUserWillSee = wikiparser.getArticleHTML();
 
-            callback(undefined, 'lol');
+            callback(undefined, htmlTheUserWillSee);
         }); 
     }
     
