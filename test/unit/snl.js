@@ -8,6 +8,11 @@ describe('Store norske leksikon', function () {
         assert.equal(snl.isSNLURL('http://snl.no/Jens_Stoltenberg'), true);
     });
     
+    it('should pass if url is from the nynorsk version of nbl.snl.no', function () {
+        var snl = new SNL();  
+        assert.equal(snl.isSNLURL('http://nbl.snl.no/Jens_Stoltenberg'), true);
+    });
+
     it('should pass if url contains only one forward slash', function () {
         var snl = new SNL();  
         assert.equal(snl.isSNLURL('http://snl.no/om-oss/ansatte'), false);
