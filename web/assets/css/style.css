@@ -177,7 +177,7 @@ form#query > input[type="submit"] {
     width: 50px;
     height: 50px;
     float:left;
-    margin-right: 15px;
+    margin-right: 30px;
 }
 
 .entries > .entry {
@@ -214,7 +214,7 @@ form#query > input[type="submit"] {
     background-color: #f7f7f7;
     position: absolute;
     bottom: 0;
-    padding: 10px 0;
+    padding: 25px 0 0 0;
     width: 100%;
     text-align:center;
 }
@@ -224,25 +224,6 @@ form#query > input[type="submit"] {
     font-size:14px;
     font-weight:300;
     color: #808080;
-}
-
-.testimonials:before {
-    content: "";
-    display: block;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color: transparent;
-    border-right-width: 28px;
-    border-left-width: 28px;
-    border-top-width: 22px;
-    border-bottom-width: 0;
-    border-top-color: #fff;
 }
 
 .testimonial {
@@ -262,43 +243,53 @@ form#query > input[type="submit"] {
 }
 
 #studenttorget.testimonial {
-    background-image: url('/img/testimonials/studenttorget.png');
+    background: url('/img/testimonials/studenttorget_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #studenttorget.testimonial:hover {
-    background-image: url('/img/testimonials/studenttorget_hover.png');
+    background-position: 0 -60px;
 }
 
 #universitetsavisa.testimonial {
-    background-image: url('/img/testimonials/universitetsavisa.png');
+    background: url('/img/testimonials/universitetsavisa_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #universitetsavisa.testimonial:hover {
-    background-image: url('/img/testimonials/universitetsavisa_hover.png');
+    background-position: 0 -60px;
 }
 
 #gemini.testimonial {
-    background-image: url('/img/testimonials/gemini.png');
+    background: url('/img/testimonials/gemini_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #gemini.testimonial:hover {
-    background-image: url('/img/testimonials/gemini_hover.png');
+    background-position: 0 -60px;
 }
 
 #oblad.testimonial {
-    background-image: url('/img/testimonials/oblad.png');
+    background: url('/img/testimonials/oblad_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #oblad.testimonial:hover {
-    background-image: url('/img/testimonials/oblad_hover.png');
+    background-position: 0 -60px;
 }
 
 #norskundervisning.testimonial {
-    background-image: url('/img/testimonials/norskundervisning.png');
+    background: url('/img/testimonials/norskundervisning_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
 }
 
 #norskundervisning.testimonial:hover {
-    background-image: url('/img/testimonials/norskundervisning_hover.png');
+    background-position: 0 -60px;
 }
 
 .page {
@@ -374,7 +365,7 @@ form#query > input[type="submit"] {
     padding-top:100px;
 }
 
-.settings > form > select {
+.settings > select {
    border-radius: 3.6px;
    background: transparent;
    width: 150px;
@@ -409,13 +400,17 @@ form#query > input[type="submit"] {
     line-height: 1.5em;
 }
 
-.a4 > * > * {
+.a4 > * > *, .a4 > h2 {
     font-weight:200; 
 }
 
 
 button:hover {
     background-color: #fff;
+}
+
+button[name="add"], button[name="remove"] {
+    width: 60px;
 }
 
 .controls > button[name="add"], button.copy {
@@ -438,12 +433,16 @@ button:hover {
     background-color: #fff;
 }
 
-button.change-style, button.copy {
+button.remove {
+    margin-right:25px;
+}
+
+button.change-style, button.copy, button.remove {
     font-size:14px;
 
 }
 
-select[name="style"], button.change-style {
+select[name="style"], button.change-style, button.remove {
     float:left;
 }
 
@@ -510,17 +509,90 @@ div#listlink > a.button[data-badge]:after {
     margin-right: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
+    /*
     cursor:default;
     -moz-user-select: none; 
     -khtml-user-select: none; 
     -webkit-user-select: none; 
     -o-user-select: none; 
+    */
 }
 
 .csl-entry > div.csl-indent {
   display: block;
   padding-top: 1em;
   padding-left: 1em;
+}
+
+
+.page > .reviews {
+    margin-top:25px;
+    margin-bottom:25px;
+    height:1000px;
+    width:800px;
+}
+
+.reviews > .social {
+    width:50%;
+    margin-top:20px;
+    float:left;
+    display:inline-block;
+}
+
+.reviews > .media {
+    margin-left:10%;
+    width:40%;
+    margin-top:20px;
+    display:inline-block;
+}
+
+.quote {
+    margin-bottom:40px;
+}
+
+.media > .logo {
+    margin-right:10px;
+    height:initial;
+    margin-bottom:20px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.media > .logo > img  {
+    height:50px;
+}
+
+.twitter > .tweet > p, .media > .excerpt > p {
+    font-style:italic;
+}
+
+.twitter > .profile-picture {
+    display:inline-block;
+    float:left;
+    margin-right:10px;
+}
+
+.twitter > .profile-picture > img {
+    width:50px;
+}
+
+.twitter > .account {
+    display:inline-block;
+    width:240px;
+    font-size:14px;
+}
+
+.twitter > .tweet {
+    margin-top:20px;
+    margin-left:60px;
+}
+
+.twitter > .account > span {
+    display:block;
+}
+
+.page > .reviews > h1 {
+    font-size:20px;
 }
 
 .page > .posts {

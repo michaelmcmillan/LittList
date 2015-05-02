@@ -22,6 +22,10 @@ module.exports = {
         secret: 'e'
     },
 
+    session: {
+        secret: ' '
+    },
+
     database: function () {
         if (process.env['TEST'] === undefined)
             return {

@@ -13,6 +13,9 @@ module.exports = (function () {
 
     /* Feedback */
     router.post('/feedback',  controllers.feedback.create);
+
+    /* Reviews */
+    router.get('/omtaler',    controllers.reviews.view);
     
     /* Posts */
     router.get('/innlegg',    controllers.posts.view);

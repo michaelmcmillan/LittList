@@ -6,23 +6,24 @@
         {{> feedback }}
     {{/if}}
 
-    <div class="settings">
-        <form method="post" action="/liste">
-            <select name="style">
-                {{#each supportedStyles}}
-                <option {{#if selected}} selected {{/if}} value="{{file}}">{{name}}</option>
-                {{/each}}
-            </select>
-            <button class="change-style" type="submit">Bytt referansestil</button>
-            <button class="copy">Kopier litteraturlisten</button>
-        </form>
-    </div>
-    <div class="a4">
-        <form method="post" action="/liste">
-            <h2>Litteraturliste</h2>
-            {{{list}}}
-        </form>
-    </div>
+    <form method="post" action="/liste">
+        <div class="settings">
+                {{#if count}}
+                <button type="submit" class="remove">Fjern valgte</button>
+                {{/if}}
+                <select name="style">
+                    {{#each supportedStyles}}
+                    <option {{#if selected}} selected {{/if}} value="{{file}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <button class="change-style" type="submit">Bytt referansestil</button>
+                <button class="copy">Kopier litteraturlisten</button>
+        </div>
+        <div class="a4">
+                <h2>Litteraturliste</h2>
+                {{{list}}}
+        </div>
+    </form>
     <script type="text/javascript" src="/js/ZeroClipboard.min.js"></script>
     <script type="text/javascript" src="/js/copy.js"></script>
 </div>

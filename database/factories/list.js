@@ -97,7 +97,7 @@ var ListFactory = {
             
             // If no changes has been made, simply return the list as is
             if (removed.length === 0 
-            &&  added.length === 0
+            &&  added.length   === 0
             &&  list.getBibliographyStyle() === readList.getBibliographyStyle()) {
                 return self.read(list.getId(), done);
             }
@@ -122,7 +122,7 @@ var ListFactory = {
                 queue++;
                 database.query('DELETE FROM Contents ' + 
                     'WHERE list_id = ' + database.escape(list.getId()) + ' ' +  
-                    'AND reference_id IN (?)', removed,
+                    'AND reference_id IN (?)', [removed],
                 function (err, rows, fields) {
                     if (err) return done(err);
                     if (--queue === 0)

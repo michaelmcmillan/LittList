@@ -1,0 +1,100 @@
+{
+    "media": [
+        {
+            "name": "StudentTorget",
+            "url": "http://vg.no",
+            "logo": "/img/testimonials/studenttorget_hover.png",
+            "excerpt": "Klippet og limt avsnitt, rettet, lest gjennom igjen og igjen. Endelig ferdig trodde du. Men det var du visst ikke. Den evinnelige litteraturlisten må selvsagt legges inn."
+        },
+        {
+            "name": "Norskundervinsing",
+            "url": "http://norskundervisning.no",
+            "logo": "/img/testimonials/norskundervisning_hover.png",
+            "excerpt": "Dagens gladnyhet i eksamenstiden: En litteraturlistegenerator! Lei av å lage detaljerte litteraturlister når du skriver oppgaver, eller prøve å få elevene til å gjøre det riktig? Her er løsningen! En norsk student har utviklet et gratis og praktisk verktøy som rett og slett lager listen for deg! Ingen lisens og enkel i bruk, også for nettsider."
+        },
+        {
+            "name": "Universitetsavisa",
+            "url": "http://universitetsavisa.no",
+            "logo": "/img/testimonials/universitetsavisa_hover.png",
+            "excerpt": "Søketjenesten fungerer på den måten at man skriver inn hvilke kilder man har brukt. Ut fra dette kobler LittList seg opp mot ulike databaser, og genererer en litteraturreferanse med forfatter, utgivelsesår, forlag og ISBN-nummer."
+        },
+        {
+            "name": "Gemini",
+            "url": "http://gemini.no",
+            "logo": "/img/testimonials/gemini_hover.png",
+            "excerpt": "Littlist.no er en søkemotor der studentene kan finne informasjon om bøkene de har brukt for å skrive oppgaven. Det er enkelt å søke på tittel, forfatter eller ISBN. Informasjonen støtter standard krav for litteraturlister. Til slutt: Copy + paste. Ferdig!"
+        },
+        {
+            "name": "Østlandets Blad",
+            "url": "http://oblad.no",
+            "logo": "/img/testimonials/oblad_hover.png",
+            "excerpt": "Nettsiden er basert på en enkel søkemotor som finner den nødvendige informasjonen om kildene man har brukt i en oppgave, og til slutt genererer en fullstendig litteraturliste for deg."
+        }
+    ],
+
+    "tweets": [
+        {
+            "bio": "Redaktør for Norsklæreren.",
+            "name": "Ola-Matti Mittigård",
+            "tweet": "Genialt.",
+            "handle": "mittigard",
+            "picture": "/img/reviews/ola.png",
+            "status_id": "423539171571924992"
+        },
+        {
+            "name": "Sigrun Espe",
+            "tweet": "Genial - littlist.no genererer litteraturlister automatisk. Kvar var du når eg var student?",
+            "handle": "SigrunEspe",
+            "picture": "/img/reviews/sigrun.jpg",
+            "status_id": "407512705793142785"
+        },
+        {
+            "name": "Ida Marie Nygård",
+            "bio": "Kommunikasjonsrådgiver",
+            "tweet": "Et et genialt verktøy for den aller kjipeste delen av oppgaveskrivingen",
+            "handle": "idanygard",
+            "picture": "/img/reviews/ida.png",
+            "status_id": "406085574227808256"
+        },
+        {
+            "name": "Halvor Thengs",
+            "bio": "Lærer ved Dalane Videregående",
+            "tweet": "Jøss. littlist.no er strålende.",
+            "handle": "Hthengs",
+            "picture": "/img/reviews/halvor.jpeg",
+            "status_id": "593745410386239488"
+        },
+        {
+            "name": "Kjetil Dybvik",
+            "bio": "Lektor med tilleggsutdanning innen norsk og faglitterær skriving.",
+            "tweet": "La litteraturlistegeneratoren gjøre livet ditt enklere. Lager korrekte litteraturlister for deg på lettvint vis.",
+            "handle": "KjetilDybvik",
+            "picture": "/img/reviews/kjetil.png",
+            "status_id": "593740017480146944"
+        },
+        {
+            "name": "Daniel Kaspersen",
+            "bio": "Salgskonsulent",
+            "tweet": "Superkudos til NTNU-studenten for dette enkle, men særdeles nyttige verktøyet for studenter.",
+            "handle": "DanielKaspersen",
+            "picture": "/img/reviews/daniel.jpg",
+            "status_id": "407892872747184128"
+        },
+        {
+            "name": "Åsmund Berstad",
+            "bio": "Student",
+            "tweet": "Skriver du hjemmeeksamen og synes litteraturlister er noe herk? Sjekk ut: http://littlist.no",
+            "handle": "Awsman_",
+            "picture": "/img/reviews/åsmund.jpeg",
+            "status_id": "406394663080185856"
+        },
+        {
+            "name": "Julie Pedersen",
+            "bio": "Student",
+            "tweet": "Lag litteraturlister på null komma niks!! \"Litteraturlister suger.\"",
+            "handle": "JulieGPe",
+            "picture": "/img/reviews/julie.jpeg",
+            "status_id": "406394663080185856"
+        }
+    ]
+}

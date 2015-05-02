@@ -15,9 +15,11 @@ function UpdateListController (req, res, next) {
             list.addReference(book); 
         } 
         
-        // Removing a reference
-        if (req.body.remove !== undefined)
-            list.removeReference(parseInt(req.body.remove, 10)); 
+        // Removing reference(s)
+        if (req.body.remove !== undefined) {
+            console.log(req.body.remove);
+            list.removeReference(req.body.remove); 
+        }
         
         // Changing the bibliography style
         if (req.body.style !== undefined) {

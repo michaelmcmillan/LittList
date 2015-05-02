@@ -21,7 +21,7 @@ app.set('view engine', 'handlebars');
 /* Session */
 app.use(session({
     key: 'littlist',
-    secret: 'e',
+    secret: config.session.secret,
     store: new sessionStore(config.database()),
     resave: true,
     saveUninitialized: true 
