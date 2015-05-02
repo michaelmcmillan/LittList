@@ -6,7 +6,11 @@ module.exports = {
     bibliography: {
         styles: {
             allowed: { 
-
+                'harvard1.csl'                    : 'Harvard',
+                'chicago-author-date.csl'         : 'Chicago',
+                'vancouver-author-date.csl'       : 'Vancouver',
+                'apa.csl'                         : 'APA',
+                'american-medical-association.csl': 'AMA'
             },
             location: __dirname + '/bibliographies/styles/'
         },
@@ -14,17 +18,20 @@ module.exports = {
             location: __dirname + '/bibliographies/locales/'
         }
     },
+    session: {
+        secret: 'e'
+    },
 
     database: function () {
         if (process.env['TEST'] === undefined)
             return {
-                database: '',
-                user:     '',
+                database: 'littlist',
+                user:     'root',
                 password: '',
-                host:     '',
+                host:     'localhost',
                 multipleStatements: true
             }
-        else if (process.env['CI'])
+        else if (process.env['CI'] === true)
             return {
                 database: 'test',
                 user:     process.env['MYSQL_USER'],
@@ -35,7 +42,7 @@ module.exports = {
         else
             return {
                 database: 'test_littlist',
-                user: 'travis',
+                user: 'root',
                 password: '',
                 host: 'localhost',
                 multipleStatements: true
