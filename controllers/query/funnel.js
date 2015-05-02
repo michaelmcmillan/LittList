@@ -31,11 +31,10 @@ function FunnelController (req, res, next) {
     var snl         = new SNL();
     
     // Determine what kind of query it is 
-    /*if (wikipedia.isWikipediaURL(req.query.q))
+    if (wikipedia.isWikipediaURL(req.query.q))
         WikipediaController(req, res, next);
 
-    else*/
-    if (snl.isSNLURL(req.query.q))
+    else if (snl.isSNLURL(req.query.q))
         SNLController(req, res, next);
     
     else if (readability.isURL(req.query.q))

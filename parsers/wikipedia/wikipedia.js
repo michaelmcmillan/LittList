@@ -1,9 +1,10 @@
-var config    = require('../../config.js');
-var urlRegexp = require('url-regexp');
-var request   = require('request');
-var url       = require('url');
-var languages = require('./languages.js');
-var cheerio   = require('cheerio');
+var config     = require('../../config.js');
+var urlRegexp  = require('url-regexp');
+var request    = require('request');
+var url        = require('url');
+var languages  = require('./languages.js');
+var cheerio    = require('cheerio');
+var WikiParser = require('./wikiparser.js');
 
 function Wikipedia () {
 
@@ -14,11 +15,12 @@ function Wikipedia () {
             'User-Agent': config.crawlers.useragent 
         }
     }; 
+
     var protocol   = 'https://';
     var host       = 'wikipedia.org';
     var endpoint   =  '/w/index.php';
     var apiArguments = '?' + [
-        'action=raw',
+        'action=render',
         'title='
     ].join('&');
     
@@ -36,13 +38,14 @@ function Wikipedia () {
                         apiArguments + pageTitle; 
 
         reqOptions.url = apiURL; 
-        console.log(apiURL);
         request.get(reqOptions, function (err, data) {
-            if (err) throw err;
+            if (err) return next(err);
             
-            var text = data.body;     
+            var apiResponseHTML = data.body;     
+            var wikiparser  = new WikiParser(apiResponseHTML);
+            var htmlTheUserWillSee = wikiparser.getArticleHTML();
 
-            callback(undefined, text);
+            callback(undefined, htmlTheUserWillSee);
         }); 
     }
     

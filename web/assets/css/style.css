@@ -618,3 +618,8 @@ div#listlink > a.button[data-badge]:after {
     background-color: #60A5DA !important;
 }
 
+/* Wikipedia editor */
+.page > .wikipedia-editor {
+    width: 720px;
+}
+
