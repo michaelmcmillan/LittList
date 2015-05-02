@@ -31,7 +31,7 @@ module.exports = {
                 host:     'localhost',
                 multipleStatements: true
             }
-        else if (process.env['CI'] === true)
+        else if (process.env['CI'])
             return {
                 database: 'test',
                 user:     process.env['MYSQL_USER'],
