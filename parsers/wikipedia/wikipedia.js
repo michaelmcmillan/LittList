@@ -4,7 +4,6 @@ var request    = require('request');
 var url        = require('url');
 var languages  = require('./languages.js');
 var cheerio    = require('cheerio');
-var Wikiparser = require('./wikiparser.js');
 
 function Wikipedia () {
 
@@ -43,10 +42,6 @@ function Wikipedia () {
             if (err) throw err;
             
             var html = data.body;     
-            var wikiparser = new Wikiparser(html);
-
-            console.log(wikiparser.getCitation(0));
-            console.log(wikiparser.getCitation(1));
 
             callback(undefined, 'lol');
         }); 
@@ -94,10 +89,5 @@ function Wikipedia () {
         return $('ref');
     }
 }
-
-var wikipedia = new Wikipedia();
-wikipedia.search('http://no.wikipedia.org/wiki/Jens_Stoltenberg', function (err, done) {
-    
-});
 
 module.exports = Wikipedia;
