@@ -75,6 +75,10 @@ function List () {
         bibliographyStyle = style;
     }
 
+    this.setCreatedAt = function (date) {
+        created = date;
+    }
+
     this.getExpirationDate = function () {
         var lifetime       = config.bibliography.lifetimeInSeconds;
         var lifetimeInMs   = lifetime * 1000;

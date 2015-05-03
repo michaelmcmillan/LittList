@@ -14,11 +14,14 @@ describe('listFactory', function () {
         it('creates a list entry in the database with a book', function (done) {
             var list = new List();
             var book = new Book();
+            var past = new Date(new Date().getTime() - (60 * 60 * 60 * 24 * 10000));
             book.setId(1);
             list.addReference(book);
+            list.setCreatedAt(past);
             ListFactory.create(list, function (err, list) {
                 if (err) throw err;
                 assert.equal(list.getBibliographyStyle(), 'harvard1.csl');
+                assert.equal(list.getCreatedAt().getDate(), past.getDate());
                 done();
             });
         });
