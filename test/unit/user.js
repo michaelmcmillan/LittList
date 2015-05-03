@@ -37,12 +37,8 @@ describe('User', function () {
         });
     });
 
-    it('should encrypt a plaintext password to a hashed+salted password', function () {
+    it('should encrypt a plaintext password to a hashed+salted password', function (done) {
         User.__set__('bcrypt', {
-            genSalt: function (length, done) {
-                done(undefined, '$2a$06$8awH5oO9ZRaohxxB4d8zQe');
-            },
-
             hash: function (password, salt, done) {
                 done(undefined, '$2a$06$8awH5oO9ZRaohxxB4d8zQe9f7h9J12ttLiCUAlFDndg/KclQXAtI6');
             }
@@ -52,6 +48,27 @@ describe('User', function () {
         user.setEmail('mike@mike.com');
         user.setPassword('brannmannsam', function (err) {
             assert.equal(user.getPassword(), '$2a$06$8awH5oO9ZRaohxxB4d8zQe9f7h9J12ttLiCUAlFDndg/KclQXAtI6'); 
+            done();
+        });
+    });
+
+    it('should return true if trying to authenticate with credentials that match', function (done) {
+        User.__set__('bcrypt', {
+            hash: function (password, salt, done) {
+                done(undefined, '$2a$06$8awH5oO9ZRaohxxB4d8zQe9f7h9J12ttLiCUAlFDndg/KclQXAtI6');
+            },
+            compare: function (plain, hash, done) {
+                return done(undefined, (plain === 'brannmannsam'));
+            }
+        });
+
+        var user = new User();
+        user.setEmail('mike@mike.com');
+        user.setPassword('brannmannsam', function (err) {
+            user.checkCredentials('brannmannsam', function (err, authenticated) {
+                assert.equal(authenticated, true); 
+                done();
+            });
         });
     });
 });

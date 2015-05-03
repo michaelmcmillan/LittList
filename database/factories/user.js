@@ -8,7 +8,6 @@ var UserFactory = {
         user.setId(row.id);
         user.setEmail(row.email);
         user.setPassword(row.password);
-        user.setSalt(row.salt);
         return user;
     },
 
@@ -29,8 +28,7 @@ var UserFactory = {
         var self = this;
         database.query('INSERT INTO Users SET ?', {
             email:    user.getEmail(),
-            password: user.getPassword(),
-            salt:     user.getSalt()
+            password: user.getPassword()
         }, function (err, rows, fields) {
             if (err) return done(err);
             return self.read(user.getEmail(), done);

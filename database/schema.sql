@@ -33,7 +33,6 @@ CREATE TABLE `Lists` (
 CREATE TABLE `Users` (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email varchar(255) UNIQUE NOT NULL,
-    salt varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
