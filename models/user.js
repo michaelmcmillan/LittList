@@ -29,6 +29,10 @@ function User () {
         return password;
     }
 
+    this.setHashedPassword = function (hashedPassword) {
+        password = hashedPassword;
+    }
+
     this.setPassword = function (newPassword, done) {
         if (newPassword.length < 7)
             return done(new Error('For kort passord. Minst 7 tegn.'));
