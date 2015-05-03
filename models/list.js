@@ -1,3 +1,4 @@
+var config = require('../config.js');
 var crypto = require('crypto');
 
 function List () {
@@ -72,6 +73,17 @@ function List () {
             throw new Error('Style must end with .csl');
 
         bibliographyStyle = style;
+    }
+
+    this.getExpirationDate = function () {
+        var lifetime       = config.bibliography.lifetimeInSeconds;
+        var lifetimeInMs   = lifetime * 1000;
+        var expirationDate = new Date(new Date().getTime() + lifetimeInMs);
+        return expirationDate; 
+    }
+
+    this.hasExpired = function () {
+        return ((this.getCreatedAt() - this.getExpirationDate()) > 0);
     }
 }
 
