@@ -37,6 +37,13 @@ CREATE TABLE `Users` (
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
 
+CREATE TABLE `UsersHasLists` (
+    user_id int NOT NULL,
+    list_id int NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES `Users` (id) ON DELETE CASCADE,
+    FOREIGN KEY (list_id) REFERENCES `Lists` (id) ON DELETE CASCADE
+);
+
 CREATE TABLE `Contents` (
     list_id int NOT NULL,
     reference_id int NOT NULL,
