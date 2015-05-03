@@ -11,6 +11,14 @@ function User () {
         return id;
     }
 
+    this.getSalt = function () {
+        return salt;
+    }
+
+    this.setSalt = function (newSalt) {
+        salt = newSalt;
+    }
+
     this.setId = function (newId) {
         id = newId;
     }
