@@ -24,6 +24,9 @@ var UserFactory = {
             'WHERE email = ?', email,
         function (err, rows, fields) {
             if (err) return done(err);
+            if (rows.length === 0) 
+                return done(new Error('Fant ingen bruker.'));
+
             var row = rows[0];
             var user = self.constructUser(row);
 
