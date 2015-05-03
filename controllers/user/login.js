@@ -4,16 +4,21 @@ var UserFactory = require('../../database/factories/user.js');
 
 function UserLoginController (req, res, next) {
     
+    if (req.session.user !== undefined)
+        return next(new Error('Du er allerde innlogget.')); 
+
     var email    = req.body.email;
     var password = req.body.password;
-    
-    if (email    !== undefined
-    &&  password !== undefined) {
-        UserFactory.read(email, function (err, readUser) {
-            if (err) return next(err);
-            checkIfPasswordMatches(readUser, password);
-        });
-    }
+     
+    if (email    === undefined
+    ||  password === undefined)
+        return next(new Error('Du må oppgi brukernavn og passord.'));
+
+    UserFactory.read(email, function (err, readUser) {
+        if (err) return next(err);
+        console.log(readUser);
+        checkIfPasswordMatches(readUser, password);
+    });
 
     var checkIfPasswordMatches = function (user, password) {
         user.checkCredentials(password, function (err, correctPasswordProvided) {
@@ -32,7 +37,7 @@ function UserLoginController (req, res, next) {
     }
 
     var wrongPassword = function () {
-        res.send('feil password');
+        return next(new Error('Feil brukernavn eller passord.'));
     }
 }
 
