@@ -54,4 +54,3 @@ process.on('SIGTERM', function () {
     logger.log('info', 'LittList is now shutting down');
     process.exit()
 });
-
