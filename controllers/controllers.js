@@ -17,8 +17,12 @@ module.exports = {
     },
     
     user: {
-        create:       require('./user/create.js'),
-        authenticate: require('./user/authentication.js')
+        signup:       require('./user/signup.js'),
+        login:        require('./user/login.js'),
+        form: {
+            login:    require('./user/loginForm.js'),
+            signup:   require('./user/signupForm.js')
+        }
     },
 
     feedback: {

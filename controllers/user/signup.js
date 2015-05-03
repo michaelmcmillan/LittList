@@ -2,7 +2,7 @@ var logger      = require('../../log/logger.js');
 var User        = require('../../models/user.js');
 var UserFactory = require('../../database/factories/user.js');
 
-function UserCreateController (req, res, next) {
+function UserSignupController (req, res, next) {
     
     var email    = req.body.email;
     var password = req.body.password;
@@ -30,4 +30,4 @@ function UserCreateController (req, res, next) {
     }
 }
 
-module.exports = UserCreateController;
+module.exports = UserSignupController;

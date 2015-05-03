@@ -12,8 +12,10 @@ module.exports = (function () {
     router.post('/liste',        controllers.list.create);
 
     /* User */
-    router.post('/registrering', controllers.user.create);
-    router.post('/innlogging',   controllers.user.authenticate);
+    router.get('/registrering',  controllers.user.form.signup);
+    router.post('/registrering', controllers.user.signup);
+    router.get('/innlogging',    controllers.user.form.login);
+    router.post('/innlogging',   controllers.user.login);
 
     /* Feedback */
     router.post('/feedback',     controllers.feedback.create);
