@@ -1,6 +1,7 @@
 var assert = require('assert');
 var rewire = require('rewire');
 var User   = rewire('../../models/user.js');
+var List   = rewire('../../models/list.js');
 
 describe('User', function () {
 
@@ -76,6 +77,31 @@ describe('User', function () {
                 assert.equal(authenticated, true); 
                 done();
             });
+        });
+    });
+
+    it('should have no lists upon instantion', function () {
+        var user = new User();
+        assert.equal(user.getLists().length, 0);
+    });
+
+    it('can have lists assosicated with it by adding them', function () {
+        var user = new User();
+        user.addList(new List());
+        assert.equal(user.getLists().length, 1);
+    });
+
+    it('should reject two lists with the same id as they are duplicates', function () {
+        var user = new User();
+        var firstList = new List();
+        firstList.setId(1);
+
+        var dupeOfFirstList = new List();
+        dupeOfFirstList.setId(1);
+        
+        user.addList(firstList);
+        assert.throws(function () {
+            user.addList(dupeOfFirstList);
         });
     });
 });

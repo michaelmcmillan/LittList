@@ -5,6 +5,7 @@ function User () {
     var id;
     var email;
     var password;
+    var lists = [];
     
     this.getId = function () {
         return id;
@@ -50,6 +51,19 @@ function User () {
         bcrypt.compare(credentials, password, function (err, res) {
             return done(undefined, (res === true));
         });
+    }
+
+    this.addList = function (newList) {
+        lists.forEach(function (list) {
+            if (list.getId() === newList.getId())
+                throw new Error('Duplikat av liste for bruker.');
+        });
+
+        lists.push(newList);
+    }
+
+    this.getLists = function () {
+        return lists;
     }
 }
 
