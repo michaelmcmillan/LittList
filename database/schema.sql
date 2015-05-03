@@ -30,6 +30,14 @@ CREATE TABLE `Lists` (
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
 
+CREATE TABLE `Users` (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email varchar(255) UNIQUE NOT NULL,
+    salt varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
+);
+
 CREATE TABLE `Contents` (
     list_id int NOT NULL,
     reference_id int NOT NULL,
