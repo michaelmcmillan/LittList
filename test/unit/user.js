@@ -104,4 +104,32 @@ describe('User', function () {
             user.addList(dupeOfFirstList);
         });
     });
+
+    it('should be possible to provide an array of lists to the addList method', function () {
+        var user = new User();
+
+        var firstList = new List();
+        firstList.setId(1);
+        var secondList = new List();
+        secondList.setId(2);
+        
+        var lists = [firstList, secondList];
+        user.addList(lists);
+        assert.equal(user.getLists().length, 2);
+    });
+
+    it('should be possible to remove a list from a user', function () {
+        var user = new User();
+
+        var firstList = new List();
+        firstList.setId(1);
+
+        var secondList = new List();
+        secondList.setId(2);
+        
+        var lists = [firstList, secondList];
+        user.addList(lists);
+        user.removeList(firstList);
+        assert.equal(user.getLists()[0].getId(), 2);
+    });
 });
