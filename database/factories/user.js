@@ -7,7 +7,7 @@ var UserFactory = {
         var user = new User();
         user.setId(row.id);
         user.setEmail(row.email);
-        user.setPassword(row.password);
+        user.setHashedPassword(row.password);
         return user;
     },
 
