@@ -70,7 +70,7 @@ function Readability (apiKey) {
         request(apiURL, function (error, response, data) {
             
             if (response.statusCode === 400)
-                return done(new Error('Noe gikk galt, sjekk URL\'en.'));
+                return done(new Error('Noe gikk galt, sjekk URL\'en: ' + url));
             
             if (response.statusCode === 403)
                 return done(new Error('Klarte ikke å autentisere mot Readability'));
