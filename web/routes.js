@@ -4,24 +4,25 @@ var router      = require('express').Router();
 module.exports = (function () {
 
     /* Root */
-    router.get('/',           controllers.general.index);
+    router.get('/',              controllers.general.index);
 
     /* List */
-    router.get('/liste',      controllers.list.view);
-    router.get('/liste/:url', controllers.list.view);
-    router.post('/liste',     controllers.list.create);
+    router.get('/liste',         controllers.list.view);
+    router.get('/liste/:url',    controllers.list.view);
+    router.post('/liste',        controllers.list.create);
 
     /* User */
-    router.post('/bruker',    controllers.user.create);
+    router.post('/registrering', controllers.user.create);
+    router.post('/innlogging',   controllers.user.authenticate);
 
     /* Feedback */
-    router.post('/feedback',  controllers.feedback.create);
+    router.post('/feedback',     controllers.feedback.create);
 
     /* Reviews */
-    router.get('/omtaler',    controllers.reviews.view);
+    router.get('/omtaler',       controllers.reviews.view);
     
     /* Posts */
-    router.get('/innlegg',    controllers.posts.view);
+    router.get('/innlegg',       controllers.posts.view);
 
     return router;
 })();
