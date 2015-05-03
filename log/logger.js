@@ -40,6 +40,7 @@ if (process.env['CI']   === undefined
 
     logger.add(logger.transports.Console, {
         level: 'debug',
+        handleExceptions: true,
         colorize: true,
         timestamp: currentStamp 
     });
