@@ -16,6 +16,10 @@ module.exports = {
         view:      require('./posts/view.js')
     },
     
+    user: {
+        create:    require('./user/create.js')
+    },
+
     feedback: {
         create:    require('./feedback/create.js')
     },

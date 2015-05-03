@@ -11,6 +11,9 @@ module.exports = (function () {
     router.get('/liste/:url', controllers.list.view);
     router.post('/liste',     controllers.list.create);
 
+    /* User */
+    router.post('/bruker',    controllers.user.create);
+
     /* Feedback */
     router.post('/feedback',  controllers.feedback.create);
 
