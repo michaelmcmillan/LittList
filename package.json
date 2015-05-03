@@ -29,6 +29,7 @@
     "glob": "^5.0.5",
     "iconv-lite": "^0.4.7",
     "isbn": "git://github.com/makepanic/isbnjs#0e9b3db5",
+    "moment": "^2.10.2",
     "mysql": "^2.5.5",
     "request": "^2.53.0",
     "url-regexp": "^1.0.2",

@@ -1,5 +1,6 @@
 var config = require('../config.js');
 var crypto = require('crypto');
+var moment = require('moment');
 
 function List () {
     
@@ -82,12 +83,16 @@ function List () {
     this.getExpirationDate = function () {
         var lifetime       = config.bibliography.lifetimeInSeconds;
         var lifetimeInMs   = lifetime * 1000;
-        var expirationDate = new Date(new Date().getTime() + lifetimeInMs);
+        var expirationDate = new Date(created.getTime() + lifetimeInMs);
         return expirationDate; 
     }
 
     this.hasExpired = function () {
-        return ((this.getCreatedAt() - this.getExpirationDate()) > 0);
+        return (new Date() > this.getExpirationDate());
+    }
+
+    this.getHumanFriendlyLifetime = function () {
+        return moment(this.getExpirationDate()).locale('nb').fromNow();
     }
 }
 

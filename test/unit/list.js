@@ -172,5 +172,38 @@ describe('List', function () {
         var list = new List();
         assert.equal(list.hasExpired(), true);
     });
+
+    it('should have a human expiration date method which returns time until expiration', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 5 // 5 hours 
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.getHumanFriendlyLifetime(), 'om 5 timer');
+    });
+
+    it('should say that the list has expired when calling the human friendly lifetime', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 5 * -1 // 5 hours ago
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.getHumanFriendlyLifetime(), 'for 5 timer siden');
+    });
+
+    it('should round up to days in human friendly lifetime if there are days to expiration', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 24 * 3 // 3 days 
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.getHumanFriendlyLifetime(), 'om 3 dager');
+    });
 });
 
