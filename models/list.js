@@ -1,4 +1,6 @@
+var config = require('../config.js');
 var crypto = require('crypto');
+var moment = require('moment');
 
 function List () {
     
@@ -72,6 +74,25 @@ function List () {
             throw new Error('Style must end with .csl');
 
         bibliographyStyle = style;
+    }
+
+    this.setCreatedAt = function (date) {
+        created = date;
+    }
+
+    this.getExpirationDate = function () {
+        var lifetime       = config.bibliography.lifetimeInSeconds;
+        var lifetimeInMs   = lifetime * 1000;
+        var expirationDate = new Date(created.getTime() + lifetimeInMs);
+        return expirationDate; 
+    }
+
+    this.hasExpired = function () {
+        return (new Date() > this.getExpirationDate());
+    }
+
+    this.getHumanFriendlyLifetime = function () {
+        return moment(this.getExpirationDate()).locale('nb').fromNow();
     }
 }
 

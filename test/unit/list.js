@@ -1,8 +1,9 @@
 var assert  = require('assert');
+var rewire  = require('rewire');
 var Book    = require('../../models/book.js');
 var Website = require('../../models/website.js');
 var Author  = require('../../models/author.js');
-var List    = require('../../models/list.js');
+var List    = rewire('../../models/list.js');
 
 describe('List', function () {
     
@@ -136,6 +137,73 @@ describe('List', function () {
         assert.throws(function () {
             list.setBibliographyStyle('harvard yo give me that style');
         });
+    });
+
+    it('should return days left until the list expires', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 24 
+            }
+        });
+
+        var list = new List();
+        var expectedDate = new Date(new Date().getTime() + 60 * 60 * 24 * 1000);
+        assert.equal(list.getExpirationDate().toString(), expectedDate.toString());
+    });
+
+    it('should determine that the list has not expired when lifetime is not passed', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 24 
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.hasExpired(), false);
+    });
+
+    it('should determine that the list has expired when lifetime is passed', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: -1 
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.hasExpired(), true);
+    });
+
+    it('should have a human expiration date method which returns time until expiration', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 5 // 5 hours 
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.getHumanFriendlyLifetime(), 'om 5 timer');
+    });
+
+    it('should say that the list has expired when calling the human friendly lifetime', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 5 * -1 // 5 hours ago
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.getHumanFriendlyLifetime(), 'for 5 timer siden');
+    });
+
+    it('should round up to days in human friendly lifetime if there are days to expiration', function () {
+        List.__set__('config', {
+            bibliography: {
+                lifetimeInSeconds: 60 * 60 * 24 * 3 // 3 days 
+            }
+        });
+
+        var list = new List();
+        assert.equal(list.getHumanFriendlyLifetime(), 'om 3 dager');
     });
 });
 

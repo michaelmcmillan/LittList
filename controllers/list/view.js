@@ -42,8 +42,11 @@ function ViewListController (req, res) {
                         list:            bibliography,
                         supportedStyles: styles,
                         count:           list.getReferences().length,
-                        displayFeedback: displayFeedback
+                        displayFeedback: displayFeedback,
+                        expired:         list.hasExpired(),
+                        lifetime:        list.getHumanFriendlyLifetime()
                     }); 
+                    console.log(list.getExpirationDate());
             });
         });
     });

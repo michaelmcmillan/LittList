@@ -28,6 +28,7 @@ var ListFactory = {
             list.setId(row.id);
             list.setUrl(row.url);
             list.setBibliographyStyle(row.style);
+            list.setCreatedAt(row.created_at);
             
             // Async queue
             var queue = 2;
@@ -151,11 +152,11 @@ var ListFactory = {
 
     create: function (list, done) {
         var self = this;
-        
         // Create the actual List entry
         database.query('INSERT INTO Lists SET ?', {
             url: list.getUrl(),
-            style: list.getBibliographyStyle()
+            style: list.getBibliographyStyle(),
+            created_at: list.getCreatedAt()
         }, function (err, rows, field) {
             
             // Get the id from the created list

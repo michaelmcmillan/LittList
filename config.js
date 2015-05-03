@@ -4,6 +4,7 @@ module.exports = {
     },
     
     bibliography: {
+        lifetimeInSeconds: 60 * 60 * 24,
         styles: {
             allowed: { 
 
