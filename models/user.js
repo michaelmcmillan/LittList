@@ -54,12 +54,26 @@ function User () {
     }
 
     this.addList = function (newList) {
-        lists.forEach(function (list) {
-            if (list.getId() === newList.getId())
-                throw new Error('Duplikat av liste for bruker.');
-        });
+        var self = this;
 
-        lists.push(newList);
+        if (newList.constructor === Array) {
+            newList.forEach(function (singleList) {
+                self.addList(singleList); 
+            });
+        } else {
+            lists.forEach(function (list) {
+                if (list.getId() === newList.getId())
+                    throw new Error('Duplikat av liste for bruker.');
+            });
+
+            lists.push(newList);
+        }
+    }
+
+    this.removeList = function (listToRemove) {
+        lists = lists.filter(function (list) {
+            return (list.getId() !== listToRemove.getId());
+        });
     }
 
     this.getLists = function () {
