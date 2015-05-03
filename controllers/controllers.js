@@ -19,6 +19,7 @@ module.exports = {
     user: {
         signup:       require('./user/signup.js'),
         login:        require('./user/login.js'),
+        logout:       require('./user/logout.js'),
         form: {
             login:    require('./user/loginForm.js'),
             signup:   require('./user/signupForm.js')

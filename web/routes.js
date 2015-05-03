@@ -16,6 +16,7 @@ module.exports = (function () {
     router.post('/registrering', controllers.user.signup);
     router.get('/innlogging',    controllers.user.form.login);
     router.post('/innlogging',   controllers.user.login);
+    router.get('/utlogging',     controllers.user.logout);
 
     /* Feedback */
     router.post('/feedback',     controllers.feedback.create);
