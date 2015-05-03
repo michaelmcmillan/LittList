@@ -20,7 +20,10 @@ function User () {
 
     this.setEmail = function (newEmail) {
         if (email !== undefined)
-            throw new ('E-posten er allerede satt.');
+            throw new Error('E-posten er allerede satt.');
+        
+        if (newEmail.indexOf('@') === -1)
+            throw new Error('Mangler alfakrøll i e-postadressen.');
 
         email = newEmail;
     }

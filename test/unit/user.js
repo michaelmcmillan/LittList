@@ -21,6 +21,13 @@ describe('User', function () {
         assert.equal(user.getEmail(), 'mike@mike.com');
     });
 
+    it('should throw exception if email does not contain exactly one @', function () {
+        var user = new User();
+        assert.throws(function () {
+            user.setEmail('mike-without-the-required-at-char');
+        });
+    });
+
     it('should not be possible to set the email when it is already set', function () {
         var user = new User();
         user.setEmail('mike@mike.com');
