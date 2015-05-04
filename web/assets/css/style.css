@@ -330,6 +330,7 @@ form#query > input[type="submit"] {
 .feedback > .how-did-it-go > h3 {
     margin-top:25px;
     text-align:center;
+    margin-bottom:10px;
     font-size:20px;
     font-weight:500;
 }
