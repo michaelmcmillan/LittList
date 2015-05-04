@@ -28,9 +28,10 @@ function UserSignupController (req, res, next) {
         UserFactory.create(user, function (err, createdUser) {
             if (err) return next(err);
 
-            authenticate(createdUser, function (user) {
-                transferListsInSessionToUser(user, function () {
-                    res.redirect('/yey');
+            authenticate(createdUser);
+            transferListsInSessionToUser(user, function () {
+                storeSessionChanges(function () {
+                    res.redirect('/liste');
                 });
             });
         });
@@ -38,12 +39,12 @@ function UserSignupController (req, res, next) {
 
     var authenticate = function (user, done) {
         req.session.user = user.getEmail();
-        req.session.save(function () {
-            done(user); 
-        });
     }
     
     var transferListsInSessionToUser = function (user, done) {
+
+        // If the user registered without having created a list
+        // there's nothing to do here. So we return. 
         if (req.session.list === undefined) {
             logger.debug('No lists to transfer to user.', {
                 user: req.session.user
@@ -51,6 +52,8 @@ function UserSignupController (req, res, next) {
             return done();
         }
         
+        // The user made a list before registering and now
+        // we need to add this list to the user.
         logger.debug('Transferring list to user', {
             user:    req.session.user,
             list_id: req.session.list
@@ -59,14 +62,27 @@ function UserSignupController (req, res, next) {
         UserFactory.read(req.session.user, function (err, readUser) {
             if (err) return next(err);
             
+            // Construct a list from the list id in the session 
             var listInSession = new List();
             listInSession.setId(req.session.list);
             readUser.addList(listInSession);
-        
+            
+            // Update the user with the transferred list
             UserFactory.update(readUser, function (err, updatedUser) {
                 if (err) return next(err);
+                
+                // Unset the list in the session due to it being
+                // stored in the database
+                req.session.list = undefined; 
+
                 return done();
             });
+        });
+    }
+
+    var storeSessionChanges = function (done) {
+        req.session.save(function () {
+            done(); 
         });
     }
 }
