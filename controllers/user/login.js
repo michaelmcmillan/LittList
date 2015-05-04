@@ -33,7 +33,7 @@ function UserLoginController (req, res, next) {
 
     var passwordMatches = function (user) {
         req.session.user = user.getEmail();
-        res.redirect('/yey');
+        res.redirect('/liste');
     }
 
     var wrongPassword = function () {
