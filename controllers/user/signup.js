@@ -28,15 +28,19 @@ function UserSignupController (req, res, next) {
         UserFactory.create(user, function (err, createdUser) {
             if (err) return next(err);
 
-            authenticate(createdUser);
-            transferListsInSessionToUser(user, function () {
-                res.redirect('/yey');
+            authenticate(createdUser, function (user) {
+                transferListsInSessionToUser(user, function () {
+                    res.redirect('/yey');
+                });
             });
         });
     }
 
-    var authenticate = function (user) {
+    var authenticate = function (user, done) {
         req.session.user = user.getEmail();
+        req.session.save(function () {
+            done(user); 
+        });
     }
     
     var transferListsInSessionToUser = function (user, done) {
