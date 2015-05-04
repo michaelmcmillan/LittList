@@ -1,4 +1,5 @@
 var logger      = require('../../log/logger.js');
+var List        = require('../../models/list.js');
 var User        = require('../../models/user.js');
 var UserFactory = require('../../database/factories/user.js');
 
@@ -20,13 +21,43 @@ function UserSignupController (req, res, next) {
     var storeUserInDatabase = function (user) {
         UserFactory.create(user, function (err, createdUser) {
             if (err) return next(err);
-            authenticateAndRedirect(createdUser);
+
+            authenticate(createdUser);
+            transferListsInSessionToUser(user, function () {
+                res.redirect('/yey');
+            });
         });
     }
-    
-    var authenticateAndRedirect = function (user) {
+
+    var authenticate = function (user) {
         req.session.user = user.getEmail();
-        res.redirect('/yey');
+    }
+    
+    var transferListsInSessionToUser = function (user, done) {
+        if (req.session.list === undefined) {
+            logger.debug('No lists to transfer to user.', {
+                user: req.session.user
+            });
+            return done();
+        }
+        
+        logger.debug('Transferring list to user', {
+            user:    req.session.user,
+            list_id: req.session.list
+        });
+        
+        UserFactory.read(req.session.user, function (err, readUser) {
+            if (err) return next(err);
+            
+            var listInSession = new List();
+            listInSession.setId(req.session.list);
+            readUser.addList(listInSession);
+        
+            UserFactory.update(readUser, function (err, updatedUser) {
+                if (err) return next(err);
+                return done();
+            });
+        });
     }
 }
 
