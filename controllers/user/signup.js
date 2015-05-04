@@ -8,15 +8,21 @@ function UserSignupController (req, res, next) {
     var email    = req.body.email;
     var password = req.body.password;
     
-    if (email    !== undefined
-    &&  password !== undefined) {
+    if (email    === undefined
+    ||  password === undefined)
+        return next(new Error('Du må oppgi brukernavn og passord.'));
+
+    try {
         var user = new User(); 
         user.setEmail(email);
-        user.setPassword(password, function (err) {
-            if (err) return next(err);
-            storeUserInDatabase(user);
-        });
+    } catch (err) {
+        return next(err);
     }
+
+    user.setPassword(password, function (err) {
+        if (err) return next(err);
+        storeUserInDatabase(user);
+    });
 
     var storeUserInDatabase = function (user) {
         UserFactory.create(user, function (err, createdUser) {
