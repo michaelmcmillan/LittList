@@ -324,6 +324,7 @@ form#query > input[type="submit"] {
     margin-top:25px; 
     border-top:2px solid;
     border-color:#ddd;
+    text-align:center;
 }
 
 .feedback > .how-did-it-go > h3 {
