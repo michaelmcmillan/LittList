@@ -43,6 +43,7 @@ function ViewListController (req, res) {
                         supportedStyles: styles,
                         count:           list.getReferences().length,
                         displayFeedback: displayFeedback,
+                        notLoggedIn:     req.session.user === undefined,
                         expired:         list.hasExpired(),
                         lifetime:        list.getHumanFriendlyLifetime()
                     }); 
