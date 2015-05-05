@@ -36,5 +36,17 @@ describe('website', function () {
         var website = new Website('http://vg.no');
         website.addAuthors([new Author('Jo Nesbø'), new Author('Dagfinn Dybdahl')]);
         assert.equal(website.getAuthors().length, 2)
-   }); 
+    }); 
+
+    it('should not fail on getting hostname from slettmeg.no', function () {
+        var website = new Website('https://slettmeg.no/om-oss');
+        assert.doesNotThrow(function () {
+            website.getHostname();
+        });
+    });
+
+    it('should return hostname with the first letter in capital', function () {
+        var website = new Website('https://slettmeg.no/om-oss');
+        assert.equal(website.getHostname(), 'Slettmeg');
+    });
 });

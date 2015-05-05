@@ -8,10 +8,6 @@ function Website (url, title) {
     var authors = [];
     var publicationDate;
     
-    this.isWebsite = function (url) {
-         
-    }
-
     this.getHostname = function () {
         var hostname = validator.parse(url).hostname;
         return hostname.charAt(0).toUpperCase() + 
