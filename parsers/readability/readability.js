@@ -31,7 +31,7 @@ function Readability (apiKey) {
         if (apiResponse === undefined) 
             throw new Error('Ingen respons fra api\'et.');
 
-        var website = new Website();
+        var website = new Website(queryString);
         
         if (apiResponse.title !== undefined
         &&  apiResponse.title != null)
