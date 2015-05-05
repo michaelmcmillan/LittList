@@ -339,19 +339,22 @@ form#query > input[type="submit"] {
     margin-top:10px;
 }
 
-.feedback > .how-did-it-go > form > textarea {
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    width:350px;
-    padding:10px;
+.textarea, .input {
     outline:none;
     line-height: 2;
     border-radius: 3.6px;
     border-color: #ddd;
     border-style: solid;
     border-width: 1px;
+}
+
+.feedback > .how-did-it-go > form > textarea {
+    padding:10px;
+    display:block;
     font-size: 14px;
+    width:350px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .feedback > .how-did-it-go > form > button {
@@ -620,3 +623,27 @@ div#listlink > a.button[data-badge]:after {
     background-color: #60A5DA !important;
 }
 
+.page > .login, .page > .signup {
+    margin-top:25px;
+    width:500px;
+}
+
+.page > .login > h1, .page > .signup > h1 {
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.page > .login > form, .page > .signup > form {
+    margin-top:20px;
+}
+
+.page > .login > form > *, .page > .signup > form > * {
+    margin-bottom: 10px;
+}
+
+input[name="email"], input[name="password"] {
+    display:block;
+    padding:5px;
+    font-size:14px;
+    width: 250px;
+}

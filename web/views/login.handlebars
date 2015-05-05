@@ -1,0 +1,16 @@
+        {{> searchbar data}} 
+
+        <div class="page">
+            <div class="login">
+                <h1>Innlogging</h1>
+                <p>
+                    Du mister ikke listen du jobber på ved å logge inn.
+                    Den blir ganske enkelt overført til brukeren din.
+                </p>
+                <form method="post" action="/innlogging">
+                    <input class="input" type="email" name="email" placeholder="E-postadresse" required />
+                    <input class="input" type="password" name="password" placeholder="Passord" required />
+                    <button type="submit">Logg inn</button>
+                </form>
+            </div>
+        </div>

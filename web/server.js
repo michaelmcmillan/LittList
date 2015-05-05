@@ -36,6 +36,7 @@ app.engine('handlebars', handlebars({
 /* Attach ip to req */
 app.use(function (req, res, next) {
     req.ip = req.connection.remoteAddress;
+    logger.debug(req.session.user);
     next();
 });
 
@@ -54,4 +55,3 @@ process.on('SIGTERM', function () {
     logger.log('info', 'LittList is now shutting down');
     process.exit()
 });
-
