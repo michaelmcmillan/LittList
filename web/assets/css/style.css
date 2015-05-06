@@ -86,6 +86,7 @@ form#query {
 .tips > p {
     font-size:16px;
     color: #534A4A;
+    font-weight:500;
 }
 
 form#query, .tips > p {
