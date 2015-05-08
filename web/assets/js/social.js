@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function waitForLike () {
         var like = document.querySelector('.fb-like');
         like.addEventListener('mouseover', function () {
-            setTimeout(function () {
+
+            // Wait to confirm like
+            var countdown = setTimeout(function () {
                 Cookies.set('like', true, {
                     expires: new Date(2018, 0, 1) 
                 });
@@ -39,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 _paq.push(['trackEvent', 'facebook', 'liked']);
                 copyButton.style.visibility = 'initial';
             }, 6000); 
+            
+            // Stop countdown if modal gets closed
+            modal.afterClose(function () {
+                clearTimeout(countdown);
+            });
         });
     } 
     
