@@ -3,7 +3,7 @@
 <div class="list">
     
     {{#if displayFeedback}}
-        {{> feedback }}
+        {{> like }}
     {{/if}}
     
     <form method="post" action="/liste">
@@ -26,15 +26,4 @@
     </form>
     <script type="text/javascript" src="/js/ZeroClipboard.min.js"></script>
     <script type="text/javascript" src="/js/copy.js"></script>
-    <script type="text/javascript" src="/js/picoModal.js"></script>
-    <script type="text/javascript" src="/js/social.js"></script>
-    <script type="text/javascript" src="/js/cookies.min.js"></script>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/nb_NO/sdk.js#xfbml=1&version=v2.3&appId=1434843540121216";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
 </div>

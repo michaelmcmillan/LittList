@@ -621,18 +621,3 @@ div#listlink > a.button[data-badge]:after {
     background-color: #60A5DA !important;
 }
 
-.pico-content {
-    text-align:center;
-}
-
-.pico-content > h2 {
-    margin-bottom:25px;
-}
-
-.pico-content > p {
-    margin-bottom:40px;
-}
-
-a, a img {
-    outline : none;
-}
