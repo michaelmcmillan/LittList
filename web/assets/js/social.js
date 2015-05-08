@@ -43,8 +43,6 @@ function socialPayment () {
                 });
                 _paq.push(['trackEvent', 'facebook', 'liked']);
                 copyButton.style.visibility = 'initial';
-                a4.removeEventListener('mousedown');
-                modal.close(); 
                 window.location.reload(true);
             }, 6000); 
             
