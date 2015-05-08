@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 modal.close(); 
                 _paq.push(['trackEvent', 'facebook', 'liked']);
                 copyButton.style.visibility = 'initial';
-            }, 3000); 
+            }, 6000); 
         });
     } 
     
