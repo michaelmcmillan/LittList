@@ -632,3 +632,7 @@ div#listlink > a.button[data-badge]:after {
 .pico-content > p {
     margin-bottom:40px;
 }
+
+a, a img {
+    outline : none;
+}
