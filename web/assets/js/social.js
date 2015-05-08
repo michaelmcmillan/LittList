@@ -10,6 +10,10 @@ var modal = picoModal({
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    socialPayment();
+});
+
+function socialPayment () {
     var a4         = document.querySelector('div.a4');
     var copyButton = document.querySelector('button.copy');
     
@@ -37,9 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 Cookies.set('like', true, {
                     expires: new Date(2018, 0, 1) 
                 });
-                modal.close(); 
                 _paq.push(['trackEvent', 'facebook', 'liked']);
                 copyButton.style.visibility = 'initial';
+                a4.removeEventListener('mousedown');
+                modal.close(); 
+                window.location.reload(true);
             }, 6000); 
             
             // Stop countdown if modal gets closed
@@ -55,4 +61,4 @@ document.addEventListener('DOMContentLoaded', function () {
         a4.addEventListener('mousedown', socialPay);
         modal.afterCreate(waitForLike);
     }
-});
+}
