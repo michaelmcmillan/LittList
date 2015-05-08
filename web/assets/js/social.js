@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Show the modal
         modal.show();
+        _paq.push(['trackEvent', 'facebook', 'modal']);
         
         // Render like button
         FB.XFBML.parse(document.querySelector('.pico-content'));
