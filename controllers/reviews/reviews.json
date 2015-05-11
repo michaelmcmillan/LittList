@@ -95,6 +95,14 @@
             "handle": "JulieGPe",
             "picture": "/img/reviews/julie.jpeg",
             "status_id": "406394663080185856"
+        },
+        {
+            "name": "Pedgagogisk IKT Telemark",
+            "bio": "Kommune",
+            "tweet": "Lei av å knote med litteraturlister? Prøv denne generatoren: http://littlist.no",
+            "handle": "pedtelemark",
+            "picture": "/img/reviews/pedtelemark.jpg",
+            "status_id": "597677404988043264"
         }
     ]
 }
