@@ -10,6 +10,9 @@ var Wikipedia             = require('../../parsers/wikipedia/wikipedia.js');
 var SNLController         = require('./snl.js');
 var SNL                   = require('../../parsers/snl/snl.js');
 
+var NDLAController         = require('./ndla.js');
+var NDLA                   = require('../../parsers/ndla/ndla.js');
+
 var ReadabilityController = require('./readability.js');
 var Readability           = require('../../parsers/readability/readability.js');
 
@@ -28,16 +31,16 @@ function FunnelController (req, res, next) {
     var readability = new Readability();
     var wikipedia   = new Wikipedia();
     var bibsys      = new Bibsys();
+    var ndla        = new NDLA();
     var snl         = new SNL();
     
     // Determine what kind of query it is 
-    /*if (wikipedia.isWikipediaURL(req.query.q))
-        WikipediaController(req, res, next);
-
-    else*/
     if (snl.isSNLURL(req.query.q))
         SNLController(req, res, next);
     
+    else if (ndla.isNDLAURL(req.query.q))
+        NDLAController(req, res, next);
+
     else if (readability.isURL(req.query.q))
         ReadabilityController(req, res, next);
 
