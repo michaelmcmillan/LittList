@@ -64,4 +64,28 @@ describe('Nasjonal digital læringsarena', function () {
         '</div>');
         assert.equal(node.getAuthors().length, 3);
     });
+
+    it('should extract publication date of a resource with pubdate', function () {
+        var ndla = new NDLA();
+        var node = ndla.parse('<div id="edit-dates" class="rs_skip">' + 
+            '<b>Publisert:</b> 12.05.2010 (21:38)' +
+        '</div>');
+        assert.equal(node.getPublicationDate().date(), '12');
+    });
+
+    it('should extract publication date of a resource with pubdate and modified date', function () {
+        var ndla = new NDLA();
+        var node = ndla.parse('<div id="edit-dates" class="rs_skip">' + 
+            '<b>Publisert:</b> 10.05.2010 (21:38), ' +
+            '<b>Oppdatert:</b> 06.05.2015 (08:22) ' +
+        '</div>');
+        assert.equal(node.getPublicationDate().date(), 10);
+    });
+
+    it('should simply move on if no publication date is present', function () {
+        var ndla = new NDLA();
+        var node = ndla.parse('<div id="edit-dates" class="rs_skip">' + 
+        '</div>');
+        assert.equal(node.getPublicationDate(), undefined);
+    });
 });
