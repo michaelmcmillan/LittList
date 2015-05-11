@@ -32,6 +32,7 @@ npm run-script integration-test
 <code>config.js</code> contains all the configuration options you need to change to get the software running. It comes with a couple of settings as default out of the box. You only need to change the database settings for whatever environment (CI, test or production) you want to run LittList in.
 
 ### Contributors
+* Michael McMillan (@michaelmcmillan)
 * Arve Seljebu (@arve0)
 
 ### Credits
