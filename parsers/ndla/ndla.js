@@ -95,7 +95,7 @@ function NDLA () {
         // Move on if there are no dates to parse
         if (dateToParse !== '') {
             var publicationDate = moment(dateToParse, 'DD.MM.YYYY (HH:mm)');
-            node.setPublicationDate(publicationDate);
+            node.setPublicationDate(publicationDate.toDate());
         }
         
         // Finally return the constructed node (or website if you will)
