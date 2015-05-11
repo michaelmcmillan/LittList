@@ -55,30 +55,26 @@ function NDLA () {
     this.appendPubdateParameter = function (url) {
         var parsedURL = URLParser.parse(url);
         
-        // If the querystring is present extract
-        // the query string
-        if (parsedURL.search != null) {
-            
-            var querystringInURL = parsedURL.search;
-            
-            // Strip the leading question-mark if present
-            if (querystringInURL.charAt(0) === '?')
-                querystringInURL = querystringInURL.substring(1);
+        // Get the current querystring
+        var querystringInURL = parsedURL.search;
+        
+        // Trim leading question-mark if it is present
+        if (querystringInURL !== null && querystringInURL.charAt(0) === '?')
+            querystringInURL = querystringInURL.substring(1);
+        
+        // Return url if it already contains the 'fag' parameter
+        var parameters = querystring.parse(querystringInURL);
+        if (parameters.fag !== undefined)
+            return url;
 
-            // If the 'fag' parameter is not set: append it
-            var parameters = querystring.parse(querystringInURL);
-            if (parameters.fag === undefined) {
-                var parametersWithFagParameter = parameters;
-                parametersWithFagParameter.fag = 8;
-                console.log(parametersWithFagParameter);
-            }
-        } 
-
-        // However, if the url does not contain a querystring
-        // we can safely append it
-        else {
-            url += '?fag=8';
-        }
+        // The 'fag' parameter is not present: so we inject it
+        parameters.fag = 8;
+        
+        // We proceed by converting the dict of parameters to a querystring
+        var parametersInQuerystringFormat = querystring.stringify(parameters);
+        
+        // And finally append it to the base url
+        url = parsedURL.path + '?' + parametersInQuerystringFormat;
 
         return url;
     }

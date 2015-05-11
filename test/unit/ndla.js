@@ -40,7 +40,7 @@ describe('Nasjonal digital læringsarena', function () {
     
     it('should not append the query parameter to retrieve pubdates if it\'s already in url with other parameters', function () {
         var ndla = new NDLA();
-        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745?&print=true&fag=8&read=false'), 'ndla.no/nb/node/2745?fag=8');
+        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745?&print=true&fag=8&read=false'), 'ndla.no/nb/node/2745?&print=true&fag=8&read=false');
     });
 
     it('should extract title from the html of a node resource', function () {
