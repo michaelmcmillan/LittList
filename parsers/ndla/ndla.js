@@ -39,7 +39,7 @@ function NDLA () {
         
         // Get the current querystring
         var querystringInURL = parsedURL.search;
-        
+        console.log(parsedURL); 
         // Trim leading question-mark if it is present
         if (querystringInURL !== null && querystringInURL.charAt(0) === '?')
             querystringInURL = querystringInURL.substring(1);
@@ -55,8 +55,8 @@ function NDLA () {
         // We proceed by converting the dict of parameters to a querystring
         var parametersInQuerystringFormat = querystring.stringify(parameters);
         
-        // And finally append it to the base url
-        url = parsedURL.path + '?' + parametersInQuerystringFormat;
+        // And finally reassemble the url 
+        url = parsedURL.protocol + '//' + parsedURL.hostname + parsedURL.path + '?' + parametersInQuerystringFormat;
 
         return url;
     }
