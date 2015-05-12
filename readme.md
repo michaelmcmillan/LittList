@@ -34,6 +34,7 @@ npm run-script integration-test
 ### Contributors
 * Michael McMillan (@michaelmcmillan)
 * Arve Seljebu (@arve0)
+* Guttorm Hveem (@ghveem)
 
 ### Credits
 A huge thanks to Rintze M. Zelle, Sebastian Karcher, Frank G. Bennett, Jr.,
