@@ -35,11 +35,17 @@ function NDLA () {
     }
 
     this.appendPubdateParameter = function (url) {
+
+        // Prepend http:// if protocol is missing
+        if (url.indexOf('http') !== 0)
+            url = 'http://' + url;
+        
+        // Parse the url fragments
         var parsedURL = URLParser.parse(url);
         
         // Get the current querystring
         var querystringInURL = parsedURL.search;
-        console.log(parsedURL); 
+        
         // Trim leading question-mark if it is present
         if (querystringInURL !== null && querystringInURL.charAt(0) === '?')
             querystringInURL = querystringInURL.substring(1);
@@ -54,7 +60,7 @@ function NDLA () {
         
         // We proceed by converting the dict of parameters to a querystring
         var parametersInQuerystringFormat = querystring.stringify(parameters);
-        
+
         // And finally reassemble the url 
         url = parsedURL.protocol + '//' + parsedURL.hostname + parsedURL.path + '?' + parametersInQuerystringFormat;
 
