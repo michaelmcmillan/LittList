@@ -28,19 +28,24 @@ describe('Nasjonal digital læringsarena', function () {
         assert.equal(ndla.isNDLAURL('ndla.no/nb/node/2745'), true);
     });
     
+    it('should prepend protocol if missing', function () {
+        var ndla = new NDLA();
+        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745').substring(0, 7), 'http://');
+    });
+
     it('should append the query parameter fag=8 to retrieve pubdates', function () {
         var ndla = new NDLA();
-        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745'), 'ndla.no/nb/node/2745?fag=8');
+        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745'), 'http://ndla.no/nb/node/2745?fag=8');
     });
 
     it('should not append the query parameter to retrieve pubdates if it\'s already in url', function () {
         var ndla = new NDLA();
-        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745?fag=8'), 'ndla.no/nb/node/2745?fag=8');
+        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745?fag=8'), 'http://ndla.no/nb/node/2745?fag=8');
     });
     
     it('should not append the query parameter to retrieve pubdates if it\'s already in url with other parameters', function () {
         var ndla = new NDLA();
-        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745?&print=true&fag=8&read=false'), 'ndla.no/nb/node/2745?&print=true&fag=8&read=false');
+        assert.equal(ndla.appendPubdateParameter('ndla.no/nb/node/2745?&print=true&fag=8&read=false'), 'http://ndla.no/nb/node/2745?&print=true&fag=8&read=false');
     });
 
     it('should extract title from the html of a node resource', function () {
