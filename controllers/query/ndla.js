@@ -29,7 +29,6 @@ function NDLAController (req, res, next) {
 
                 logger.profile('NDLA query');
                 logger.log('debug', 'NDLA returned result');
-                console.log(website);
 
                 // Store all the websites 
                 WebsiteFactory.create(website, function (err, createdWebsite) {
