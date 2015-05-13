@@ -621,3 +621,6 @@ div#listlink > a.button[data-badge]:after {
     background-color: #60A5DA !important;
 }
 
+#like {
+    display:inline-block;
+}
