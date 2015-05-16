@@ -16,13 +16,13 @@ function UpdateListController (req, res, next) {
         } 
         
         // Removing reference(s)
-        if (req.body.remove !== undefined) {
-            console.log(req.body.remove);
+        // Only if style is not changed
+        if (req.body.remove !== undefined && req.body.removed !== undefined) {
             list.removeReference(req.body.remove); 
         }
         
         // Changing the bibliography style
-        if (req.body.style !== undefined) {
+        if (req.body.style !== undefined && req.body.styled !== undefined) {
             var allowedStyleFiles = Object.keys(config.bibliography.styles.allowed);
             if (allowedStyleFiles.indexOf(req.body.style) !== -1)
                 list.setBibliographyStyle(req.body.style);
