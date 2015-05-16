@@ -16,11 +16,25 @@ function SNL () {
         }
     }; 
     
-    this.search = function (url, done) {
-        var pageTitle = this.getArticleFromURL(url);
-        var apiURL    = protocol + host + '/' + pageTitle + '.json'; 
+    this.isNBLArticle = function (url) {
+        return (url.indexOf('nbl.snl.no/') !== -1);
+    }
 
-        reqOptions.url = apiURL; 
+    this.generateURLFromQuerystring = function (url) {
+
+        var pageTitle = this.getArticleFromURL(url);
+
+        if (this.isNBLArticle(url))
+            var apiURL = protocol + 'nbl.' + host + '/' + pageTitle + '.json'; 
+        else
+            var apiURL = protocol + host + '/' + pageTitle + '.json'; 
+
+        return apiURL;
+    }
+
+    this.search = function (url, done) {
+        
+        reqOptions.url = this.generateURLFromQuerystring(url); 
         request.get(reqOptions, function (err, response, data) {
             if (err) return done(err);
             if ([404, 501].indexOf(response.statusCode) !== -1)
