@@ -9,14 +9,14 @@
     <form method="post" action="/liste">
         <div class="settings">
                 {{#if count}}
-                <button type="submit" class="remove">Fjern valgte</button>
+                <button type="submit" class="remove" name="removed" value="true">Fjern valgte</button>
                 {{/if}}
                 <select name="style">
                     {{#each supportedStyles}}
                     <option {{#if selected}} selected {{/if}} value="{{file}}">{{name}}</option>
                     {{/each}}
                 </select>
-                <button class="change-style" type="submit">Bytt referansestil</button>
+                <button class="change-style" type="submit" name="styled" value="true">Bytt referansestil</button>
                 <button class="copy">Kopier litteraturlisten</button>
         </div>
         <div class="a4">
