@@ -1,6 +1,6 @@
 [submodule "bibliographies/styles"]
 	path = bibliographies/styles
-	url = git@github.com:citation-style-language/styles.git
+	url = git@github.com:michaelmcmillan/styles.git
 [submodule "bibliographies/locales"]
 	path = bibliographies/locales
-	url = git@github.com:citation-style-language/locales.git
+	url = git@github.com:michaelmcmillan/locales.git
