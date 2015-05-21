@@ -1,4 +1,5 @@
 var validator = require('url');
+var moment    = require('moment');
 
 function Website (url, title) {
 
@@ -36,6 +37,10 @@ function Website (url, title) {
     
     this.getPublicationDate = function () {
         return publicationDate;
+    }
+
+    this.getHumanfriendlyPublicationDate = function () {
+        return moment(publicationDate).locale('nb').format('D. MMMM YYYY');
     }
 
     this.setPublicationDate = function (date) {

@@ -49,4 +49,10 @@ describe('website', function () {
         var website = new Website('https://slettmeg.no/om-oss');
         assert.equal(website.getHostname(), 'Slettmeg');
     });
+    
+    it('should have a method for formatting a humanreadable publication date in norwegian', function () {
+        var website = new Website();
+        website.setPublicationDate(new Date(2015, 5, 1));
+        assert.equal(website.getHumanfriendlyPublicationDate(), '1. juni 2015');
+    });
 });
