@@ -7,7 +7,7 @@ function ResultController (results, shouldCacheResults, req, res, next) {
     
     // This function caches and renders the html based on
     // the presence of an active session
-    var renderResultsView = function (queryString, results, cache, count) {
+    var renderResultsView = function (queryString, results, cache, referencesInListCount) {
 
         // Sort the results by id so that the results
         // are consistent when we redirect the client back.
@@ -16,13 +16,16 @@ function ResultController (results, shouldCacheResults, req, res, next) {
         });
         
         // Render the template with a callback for when its 
-        // done. The callback is there because of async fs
+        // done. The callback is there because of async fs.
         res.render('results', {
             query: queryString,
             results: results,
+            resultsCount: results.length,
+
+            // This object gets passed on to the searchbar partial.
             data: {
                 query: queryString, 
-                count: count || 0 
+                referencesInListCount: referencesInListCount || 0 
             }
         }, function (err, html) {
 
@@ -67,9 +70,9 @@ function ResultController (results, shouldCacheResults, req, res, next) {
             
             // Get the total count of references added to the
             // list. This gets passed on to the searchbar badge.
-            var count = list.getReferences().length;
+            var referencesInListCount = list.getReferences().length;
 
-            renderResultsView(queryString, results, shouldCacheResults, count); 
+            renderResultsView(queryString, results, shouldCacheResults, referencesInListCount); 
         });
     }
 }

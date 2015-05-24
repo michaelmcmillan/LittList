@@ -38,15 +38,14 @@ function ViewListController (req, res) {
                     // Finally render the list with references,
                     // the generated bibliography and supported styles
                     res.render('list', {
-                        references:      list.getReferences(),
-                        list:            bibliography,
-                        supportedStyles: styles,
-                        count:           list.getReferences().length,
-                        displayFeedback: displayFeedback,
-                        expired:         list.hasExpired(),
-                        lifetime:        list.getHumanFriendlyLifetime()
+                        references:            list.getReferences(),
+                        list:                  bibliography,
+                        supportedStyles:       styles,
+                        referencesInListCount: list.getReferences().length,
+                        displayFeedback:       displayFeedback,
+                        expired:               list.hasExpired(),
+                        lifetime:              list.getHumanFriendlyLifetime()
                     }); 
-                    console.log(list.getExpirationDate());
             });
         });
     });

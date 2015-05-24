@@ -1,5 +1,13 @@
         {{> searchbar data}} 
 
+        <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var searchCount = 0;
+            _paq.push(['setCustomUrl', document.URL + '&search_count=' + searchCount]);
+            _paq.push(['trackPageView']);
+        });
+        </script>
+
         <div class="page">
             <h3>Fant dessverre ingen resultater for søket ditt.</h3>
             </div>

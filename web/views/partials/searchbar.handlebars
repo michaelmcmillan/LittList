@@ -4,7 +4,7 @@
                 <input type="text" name="q" {{#if query}} value="{{{query}}}" {{else}} placeholder="Søk etter bøker, nettsider eller forfattere"{{/if}}>
             </form>
             <div id="listlink">
-                <a href="/liste" class="button" {{#if count}} data-badge="{{count}}" {{/if}}>Vis litteraturliste</a>
+                <a href="/liste" class="button" {{#if referencesInListCount}} data-badge="{{referencesInListCount}}" {{/if}}>Vis litteraturliste</a>
             </div>
             <div id="like">
                <img src="/img/like.png"> 
