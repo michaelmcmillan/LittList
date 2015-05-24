@@ -1,5 +1,14 @@
         {{> searchbar data}} 
         <div class="page">
+
+        <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var searchCount = 15;
+            _paq.push(['setCustomUrl', document.URL + '&search_count=' + searchCount]);
+            _paq.push(['trackPageView']);
+        });
+        </script>
+
         {{#if results}}
             <div class="entries">
                 <form id="list" action="/liste" method="post">
