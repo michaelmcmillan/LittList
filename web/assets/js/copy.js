@@ -1,3 +1,22 @@
+/* Detect selected text */
+document.querySelector('.a4').addEventListener('mouseup', function () {
+    var selectedText = getSelectedText();
+
+    if (selectedText !== '' || selectedText != null) {
+        _paq.push(['trackEvent', 'list', 'copied']);
+    }
+});
+
+function getSelectedText() {
+    if (window.getSelection) {
+        return window.getSelection().toString();
+    } else if (document.selection) {
+        return document.selection.createRange().text;
+    }
+    return '';
+}
+
+/* Zeroclipboard */
 var client = new ZeroClipboard (document.querySelector('button.copy'));
 
 document.querySelector('button.copy').addEventListener('click', function (event) {
