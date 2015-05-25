@@ -2,7 +2,7 @@
 document.querySelector('.a4').addEventListener('mouseup', function () {
     var selectedText = getSelectedText();
 
-    if (selectedText !== '' || selectedText != null) {
+    if (selectedText !== '' || selectedText.length !== 0 || selectedText != null) {
         _paq.push(['trackEvent', 'list', 'select-copied', selectedText]);
     }
 });
