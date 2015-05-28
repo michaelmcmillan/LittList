@@ -624,3 +624,17 @@ div#listlink > a.button[data-badge]:after {
 #like {
     display:inline-block;
 }
+
+.newsletter {
+    margin-top:70px;
+}
+
+.newsletter > p > a {
+    font-weight:600;
+    font-size:16px;
+}
+
+.newsletter > p > a:hover {
+    text-decoration:underline;
+}
+
