@@ -9,7 +9,7 @@ function Readability (apiKey) {
     var baseURL = '/api/content/v1/parser';
     
     this.getRequestPath = function (url) {
-        return '?url=' + url + '&token=' + apiKey; 
+        return '?url=' + encodeURIComponent(url) + '&token=' + apiKey; 
     }
    
     this.isURL = function (url) {
