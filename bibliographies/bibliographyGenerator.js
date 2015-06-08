@@ -11,8 +11,9 @@ function BibliographyGenerator (list, done) {
 
     // Find the references to the style and the locale 
     var styleFile      = list.getBibliographyStyle();
+    var localeFile     = list.getBibliographyLocale();
     var styleLocation  = config.bibliography.styles.location  + styleFile;
-    var localeLocation = config.bibliography.locales.location + 'locales-nb-NO.xml';
+    var localeLocation = config.bibliography.locales.location + localeFile;
     
     // Call the citeproc wrapper with the citations
     Citeproc(citations, styleLocation, localeLocation, function (citeproc) {
