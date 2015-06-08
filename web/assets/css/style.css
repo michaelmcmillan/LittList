@@ -371,11 +371,11 @@ form#query > input[type="submit"] {
 .settings > select {
    border-radius: 3.6px;
    background: transparent;
-   width: 150px;
+   width: 120px;
    padding: 5px 35px 5px 5px;
    font-size: 14px;
    border: 1px solid #ddd;
-   height: 34px;
+   height: 30px;
    -webkit-appearance: none;
    -moz-appearance: none;
    appearance: none;
@@ -436,16 +436,15 @@ button[name="add"], button[name="remove"] {
     background-color: #fff;
 }
 
-button.remove {
+button.remove, button.change-style {
     margin-right:25px;
 }
 
-button.change-style, button.copy, button.remove {
-    font-size:14px;
-
+button.change-style, button.change-locale, button.copy, button.remove {
+    font-size:12px;
 }
 
-select[name="style"], button.change-style, button.remove {
+select[name="style"], select[name="locale"], button.change-locale, button.change-style, button.remove {
     float:left;
 }
 
