@@ -136,7 +136,25 @@ describe('List', function () {
         var list = new List();
         assert.throws(function () {
             list.setBibliographyStyle('harvard yo give me that style');
-        });
+        }, /Style/);
+    });
+
+    it('should have .csl as the default bibliography style', function () {
+        var list = new List();
+        assert.equal(list.getBibliographyLocale(), 'locales-nb-NO.xml');
+    });
+
+    it('should be possible to set the bibliography locale as long as it is a valid filename', function () {
+        var list = new List();
+        list.setBibliographyLocale('locales-en-GB.xml');
+        assert.equal(list.getBibliographyLocale(), 'locales-en-GB.xml');
+    });
+
+    it('should throw exception if bibliography style is an invalid filename', function () {
+        var list = new List();
+        assert.throws(function () {
+            list.setBibliographyLocale('english yo give me that locale');
+        }, /Locale/);
     });
 
     it('should return days left until the list expires', function () {

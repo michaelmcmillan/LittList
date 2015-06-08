@@ -34,7 +34,6 @@ describe('listFactory', function () {
             });
         });
         
-
         it('can remove contents in an existing list', function (done) {
             ListFactory.read(1, function (err, list) {
                 assert.equal(list.getReferences().length, 1); 
@@ -66,6 +65,16 @@ describe('listFactory', function () {
                 list.setBibliographyStyle('chicago.csl');
                 ListFactory.update(list, function (err, updatedList) {
                     assert.equal(updatedList.getBibliographyStyle(), 'chicago.csl'); 
+                    done();
+                });
+            });
+        });
+
+        it('can change the bibliography locale upon update', function (done) {
+            ListFactory.read(1, function (err, list) {
+                list.setBibliographyLocale('locale-en-GB.xml');
+                ListFactory.update(list, function (err, updatedList) {
+                    assert.equal(updatedList.getBibliographyLocale(), 'locale-en-GB.xml'); 
                     done();
                 });
             });

@@ -16,7 +16,6 @@ function UpdateListController (req, res, next) {
         } 
         
         // Removing reference(s)
-        // Only if style is not changed
         if (req.body.remove !== undefined && req.body.removed !== undefined) {
             list.removeReference(req.body.remove); 
         }
@@ -27,6 +26,13 @@ function UpdateListController (req, res, next) {
             if (allowedStyleFiles.indexOf(req.body.style) !== -1)
                 list.setBibliographyStyle(req.body.style);
         }
+        
+        // Changing the bibliography locale 
+        if (req.body.locale !== undefined && req.body.localed !== undefined) {
+            var allowedLocaleFiles = Object.keys(config.bibliography.locales.allowed);
+            if (allowedLocaleFiles.indexOf(req.body.locale) !== -1)
+                list.setBibliographyLocale(req.body.locale);
+        }
 
         // Update the model with the above changes to the database
         ListFactory.update(list, function (err, list) {
@@ -35,6 +41,7 @@ function UpdateListController (req, res, next) {
             logger.log('debug', 'Updated list contents', {
                 id:      list.getId(),
                 style:   req.body.style  || null,
+                locale:  req.body.locale || null,
                 added:   req.body.add    || null,
                 removed: req.body.remove || null
             });

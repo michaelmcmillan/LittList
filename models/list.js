@@ -8,7 +8,8 @@ function List () {
     var url = crypto.randomBytes(5).toString('hex');
     var references = [];
     var created = new Date();
-    var bibliographyStyle = 'harvard1.csl';
+    var bibliographyStyle  = 'harvard1.csl';
+    var bibliographyLocale = 'locales-nb-NO.xml';
 
     this.getId = function () {
         return id; 
@@ -65,6 +66,10 @@ function List () {
             });
     }
 
+    this.getBibliographyLocale = function () {
+        return bibliographyLocale;
+    }
+
     this.getBibliographyStyle = function () {
         return bibliographyStyle;
     }
@@ -74,6 +79,13 @@ function List () {
             throw new Error('Style must end with .csl');
 
         bibliographyStyle = style;
+    }
+
+    this.setBibliographyLocale = function (locale) {
+        if (locale.substring(locale.length - 4) !== '.xml')
+            throw new Error('Locale must end with .xml');
+
+        bibliographyLocale = locale;
     }
 
     this.setCreatedAt = function (date) {
