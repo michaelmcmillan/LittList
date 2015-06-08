@@ -28,6 +28,7 @@ var ListFactory = {
             list.setId(row.id);
             list.setUrl(row.url);
             list.setBibliographyStyle(row.style);
+            list.setBibliographyLocale(row.locale);
             list.setCreatedAt(row.created_at);
             
             // Async queue
@@ -99,7 +100,8 @@ var ListFactory = {
             // If no changes has been made, simply return the list as is
             if (removed.length === 0 
             &&  added.length   === 0
-            &&  list.getBibliographyStyle() === readList.getBibliographyStyle()) {
+            &&  list.getBibliographyStyle()  === readList.getBibliographyStyle()
+            &&  list.getBibliographyLocale() === readList.getBibliographyLocale()) {
                 return self.read(list.getId(), done);
             }
 
@@ -111,6 +113,18 @@ var ListFactory = {
                 ++queue;
                 database.query('UPDATE Lists SET style = ? WHERE id = ?',
                     [list.getBibliographyStyle(), list.getId()],
+                    function (err, rows, fields) {
+                    if (err) return done(err);
+                    if (--queue === 0)
+                        return self.read(list.getId(), done);
+                });
+            }
+            
+            // Update the bibliography locale 
+            if (list.getBibliographyLocale() !== undefined) {
+                ++queue;
+                database.query('UPDATE Lists SET locale = ? WHERE id = ?',
+                    [list.getBibliographyLocale(), list.getId()],
                     function (err, rows, fields) {
                     if (err) return done(err);
                     if (--queue === 0)
@@ -156,6 +170,7 @@ var ListFactory = {
         database.query('INSERT INTO Lists SET ?', {
             url: list.getUrl(),
             style: list.getBibliographyStyle(),
+            locale: list.getBibliographyLocale(),
             created_at: list.getCreatedAt()
         }, function (err, rows, field) {
             
