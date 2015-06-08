@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-function supportedLocales (allowedStyles, localesLocation, done) {
+function supportedLocales (allowedLocales, localesLocation, done) {
      
     var locales  = [];
     
