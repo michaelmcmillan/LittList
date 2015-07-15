@@ -55,4 +55,11 @@ describe('website', function () {
         website.setPublicationDate(new Date(2015, 5, 1));
         assert.equal(website.getHumanfriendlyPublicationDate(), '1. juni 2015');
     });
+
+    it('should not crash when calling .getTitle on a website without title', function () {
+        assert.doesNotThrow(function () {
+            var website = new Website('https://slettmeg.no/om-oss');
+            website.getTitle();
+        });
+    });
 });

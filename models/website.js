@@ -10,10 +10,12 @@ function Website (url, title) {
     var publicationDate;
     
     this.getHostname = function () {
-        var hostname = validator.parse(url).hostname;
-        return hostname.charAt(0).toUpperCase() + 
-               hostname.slice(1)
-               .substring(0, hostname.lastIndexOf('.') - 1);
+        if (url !== undefined) {
+            var hostname = validator.parse(url).hostname;
+            return hostname.charAt(0).toUpperCase() + 
+                   hostname.slice(1)
+                   .substring(0, hostname.lastIndexOf('.') - 1);
+        }
     }
     
     this.addAuthor = function (author) {
@@ -66,8 +68,10 @@ function Website (url, title) {
     this.getTitle = function () {
         if (title !== undefined)
             return title;
-        else
+        else if (this.getHostname() !== undefined)
             return this.getHostname();
+        else
+            return undefined;
     }
 }
 
