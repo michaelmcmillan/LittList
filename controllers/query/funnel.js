@@ -13,6 +13,9 @@ var SNL                   = require('../../parsers/snl/snl.js');
 var NDLAController         = require('./ndla.js');
 var NDLA                   = require('../../parsers/ndla/ndla.js');
 
+var StudiewebController    = require('./studieweb.js');
+var Studieweb              = require('../../parsers/studieweb/studieweb.js');
+
 var ReadabilityController = require('./readability.js');
 var Readability           = require('../../parsers/readability/readability.js');
 
@@ -30,6 +33,7 @@ function FunnelController (req, res, next) {
     // External components we can query
     var readability = new Readability();
     var wikipedia   = new Wikipedia();
+    var studieweb   = new Studieweb();
     var bibsys      = new Bibsys();
     var ndla        = new NDLA();
     var snl         = new SNL();
@@ -40,6 +44,9 @@ function FunnelController (req, res, next) {
     
     else if (ndla.isNDLAURL(req.query.q))
         NDLAController(req, res, next);
+
+    else if (studieweb.isStudiewebURL(req.query.q))
+        StudiewebController(req, res, next);
 
     else if (readability.isURL(req.query.q))
         ReadabilityController(req, res, next);
