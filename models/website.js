@@ -4,7 +4,7 @@ var moment    = require('moment');
 function Website (url, title) {
 
     var id;
-    var url     = url;
+    var url;
     var title   = title; 
     var authors = [];
     var publicationDate;
@@ -50,6 +50,13 @@ function Website (url, title) {
     }
 
     this.setURL = function (newURL) {
+        if (newURL != null) {
+            newURL = newURL.trim();
+            if (newURL.indexOf('http://')  !== 0 
+            &&  newURL.indexOf('https://') !== 0)
+                newURL = 'http://' + newURL;
+        }
+
         url = newURL; 
     }
 
@@ -73,6 +80,8 @@ function Website (url, title) {
         else
             return undefined;
     }
+
+    this.setURL(url);
 }
 
 module.exports = Website;

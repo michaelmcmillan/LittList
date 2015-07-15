@@ -62,4 +62,35 @@ describe('website', function () {
             website.getTitle();
         });
     });
+
+    it('should append http:// if not contained in the url', function () {
+        var website = new Website();
+        website.setURL('vg.no');
+        assert.equal(website.getURL(), 'http://vg.no');
+    });
+
+    it('should not append http:// if http:// is already contained in the url', function () {
+        var website = new Website();
+        website.setURL('http://vg.no');
+        assert.equal(website.getURL(), 'http://vg.no');
+    });
+
+    it('should not append http:// if https:// is already contained in the url', function () {
+        var website = new Website();
+        website.setURL('https://vg.no');
+        assert.equal(website.getURL(), 'https://vg.no');
+    });
+
+    it('should append http:// even if leading whitespace in url', function () {
+        var website = new Website();
+        website.setURL('    vg.no');
+        assert.equal(website.getURL(), 'http://vg.no');
+    });
+
+    it('should not throw exception if undefined is provided to setURL', function () {
+        assert.doesNotThrow(function () {
+            var website = new Website();
+            website.setURL(undefined);
+        });
+    });
 });
