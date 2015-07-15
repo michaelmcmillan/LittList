@@ -49,7 +49,9 @@ function Studieweb () {
     }
 
     this.search = function (url, done) {
-        options.url = url;
+        var website = new Website(url);
+        options.url = website.getURL();
+
         request.get(options, function (err, response, data) {
             if (err) return done(err);
             if ([404, 501].indexOf(response.statusCode) !== -1)
