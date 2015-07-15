@@ -38,7 +38,8 @@ function Readability (apiKey) {
             website.setTitle(apiResponse.title);
         
         if (apiResponse.url !== undefined
-        &&  apiResponse.url != null)
+        &&  apiResponse.url != null
+        &&  queryString     != null)
             website.setURL(queryString);
 
         if (apiResponse.author !== undefined 
