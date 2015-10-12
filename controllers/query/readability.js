@@ -8,6 +8,9 @@ var ResultController = require('./result.js');
 
 function ReadabilityController (req, res, next) {
     var queryString = req.query.q;
+
+    // There seems to be a bug here with the config. It does not sync with the 
+    // production environment, thus this needs changing
     var readability = new Readability(config.components.readability.key);
         
     QueryFactory.read(queryString, 'website', function (err, cachedWebsites) {
