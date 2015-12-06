@@ -1,0 +1,38 @@
+        {{> searchbar data}} 
+
+        <div class="page">
+            <div class="reviews">
+                <h1>Hva folk sier om LittList</h1>
+                <div class="social">
+                
+                {{#each tweets}}
+                    <div class="quote twitter">
+                        <div class="profile-picture">
+                            <img src="{{picture}}">
+                        </div>
+                        <div class="account">
+                            <span class="name">{{name}}</span>
+                            <span class="handle"><a href="https://twitter.com/{{handle}}">@{{handle}}</a></span>
+                            <span class="bio">{{bio}}</span>
+                        </div>
+                        <div class="tweet">
+                            <p>{{tweet}}</p> 
+                        </div>
+                    </div>
+                {{/each}}
+                </div>
+
+                <div class="media">
+                {{#each media}}
+                    <div class="quote media">
+                        <div class="logo">
+                            <img src="{{logo}}">
+                        </div>
+                        <div class="excerpt">
+                            <p>{{excerpt}}</p> 
+                        </div>
+                    </div>
+                {{/each}}
+                </div>
+            </div>
+        </div>

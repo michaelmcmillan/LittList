@@ -1,0 +1,12 @@
+        {{> searchbar data}} 
+
+        <div class="page">
+            <div class="error">
+                <h3>{{title}}</h3>
+                <p>{{message}}</p>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            _paq.push(['trackEvent', 'error', '{{title}}', '{{message}}']);
+        </script>

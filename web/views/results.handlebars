@@ -1,0 +1,46 @@
+        {{> searchbar data}} 
+        <div class="page">
+
+        <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var searchCount = {{resultsCount}};
+            _paq.push(['setCustomUrl', document.URL + '&search_count=' + searchCount]);
+            _paq.push(['trackPageView']);
+        });
+        </script>
+
+        {{#if results}}
+            <div class="entries">
+                <form id="list" action="/liste" method="post">
+                    {{#each results}}    
+                        <div class="entry">
+                            <div class="controls">
+                            {{#if isInList}}
+                                <button name="remove" value="{{getId}}">Fjern</button>
+                            {{else}}
+                                <button name="add"    value="{{getId}}">Legg til</button>
+                            {{/if}}
+                            </div>
+
+                            <div class="meta">
+                                <h2 class="title">{{getTitle}}</h2>
+
+                                {{#if getPublisher}}<span class="publisher">Forlag: {{getPublisher}}</span>{{/if}}
+                                {{#if getPublicationPlace}}<span class="publication-place">Utgivelsessted: {{getPublicationPlace}}</span>{{/if}}
+                                {{#if getPublicationDate}}<span class="publication-date">Publiseringsdato: {{getHumanfriendlyPublicationDate}}</span>{{/if}}
+                                {{#if getURL}}<span class="url">URL: {{getURL}}</span>{{/if}}
+                                {{#if getPublicationYear}}<span class="issued">Utgitt: {{getPublicationYear}}</span>{{/if}}
+                                {{#if getEdition}}<span class="edition">Utgave: {{getEdition}}</span>{{/if}}
+                                {{#if getISBN}}<span class="isbn">ISBN: {{getISBN}}</span>{{/if}}
+                                <p>
+                                    {{#each getAuthors}}
+                                        {{getForename}} {{getSurname}}, 
+                                    {{/each}}
+                                </p>
+                            </div>
+                        </div>
+                    {{/each}}
+                </form>
+            </div>
+            {{/if}}
+        </div>

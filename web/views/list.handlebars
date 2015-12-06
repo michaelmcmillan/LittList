@@ -1,0 +1,39 @@
+{{> searchbar }}
+
+<div class="list">
+    
+    {{#if displayFeedback}}
+        {{> like }}
+    {{/if}}
+    
+    <form method="post" action="/liste">
+        <div class="settings">
+
+                {{#if referencesInListCount}}
+                <button type="submit" class="remove" name="removed" value="true">Fjern valgte</button>
+                {{/if}}
+
+                <select name="style">
+                    {{#each supportedStyles}}
+                    <option {{#if selected}} selected {{/if}} value="{{file}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <button class="change-style" type="submit" name="styled" value="true">Bytt referansestil</button>
+
+                <select name="locale">
+                    {{#each supportedLocales}}
+                    <option {{#if selected}} selected {{/if}} value="{{file}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <button class="change-locale" type="submit" name="localed" value="true">Bytt språk</button>
+
+                <button class="copy">Kopier litteraturlisten</button>
+        </div>
+        <div class="a4">
+                <h2>Litteraturliste</h2>
+                {{{list}}}
+        </div>
+    </form>
+    <script type="text/javascript" src="/js/ZeroClipboard.min.js"></script>
+    <script type="text/javascript" src="/js/copy.js"></script>
+</div>

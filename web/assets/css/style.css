@@ -1,0 +1,639 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: /*#f7f7f7*/ white;
+    font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', 'Open Sans', FreeSans, Arial, sans-serif;
+}
+
+button, .button {
+    outline: 0;
+    line-height:2;
+    border-radius: 3.6px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+    
+    font-size:12px;
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border-color: #ddd;
+    background-color:#fff;
+    color: #000;
+    white-space: nowrap;
+}
+
+#menu {
+    display: block;
+    position: absolute;
+    float: right;
+    width:25px;
+    height:25px;
+    right:7px;
+    margin: 10px 10px;
+    text-align:center;
+    border-radius:2px;
+}
+
+#menu:hover {
+    background-color:gray;
+}
+
+#menu > a:hover {
+    color:white;
+}
+
+#menu > a {
+    font-size:18px;
+}
+
+a, a:visited {
+    text-decoration:none;
+    color: #2a92d4
+}
+
+.logo {
+    width: 125px;
+    height: 175px;
+}
+
+#container {
+    width: 100%;
+}
+
+.search {
+    padding-top: 100px;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+form#query {
+    margin: 0 auto;
+    width: 70%;
+    max-width:800px;
+    height: 50px;
+    border: 1px solid #cccdc8;
+    border-radius: 2px;
+    padding-left: 0.75em;
+    background: white;
+}
+
+.tips > p {
+    font-size:16px;
+    color: #534A4A;
+    font-weight:500;
+}
+
+form#query, .tips > p {
+    margin-top:45px;
+}
+
+form#query > input[name="q"] {
+    display: inline-block;
+    font-size: 1.1em;
+    outline: none;
+    border: none;
+    width: 75%;
+    height: 100%;
+}
+
+.searchbar > form#query > input[name="q"] {
+    width:100%;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+form#query > button[type="submit"] {
+    background-color: #60A5DA;
+    color:#fff;
+    width: 15%;
+    font-size:16px;
+}
+
+form#query > button[type="submit"]:hover {
+    background-color: #2A92D4;
+}
+
+.searchbar {
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.searchbar > form#query {
+    width: 400px;
+    float: left;
+}
+
+.searchbar > a > .logo {
+    margin-left: 25px;
+    margin-top: 15px;
+    width: 50px;
+    height: 50px;
+    display:inline-block;
+    float: left;
+}
+
+.searchbar > form#query {
+    display:inline-block;
+    height: 35px;
+    margin: 25px;
+}
+
+form#query > input[type="submit"] {
+    display:inline-block;
+}
+
+.tips {
+    margin-top:10px;
+}
+
+.tips > span {
+    cursor: pointer;
+    color: gray;
+    font-size: 25px;
+}
+
+.tips > span.active {
+    color: black;
+}
+
+.entries, .error {
+    margin-top:25px;
+    width: 66.6%;
+}
+
+.error {
+    font-size:18px;
+}
+
+.entry > .controls {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    float:left;
+    margin-right: 30px;
+}
+
+.entries > .entry {
+    margin-bottom: 25px;
+}
+
+.entry {
+    cursor:pointer;
+    padding:10px;
+    padding-left:0px;
+}
+
+.entry > .meta {
+    min-height: 60px;
+    display:inline-block;
+    width:75%;
+}
+
+.meta > .title {
+    font-size:16px;
+    font-weight:500;
+}
+
+.meta > span {
+    display: block;
+}
+
+.entries {
+    display:inline-block;
+    float:left;
+}
+
+.testimonials {
+    background-color: #f7f7f7;
+    position: absolute;
+    bottom: 0;
+    padding: 25px 0 0 0;
+    width: 100%;
+    text-align:center;
+}
+
+.testimonials > h4 {
+    padding-top:25px;
+    font-size:14px;
+    font-weight:300;
+    color: #808080;
+}
+
+.testimonial {
+    margin:0 auto;
+    display:inline-block;
+    height:80px;
+    width: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.testimonials > h3 {
+    font-weight: 200;
+    color: #9a9a9a;
+    text-align:center;
+    font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', 'Open Sans', FreeSans, Arial, sans-serif;
+}
+
+#studenttorget.testimonial {
+    background: url('/img/testimonials/studenttorget_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
+}
+
+#studenttorget.testimonial:hover {
+    background-position: 0 -60px;
+}
+
+#universitetsavisa.testimonial {
+    background: url('/img/testimonials/universitetsavisa_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
+}
+
+#universitetsavisa.testimonial:hover {
+    background-position: 0 -60px;
+}
+
+#gemini.testimonial {
+    background: url('/img/testimonials/gemini_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
+}
+
+#gemini.testimonial:hover {
+    background-position: 0 -60px;
+}
+
+#oblad.testimonial {
+    background: url('/img/testimonials/oblad_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
+}
+
+#oblad.testimonial:hover {
+    background-position: 0 -60px;
+}
+
+#norskundervisning.testimonial {
+    background: url('/img/testimonials/norskundervisning_sprite.png') no-repeat top left;
+    height: 60px; 
+    background-position: 0 0; 
+}
+
+#norskundervisning.testimonial:hover {
+    background-position: 0 -60px;
+}
+
+.page {
+    margin-left:100px;
+}
+
+.list {
+    background-color: #f7f7f7;
+}
+
+.feedback {
+    padding-top:25px;
+    width:500px;
+    margin:0 auto;
+}
+
+.feedback > .header {
+    text-align:center;
+}
+
+.feedback > .header > h1 {
+    font-size:32px;
+    font-weight:500;
+}
+
+.feedback > .header > h2 {
+    font-size:16px;
+    font-weight:500;
+}
+
+.feedback > .how-did-it-go {
+    margin-top:25px; 
+    border-top:2px solid;
+    border-color:#ddd;
+    text-align:center;
+}
+
+.feedback > .how-did-it-go > h3 {
+    margin-top:25px;
+    text-align:center;
+    margin-bottom:10px;
+    font-size:20px;
+    font-weight:500;
+}
+.feedback > .how-did-it-go > form {
+    text-align:center;
+    margin-top:10px;
+}
+
+.feedback > .how-did-it-go > form > textarea {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width:350px;
+    padding:10px;
+    outline:none;
+    line-height: 2;
+    border-radius: 3.6px;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 14px;
+}
+
+.feedback > .how-did-it-go > form > button {
+    height:35px;
+    width:200px;
+    font-size:14px;
+}
+
+.settings {
+    text-align:right;
+    max-width: 790px;
+    margin: 0px auto 20px;
+    padding-top:100px;
+}
+
+.settings > select {
+   border-radius: 3.6px;
+   background: transparent;
+   width: 120px;
+   padding: 5px 35px 5px 5px;
+   font-size: 14px;
+   border: 1px solid #ddd;
+   height: 30px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background: url(/img/arrow-down.png) 96% / 15% no-repeat #fff;
+   outline: none;
+}
+
+/*target Internet Explorer 9 and Internet Explorer 10:*/
+@media screen and (min-width:0\0) { 
+    select {
+        background:none;
+        padding: 5px;
+    }
+}
+
+.a4 {
+    padding: 50px 60px;
+    border: 1px solid #d4d4d4;
+    background-color:white;
+    box-shadow: 0 0 2px rgba(0,0,0,.15);
+    max-width: 670px;
+    min-height: 1000px;
+    margin: 0px auto 0px;
+    font-family: 'Times New Roman';
+    line-height: 1.5em;
+}
+
+.a4 > * > *, .a4 > h2 {
+    font-weight:200; 
+}
+
+
+button:hover {
+    background-color: #fff;
+}
+
+button[name="add"], button[name="remove"] {
+    width: 60px;
+}
+
+.controls > button[name="add"], button.copy {
+    color: white;
+    border-color: #4495d4;
+    background-color: #60A5DA;
+}
+
+.controls > button[name="add"]:hover, button.copy:hover {
+    background-color: #3F90CF;
+}
+
+.controls > button[name="remove"] {
+    border-color: #ddd;
+    background-color:#fafafa;
+    color: #000;
+}
+
+.controls > button[name="remove"]:hover {
+    background-color: #fff;
+}
+
+button.remove, button.change-style {
+    margin-right:25px;
+}
+
+button.change-style, button.change-locale, button.copy, button.remove {
+    font-size:12px;
+}
+
+select[name="style"], select[name="locale"], button.change-locale, button.change-style, button.remove {
+    float:left;
+}
+
+div#listlink {
+    display: inline-block;
+    margin:25px;
+}
+
+div#listlink > a.button {
+    display:inline-block;
+    position: relative;
+    font-weight:300;
+    font-size:15px;
+    border-color: #4495d4;
+    background-color: #60A5DA;
+    color:#fff;
+    width:150px;
+    height:30px;
+    text-align:center;
+}
+
+div#listlink > a.button:hover {
+    background-color: #3F90CF;
+}
+
+div#listlink > a.button[data-badge]:after {
+    content:attr(data-badge);
+    position:absolute;
+    top:-10px;
+    right:-10px;
+    font-size:.7em;
+    background:#fafafa;
+    color:#000;
+    width:18px;height:18px;
+    text-align:center;
+    line-height:18px;
+    border-radius:50%;
+    box-shadow:0 0 1px #333;
+}
+
+.count {
+    float: right;
+    background: #e74c3c;
+    width: 2em;
+    border-radius: 50%;
+    font-size: 0.75em;
+    line-height: 2;
+    text-align: center;
+}
+
+.csl-entry > div.manage {
+    display: inline-block;
+    float: left;
+    height:50px;
+    width:50px;
+    margin-left:-50px;
+}
+
+.csl-entry > div { 
+  display: inline;
+}
+
+.csl-entry {
+    margin-right: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    /*
+    cursor:default;
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select: none; 
+    */
+}
+
+.csl-entry > div.csl-indent {
+  display: block;
+  padding-top: 1em;
+  padding-left: 1em;
+}
+
+
+.page > .reviews {
+    margin-top:25px;
+    margin-bottom:25px;
+    height:1000px;
+    width:800px;
+}
+
+.reviews > .social {
+    width:50%;
+    margin-top:20px;
+    float:left;
+    display:inline-block;
+}
+
+.reviews > .media {
+    margin-left:10%;
+    width:40%;
+    margin-top:20px;
+    display:inline-block;
+}
+
+.quote {
+    margin-bottom:40px;
+}
+
+.media > .logo {
+    margin-right:10px;
+    height:initial;
+    margin-bottom:20px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.media > .logo > img  {
+    height:50px;
+}
+
+.twitter > .tweet > p, .media > .excerpt > p {
+    font-style:italic;
+}
+
+.twitter > .profile-picture {
+    display:inline-block;
+    float:left;
+    margin-right:10px;
+}
+
+.twitter > .profile-picture > img {
+    width:50px;
+}
+
+.twitter > .account {
+    display:inline-block;
+    width:240px;
+    font-size:14px;
+}
+
+.twitter > .tweet {
+    margin-top:20px;
+    margin-left:60px;
+}
+
+.twitter > .account > span {
+    display:block;
+}
+
+.page > .reviews > h1 {
+    font-size:20px;
+}
+
+.page > .posts {
+    margin-top:25px;
+    margin-bottom:25px;
+    width:500px;
+}
+
+.post > .meta > .title {
+    font-size:20px;
+}
+
+.post > .content {
+    margin-top:15px;
+    line-height:1.5em;
+}
+
+.post > .content > p {
+    margin-top:10px;
+}
+
+.github-fork-ribbon {
+    background-color: #60A5DA !important;
+}
+
+#like {
+    display:inline-block;
+}
+
+.newsletter {
+    margin-top:70px;
+}
+
+.newsletter > p > a {
+    font-weight:600;
+    font-size:16px;
+}
+
+.newsletter > p > a:hover {
+    text-decoration:underline;
+}
+

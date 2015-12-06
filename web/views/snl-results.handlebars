@@ -1,0 +1,12 @@
+        {{> searchbar}} 
+
+        <div class="entries">
+            <div class="entry">
+                <h2 class="title">{{results.title}} {{results.pubDate}}</h2>
+                <p>
+                    {{#each results.authors}}    
+                        {{getForename}} {{getSurname}}, 
+                    {{/each}}
+                </p>
+            </div>
+        </div>
