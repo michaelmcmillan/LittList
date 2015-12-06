@@ -8,11 +8,11 @@ class TestBook(unittest.TestCase):
         assert book.title == 'Unknown title'
 
     def test_raises_error_if_title_is_only_whitespace(self):
-        with self.assertRaisesRegexp(TypeError, 'empty'):
+        with self.assertRaisesRegex(TypeError, 'empty'):
             book = Book()
             book.title = ' '
 
     def test_raises_error_if_title_is_empty(self):
-        with self.assertRaisesRegexp(TypeError, 'empty'):
+        with self.assertRaisesRegex(TypeError, 'empty'):
             book = Book()
             book.title = ''
