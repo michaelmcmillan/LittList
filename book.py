@@ -1,9 +1,7 @@
 class BookTitle(object):
 
-    def __init__(self, text = None):
-        if text is None:
-            self._text = 'Unknown title'
-        elif self.is_text_valid(text):
+    def __init__(self, text=None):
+        if self.is_text_valid(text):
             self._text = text
 
     def is_text_valid(self, text):
@@ -17,7 +15,7 @@ class BookTitle(object):
 class Book(object):
 
     def __init__(self):
-        self._title = BookTitle()
+        self._title = BookTitle('Unknown title')
 
     @property
     def title(self):
