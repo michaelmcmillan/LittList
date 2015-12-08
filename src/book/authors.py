@@ -5,16 +5,16 @@ class Authors:
 
     def add(self, author):
         if isinstance(author, list):
-            self.add_multiple(author)
+            self._add_multiple(author)
         else:
-            self.add_single(author)
+            self._add_single(author)
 
-    def add_single(self, author):
+    def _add_single(self, author):
         if author in self._authors:
             raise ValueError('Author already added.')
         self._authors.append(author)
 
-    def add_multiple(self, authors):
+    def _add_multiple(self, authors):
         for author in authors:
             self.add(author)
 
