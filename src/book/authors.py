@@ -1,4 +1,4 @@
-class AuthorList:
+class Authors:
 
     def __init__(self, authors=None):
         self._authors = authors or []

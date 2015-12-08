@@ -1,12 +1,12 @@
 from title import Title
-from author_list import AuthorList
+from authors import Authors
 from publication_date import PublicationDate
 
 class Book:
 
     def __init__(self):
         self._title = Title('Unknown title')
-        self._authors = AuthorList([])
+        self._authors = Authors([])
         self._publication_date = PublicationDate()
 
     @property
