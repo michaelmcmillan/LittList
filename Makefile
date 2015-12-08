@@ -1,14 +1,15 @@
 BIN="./venv/bin"
 PYTHON="$(BIN)/python3.5"
 PYLINT="$(BIN)/pylint"
+PIP="$(BIN)/pip3.5"
 TEST_DIR="./test"
 SRC_DIR="./src"
 TEST_FILES="*_test.py"
-REQUIREMENTS="./requirements.txt"
+REQUIREMENTS="./.requirements.txt"
 LINT_CONFIG="./tests/lint/pylint.rc"
 
 install:
-	@pip install -r $(REQUIREMENTS) 
+	@$(PIP) install -r $(REQUIREMENTS) 
 
 test: unit-test clean
 
