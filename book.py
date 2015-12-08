@@ -1,4 +1,4 @@
-class BookTitle(object):
+class BookTitle:
 
     def __init__(self, text=None):
         if self.is_text_valid(text):
@@ -12,7 +12,7 @@ class BookTitle(object):
     def __str__(self):
         return self._text
 
-class Book(object):
+class Book:
 
     def __init__(self):
         self._title = BookTitle('Unknown title')
