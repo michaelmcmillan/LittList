@@ -19,12 +19,12 @@ unit-test: export PYTHONDONTWRITEBYTECODE="false"
 unit-test:
 	@$(PYTHON) -m unittest discover -s $(TEST_DIR) -p $(TEST_FILES) 
 
+lint: export PYTHONDONTWRITEBYTECODE="false"
 lint:
 	@$(PYLINT) --rcfile $(LINT_CONFIG) src/*/*
 
 clean:
 	@find . -name '.DS_Store' -delete
-	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
 
 .PHONY: test install
