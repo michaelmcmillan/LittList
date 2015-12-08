@@ -20,4 +20,4 @@ clean:
 	@find . -name '*.pyc' -delete
 	@rm -rf __pycache__
 
-.PHONY: test install serve
+.PHONY: test install
