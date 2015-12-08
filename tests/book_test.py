@@ -16,3 +16,8 @@ class TestBook(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, 'empty'):
             book = Book()
             book.title = ''
+
+    def test_title_encodes_html_characters(self):
+        book = Book()
+        book.title = '<b>The Great Gatsby</b>'
+        assert book.title == '&lt;b&gt;The Great Gatsby&lt;/b&gt;' 

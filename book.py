@@ -1,3 +1,5 @@
+from html import escape
+
 class BookTitle:
 
     def __init__(self, text=None):
@@ -10,7 +12,7 @@ class BookTitle:
         return True
 
     def __str__(self):
-        return self._text
+        return escape(self._text)
 
 class Book:
 
