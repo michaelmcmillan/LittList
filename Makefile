@@ -18,6 +18,6 @@ lint:
 
 clean:
 	@find . -name '*.pyc' -delete
-	@rm -rf __pycache__
+	@find . -name '__pycache__' -delete
 
 .PHONY: test install
