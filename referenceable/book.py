@@ -1,5 +1,18 @@
 from html import escape
 
+class Book:
+
+    def __init__(self):
+        self._title = BookTitle('Unknown title')
+
+    @property
+    def title(self):
+        return str(self._title)
+
+    @title.setter
+    def title(self, text):
+        self._title = BookTitle(text)
+
 class BookTitle:
 
     def __init__(self, text=None):
@@ -13,16 +26,3 @@ class BookTitle:
 
     def __str__(self):
         return escape(self._text)
-
-class Book:
-
-    def __init__(self):
-        self._title = BookTitle('Unknown title')
-
-    @property
-    def title(self):
-        return str(self._title)
-
-    @title.setter
-    def title(self, text):
-        self._title = BookTitle(text)
