@@ -1,4 +1,4 @@
-from .title import Title
+from title import Title
 
 class Book:
 
@@ -12,4 +12,3 @@ class Book:
     @title.setter
     def title(self, text):
         self._title = Title(text)
-
