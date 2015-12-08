@@ -8,7 +8,7 @@ install:
 test: unit-test clean
 
 unit-test:
-	@python -B -m unittest discover -s tests -p $(TESTS)
+	@python3 -m unittest discover -s tests -p $(TESTS) 
 
 lint:
 	@pylint --rcfile $(LINT_CONFIG) book.py
