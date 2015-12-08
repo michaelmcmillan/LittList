@@ -22,6 +22,7 @@ lint:
 	@$(PYLINT) --rcfile $(LINT_CONFIG) src/*/*
 
 clean:
+	@find . -name '.DS_Store' -delete
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
 
