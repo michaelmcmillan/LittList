@@ -1,7 +1,6 @@
-BIN="./venv/bin"
-PYTHON="$(BIN)/python3.5"
-PYLINT="$(BIN)/pylint"
-PIP="$(BIN)/pip3.5"
+PYTHON=$(shell which python3)
+PYLINT=$(shell which pylint)
+PIP=$(shell which pip3.5)
 TEST_DIR="./test"
 SRC_DIR="./src"
 TEST_FILES="*_test.py"
