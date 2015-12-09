@@ -1,6 +1,2 @@
-astroid==1.4.1
-colorama==0.3.3
-lazy-object-proxy==1.2.1
-pylint==1.5.1
-six==1.10.0
-wrapt==1.10.5
+isbnlib==3.5.7
+wheel==0.26.0
