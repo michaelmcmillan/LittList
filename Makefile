@@ -5,13 +5,16 @@ TEST_DIR="./test"
 SRC_DIR="./src"
 TEST_FILES="*_test.py"
 REQUIREMENTS="./.requirements.txt"
-LINT_CONFIG="./test/lint/pylint.rc"
+LINT_CONFIG="./.pylint.rc"
 MODULES=$(shell find $(SRC_DIR)/* -type d | xargs | sed -e 's/ /:/g')
 
 install:
 	@$(PIP) install -r $(REQUIREMENTS) 
 
 test: unit-test clean
+
+lol-test:
+	@$(PYTHON) $(TEST_DIR)/runtests.py
 
 unit-test: export PYTHONPATH=$PYTHONPATH:$(MODULES)
 unit-test: export PYTHONDONTWRITEBYTECODE="false"
