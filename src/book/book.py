@@ -1,3 +1,4 @@
+from isbn import ISBN
 from title import Title
 from authors import Authors
 from publisher import Publisher
@@ -6,10 +7,19 @@ from publication_date import PublicationDate
 class Book:
 
     def __init__(self):
+        self._isbn = ISBN()
         self._title = Title('Unknown title')
         self._authors = Authors()
         self._publisher = Publisher('Unknown publisher')
         self._publication_date = PublicationDate()
+
+    @property
+    def isbn(self):
+        return self._isbn.number
+
+    @isbn.setter
+    def isbn(self, number):
+        self._isbn = ISBN(number)
 
     @property
     def title(self):
