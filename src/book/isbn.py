@@ -7,7 +7,7 @@ class ISBN:
 
     @staticmethod
     def is_valid(number):
-        if number == None:
+        if number is None:
             return True
         elif not ISBN.is_properly_formatted(number):
             raise ValueError('Invalid ISBN number.')

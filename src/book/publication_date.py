@@ -7,7 +7,7 @@ class PublicationDate:
 
     @staticmethod
     def is_valid(date):
-        if date == None:
+        if date is None:
             return False
         elif PublicationDate.is_in_future(date):
             raise ValueError('Date can not be in the future.')
@@ -17,7 +17,7 @@ class PublicationDate:
     @staticmethod
     def is_in_future(date):
         return datetime.now() < date
-        
+
     @property
     def date(self):
         return self._date
