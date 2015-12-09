@@ -23,7 +23,7 @@ class Book:
 
     @property
     def title(self):
-        return str(self._title)
+        return self._title.text
 
     @title.setter
     def title(self, text):

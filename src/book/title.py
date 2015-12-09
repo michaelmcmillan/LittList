@@ -21,5 +21,6 @@ class Title:
     def is_too_long(self, text):
         return len(text) > self.max_length
 
-    def __str__(self):
+    @property
+    def text(self):
         return escape(self._text)
