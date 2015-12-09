@@ -3,7 +3,7 @@ from book import Book
 
 class TestBook(unittest.TestCase):
 
-    def test_default_title_is_unknown(self):
+    def test_default_is_unknown(self):
         book = Book()
         assert book.title == 'Unknown title'
 
@@ -17,17 +17,17 @@ class TestBook(unittest.TestCase):
             book = Book()
             book.title = ''
 
-    def test_title_encodes_html_characters(self):
+    def test_encodes_html_characters(self):
         book = Book()
         book.title = '<b>The Great Gatsby</b>'
         assert book.title == '&lt;b&gt;The Great Gatsby&lt;/b&gt;' 
 
-    def test_title_can_contain_weird_utf8_characters(self):
+    def test_can_contain_weird_utf8_characters(self):
         book = Book()
         book.title = 'Một ngày tốt lành, thế giới!'
         assert len(book.title) == 28
 
-    def test_title_can_not_be_longer_than_max_length_threshold(self):
+    def test_can_not_be_longer_than_max_length_threshold(self):
         with self.assertRaisesRegex(ValueError, 'long'):
             book = Book()
             book.title = 'A' * (256 + 1)

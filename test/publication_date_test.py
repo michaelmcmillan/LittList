@@ -8,6 +8,13 @@ class TestPublicationDate(unittest.TestCase):
         book = Book()
         assert book.publication_date == None
 
+    def test_does_not_raise_error_if_in_past(self):
+        book = Book()
+        today = datetime.now()
+        tomorrow = today + timedelta(days = -1)
+        book.publication_date = tomorrow
+        assert book.publication_date == tomorrow
+
     def test_raises_error_if_set_in_the_future(self):
         with self.assertRaisesRegex(ValueError, 'future'):
             book = Book()
