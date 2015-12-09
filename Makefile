@@ -13,9 +13,6 @@ install:
 
 test: unit-test clean
 
-lol-test:
-	@$(PYTHON) $(TEST_DIR)/runtests.py
-
 unit-test: export PYTHONPATH=$PYTHONPATH:$(MODULES)
 unit-test: export PYTHONDONTWRITEBYTECODE="false"
 unit-test:
