@@ -4,3 +4,4 @@ notes.md
 log/logs/*.log
 npm-debug.log
 venv
+idea
