@@ -1,6 +1,6 @@
 from isbn import ISBN
 from title import Title
-from authors import Authors
+from byline import Byline
 from publisher import Publisher
 from publication_date import PublicationDate
 
@@ -9,7 +9,7 @@ class Book:
     def __init__(self):
         self._isbn = ISBN()
         self._title = Title('Unknown title')
-        self._authors = Authors()
+        self._authors = Byline()
         self._publisher = Publisher('Unknown publisher')
         self._publication_date = PublicationDate()
 
