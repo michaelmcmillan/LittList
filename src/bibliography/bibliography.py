@@ -34,8 +34,12 @@ class Bibliography:
     def reference_in_bibliography(self, reference):
         return reference.id in self._references
 
+    @property
+    def references(self):
+        return self._references
+
     def __eq__(self, other_bibliography):
-        return other_bibliography._references == self._references
+        return other_bibliography.references == self.references
 
     def __len__(self):
         return len(self._references)
