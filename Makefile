@@ -23,7 +23,7 @@ unit-test:
 coverage: export PYTHONPATH=$PYTHONPATH:$(MODULES)
 coverage: export PYTHONDONTWRITEBYTECODE="false"
 coverage:
-	@coverage run --include=$(SRC_DIR)/* -m $(UNITTEST_COMMAND)
+	@coverage run --branch --include=$(SRC_DIR)/* -m $(UNITTEST_COMMAND)
 
 lint: export PYTHONDONTWRITEBYTECODE="false"
 lint:
