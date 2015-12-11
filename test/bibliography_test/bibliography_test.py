@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from bibliography import Bibliography
-from bibliography import DuplicateReferenceAddedError, ReferenceNotInBibliographyError
+from reference_list import ReferenceAlreadyInListError, ReferenceNotInListError
 
 class TestBibliography(unittest.TestCase):
 
@@ -26,13 +26,13 @@ class TestBibliography(unittest.TestCase):
         bibliography = Bibliography()
         reference = MagicMock()
         bibliography.add(reference)
-        with self.assertRaises(DuplicateReferenceAddedError):
+        with self.assertRaises(ReferenceAlreadyInListError):
             bibliography.add(reference)
 
     def test_removing_a_reference_that_is_not_added_raises_error(self):
         bibliography = Bibliography()
         reference = MagicMock(id=1)
-        with self.assertRaises(ReferenceNotInBibliographyError):
+        with self.assertRaises(ReferenceNotInListError):
             bibliography.remove(reference)
 
     def test_adding_multiple_references_at_once_works(self):
@@ -46,12 +46,12 @@ class TestBibliography(unittest.TestCase):
         first_book, second_book = MagicMock(), MagicMock()
         first_bibliography.add([first_book, second_book])
         second_bibliography.add([first_book, second_book])
-        assert first_bibliography == second_bibliography 
+        assert first_bibliography.references == second_bibliography.references
 
     def test_two_bibliographies_are_inequal_if_order_is_not_same(self):
         first_bibliography, second_bibliography = Bibliography(), Bibliography()
         first_book, second_book = MagicMock(), MagicMock()
         first_bibliography.add([first_book, second_book])
         second_bibliography.add([second_book, first_book])
-        assert first_bibliography != second_bibliography 
+        assert first_bibliography.references != second_bibliography.references
 
