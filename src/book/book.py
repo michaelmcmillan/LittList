@@ -9,7 +9,7 @@ class Book:
     def __init__(self):
         self._isbn = ISBN()
         self._title = Title('Unknown title')
-        self._authors = Byline()
+        self._bylines = Byline()
         self._publisher = Publisher('Unknown publisher')
         self._publication_date = PublicationDate()
 
@@ -31,11 +31,11 @@ class Book:
 
     @property
     def authors(self):
-        return self._authors
+        return self._bylines
 
     @authors.setter
     def authors(self, authors):
-        self._authors.add(authors)
+        self._bylines.add(authors)
 
     @property
     def publication_date(self):
