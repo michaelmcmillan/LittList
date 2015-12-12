@@ -40,18 +40,3 @@ class TestBibliography(unittest.TestCase):
         first_reference, second_reference = MagicMock(id=1), MagicMock(id=2)
         bibliography.add([first_reference, second_reference])
         assert len(bibliography) == 2
-
-    def test_two_bibliographies_are_equal_if_order_is_same(self):
-        first_bibliography, second_bibliography = Bibliography(), Bibliography()
-        first_book, second_book = MagicMock(), MagicMock()
-        first_bibliography.add([first_book, second_book])
-        second_bibliography.add([first_book, second_book])
-        assert first_bibliography.references == second_bibliography.references
-
-    def test_two_bibliographies_are_inequal_if_order_is_not_same(self):
-        first_bibliography, second_bibliography = Bibliography(), Bibliography()
-        first_book, second_book = MagicMock(), MagicMock()
-        first_bibliography.add([first_book, second_book])
-        second_bibliography.add([second_book, first_book])
-        assert first_bibliography.references != second_bibliography.references
-
