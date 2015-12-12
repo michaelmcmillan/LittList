@@ -13,7 +13,7 @@ install:
 	@$(PIP) install -r $(REQUIREMENTS) 
 
 test: unit-test clean
-ci-test: unit-test lint coverage clean
+ci-test: coverage lint clean
 
 unit-test: export PYTHONPATH=$PYTHONPATH:$(MODULES)
 unit-test: export PYTHONDONTWRITEBYTECODE="false"

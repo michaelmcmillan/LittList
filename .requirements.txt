@@ -1,6 +1,12 @@
+astroid==1.4.1
+colorama==0.3.3
 coverage==4.0.3
 coveralls==1.1
 docopt==0.6.2
 isbnlib==3.5.7
+lazy-object-proxy==1.2.1
+pylint==1.5.1
 requests==2.8.1
+six==1.10.0
 wheel==0.26.0
+wrapt==1.10.6
