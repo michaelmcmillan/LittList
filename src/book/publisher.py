@@ -2,7 +2,7 @@ from html import escape
 
 class Publisher:
 
-    max_length = 256
+    max_name_length = 256
 
     def __init__(self, name=None):
         if self.is_valid(name):
@@ -10,7 +10,7 @@ class Publisher:
 
     @staticmethod
     def is_valid(name):
-        if len(name) > Publisher.max_length:
+        if len(name) > Publisher.max_name_length:
             raise ValueError('Name is too long.')
         return True
 
