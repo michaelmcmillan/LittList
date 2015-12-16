@@ -1,5 +1,5 @@
 import unittest
-from book import Book
+from book.book import Book
 from unittest.mock import MagicMock
 
 class TestBook(unittest.TestCase):

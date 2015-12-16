@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timedelta
-from book import Book
+from book.book import Book
 
 class TestPublicationDate(unittest.TestCase):
 

@@ -1,5 +1,5 @@
 import unittest
-from author import Author
+from author.author import Author
 
 class TestAuthor(unittest.TestCase):
 

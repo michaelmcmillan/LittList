@@ -1,8 +1,8 @@
-from isbn import ISBN
-from title import Title
-from byline import Byline
-from publisher import Publisher
-from publication_date import PublicationDate
+from .isbn import ISBN
+from .title import Title
+from .byline import Byline
+from .publisher import Publisher
+from .publication_date import PublicationDate
 
 class Book:
 

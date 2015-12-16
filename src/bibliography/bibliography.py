@@ -1,4 +1,4 @@
-from reference_list import ReferenceList
+from .reference_list import ReferenceList
 
 class Bibliography:
 

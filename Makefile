@@ -1,12 +1,12 @@
 PYTHON=$(shell which python3)
 PYLINT=$(shell which pylint)
 PIP=$(shell which pip3.5)
-TEST_DIR="./test"
-SRC_DIR="./src"
-TEST_FILES="*_test.py"
-REQUIREMENTS="./.requirements.txt"
-LINT_CONFIG="./.pylint.rc"
-MODULES=$(shell find $(SRC_DIR)/* -type d | xargs | sed -e 's/ /:/g')
+TEST_DIR=./test
+SRC_DIR=./src
+TEST_FILES=*_test.py
+REQUIREMENTS=./.requirements.txt
+LINT_CONFIG=./.pylint.rc
+MODULES=$(shell pwd)/$(SRC_DIR)
 UNITTEST_COMMAND=unittest discover -s $(TEST_DIR) -p $(TEST_FILES)
 
 install:

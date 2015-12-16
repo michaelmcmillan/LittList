@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from bibliography import Bibliography
-from reference_list import ReferenceAlreadyInListError, ReferenceNotInListError
+from bibliography.bibliography import Bibliography
+from bibliography.reference_list import ReferenceAlreadyInListError, ReferenceNotInListError
 
 class TestBibliography(unittest.TestCase):
 
