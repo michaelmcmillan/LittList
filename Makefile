@@ -24,6 +24,7 @@ coverage: export PYTHONPATH=$PYTHONPATH:$(MODULES)
 coverage: export PYTHONDONTWRITEBYTECODE="false"
 coverage:
 	@coverage run --branch --include=$(SRC_DIR)/* -m $(UNITTEST_COMMAND)
+	@coverage report -m --skip-covered 
 
 lint: export PYTHONDONTWRITEBYTECODE="false"
 lint:
