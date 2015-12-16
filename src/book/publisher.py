@@ -20,5 +20,4 @@ class Publisher:
 
     @property
     def name(self):
-        capitalized_name = self.capitalize(self._name)
-        return escape(capitalized_name)
+        return escape(self.capitalize(self._name))
