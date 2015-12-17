@@ -33,4 +33,3 @@ class Reference:
     def publication_date(self, date):
         year, month, day = date
         self._publication_date = PublicationDate(year, month, day)
-
