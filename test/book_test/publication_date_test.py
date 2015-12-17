@@ -49,11 +49,6 @@ class TestPublicationDate(unittest.TestCase):
             book = Book()
             book.publication_date = (2008, 1, 32)
 
-    def test_invalid_date_raises_error(self):
-        with self.assertRaisesRegex(ValueError, 'invalid'):
-            book = Book()
-            book.publication_date = (2008, 2, 31)
-
     def test_year_must_be_supplied_for_month_to_work(self):
         with self.assertRaisesRegex(ValueError, 'year'):
             book = Book()
@@ -63,3 +58,15 @@ class TestPublicationDate(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'month'):
             book = Book()
             book.publication_date = (2008, None, 1)
+
+    def test_invalid_date_raises_error(self):
+        with self.assertRaisesRegex(ValueError, 'invalid'):
+            book = Book()
+            book.publication_date = (2008, 2, 31)
+
+    def test_valid_date_does_not_raise_error(self):
+        book = Book()
+        book.publication_date = (2008, 2, 28)
+        assert book.publication_date.year == 2008
+        assert book.publication_date.month == 2
+        assert book.publication_date.day == 28
