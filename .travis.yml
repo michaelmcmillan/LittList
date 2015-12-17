@@ -7,7 +7,7 @@ install:
     make install
 
 script:
-    make ci-test
+    make ci-test --keep-going
 
 after_success:
     coveralls
