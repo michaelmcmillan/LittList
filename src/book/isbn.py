@@ -5,17 +5,15 @@ class ISBN:
     def __init__(self, number=None):
         self._number = number if self.is_valid(number) else None
 
-    @staticmethod
-    def is_valid(number):
+    def is_valid(self, number):
         if number is None:
             return False
-        elif not ISBN.is_properly_formatted(number):
+        elif not self.is_properly_formatted(number):
             raise ValueError('Invalid ISBN number.')
         else:
             return True
 
-    @staticmethod
-    def is_properly_formatted(number):
+    def is_properly_formatted(self, number):
         return is_isbn10(number) or is_isbn13(number)
 
     @property

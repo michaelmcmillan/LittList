@@ -8,14 +8,12 @@ class Publisher:
         if self.is_valid(name):
             self._name = name
 
-    @staticmethod
-    def is_valid(name):
+    def is_valid(self, name):
         if len(name) > Publisher.max_name_length:
             raise ValueError('Name is too long.')
         return True
 
-    @staticmethod
-    def capitalize(text):
+    def capitalize(self, text):
         return text[0].upper() + text[1:]
 
     @property
