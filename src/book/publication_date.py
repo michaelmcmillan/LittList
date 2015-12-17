@@ -55,9 +55,12 @@ class PublicationDate:
             raise ValueError('Month can not be set without year.')
         elif day and not self.month:
             raise ValueError('Day can not be set without month.')
-        elif (self.year and self.month and self.day) \
-        and not self.is_valid_date_context(self.year, self.month, self.day):
+        elif self.all_date_components_are_defined() and not \
+        self.is_valid_date_context(self.year, self.month, self.day):
             raise ValueError('Date is invalid.')
+
+    def all_date_components_are_defined(self):
+        return self.year and self.month and self.day
 
     def is_valid_date_context(self, year, month, day):
         try:
