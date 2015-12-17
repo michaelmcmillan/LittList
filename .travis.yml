@@ -3,6 +3,9 @@ language: python
 python:
     - "3.5"
 
+before_install:
+    git submodule update --init --recursive
+
 install:
     make install
 
