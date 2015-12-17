@@ -1,12 +1,9 @@
 [submodule "src/bibliography/schema"]
     path = src/bibliography/schema
     url = https://github.com/citation-style-language/schema.git
-    branch = master
 [submodule "src/bibliography/locales"]
     path = src/bibliography/locales
     url = https://github.com/citation-style-language/locales.git
-    branch = master
 [submodule "src/bibliography/styles"]
     path = src/bibliography/styles
     url = https://github.com/citation-style-language/styles.git
-    branch = master
