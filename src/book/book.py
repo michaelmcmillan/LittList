@@ -39,11 +39,12 @@ class Book:
 
     @property
     def publication_date(self):
-        return self._publication_date.date
+        return self._publication_date
 
     @publication_date.setter
     def publication_date(self, date):
-        self._publication_date = PublicationDate(date)
+        year, month, day = date
+        self._publication_date = PublicationDate(year, month, day)
 
     @property
     def publisher(self):
