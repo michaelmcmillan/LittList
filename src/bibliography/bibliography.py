@@ -13,7 +13,3 @@ class Bibliography:
 
     def __len__(self):
         return len(self._references)
-
-    @property
-    def references(self):
-        return self._references

@@ -9,10 +9,6 @@ class ReferenceList:
     def __init__(self):
         self._references = {}
 
-    @property
-    def references(self):
-        return self._references
-
     def add(self, reference):
         if isinstance(reference, list):
             self.add_multiple(reference)
