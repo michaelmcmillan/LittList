@@ -21,3 +21,8 @@ class TestPublisher(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'long'):
             book = Book()
             book.publisher = 'P' * (256 + 1)
+
+    def test_name_can_not_be_empty(self):
+        with self.assertRaisesRegex(ValueError, 'empty'):
+            book = Book()
+            book.publisher = ''

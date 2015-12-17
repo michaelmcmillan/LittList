@@ -9,7 +9,9 @@ class Publisher:
             self._name = name
 
     def is_valid(self, name):
-        if len(name) > Publisher.max_name_length:
+        if name.isspace() or not name:
+            raise ValueError('Name is empty.')
+        elif len(name) > Publisher.max_name_length:
             raise ValueError('Name is too long.')
         return True
 
