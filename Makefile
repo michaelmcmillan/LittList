@@ -18,6 +18,7 @@ install-submodules:
 
 test: unit-test clean
 ci-test: coverage lint
+lint: pylint clean
 
 unit-test: export PYTHONPATH=$(MODULES)
 unit-test: export PYTHONDONTWRITEBYTECODE="false"
@@ -30,13 +31,13 @@ coverage:
 	@$(COVERAGE) run --branch --include=$(SRC_DIR)/* -m $(UNITTEST_COMMAND)
 	@$(COVERAGE) report -m --skip-covered 
 
-lint: export PYTHONPATH=$(MODULES)
-lint: export PYTHONDONTWRITEBYTECODE="false"
-lint:
+pylint: export PYTHONPATH=$(MODULES)
+pylint: export PYTHONDONTWRITEBYTECODE="false"
+pylint:
 	@$(PYLINT) --rcfile $(LINT_CONFIG) $(SRC_DIR)/*/**.py
 
 clean:
 	@find . -name '.DS_Store' -delete
-	@find . -name '__pycache__' -delete
+	@find . -name '__pycache__' -exec rm -rf {} \;
 
 .PHONY: test install
