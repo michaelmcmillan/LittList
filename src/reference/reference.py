@@ -1,6 +1,6 @@
 from .title import Title
 from .byline import Byline
-from .publication_date import PublicationDate
+from .publication_date.publication_date import PublicationDate
 
 class Reference:
 
