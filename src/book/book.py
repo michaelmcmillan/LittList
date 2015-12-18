@@ -7,7 +7,7 @@ class Book(Reference):
     def __init__(self):
         Reference.__init__(self)
         self._isbn = ISBN()
-        self._publisher = Publisher('Unknown publisher')
+        self._publisher = Publisher()
 
     @property
     def isbn(self):

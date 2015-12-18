@@ -3,9 +3,9 @@ from book.book import Book
 
 class TestPublisher(unittest.TestCase):
 
-    def test_default_is_unknown(self):
+    def test_default_is_none(self):
         book = Book()
-        assert book.publisher == 'Unknown publisher'
+        assert book.publisher == None
 
     def test_encodes_html_characters(self):
         book = Book()

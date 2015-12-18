@@ -5,10 +5,12 @@ class Publisher:
     max_name_length = 256
 
     def __init__(self, name=None):
-        if self.is_valid(name):
-            self._name = name
+        self._name = name \
+            if self.is_valid(name) else None
 
     def is_valid(self, name):
+        if name == None:
+            return True
         if name.isspace() or not name:
             raise ValueError('Name is empty.')
         elif len(name) > Publisher.max_name_length:
@@ -20,4 +22,5 @@ class Publisher:
 
     @property
     def name(self):
-        return escape(self.capitalize(self._name))
+        return escape(self.capitalize(self._name)) \
+            if self._name else None
