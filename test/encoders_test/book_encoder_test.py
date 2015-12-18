@@ -15,6 +15,11 @@ class TestJSONRepresentation(unittest.TestCase):
         json = BookEncoder().encode(book)
         assert '"title": "Boundaries of Dissent"' in json
 
+    def test_title_is_not_represented_if_no_title(self):
+        book = MockBook(title=None)
+        json = BookEncoder().encode(book)
+        assert '"title": "Boundaries of Dissent"' not in json
+
     def test_type_is_represented(self):
         book = MockBook()
         json = BookEncoder().encode(book)
@@ -24,6 +29,11 @@ class TestJSONRepresentation(unittest.TestCase):
         book = MockBook()
         json = BookEncoder().encode(book) 
         assert '"publisher": "Routledge"' in json
+
+    def test_publisher_is_not_represented_if_no_publisher(self):
+        book = MockBook(publisher=None)
+        json = BookEncoder().encode(book) 
+        assert '"publisher": "Routledge"' not in json
 
     def test_issued_is_not_represented_if_no_publication_date(self):
         publication_date = MagicMock(year=None, month=None, day=None)
