@@ -7,9 +7,9 @@ class PublicationDateToDateParts:
         if date.year and not date.month:
             return [[date.year]]
         elif date.year and date.month and not date.day:
-            return [[date.year],[date.month]]
+            return [[date.year], [date.month]]
         elif date.year and date.month and date.day:
-            return [[date.year],[date.month],[date.day]]
+            return [[date.year], [date.month], [date.day]]
         else:
             return None
 
@@ -34,7 +34,7 @@ class BookEncoder(JSONEncoder):
 
     def extract_issued(self, book):
         parts = self.extract_date_parts(book.publication_date)
-        return { 'date-parts': parts }
+        return {'date-parts': parts}
 
     def extract_date_parts(self, publication_date):
         return PublicationDateToDateParts.convert(publication_date)
