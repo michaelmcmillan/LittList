@@ -5,7 +5,7 @@ from .publication_date.publication_date import PublicationDate
 class Reference:
 
     def __init__(self):
-        self._title = Title('Unknown title')
+        self._title = Title()
         self._bylines = Byline()
         self._publication_date = PublicationDate()
 

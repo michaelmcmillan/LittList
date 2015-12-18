@@ -5,7 +5,7 @@ class TestBook(unittest.TestCase):
 
     def test_default_is_unknown(self):
         book = Book()
-        assert book.title == 'Unknown title'
+        assert book.title == None
 
     def test_raises_error_if_title_is_only_whitespace(self):
         with self.assertRaisesRegex(ValueError, 'empty'):
