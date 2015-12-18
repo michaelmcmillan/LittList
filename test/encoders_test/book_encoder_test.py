@@ -25,6 +25,12 @@ class TestJSONRepresentation(unittest.TestCase):
         json = BookEncoder().encode(book) 
         assert '"publisher": "Routledge"' in json
 
+    def test_issued_is_not_represented_if_no_publication_date(self):
+        publication_date = MagicMock(year=None, month=None, day=None)
+        book = MockBook(publication_date=publication_date)
+        json = BookEncoder().encode(book)
+        assert '"issued":' not in json
+
     def test_converts_year_to_2d_array(self):
         publication_date = MagicMock(year=2000, month=None, day=None)
         converted_date = PublicationDateToDateParts.convert(publication_date)

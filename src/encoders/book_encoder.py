@@ -17,24 +17,27 @@ class BookEncoder(JSONEncoder):
 
     def default(self, book):
         values = {}
-        values['title'] = self.extract_title(book)
-        values['type'] = self.extract_type(book)
-        values['publisher'] = self.extract_publisher(book)
-        values['issued'] = self.extract_issued(book)
+        self.extract_title(values, book)
+        self.extract_type(values, book)
+        self.extract_publisher(values, book)
+        self.extract_issued(values, book)
         return values
 
-    def extract_type(self, book):
-        return 'book'
+    def extract_type(self, values, book):
+        values['type'] = 'book'
 
-    def extract_title(self, book):
-        return book.title
+    def extract_title(self, values, book):
+        if book.title:
+            values['title'] = book.title
 
-    def extract_publisher(self, book):
-        return book.publisher
+    def extract_publisher(self, values, book):
+        if book.publisher:
+            values['publisher'] = book.publisher
 
-    def extract_issued(self, book):
+    def extract_issued(self, values, book):
         parts = self.extract_date_parts(book.publication_date)
-        return {'date-parts': parts}
+        if parts:
+            values['issued'] = {'date-parts': parts}
 
     def extract_date_parts(self, publication_date):
         return PublicationDateToDateParts.convert(publication_date)
