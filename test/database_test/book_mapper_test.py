@@ -1,13 +1,31 @@
 from unittest.mock import MagicMock
 import unittest
-from database.repositories.book_repository import BookRepository
 from book.book import Book
+from database.mappers.book_mapper import BookMapper
+from database.records.book_record import BookRecord
 
-class TestBookStorage(unittest.TestCase):
+class TestBookMapper(unittest.TestCase):
 
-    @unittest.skip('')
-    def test_book_can_be_stored_to_database(self):
-        book = Book()
-        book.title = "Hello world"
-        stored_book = BookRepository.create(book)
-        assert stored_book.title == "Hello world"
+    def test_returns_record_when_given_book(self):
+        book = MagicMock(title='Hello world', isbn='123456789', publisher='Aschehoug')
+        record = BookMapper.from_book(book)
+        self.assertIsInstance(record, BookRecord)
+
+    def test_returns_book_when_given_record(self):
+        record = MagicMock(title='Hello world', isbn='9783161484100', publisher='Aschehoug')
+        book = BookMapper.from_record(record)
+        self.assertIsInstance(book, Book)
+
+    def test_maps_properties_from_book_to_record(self):
+        book = MagicMock(title='Hello world', isbn='123456789', publisher='Aschehoug')
+        record = BookMapper.from_book(book)
+        assert record.title == "Hello world"
+        assert record.isbn == "123456789"
+        assert record.publisher == "Aschehoug"
+
+    def test_maps_properties_from_record_to_book(self):
+        book = MagicMock(title='Hello world', isbn='123456789', publisher='Aschehoug')
+        record = BookMapper.from_book(book)
+        assert record.title == "Hello world"
+        assert record.isbn == "123456789"
+        assert record.publisher == "Aschehoug"

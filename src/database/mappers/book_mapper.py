@@ -8,7 +8,7 @@ class BookMapper:
         book = Book()
         book.id = record.id
         book.title = record.title
-        book.isbn = '9780321534965'
+        book.isbn = record.isbn
         book.publisher = record.publisher
         return book
 
@@ -17,5 +17,5 @@ class BookMapper:
         record = BookRecord()
         record.title = book.title
         record.publisher = book.publisher
-        record.isbn = 1337
+        record.isbn = book.isbn
         return record
