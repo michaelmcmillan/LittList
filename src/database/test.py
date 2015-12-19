@@ -1,6 +1,5 @@
-from reference.reference import Reference
 from book.book import Book
-from repositories.reference_repository import ReferenceRepository
+from .repositories.book_repository import BookRepository
 
 book = Book()
 book.title = "Wow, nice pattern"
