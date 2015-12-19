@@ -1,5 +1,5 @@
 from peewee import CharField, IntegerField
-from .base_record import BaseModel
+from database.records.base_record import BaseModel
 
 class ReferenceRecord(BaseModel):
     title = CharField(null=True)

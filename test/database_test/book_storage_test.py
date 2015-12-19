@@ -1,0 +1,11 @@
+from unittest.mock import MagicMock
+import unittest
+from database.repositories.book_repository import BookRepository
+from book.book import Book
+
+class TestBookStorage(unittest.TestCase):
+
+    def test_book_can_be_stored_to_database(self):
+        book = Book()
+        book.title = "Hello world"
+        BookRepository.create(book)

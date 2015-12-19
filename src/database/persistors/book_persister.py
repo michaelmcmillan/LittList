@@ -7,7 +7,7 @@ class BookPersister:
     def insert(book):
         reference_record = ReferencePersister.insert(book)
         book_record = BookMapper.from_book(book)
-        book_record.inherits = reference_record
+        book_record.reference = reference_record
         book_record.save()
         return book_record
 
