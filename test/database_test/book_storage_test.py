@@ -8,4 +8,5 @@ class TestBookStorage(unittest.TestCase):
     def test_book_can_be_stored_to_database(self):
         book = Book()
         book.title = "Hello world"
-        BookRepository.create(book)
+        stored_book = BookRepository.create(book)
+        assert stored_book.title == "Hello world"
