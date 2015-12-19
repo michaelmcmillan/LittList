@@ -3,7 +3,8 @@ from isbnlib import is_isbn10, is_isbn13, get_canonical_isbn
 class ISBN:
 
     def __init__(self, number=None):
-        self._number = number if self.is_valid(number) else None
+        self._number = number \
+            if self.is_valid(number) else None
 
     def is_valid(self, number):
         if number is None:
