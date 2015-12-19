@@ -28,8 +28,8 @@ unit-test:
 coverage: export PYTHONPATH=$(MODULES)
 coverage: export PYTHONDONTWRITEBYTECODE="false"
 coverage:
-	@$(COVERAGE) run --branch --include=$(SRC_DIR)/**/*.py -m $(UNITTEST_COMMAND)
-	@$(COVERAGE) report -m --skip-covered 
+	@$(COVERAGE) run --branch --source=$(SRC_DIR) -m $(UNITTEST_COMMAND)
+	@$(COVERAGE) report --skip-covered -m 
 
 pylint: export PYTHONPATH=$(MODULES)
 pylint: export PYTHONDONTWRITEBYTECODE="false"
