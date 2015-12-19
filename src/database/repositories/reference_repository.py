@@ -1,26 +1,17 @@
-from .repository import Repository
+from persistors.reference_persister import ReferencePersister
+from mappers.reference_mapper import ReferenceMapper
 
-class ReferenceRepository(Repository):
+class ReferenceRepository:
 
-    table = 'reference'
-    schema = """
-    CREATE TABLE {0} (
-        id int primary key,
-        title varchar(255)
-    )
-    """.format(table)
+    @staticmethod
+    def create(reference):
+        record = ReferencePersister.insert(reference)
+        reference = ReferenceMapper.from_record(record)
+        return reference
 
-    def create(self, database, reference):
-        database.execute(
-            """INSERT INTO {0} (title) values (?)"""
-            .format(self.table), [reference.title]
-        )
+    @staticmethod
+    def read(reference_id):
+        record = ReferencePersister.select(reference_id)
+        reference = ReferenceMapper.from_record(record)
+        return reference
 
-    def setup(self, database):
-        database.execute(self.schema.format(self.table))
-
-    def tear_down(self, database):
-        database.execute(
-            """DROP TABLE IF EXISTS {0}"""
-            .format(self.table)
-        )
