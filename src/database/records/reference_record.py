@@ -1,4 +1,4 @@
-from peewee import *
+from peewee import CharField, IntegerField
 from .base_record import BaseModel
 
 class ReferenceRecord(BaseModel):

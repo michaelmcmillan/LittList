@@ -1,5 +1,5 @@
 from book.book import Book
-from .repositories.book_repository import BookRepository
+from database.repositories.book_repository import BookRepository
 
 book = Book()
 book.title = "Wow, nice pattern"

@@ -1,5 +1,5 @@
 from reference.reference import Reference
-from records.reference_record import ReferenceRecord
+from database.records.reference_record import ReferenceRecord
 
 class ReferenceMapper:
 

@@ -1,4 +1,5 @@
-from mappers.reference_mapper import ReferenceMapper
+from database.records.reference_record import ReferenceRecord
+from database.mappers.reference_mapper import ReferenceMapper
 
 class ReferencePersister:
 

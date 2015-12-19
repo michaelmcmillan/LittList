@@ -1,5 +1,5 @@
-from persistors.reference_persister import ReferencePersister
-from mappers.reference_mapper import ReferenceMapper
+from database.persistors.reference_persister import ReferencePersister
+from database.mappers.reference_mapper import ReferenceMapper
 
 class ReferenceRepository:
 

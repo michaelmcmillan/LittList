@@ -23,19 +23,18 @@ lint: pylint clean
 unit-test: export PYTHONPATH=$(MODULES)
 unit-test: export PYTHONDONTWRITEBYTECODE="false"
 unit-test:
-	@echo $(MODULES)
 	@$(PYTHON) -m $(UNITTEST_COMMAND) 
 
 coverage: export PYTHONPATH=$(MODULES)
 coverage: export PYTHONDONTWRITEBYTECODE="false"
 coverage:
-	@$(COVERAGE) run --branch --include=$(SRC_DIR)/* -m $(UNITTEST_COMMAND)
+	@$(COVERAGE) run --branch --include=$(SRC_DIR)/**/*.py -m $(UNITTEST_COMMAND)
 	@$(COVERAGE) report -m --skip-covered 
 
 pylint: export PYTHONPATH=$(MODULES)
 pylint: export PYTHONDONTWRITEBYTECODE="false"
 pylint:
-	@$(PYLINT) --rcfile $(LINT_CONFIG) $(SRC_DIR)/*/**.py
+	@$(PYLINT) --rcfile $(LINT_CONFIG) $(SRC_DIR)/*
 
 clean:
 	@find . -name '.DS_Store' -delete

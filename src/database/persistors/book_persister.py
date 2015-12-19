@@ -1,5 +1,5 @@
-from book_mapper import BookMapper
-from reference_persister import ReferencePersister
+from database.mappers.book_mapper import BookMapper
+from database.persistors.reference_persister import ReferencePersister
 
 class BookPersister:
 

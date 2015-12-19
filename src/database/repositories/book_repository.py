@@ -1,5 +1,5 @@
-from persistors.book_persister import BookPersister
-from mappers.book_mapper import ReferenceMapper
+from database.persistors.book_persister import BookPersister
+from database.mappers.book_mapper import BookMapper
 
 class BookRepository:
 
@@ -7,10 +7,10 @@ class BookRepository:
     def create(book):
         record = BookPersister.insert(book)
         book = BookMapper.from_record(record)
-        return book 
+        return book
 
     @staticmethod
     def read(book_id):
-        record = BookPersister.select(book)
+        record = BookPersister.select(book_id)
         book = BookMapper.from_record(record)
-        return book 
+        return book

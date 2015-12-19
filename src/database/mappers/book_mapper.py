@@ -1,8 +1,8 @@
-from records.book_record import BookRecord
+from database.records.book_record import BookRecord
 from book.book import Book
 
 class BookMapper:
-    
+
     @staticmethod
     def from_record(record):
         book = Book()

@@ -1,8 +1,9 @@
-from peewee import *
-from database import db
+from peewee import Model
+from database.database import db
+from database.records.reference_record import ReferenceRecord
+from database.records.book_record import BookRecord
 
 class BaseModel(Model):
-    pass
     class Meta:
         database = db
 
