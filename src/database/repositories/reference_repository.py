@@ -1,17 +1,38 @@
-from database.persistors.reference_persister import ReferencePersister
-from database.mappers.reference_mapper import ReferenceMapper
+from reference.reference import Reference
+from database.records.reference_record import ReferenceRecord
 
 class ReferenceRepository:
 
     @staticmethod
-    def create(reference):
-        record = ReferencePersister.insert(reference)
-        reference = ReferenceMapper.from_record(record)
-        return reference
+    def create(reference_model):
+        reference_record = ReferenceRepository.model_to_record(reference_model)
+        reference_record.save()
+        reference_model = ReferenceRepository.record_to_model(reference_record)
+        return reference_model
 
     @staticmethod
     def read(reference_id):
-        record = ReferencePersister.select(reference_id)
-        reference = ReferenceMapper.from_record(record)
-        return reference
+        reference_record = ReferenceRecord.get(ReferenceRecord.id == reference_id)
+        reference_model = ReferenceRepository.record_to_model(reference_record)
+        return reference_model
 
+    @staticmethod
+    def model_to_record(reference_model):
+        reference_record = ReferenceRecord()
+        reference_record.title = reference_model.title
+        reference_record.publication_year = reference_model.publication_date.year
+        reference_record.publication_month = reference_model.publication_date.month
+        reference_record.publication_day = reference_model.publication_date.day
+        return reference_record
+
+    @staticmethod
+    def record_to_model(reference_record):
+        reference_model = Reference()
+        reference_model.id = reference_record.id
+        reference_model.title = reference_record.title
+        reference_model.publication_date = (
+            reference_record.publication_year,
+            reference_record.publication_month,
+            reference_record.publication_day
+        )
+        return reference_model

@@ -4,5 +4,5 @@ from database.records.base_record import BaseRecord
 
 class BookRecord(BaseRecord):
     reference = ForeignKeyField(ReferenceRecord, related_name='inherits')
-    isbn = IntegerField(null=True)
+    isbn = CharField(null=True)
     publisher = CharField(null=True)
