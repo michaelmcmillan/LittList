@@ -1,4 +1,4 @@
-from peewee import ForeignKeyField, IntegerField, CharField
+from peewee import ForeignKeyField, CharField
 from database.records.reference_record import ReferenceRecord
 from database.records.base_record import BaseRecord
 

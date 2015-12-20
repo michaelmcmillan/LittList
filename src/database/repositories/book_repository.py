@@ -7,9 +7,14 @@ class BookRepository:
     @staticmethod
     def create(book_model):
         reference_model = ReferenceRepository.create(book_model)
-        book_record = BookRepository.model_to_record(book_model, reference_model)
+        book_record = BookRepository.model_to_record(
+            book_model, reference_model
+        )
         book_record.save()
-        book_model = BookRepository.record_to_model(book_record, reference_model)
+        book_model = BookRepository.record_to_model(
+            book_record,
+            reference_model
+        )
         return book_model
 
     @staticmethod

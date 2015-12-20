@@ -12,7 +12,9 @@ class ReferenceRepository:
 
     @staticmethod
     def read(reference_id):
-        reference_record = ReferenceRecord.get(ReferenceRecord.id == reference_id)
+        reference_record = ReferenceRecord.get(
+            ReferenceRecord.id == reference_id
+        )
         reference_model = ReferenceRepository.record_to_model(reference_record)
         return reference_model
 
@@ -20,9 +22,12 @@ class ReferenceRepository:
     def model_to_record(reference_model):
         reference_record = ReferenceRecord()
         reference_record.title = reference_model.title
-        reference_record.publication_year = reference_model.publication_date.year
-        reference_record.publication_month = reference_model.publication_date.month
-        reference_record.publication_day = reference_model.publication_date.day
+        reference_record.publication_year = \
+            reference_model.publication_date.year
+        reference_record.publication_month = \
+            reference_model.publication_date.month
+        reference_record.publication_day = \
+            reference_model.publication_date.day
         return reference_record
 
     @staticmethod
