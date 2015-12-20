@@ -1,6 +1,6 @@
 from book.book import Book
 from database.repositories.reference_repository import ReferenceRepository
-from database.records.book import BookRecord
+from database.records.book_record import BookRecord
 
 class BookRepository:
 

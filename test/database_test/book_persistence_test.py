@@ -1,7 +1,7 @@
 import unittest
 from database.database import db
 from database.repositories.book_repository import BookRepository
-from database.records.book import BookRecord
+from database.records.book_record import BookRecord
 from database.records.reference_record import ReferenceRecord
 from book.book import Book
 
