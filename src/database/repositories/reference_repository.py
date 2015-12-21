@@ -21,6 +21,8 @@ class ReferenceRepository:
     @staticmethod
     def model_to_record(reference_model):
         reference_record = ReferenceRecord()
+        if hasattr(reference_model, 'id'):
+            reference_record.id = reference_model.id
         reference_record.title = reference_model.title
         reference_record.publication_year = \
             reference_model.publication_date.year
