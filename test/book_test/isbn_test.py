@@ -8,11 +8,6 @@ class TestISBN(unittest.TestCase):
             book = Book()
             book.isbn = '01234567891'
 
-    def test_does_not_raise_exception_if_valid(self):
-        book = Book()
-        book.isbn = '978-1-56619-909-4'
-        assert not '-' in book.isbn
-
     def test_dashes_are_removed_from_isbn(self):
         book = Book()
         book.isbn = '979-10-90636-07-1'
