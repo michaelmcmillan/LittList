@@ -8,4 +8,5 @@ class BibliographyRecord(BaseRecord):
 
 class BibliographyReferenceRecord(BaseRecord):
     reference = ForeignKeyField(ReferenceRecord, related_name='references')
-    bibliography = ForeignKeyField(BibliographyRecord, related_name='bibliography')
+    bibliography = ForeignKeyField(BibliographyRecord, \
+        related_name='bibliography')

@@ -5,7 +5,7 @@ from reference.reference import Reference
 class ReferenceMapper:
 
     @classmethod
-    def to_model(self, reference_record, author_records):
+    def to_model(cls, reference_record, author_records):
         reference_model = Reference()
         reference_model.id = reference_record.id
         reference_model.title = reference_record.title
@@ -20,7 +20,7 @@ class ReferenceMapper:
         return reference_model
 
     @classmethod
-    def to_record(self, reference_model):
+    def to_record(cls, reference_model):
         reference_record = ReferenceRecord()
         reference_record.id = reference_model.id
         return reference_record
