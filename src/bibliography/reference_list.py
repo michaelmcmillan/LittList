@@ -19,20 +19,20 @@ class ReferenceList:
         if not self._reference_in_list(reference):
             raise ReferenceNotInListError()
         else:
-            del self._references[reference.id]
+            del self._references[reference]
 
     def add_single(self, reference):
         if self._reference_in_list(reference):
             raise ReferenceAlreadyInListError()
         else:
-            self._references[reference.id] = reference
+            self._references[reference] = reference
 
     def add_multiple(self, references):
         for reference in references:
             self.add(reference)
 
     def _reference_in_list(self, reference):
-        return reference.id in self._references
+        return reference in self._references
 
     def __len__(self):
         return len(self._references)

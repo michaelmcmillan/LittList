@@ -31,7 +31,7 @@ class TestBibliography(unittest.TestCase):
 
     def test_removing_a_reference_that_is_not_added_raises_error(self):
         bibliography = Bibliography()
-        reference = MagicMock(id=1)
+        reference = MagicMock()
         with self.assertRaises(ReferenceNotInListError):
             bibliography.remove(reference)
 

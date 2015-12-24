@@ -7,5 +7,5 @@ class BibliographyRecord(BaseRecord):
     created_at = DateTimeField(default=datetime.now(), null=False)
 
 class BibliographyReferenceRecord(BaseRecord):
-    reference = ForeignKeyField(ReferenceRecord)
-    bibliography = ForeignKeyField(BibliographyRecord)
+    reference = ForeignKeyField(ReferenceRecord, related_name='references')
+    bibliography = ForeignKeyField(BibliographyRecord, related_name='bibliography')
