@@ -43,30 +43,3 @@ class TestReferenceMapper(TestCase):
         author_records = [MagicMock(), MagicMock()]
         reference_model = ReferenceMapper.to_model(reference_record, author_records)
         assert len(reference_model.authors) == 2
-
-    @skip('')
-    def test_bibliography_with_one_reference_does_generate_relationship(self):
-        bibliography = Bibliography()
-        bibliography.add(MagicMock())
-        records = BibliographyMapper.to_records(bibliography)
-        assert len(records['bibliography_references']) == 1
-
-    @skip('')
-    def test_bibliography_with_two_references_generates_two_relationships(self):
-        bibliography = Bibliography()
-        bibliography.add([MagicMock(), MagicMock()])
-        records = BibliographyMapper.to_records(bibliography)
-        assert len(records['bibliography_references']) == 2
-
-    @skip('')
-    def test_bibliography_record_with_no_references_maps_to_empty_model(self):
-        bibliography_record = BibliographyRecord()
-        bibliography = BibliographyMapper.to_model(bibliography_record, [], [])
-        assert len(bibliography.references) == 0
-
-    @skip('')
-    def test_bibliography_record_with_book_reference_maps_to_model_with_reference(self):
-        bibliography_record = BibliographyRecord()
-        book_records = [MagicMock(id=1)]
-        bibliography = BibliographyMapper.to_model(bibliography_record, book_records, [])
-        assert len(bibliography.references) == 1
