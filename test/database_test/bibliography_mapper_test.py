@@ -6,6 +6,17 @@ from bibliography.bibliography import Bibliography
 
 class TestBibliographyMapper(TestCase):
 
+    def create_book_record(self):
+        return MagicMock(
+            id=1,
+            isbn='9783596302987',
+            title='Book title',
+            publisher='Aschehoug',
+            publication_year=2008,
+            publication_month=8,
+            publication_day=8
+        )
+    
     def test_bibliography_with_no_references_does_not_generate_relationship(self):
         bibliography = Bibliography()
         records = BibliographyMapper.to_records(bibliography)
@@ -30,6 +41,6 @@ class TestBibliographyMapper(TestCase):
 
     def test_bibliography_record_with_book_reference_maps_to_model_with_reference(self):
         bibliography_record = BibliographyRecord()
-        book_records = [MagicMock(id=1)]
+        book_records = [self.create_book_record()]
         bibliography = BibliographyMapper.to_model(bibliography_record, book_records, [])
         assert len(bibliography.references) == 1

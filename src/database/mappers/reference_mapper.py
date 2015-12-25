@@ -7,6 +7,15 @@ class ReferenceMapper:
     @classmethod
     def to_model(cls, reference_record, author_records):
         reference_model = Reference()
+        cls.add_attributes(
+            reference_model,
+            reference_record,
+            author_records
+        )
+        return reference_model
+
+    @classmethod
+    def add_attributes(cls, reference_model, reference_record, author_records):
         reference_model.id = reference_record.id
         reference_model.title = reference_record.title
         reference_model.publication_date = (
@@ -17,7 +26,6 @@ class ReferenceMapper:
         author_models = [AuthorMapper.to_model(author) \
             for author in author_records]
         reference_model.authors = author_models
-        return reference_model
 
     @classmethod
     def to_record(cls, reference_model):
