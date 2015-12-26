@@ -23,7 +23,6 @@ class ReferenceMapper:
     @classmethod
     def to_record(cls, reference_model):
         reference_record = ReferenceRecord()
-        reference_record.id = reference_model.id
         reference_record.title = reference_model.title
         publication_date = reference_model.publication_date
         reference_record.publication_year = publication_date.year

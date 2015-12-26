@@ -20,3 +20,6 @@ class Byline:
 
     def __len__(self):
         return len(self._authors)
+
+    def __getitem__(self, index):
+        return self._authors[index]

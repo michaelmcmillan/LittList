@@ -27,8 +27,10 @@ class BibliographyMapper:
     def to_model(cls, bibliography_record, book_records, website_records):
         bibliography_model = Bibliography()
         bibliography_model.id = bibliography_record.id
-        book_models = [BookMapper.to_model(record, []) \
-            for record in book_records]
+        book_models = [
+            BookMapper.to_model(book_record.reference, book_record, []) \
+            for book_record in book_records
+        ]
         bibliography_model.add([book_models])
         return bibliography_model
 

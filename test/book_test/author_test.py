@@ -23,3 +23,8 @@ class TestBook(unittest.TestCase):
             book = Book()
             author = MagicMock('Author')
             book.authors = [author, author]
+
+    def test_authors_can_be_fetched_by_index(self):
+        book = Book()
+        book.authors = [MagicMock(id=2, name='Author')]
+        assert book.authors[0].id == 2

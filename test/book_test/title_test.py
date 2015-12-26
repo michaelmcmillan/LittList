@@ -3,8 +3,13 @@ from book.book import Book
 
 class TestBook(unittest.TestCase):
 
-    def test_default_is_unknown(self):
+    def test_default_is_none(self):
         book = Book()
+        assert book.title == None
+
+    def test_can_be_set_to_none(self):
+        book = Book()
+        book.title = None
         assert book.title == None
 
     def test_raises_error_if_title_is_only_whitespace(self):
