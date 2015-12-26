@@ -25,9 +25,10 @@ class ReferenceMapper:
         reference_record = ReferenceRecord()
         reference_record.id = reference_model.id
         reference_record.title = reference_model.title
-        reference_record.publication_year = reference_model.publication_date.year
-        reference_record.publication_month = reference_model.publication_date.month
-        reference_record.publication_day = reference_model.publication_date.day
+        publication_date = reference_model.publication_date
+        reference_record.publication_year = publication_date.year
+        reference_record.publication_month = publication_date.month
+        reference_record.publication_day = publication_date.day
         author_records = [AuthorMapper.to_record(author) \
             for author in reference_model.authors]
 

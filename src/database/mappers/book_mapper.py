@@ -1,4 +1,5 @@
-from database.records.book_record import BookRecord 
+from database.records.book_record import BookRecord
+from database.mappers.author_mapper import AuthorMapper
 from database.mappers.reference_mapper import ReferenceMapper
 from book.book import Book
 
