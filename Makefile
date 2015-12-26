@@ -39,6 +39,6 @@ pylint:
 clean:
 	-@find . -name '.DS_Store' -delete
 	-@find . -name '*.pyc' -delete
-	-@find . -name '__pycache__' -exec rm -rf {} \;
+	-@find . -name '__pycache__' -delete
 
 .PHONY: test install
