@@ -13,4 +13,5 @@ class Name:
 
     @property
     def text(self):
-        return self._name.strip()
+        name = self._name.strip()
+        return name
