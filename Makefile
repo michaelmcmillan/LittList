@@ -23,7 +23,6 @@ lint: pylint clean
 unit-test: export PYTHONPATH=$(MODULES)
 unit-test: export PYTHONDONTWRITEBYTECODE="false"
 unit-test:
-	@echo $(MODULES)
 	@$(PYTHON) -m $(UNITTEST_COMMAND) 
 
 coverage: export PYTHONPATH=$(MODULES)
