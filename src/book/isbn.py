@@ -8,7 +8,7 @@ class ISBN:
 
     def is_valid(self, number):
         if number is None:
-            return False
+            return True
         elif not self.is_properly_formatted(number):
             raise ValueError('Invalid ISBN number.')
         else:
@@ -19,4 +19,5 @@ class ISBN:
 
     @property
     def number(self):
-        return get_canonical_isbn(self._number)
+        return get_canonical_isbn(self._number) \
+            if self._number else None
