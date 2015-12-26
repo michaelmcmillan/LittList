@@ -23,6 +23,7 @@ lint: pylint clean
 unit-test: export PYTHONPATH=$(MODULES)
 unit-test: export PYTHONDONTWRITEBYTECODE="false"
 unit-test:
+	@echo $(MODULES)
 	@$(PYTHON) -m $(UNITTEST_COMMAND) 
 
 coverage: export PYTHONPATH=$(MODULES)
@@ -37,8 +38,8 @@ pylint:
 	@$(PYLINT) --rcfile $(LINT_CONFIG) $(SRC_DIR)/*
 
 clean:
-	@find . -name '.DS_Store' -delete
-	@find . -name '*.pyc' -delete
-	@find . -name '__pycache__' -exec rm -rf {} \;
+	-@find . -name '.DS_Store' -delete
+	-@find . -name '*.pyc' -delete
+	-@find . -name '__pycache__' -exec rm -rf {} \;
 
 .PHONY: test install
