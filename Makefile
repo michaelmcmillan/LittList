@@ -36,6 +36,16 @@ pylint: export PYTHONDONTWRITEBYTECODE="false"
 pylint:
 	@$(PYLINT) --rcfile $(LINT_CONFIG) $(SRC_DIR)/*
 
+lines:
+	@find . -type f -exec wc -l {} + \
+	 | grep -v './venv' \
+	 | grep -v '__init__' \
+	 | grep -v './test' \
+	 | grep -v 'csl' \
+	 | grep \./src \
+	 | grep \.py \
+	 | sort -rn
+
 clean:
 	-@find . -name '.DS_Store' -delete
 	-@find . -name '*.pyc' -delete
