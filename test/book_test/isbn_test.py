@@ -13,6 +13,16 @@ class TestISBN(unittest.TestCase):
         book.isbn = '979-10-90636-07-1'
         assert book.isbn == '9791090636071'
 
+    def test_dashes_can_be_omitted(self):
+        book = Book()
+        book.isbn = '9791090636071'
+        assert book.isbn == '9791090636071'
+
+    def test_surrounding_whitespace_is_ignored(self):
+        book = Book()
+        book.isbn = '    979-10-90636-07-1 '
+        assert book.isbn == '9791090636071'
+
     def test_isbn_can_be_set_to_none(self):
         book = Book()
         book.isbn = None
