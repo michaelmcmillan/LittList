@@ -1,8 +1,8 @@
 from unittest import TestCase
-from .fixtures.book_record import create_book_record
-from .fixtures.reference_record import create_reference_record
-from .fixtures.book_model import create_book_model
-from .fixtures.author_model import create_author_model
+from .doubles.book_record import create_book_record
+from .doubles.reference_record import create_reference_record
+from .doubles.book_model import create_book_model
+from .doubles.author_model import create_author_model
 from database.records.book_record import BookRecord
 from database.mappers.book_mapper import BookMapper
 

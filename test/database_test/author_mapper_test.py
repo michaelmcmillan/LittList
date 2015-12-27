@@ -1,7 +1,7 @@
 from unittest import TestCase, skip
 from unittest.mock import MagicMock
-from .fixtures.author_model import create_author_model
-from .fixtures.author_record import create_author_record
+from .doubles.author_model import create_author_model
+from .doubles.author_record import create_author_record
 from database.mappers.author_mapper import AuthorMapper
 
 class TestAuthorMapper(TestCase):

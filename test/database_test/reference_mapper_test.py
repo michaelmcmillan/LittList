@@ -1,8 +1,8 @@
 from unittest import TestCase
-from .fixtures.author_model import create_author_model
-from .fixtures.reference_model import create_reference_model
-from .fixtures.reference_record import create_reference_record
-from .fixtures.author_record import create_author_record
+from .doubles.author_model import create_author_model
+from .doubles.reference_model import create_reference_model
+from .doubles.reference_record import create_reference_record
+from .doubles.author_record import create_author_record
 from database.mappers.reference_mapper import ReferenceMapper
 
 class TestReferenceMapper(TestCase):
