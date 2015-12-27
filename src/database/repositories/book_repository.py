@@ -29,6 +29,7 @@ class BookRepository:
         reference_record = book_record.reference
         author_records = [reference_record.author \
             for reference_record in reference_record.author]
+
         book_model = BookMapper.to_model(
             reference_record, book_record, author_records
         )
