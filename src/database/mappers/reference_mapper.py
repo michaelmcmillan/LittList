@@ -1,3 +1,4 @@
+from database.records.author_record import AuthorReferenceRecord
 from database.records.reference_record import ReferenceRecord
 from database.mappers.author_mapper import AuthorMapper
 from reference.reference import Reference
@@ -28,10 +29,22 @@ class ReferenceMapper:
         reference_record.publication_year = publication_date.year
         reference_record.publication_month = publication_date.month
         reference_record.publication_day = publication_date.day
-        author_records = [AuthorMapper.to_record(author) \
+
+        author_records = [AuthorMapper.to_record(author)['author'] \
             for author in reference_model.authors]
 
+        author_reference_records = [cls.relate(reference_record, author_record)\
+            for author_record in author_records]
+
         return {
+            'authors': author_records,
             'reference': reference_record,
-            'authors': author_records
+            'author_references': author_reference_records
         }
+
+    @classmethod
+    def relate(cls, reference_record, author_record):
+        return AuthorReferenceRecord(
+            author=author_record,
+            reference=reference_record
+        )

@@ -32,5 +32,6 @@ class BookMapper:
         return {
             'reference': reference_records['reference'],
             'authors': reference_records['authors'],
+            'author_references': reference_records['author_references'],
             'book': book_record
         }
