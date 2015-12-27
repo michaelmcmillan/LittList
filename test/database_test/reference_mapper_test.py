@@ -48,6 +48,13 @@ class TestReferenceMapper(TestCase):
         records = ReferenceMapper.to_record(reference_model)
         assert len(records['authors']) == 1
 
+    def test_reference_model_with_author_is_mapped_to_author_reference_record(self):
+        reference_model = create_reference_model()
+        author_model = create_author_model()
+        reference_model.authors = [author_model]
+        records = ReferenceMapper.to_record(reference_model)
+        assert len(records['author_references']) == 1
+
     def test_reference_model_title_is_mapped_to_record(self):
         reference_model = create_reference_model()
         records = ReferenceMapper.to_record(reference_model)
