@@ -11,13 +11,13 @@ class TestBibliography(unittest.TestCase):
 
     def test_reference_can_be_added(self):
         bibliography = Bibliography()
-        reference = MagicMock()
+        reference = MagicMock(id=1)
         bibliography.add(reference)
         assert len(bibliography) == 1
 
     def test_reference_can_be_removed(self):
         bibliography = Bibliography()
-        reference = MagicMock()
+        reference = MagicMock(id=1)
         bibliography.add(reference)
         bibliography.remove(reference)
         assert len(bibliography) == 0

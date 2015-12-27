@@ -21,7 +21,7 @@ class TestBibliographyMapper(TestCase):
 
     def test_bibliography_with_two_references_generates_two_relationships(self):
         bibliography = Bibliography()
-        bibliography.add([create_book_model(), create_book_model()])
+        bibliography.add([create_book_model(id=1), create_book_model(id=2)])
         records = BibliographyMapper.to_records(bibliography)
         assert len(records['bibliography_references']) == 2
 
