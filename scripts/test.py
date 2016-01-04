@@ -1,7 +1,6 @@
 from src.author.author import Author
 from src.book.book import Book
 from src.database.repositories.book_repository import BookRepository
-from src.database.repositories.author_repository import AuthorRepository
 
 ingvar = Author()
 ingvar.name = 'Ingvar Ambjørnsen'

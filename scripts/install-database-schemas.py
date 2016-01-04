@@ -1,10 +1,13 @@
-from src.database.database import db
-from src.database.records.book_record import BookRecord
-from src.database.records.author_record import AuthorRecord
-from src.database.records.author_record import AuthorReferenceRecord
-from src.database.records.reference_record import ReferenceRecord
-from src.database.records.bibliography_record import BibliographyRecord
-from src.database.records.bibliography_record import BibliographyReferenceRecord
+import sys
+sys.path.append('../src')
+from database.database import db
+from database.records.book_record import BookRecord
+from database.records.author_record import AuthorRecord
+from database.records.author_record import AuthorReferenceRecord
+from database.records.reference_record import ReferenceRecord
+from database.records.bibliography_record import BibliographyRecord
+from database.records.bibliography_record import BibliographyReferenceRecord
+
 
 def setup():
     db.create_tables([
