@@ -1,5 +1,6 @@
 from logging import getLogger
 from . import User, Payment, Ledger, Settings
+from datetime import datetime as dt, timedelta as delta
 
 class Paywall:
 
@@ -23,9 +24,13 @@ class Paywall:
         self.ledger.insert(payment)
         self.logger.info('Purchase from %r.' % user)
 
+    def has_expired(self, payment):
+        threshold = Settings.MINUTES_OF_ACCESS
+        return payment.timestamp + delta(minutes=threshold) < dt.now()
+
     def has_access(self, user):
         payment = self.ledger.retrieve_payment(user)
-        return payment and not payment.expired
+        return payment and not self.has_expired(payment)
 
     def get_status(self, user):
         payment = self.ledger.retrieve_payment(user)
@@ -33,7 +38,7 @@ class Paywall:
             return self.STATUS['PLEASE_PAY']
         elif self.has_access(user):
             return self.STATUS['THANK_YOU']
-        elif payment.expired:
+        elif self.has_expired(payment):
             return self.STATUS['EXPIRED']
         else:
             return self.STATUS['PROCESSING']
