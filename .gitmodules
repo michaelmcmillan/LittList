@@ -1,11 +1,3 @@
-[submodule "locales"]
-    path = src/bibliography/locales
-    url = https://github.com/citation-style-language/locales.git
-
-[submodule "styles"]
-    path = src/bibliography/styles
-    url = https://github.com/citation-style-language/styles.git
-
-[submodule "citeproc"]
-    path = lib/citeproc-js
-    url = https://github.com/Juris-M/citeproc-js.git
+[submodule "lib/citeproc-js"]
+	path = lib/citeproc-js
+	url = https://github.com/Juris-M/citeproc-js.git
