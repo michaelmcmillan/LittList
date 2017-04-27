@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:ns2="http://a9.com/-/spec/opensearch/1.1/" xmlns:ns3="http://www.w3.org/1999/xhtml">
+    <id>http://www.nb.no/atomfeed</id>
+    <updated>2017-04-22T16:57:27.333+02:00</updated>
+    <title type="text">NBSearch</title>
+    <subtitle type="text">Nasjonalbibliotekets general Search API for client applications, results: 0</subtitle>
+    <link rel="self" href="http://www.nb.no/services/search/v2/search?q=efwewefwef&amp;itemsPerPage=10" />
+    <link rel="search" type="application/opensearchdescription+xml" href="http://www.nb.no/services/search/v2/search?alt=application/opensearchdescription+xml" />
+    <ns2:totalResults>0</ns2:totalResults>
+    <ns2:itemsPerPage>0</ns2:itemsPerPage>
+    <ns2:startIndex>1</ns2:startIndex>
+    <ns2:Query role="request" searchTerms="efwewefwef" startIndex="1" />
+</feed>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:ns2="http://a9.com/-/spec/opensearch/1.1/" xmlns:ns3="http://www.w3.org/1999/xhtml">
+    <id>http://www.nb.no/atomfeed</id>
+    <updated>2017-04-22T16:43:09.298+02:00</updated>
+    <title type="text">NBSearch</title>
+    <subtitle type="text">Nasjonalbibliotekets general Search API for client applications, results: 1 - 10 of 120</subtitle>
+    <link rel="self" href="http://www.nb.no/services/search/v2/search?q=sn%C3%B8mannen&amp;itemsPerPage=10" />
+    <link rel="next" href="http://www.nb.no/services/search/v2/search?q=sn%C3%B8mannen&amp;itemsPerPage=10&amp;startIndex=11" />
+    <link rel="search" type="application/opensearchdescription+xml" href="http://www.nb.no/services/search/v2/search?alt=application/opensearchdescription+xml" />
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/83c36abdeb9a0303b51dbed56a2992d9</id>
+        <title type="text">Snømannen</title>
+        <summary type="text">Jo Nesbø 1. utg. 2007</summary>
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/83c36abdeb9a0303b51dbed56a2992d9" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/83c36abdeb9a0303b51dbed56a2992d9" />
+        <link title="Object" rel="related" type="text/html" href="http://urn.nb.no/URN:NBN:no-nb_digibok_2014051408074" />
+        <link title="Struct" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/struct/83c36abdeb9a0303b51dbed56a2992d9" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">true</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Nesbø, Jo</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:languages xmlns:nb="http://www.nb.no/xml/search/1.0/">nob</nb:languages>
+        <nb:isbn xmlns:nb="http://www.nb.no/xml/search/1.0/">9788203193538</nb:isbn>
+        <nb:urn xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2014051408074</nb:urn>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">83c36abdeb9a0303b51dbed56a2992d9</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Nesbø, Jo</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Nesbø, Jo</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2009</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted; jp2</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2009-01-01</nb:date>
+        <nb:thumbnail xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2014051408074_C1</nb:thumbnail>
+    </entry>
+    <ns2:totalResults>120</ns2:totalResults>
+    <ns2:itemsPerPage>10</ns2:itemsPerPage>
+    <ns2:startIndex>1</ns2:startIndex>
+    <ns2:Query role="request" searchTerms="snømannen" startIndex="1" />
+</feed>

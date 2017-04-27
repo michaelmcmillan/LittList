@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:ns2="http://a9.com/-/spec/opensearch/1.1/" xmlns:ns3="http://www.w3.org/1999/xhtml">
+    <id>http://www.nb.no/atomfeed</id>
+    <updated>2017-04-22T18:30:57.541+02:00</updated>
+    <title type="text">NBSearch</title>
+    <subtitle type="text">Nasjonalbibliotekets general Search API for client applications, results: 1 - 10 of 610</subtitle>
+    <link rel="self" href="http://www.nb.no/services/search/v2/search?q=erlend+loe&amp;itemsPerPage=10" />
+    <link rel="next" href="http://www.nb.no/services/search/v2/search?q=erlend+loe&amp;itemsPerPage=10&amp;startIndex=11" />
+    <link rel="search" type="application/opensearchdescription+xml" href="http://www.nb.no/services/search/v2/search?alt=application/opensearchdescription+xml" />
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/1ea93bdaf0d327d8a73945b362ceecce</id>
+        <title type="text">Loe</title>
+        <summary type="text" />
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/1ea93bdaf0d327d8a73945b362ceecce" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/1ea93bdaf0d327d8a73945b362ceecce" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">false</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Andersen, Hadle Oftedal</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Artikler</nb:mediatype>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">1ea93bdaf0d327d8a73945b362ceecce</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Andersen, Hadle Oftedal</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Andersen, Hadle Oftedal</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2000</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2000-01-01</nb:date>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/dcc89d11164905d37df6f85a2aa17f56</id>
+        <title type="text">Erlend Loe</title>
+        <summary type="text">[tekst: Ole Peder Moy]</summary>
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/dcc89d11164905d37df6f85a2aa17f56" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/dcc89d11164905d37df6f85a2aa17f56" />
+        <link title="Object" rel="related" type="text/html" href="http://urn.nb.no/URN:NBN:no-nb_digibok_2011060806108" />
+        <link title="Struct" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/struct/dcc89d11164905d37df6f85a2aa17f56" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">true</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Moy, Ole Peder</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:languages xmlns:nb="http://www.nb.no/xml/search/1.0/">nob</nb:languages>
+        <nb:isbn xmlns:nb="http://www.nb.no/xml/search/1.0/">8270222879</nb:isbn>
+        <nb:subjecttopic xmlns:nb="http://www.nb.no/xml/search/1.0/">litteratur; analyse; teori</nb:subjecttopic>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:urn xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2011060806108</nb:urn>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">dcc89d11164905d37df6f85a2aa17f56</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Moy, Ole Peder</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Biblioteksentralen; Moy, Ole Peder</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2002</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted; jp2</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2002-01-01</nb:date>
+        <nb:thumbnail xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2011060806108_C1</nb:thumbnail>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/f2410e5b0894219b6af1bc85a757781c</id>
+        <title type="text">Erlend Loe</title>
+        <summary type="text" />
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/f2410e5b0894219b6af1bc85a757781c" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/f2410e5b0894219b6af1bc85a757781c" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">false</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Moy, Ole Peder</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">f2410e5b0894219b6af1bc85a757781c</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Moy, Ole Peder</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Moy, Ole Peder</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2002</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2002-01-01</nb:date>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/06dae2678a2e702dcf9b1352f620a93a</id>
+        <title type="text">Erlend Loe : et forfatterhefte</title>
+        <summary type="text">Bidrag på bokmål og nynorsk &amp;quot;Innhold: Forfatterportrett av Øystein Rottem, Erlend Loes forfatterskap, Litteratur om Erlend Loe, 7 forfatteromtalerfra norske aviser, 20 anmeldelser fra norske aviser&amp;quot; Elektronisk reproduksjon [Norge] Nasjonalbiblioteket Digital 2009-04-13</summary>
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/06dae2678a2e702dcf9b1352f620a93a" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/06dae2678a2e702dcf9b1352f620a93a" />
+        <link title="Object" rel="related" type="text/html" href="http://urn.nb.no/URN:NBN:no-nb_digibok_2008111900035" />
+        <link title="Struct" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/struct/06dae2678a2e702dcf9b1352f620a93a" />
+        <link title="Digital Content" rel="alternate" type="text/html" href="http://urn.nb.no/URN:NBN:no-nb_digibok_2008111900035" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">true</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Rottem, Øystein</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:languages xmlns:nb="http://www.nb.no/xml/search/1.0/">nob; mul; nno</nb:languages>
+        <nb:subjecttopic xmlns:nb="http://www.nb.no/xml/search/1.0/">historie; litteratur; norsk; kritikk</nb:subjecttopic>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:urn xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2008111900035</nb:urn>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">06dae2678a2e702dcf9b1352f620a93a</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Rottem, Øystein</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Biblioteksentralen; Rottem, Øystein</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">1999</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted; bokhylla; jp2</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">1999-01-01</nb:date>
+        <nb:thumbnail xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2008111900035_C1</nb:thumbnail>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/d81dc13d8e7618603b29ad855a76bac1</id>
+        <title type="text">Erlend Loe og kritikken</title>
+        <summary type="text" />
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/d81dc13d8e7618603b29ad855a76bac1" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/d81dc13d8e7618603b29ad855a76bac1" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">false</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Haugland, Sonja</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">d81dc13d8e7618603b29ad855a76bac1</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Haugland, Sonja</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Haugland, Sonja</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2001</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2001-01-01</nb:date>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/099906b40f9d39215a3c0dc967f0de53</id>
+        <title type="text">Pingvinhjelpen : av Erlend Loe</title>
+        <summary type="text">[program: May Selmer, Geir Schønberg] Urpremiere: Trøndelag teater, Gamle scenen 30. august 2006 Teaterprogram</summary>
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/099906b40f9d39215a3c0dc967f0de53" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/099906b40f9d39215a3c0dc967f0de53" />
+        <link title="Object" rel="related" type="text/html" href="http://urn.nb.no/URN:NBN:no-nb_digibok_2014112558004" />
+        <link title="Struct" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/struct/099906b40f9d39215a3c0dc967f0de53" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">true</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Schønberg, Geir</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:languages xmlns:nb="http://www.nb.no/xml/search/1.0/">nob</nb:languages>
+        <nb:subjecttopic xmlns:nb="http://www.nb.no/xml/search/1.0/">program; teaterprogram</nb:subjecttopic>
+        <nb:urn xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2014112558004</nb:urn>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">099906b40f9d39215a3c0dc967f0de53</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Schønberg, Geir</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Trøndelag Teater; Loe, Erlend; Schønberg, Geir; Selmer, May</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2006</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted; jp2</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2006-01-01</nb:date>
+        <nb:thumbnail xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2014112558004_C1</nb:thumbnail>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/43cebf8a94996a9027a1c8e226923877</id>
+        <title type="text">Erlend Loe og kritikken</title>
+        <summary type="text">Sonja Haugland Hovedoppgave - Høgskolen i Oslo, Bibliotek- og informasjonsstudiene, 2001 Har bibliografi</summary>
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/43cebf8a94996a9027a1c8e226923877" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/43cebf8a94996a9027a1c8e226923877" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">false</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Haugland, Sonja</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:languages xmlns:nb="http://www.nb.no/xml/search/1.0/">nob</nb:languages>
+        <nb:subjecttopic xmlns:nb="http://www.nb.no/xml/search/1.0/">romaner; litteratur; norsk; litteraturkritikk</nb:subjecttopic>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">43cebf8a94996a9027a1c8e226923877</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Haugland, Sonja</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Haugland, Sonja</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2001</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2001-01-01</nb:date>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/87b55447eecd2ccf7a7bd6afa1ad065f</id>
+        <title type="text">Erlend Loe. Forfatterhefte</title>
+        <summary type="text" />
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/87b55447eecd2ccf7a7bd6afa1ad065f" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/87b55447eecd2ccf7a7bd6afa1ad065f" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">false</nb:digital>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">87b55447eecd2ccf7a7bd6afa1ad065f</nb:sesamid>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2006</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2006-01-01</nb:date>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/b09fa8669e169c1219a0dbf6887b7ac8</id>
+        <title type="text">Erlend Loe : forfatterhefte</title>
+        <summary type="text">Rygg og omslagstittel: Forfatterhefte Erlend Loe &amp;quot;Innhold: Artikkel om forfatterskapet av Tom Egil Hverven, Erlend Loes bøker, Lesetips, 10 forfatteromtaler fra norske aviser, 16 anmeldelser fra norske aviser&amp;quot; Varenummer : PUBL200508</summary>
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/b09fa8669e169c1219a0dbf6887b7ac8" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/b09fa8669e169c1219a0dbf6887b7ac8" />
+        <link title="Object" rel="related" type="text/html" href="http://urn.nb.no/URN:NBN:no-nb_digibok_2014051408279" />
+        <link title="Struct" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/struct/b09fa8669e169c1219a0dbf6887b7ac8" />
+        <nb:title_alternative xmlns:nb="http://www.nb.no/xml/search/1.0/">Forfatterhefte Erlend Loe</nb:title_alternative>
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">true</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Hverven, Tom Egil</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:languages xmlns:nb="http://www.nb.no/xml/search/1.0/">nob; mul; nno</nb:languages>
+        <nb:subjecttopic xmlns:nb="http://www.nb.no/xml/search/1.0/">historie; litteratur; norsk; kritikk</nb:subjecttopic>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:urn xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2014051408279</nb:urn>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">b09fa8669e169c1219a0dbf6887b7ac8</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Hverven, Tom Egil</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Biblioteksentralen; Hverven, Tom Egil</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">2006</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted; jp2</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">2006-01-01</nb:date>
+        <nb:thumbnail xmlns:nb="http://www.nb.no/xml/search/1.0/">URN:NBN:no-nb_digibok_2014051408279_C1</nb:thumbnail>
+    </entry>
+    <entry>
+        <id>http://www.nb.no/services/search/v2/search/66f8950a6d76c168b15e4fb17854ac5e</id>
+        <title type="text">Erlend Loe : et forfatterportrett</title>
+        <summary type="text">av Øystein Rottem</summary>
+        <link title="MODS metadata" rel="via" type="text/xml" href="http://www.nb.no/services/search/v2/mods/66f8950a6d76c168b15e4fb17854ac5e" />
+        <link title="Holdings" rel="related" type="text/xml" href="http://www.nb.no/services/search/v2/holdings/66f8950a6d76c168b15e4fb17854ac5e" />
+        <nb:digital xmlns:nb="http://www.nb.no/xml/search/1.0/">false</nb:digital>
+        <nb:mainentry xmlns:nb="http://www.nb.no/xml/search/1.0/">Rottem, Øystein</nb:mainentry>
+        <nb:mediatype xmlns:nb="http://www.nb.no/xml/search/1.0/">Bøker</nb:mediatype>
+        <nb:languages xmlns:nb="http://www.nb.no/xml/search/1.0/">nob</nb:languages>
+        <nb:subjectname xmlns:nb="http://www.nb.no/xml/search/1.0/">Loe, Erlend</nb:subjectname>
+        <nb:sesamid xmlns:nb="http://www.nb.no/xml/search/1.0/">66f8950a6d76c168b15e4fb17854ac5e</nb:sesamid>
+        <nb:namecreator xmlns:nb="http://www.nb.no/xml/search/1.0/">Rottem, Øystein</nb:namecreator>
+        <nb:namecreators xmlns:nb="http://www.nb.no/xml/search/1.0/">Biblioteksentralen; Rottem, Øystein</nb:namecreators>
+        <nb:year xmlns:nb="http://www.nb.no/xml/search/1.0/">1999</nb:year>
+        <nb:contentclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">restricted</nb:contentclasses>
+        <nb:metadataclasses xmlns:nb="http://www.nb.no/xml/search/1.0/">public</nb:metadataclasses>
+        <nb:date xmlns:nb="http://www.nb.no/xml/search/1.0/">1999-01-01</nb:date>
+    </entry>
+    <ns2:totalResults>610</ns2:totalResults>
+    <ns2:itemsPerPage>10</ns2:itemsPerPage>
+    <ns2:startIndex>1</ns2:startIndex>
+    <ns2:Query role="request" searchTerms="erlend loe" startIndex="1" />
+</feed>
