@@ -1,28 +1,20 @@
-from pickle import dump, load
-from collections import deque
+from shelve import open
 from . import Settings
 
 class Ledger:
 
-    def __init__(self):
-        self.payments = deque()
-
-    def persist(self):
-        with open(Settings.LEDGER_FILE, 'wb') as f:
-            dump(self.payments, f)
-
-    def sync(self):
-        try:
-            with open(Settings.LEDGER_FILE, 'rb') as f:
-                self.payments = load(f) 
-        except IOError:
-            pass
+    def get_key(self, user):
+        return user.phone_number.replace('+47', '').replace(' ', '')
 
     def insert(self, payment):
-        self.payments.appendleft(payment)
-        self.persist()
+        payments = open(Settings.LEDGER_FILE, writeback=True)
+        key = self.get_key(payment.user)
+        payments[key] = payments.get(key, []) + [payment]
+        payments.close()
 
     def retrieve_payment(self, user):
-        self.sync()
-        return next((payment for payment in self.payments \
-            if payment.user == user), None)
+        payments = open(Settings.LEDGER_FILE, writeback=True)
+        key = self.get_key(user)
+        users_payments = payments.get(key, [])
+        payments.close()
+        return next((payment for payment in users_payments), None)

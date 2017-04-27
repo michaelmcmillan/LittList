@@ -3,10 +3,9 @@ from datetime import datetime as dt, timedelta as delta
 
 class Payment:
 
-    def __init__(self, user, amount, verified, timestamp):
+    def __init__(self, user, amount, timestamp):
         self.user = user
         self.amount = amount
-        self.verified = verified
         self.timestamp = timestamp if timestamp else dt.now()
 
     @property

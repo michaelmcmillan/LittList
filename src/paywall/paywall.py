@@ -15,27 +15,17 @@ class Paywall:
     }
 
     def __init__(self):
-        self.complaints = []
         self.ledger = Ledger()
         self.logger = getLogger(self.__class__.__name__)
 
     def mark_as_paid(self, user, timestamp=None):
-        verified_payment = Payment(user, Settings.PRICE_NOK, True, timestamp)
-        self.ledger.insert(verified_payment)
+        payment = Payment(user, Settings.PRICE_NOK, timestamp)
+        self.ledger.insert(payment)
         self.logger.info('Purchase from %r.' % user)
-
-    def claims_payment(self, user, timestamp=None):
-        if self.has_access(user):
-            return
-        unverified_payment = Payment(user, Settings.PRICE_NOK, False, timestamp)
-        self.ledger.insert(unverified_payment)
 
     def has_access(self, user):
         payment = self.ledger.retrieve_payment(user)
-        return payment and payment.verified and not payment.expired
-
-    def complain(self, user):
-        self.complaints.append(user)
+        return payment and not payment.expired
 
     def get_status(self, user):
         payment = self.ledger.retrieve_payment(user)
@@ -43,10 +33,7 @@ class Paywall:
             return self.STATUS['PLEASE_PAY']
         elif self.has_access(user):
             return self.STATUS['THANK_YOU']
-        elif payment.verified and payment.expired:
+        elif payment.expired:
             return self.STATUS['EXPIRED']
-        elif user in self.complaints and payment.taken_long_time:
-            self.logger.info('Refund %d,- to %r.' % (Settings.PRICE_NOK, user))
-            return self.STATUS['REFUND']
         else:
             return self.STATUS['PROCESSING']
