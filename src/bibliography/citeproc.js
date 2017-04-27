@@ -1,7 +1,5 @@
-const fs = require('fs')
-const lib = '../../lib/citeproc-js';
-const CSL = require(lib + '/citeproc.js').CSL;
-
+const fs = require('fs');
+const CSL = require('../../lib/citeproc-js/citeproc.js').CSL;
 const stdin = process.stdin;
 const stdout = process.stdout;
 
@@ -22,9 +20,9 @@ function generateBibliography(references) {
     retrieveItem: (id) =>
       references.find(reference => reference.id == id),
     retrieveStyle: (style) =>
-        fs.readFileSync('lib/styles/apa.csl', 'utf-8'),
+        fs.readFileSync(__dirname + '/styles/apa.csl', 'utf-8'),
     retrieveLocale: (lang) => 
-      fs.readFileSync('lib/citeproc-js/locale/locales-nb-NO.xml', 'utf-8')
+      fs.readFileSync(__dirname + '/locales/locales-nb-NO.xml', 'utf-8')
   };
 
   const engine = new CSL.Engine(citeprocSys, citeprocSys.retrieveStyle());
