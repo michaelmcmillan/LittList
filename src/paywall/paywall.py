@@ -5,14 +5,12 @@ from datetime import datetime as dt, timedelta as delta
 class Paywall:
 
     STATUS = {
-        'PROCESSING': 'Vennligst vent 1 minutt til overføringen er godkjent.',
-        'REFUND': 'Vi beklager at du ikke har fått tilgang. ' \
-           + 'Beløpet ditt blir refundert så snart som mulig.',
+        'PLEASE_PAY': 'Vennligst overfør %d,- for å få tilgang.' \
+            % Settings.PRICE_NOK,
+        'EXPIRED': 'Tiden din er utløpt. Vennligst betal på nytt.',
         'THANK_YOU': 'Tusen takk! Du har nå tilgang i %d minutter.' \
             % Settings.MINUTES_OF_ACCESS,
-        'EXPIRED': 'Tiden din er utløpt. Vennligst betal på nytt.',
-        'PLEASE_PAY': 'Vennligst overfør %d,- for å få tilgang.' \
-            % Settings.PRICE_NOK
+        'PROCESSING': 'Vennligst vent 1 minutt til overføringen er godkjent.' \
     }
 
     def __init__(self):
