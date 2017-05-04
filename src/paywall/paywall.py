@@ -19,7 +19,7 @@ class Paywall:
 
     def mark_as_paid(self, user, timestamp=None):
         payment = Payment(user, Settings.PRICE_NOK, timestamp)
-        self.ledger.insert(payment)
+        self.ledger.insert_payment(payment)
         self.logger.info('Purchase from %r.' % user)
 
     def has_expired(self, payment):

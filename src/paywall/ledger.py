@@ -6,7 +6,7 @@ class Ledger:
     def get_key(self, user):
         return user.phone_number.replace('+47', '').replace(' ', '')
 
-    def insert(self, payment):
+    def insert_payment(self, payment):
         payments = open(Settings.LEDGER_FILE, writeback=True)
         key = self.get_key(payment.user)
         payments[key] = payments.get(key, []) + [payment]
