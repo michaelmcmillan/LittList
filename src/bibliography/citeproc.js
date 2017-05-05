@@ -6,13 +6,6 @@ const stdout = process.stdout;
 let buffer = '';
 stdin.on('data', chunk => buffer += chunk);
 
-stdin.on('end', () => {
-  const references = JSON.parse(buffer);
-  const bibliography = generateBibliography(references);
-  const output = JSON.stringify(bibliography);
-  process.stdout.write(output);
-});
-
 const generateBibliography = references => {
   const citeprocSys = {
     retrieveItem: (id) =>
@@ -28,3 +21,10 @@ const generateBibliography = references => {
   const bibliography = engine.makeBibliography();
   return bibliography[1].join(''); 
 }
+
+stdin.on('end', () => {
+  const references = JSON.parse(buffer);
+  const bibliography = generateBibliography(references);
+  const output = JSON.stringify(bibliography);
+  process.stdout.write(output);
+});
