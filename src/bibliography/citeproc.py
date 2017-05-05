@@ -1,10 +1,12 @@
 from json import dumps, loads
+from os.path import join, dirname
 from subprocess import call, Popen, PIPE
 
 class Citeproc:
 
     def call(self, stdin):
-        node = Popen(['node', 'src/bibliography/citeproc.js'], stdout=PIPE, stdin=PIPE)
+        script = join(dirname(__file__), 'citeproc.js')
+        node = Popen(['node', script], stdout=PIPE, stdin=PIPE)
         node.stdin.write(stdin.encode())
         stdout, errors = node.communicate()
         return stdout.decode('utf-8')

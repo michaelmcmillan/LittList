@@ -1,10 +1,8 @@
 const fs = require('fs');
 const CSL = require('../../lib/citeproc-js/citeproc.js').CSL;
-const stdin = process.stdin;
-const stdout = process.stdout;
 
 let buffer = '';
-stdin.on('data', chunk => buffer += chunk);
+process.stdin.on('data', chunk => buffer += chunk);
 
 const generateBibliography = references => {
   const citeprocSys = {
@@ -22,7 +20,7 @@ const generateBibliography = references => {
   return bibliography[1].join(''); 
 }
 
-stdin.on('end', () => {
+process.stdin.on('end', () => {
   const references = JSON.parse(buffer);
   const bibliography = generateBibliography(references);
   const output = JSON.stringify(bibliography);
