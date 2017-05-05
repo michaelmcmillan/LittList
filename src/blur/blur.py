@@ -1,9 +1,8 @@
-from os.path import dirname, join
 from io import BytesIO
+from os.path import dirname, join
 from PIL import Image, ImageFont, ImageDraw, ImageFilter
 
 class Blur:
-
 
     def __init__(self, text):
         self.text = text
