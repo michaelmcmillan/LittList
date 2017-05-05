@@ -15,7 +15,7 @@ class EndNoteParser:
     def parse(self, string):
         '''Parses RIS from multiple lines of text.'''
         fields = {}
-        for line in string.split(self.NEWLINE):
+        for line in (string or '').split(self.NEWLINE):
             key, value = self.extract_field_from_line(line)
             if not (key and value): continue
             fields[key] = fields.get(key, []) + [value] \
