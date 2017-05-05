@@ -3,19 +3,17 @@ const CSL = require('../../lib/citeproc-js/citeproc.js').CSL;
 const stdin = process.stdin;
 const stdout = process.stdout;
 
-let input = '';
-stdin.on('data', function (chunk) {
-  input += chunk;
-});
+let buffer = '';
+stdin.on('data', chunk => buffer += chunk);
 
-stdin.on('end', function () {
-  const references = JSON.parse(input);
+stdin.on('end', () => {
+  const references = JSON.parse(buffer);
   const bibliography = generateBibliography(references);
   const output = JSON.stringify(bibliography);
   process.stdout.write(output);
 });
 
-function generateBibliography(references) {
+const generateBibliography = references => {
   const citeprocSys = {
     retrieveItem: (id) =>
       references.find(reference => reference.id == id),
