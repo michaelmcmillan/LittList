@@ -1,5 +1,6 @@
 from logging import getLogger
-from . import AtomParser, EndNoteParser
+from . import AtomParser
+from endnote import EndNoteParser
 from concurrent.futures import ThreadPoolExecutor
 
 class Nasjonalbiblioteket:

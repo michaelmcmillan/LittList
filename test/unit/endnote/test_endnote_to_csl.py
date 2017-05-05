@@ -1,5 +1,5 @@
 from unittest import TestCase
-from bibliography import EndNoteToCSL
+from endnote import EndNoteToCSL
 
 class TestType(TestCase):
 

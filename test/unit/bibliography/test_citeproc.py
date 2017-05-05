@@ -7,7 +7,7 @@ class TestCiteproc(TestCase):
 
     def test_bibliography_is_correctly_rendered_with_one_journal(self):
         citeproc = Citeproc()
-        asimow = loads(load_fixture('asimow.json'))
+        asimow = loads(load_fixture('bibliography/asimow.json'))
         formatted_bibliography = citeproc.render([asimow])
         expected_bibliography = \
             '  <div class="csl-entry">' \
@@ -19,8 +19,8 @@ class TestCiteproc(TestCase):
 
     def test_bibliography_is_correctly_rendered_with_two_journals(self):
         citeproc = Citeproc()
-        asimow = loads(load_fixture('asimow.json'))
-        abrams = loads(load_fixture('abrams.json'))
+        asimow = loads(load_fixture('bibliography/asimow.json'))
+        abrams = loads(load_fixture('bibliography/abrams.json'))
         formatted_bibliography = citeproc.render([asimow, abrams])
         expected_bibliography = \
             '  <div class="csl-entry">' \

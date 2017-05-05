@@ -1,5 +1,5 @@
 from unittest import TestCase
-from nasjonalbiblioteket import EndNoteParser
+from endnote import EndNoteParser
 
 class TestEndnote(TestCase):
 

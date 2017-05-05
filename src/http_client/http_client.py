@@ -8,7 +8,7 @@ class HTTPClient:
     def __init__(self):
         self.logger = getLogger(self.__class__.__name__)
 
-    def get(self, url, parameters):
+    def get(self, url, parameters, appendix=None):
         '''Sends an HTTP GET request.'''
         url = URL(url, parameters)
         response = self.request('GET', url)
