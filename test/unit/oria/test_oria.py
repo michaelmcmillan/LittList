@@ -9,8 +9,12 @@ class TestOriaSearchResults(TestCase):
         from http_client import HTTPClient
         http_client = HTTPClient()
         oria = Oria(http_client)
-        identifiers = oria.search('ingvar ambjørnsen')
+        identifiers = oria.search('utsikt til paradiset')
         books = oria.read_multiple(identifiers)
+        for book in books:
+            for key in book:
+                print(key, book[key])
+            print("\n")
 
     def test_returns_zero_results_if_no_matches(self):
         http_client = MagicMock()

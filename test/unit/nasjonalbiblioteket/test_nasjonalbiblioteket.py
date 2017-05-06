@@ -10,14 +10,12 @@ class TestNBSearchResults(TestCase):
         from http_client import HTTPClient
         http_client = HTTPClient()
         nasjonalbiblioteket = Nasjonalbiblioteket(http_client)
-        identifiers = nasjonalbiblioteket.search('sult')
+        identifiers = nasjonalbiblioteket.search('ingvar ambjørnsen elling')
         books = nasjonalbiblioteket.read_multiple(identifiers)
         for book in books:
-            print("\n")
             for field in book:
                 print(field, book[field])
-
-            print(endnote_to_csl(book))
+            print("\n")
 
     def test_returns_zero_results_if_no_matches(self):
         http_client = MagicMock()
