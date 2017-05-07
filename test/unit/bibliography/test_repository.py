@@ -43,6 +43,55 @@ class TestCreateRepository(TestCase):
         bibliography = repository.read(user_id='99234564', bibliography_id=1)
         self.assertTrue(bibliography, ['BIBSYS_ISL2000'])
 
+class TestAddRepository(TestCase):
+
+    fixture_directory = 'test/fixtures/bibliography/add'
+
+    def setUp(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+
+    def tearDown(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+
+    def test_bibliography_has_identifier_added(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(user_id='95015843', bibliography=[])
+        repository.add('95015843', bibliography_id, 'BIBSYS_ISL1234')
+        bibliography = repository.read('95015843', bibliography_id)
+        self.assertEqual(bibliography, ['BIBSYS_ISL1234'])
+
+    def test_bibliography_has_nothing_added_if_identifier_is_none(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(user_id='95015843', bibliography=[])
+        repository.add('95015843', bibliography_id, None)
+        bibliography = repository.read('95015843', bibliography_id)
+        self.assertEqual(bibliography, [])
+
+class TestRemoveRepository(TestCase):
+
+    fixture_directory = 'test/fixtures/bibliography/remove'
+
+    def setUp(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+
+    def tearDown(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+
+    def test_bibliography_has_identifier_removed(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(user_id='95015843', bibliography=[])
+        repository.add('95015843', bibliography_id, 'BIBSYS_ISL1234')
+        repository.remove('95015843', bibliography_id, 'BIBSYS_ISL1234')
+        bibliography = repository.read('95015843', bibliography_id)
+        self.assertEqual(bibliography, [])
+
+    def test_bibliography_has_nothing_removed_if_identifier_is_none(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(user_id='95015843', bibliography=[])
+        repository.remove('95015843', bibliography_id, None)
+        bibliography = repository.read('95015843', bibliography_id)
+        self.assertEqual(bibliography, [])
+
 class TestReadRepository(TestCase):
 
     fixture_directory = 'test/fixtures/bibliography/read'

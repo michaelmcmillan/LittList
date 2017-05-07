@@ -10,8 +10,27 @@ class BibliographyRepository:
         '''Creates a new bibliography file in the users directory.'''
         directory = UserDirectory(self.root_directory, user_id)
         directory.create()
-        identifier = directory.get_next_identifier()
-        with open(directory.get_path_to_bibliography(identifier), 'w') as f:
+        bibliography_id = directory.get_next_identifier()
+        with open(directory.get_path_to_bibliography(bibliography_id), 'w') as f:
+            f.write(dumps(bibliography))
+        return bibliography_id
+
+    def add(self, user_id, bibliography_id, identifier):
+        if not identifier:
+            return
+        directory = UserDirectory(self.root_directory, user_id)
+        bibliography = self.read(user_id, bibliography_id)
+        bibliography.append(identifier)
+        with open(directory.get_path_to_bibliography(bibliography_id), 'w') as f:
+            f.write(dumps(bibliography))
+
+    def remove(self, user_id, bibliography_id, identifier):
+        if not identifier:
+            return
+        directory = UserDirectory(self.root_directory, user_id)
+        bibliography = self.read(user_id, bibliography_id)
+        bibliography.remove(identifier)
+        with open(directory.get_path_to_bibliography(bibliography_id), 'w') as f:
             f.write(dumps(bibliography))
 
     def read(self, user_id, bibliography_id):
