@@ -13,12 +13,16 @@ LIB_DIR=./lib
 TEST_DIR=./test
 SRC_DIR=./src
 ENV_DIR=$(LIB_DIR)/env
+WEBSERVER_DIR=$(SRC_DIR)/webserver
+MODULES=$(SRC_DIR):$(TEST_DIR)
 
 # Flags
-TEST_FILES=test_*.py
 TEST_RUNNER=$(PYTHON) -m unittest
+
+# Files
+TEST_FILES=test_*.py
+FLASK_SERVER=$(WEBSERVER_DIR)/server.py
 REQUIREMENTS=$(LIB_DIR)/requirements.txt
-MODULES=$(SRC_DIR):$(TEST_DIR)
 
 # Environment variables
 export PYTHONPATH=$(MODULES)
@@ -26,6 +30,7 @@ export PYTHONDONTWRITEBYTECODE=true
 
 install: pip-install
 test: unit-test
+serve: flask
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
@@ -33,6 +38,11 @@ virtualenv-install:
 
 pip-install: virtualenv-install
 	@$(PIP) install -r $(REQUIREMENTS)
+
+flask: export FLASK_APP=$(FLASK_SERVER)
+flask: export FLASK_DEBUG=1
+flask:
+	@$(PYTHON) -m flask run
 
 unit-test:
 	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p $(TEST_FILES)
