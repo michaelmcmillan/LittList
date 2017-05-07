@@ -9,8 +9,7 @@ class Library:
     }
 
     def __init__(self, sources=None):
-        self.sources = sources \
-            if sources else self.SOURCES
+        self.sources = sources or self.SOURCES
 
     def search(self, query):
         results = []
