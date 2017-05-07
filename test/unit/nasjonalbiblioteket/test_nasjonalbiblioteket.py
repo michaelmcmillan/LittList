@@ -45,6 +45,24 @@ class TestNBSearchResults(TestCase):
         results = nasjonalbiblioteket.search('snømannen')
         self.assertEqual(results, [])
 
+class TestNBCache(TestCase):
+
+    def test_does_not_hit_server_twice_for_same_identifier(self):
+        http_client = MagicMock()
+        http_client.get.return_value = load_fixture('nasjonalbiblioteket/snowman.enw')
+        nasjonalbiblioteket = Nasjonalbiblioteket(http_client)
+        nasjonalbiblioteket.read('83c36abdeb9a0303b51dbed56a2992d9')
+        nasjonalbiblioteket.read('83c36abdeb9a0303b51dbed56a2992d9')
+        self.assertEqual(http_client.get.call_count, 1)
+
+    def test_does_hit_server_twice_if_first_request_failed(self):
+        http_client = MagicMock()
+        http_client.get.side_effect = [None, load_fixture('nasjonalbiblioteket/snowman.enw')]
+        nasjonalbiblioteket = Nasjonalbiblioteket(http_client)
+        nasjonalbiblioteket.read('83c36abdeb9a0303b51dbed56a2992d9')
+        nasjonalbiblioteket.read('83c36abdeb9a0303b51dbed56a2992d9')
+        self.assertEqual(http_client.get.call_count, 2)
+
 class TestNBRead(TestCase):
 
     def test_it_fetches_enw_data_for_the_id(self):
@@ -66,8 +84,8 @@ class TestNBRead(TestCase):
         http_client.get.side_effect = [load_fixture('nasjonalbiblioteket/snowman.enw')] * 10
         nasjonalbiblioteket = Nasjonalbiblioteket(http_client)
         identifiers = ['83c36abdeb9a0303b51dbed56a2992d9'] * 10
-        nasjonalbiblioteket.read_multiple(identifiers)
-        self.assertEqual(http_client.get.call_count, 10)
+        results = nasjonalbiblioteket.read_multiple(identifiers)
+        self.assertEqual(len(results), 10)
 
 class TestNBLogging(TestCase):
 

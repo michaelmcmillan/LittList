@@ -11,10 +11,7 @@ class TestOriaSearchResults(TestCase):
         oria = Oria(http_client)
         identifiers = oria.search('utsikt til paradiset')
         books = oria.read_multiple(identifiers)
-        for book in books:
-            for key in book:
-                print(key, book[key])
-            print("\n")
+        print(books[0], len(books))
 
     def test_returns_zero_results_if_no_matches(self):
         http_client = MagicMock()
@@ -44,6 +41,24 @@ class TestOriaSearchResults(TestCase):
         results = oria.search('snømannen')
         self.assertEqual(results, [])
 
+class TestOriaCache(TestCase):
+
+    def test_does_not_hit_server_twice_for_same_identifier(self):
+        http_client = MagicMock()
+        http_client.post.return_value = load_fixture('oria/ambjørnsen.enw')
+        oria = Oria(http_client)
+        oria.read('BIBSYS_ILS71466426580002201')
+        oria.read('BIBSYS_ILS71466426580002201')
+        self.assertEqual(http_client.post.call_count, 1)
+
+    def test_does_hit_server_twice_if_first_request_failed(self):
+        http_client = MagicMock()
+        http_client.post.side_effect = [None, load_fixture('oria/ambjørnsen.enw')]
+        oria = Oria(http_client)
+        oria.read('BIBSYS_ILS71466426580002201')
+        oria.read('BIBSYS_ILS71466426580002201')
+        self.assertEqual(http_client.post.call_count, 2)
+
 class TestOriaRead(TestCase):
 
     def test_it_fetches_enw_data_for_the_id(self):
@@ -65,8 +80,8 @@ class TestOriaRead(TestCase):
         http_client.post.side_effect = [load_fixture('oria/ambjørnsen.enw')] * 10
         oria = Oria(http_client)
         identifiers = ['BIBSYS_ILS71466426580002201'] * 10
-        oria.read_multiple(identifiers)
-        self.assertEqual(http_client.post.call_count, 10)
+        results = oria.read_multiple(identifiers)
+        self.assertEqual(len(results), 10)
 
 class TestOriaLogging(TestCase):
 

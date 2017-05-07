@@ -1,3 +1,4 @@
+from cache import Cache
 from logging import getLogger
 from concurrent.futures import ThreadPoolExecutor
 from endnote import EndNoteParser
@@ -10,6 +11,7 @@ class Oria:
     SEARCH = HOST + '/primo_library/libweb/action/search.do'
 
     def __init__(self, http_client):
+        self.cache = Cache()
         self.http_client = http_client
         self.logger = getLogger(self.__class__.__name__)
 
@@ -33,12 +35,11 @@ class Oria:
         '''Reads metadata for an identifier.'''
         endnote_parser = EndNoteParser()
         data = {'encode': 'UTF-8'}
-        parameters = ('indx', 3), ('pushToType', 'EndNote'), \
-            ('doc', identifier), \
-            ('docs', identifier), \
-            ('recId', identifier)
-        endnote = self.http_client.post(self.READ, parameters, data)
-        return endnote_parser.parse(endnote)
+        parameters = ('pushToType', 'EndNote'), ('docs', identifier)
+        raw_endnote = self.cache.get_or_set(identifier,
+            lambda: self.http_client.post(self.READ, parameters, data)
+        )
+        return endnote_parser.parse(raw_endnote)
 
     def read_multiple(self, identifiers):
         '''Concurrently retrieves metadata for identifiers.'''

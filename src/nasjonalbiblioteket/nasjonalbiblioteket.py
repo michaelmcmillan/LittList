@@ -1,5 +1,6 @@
 from logging import getLogger
 from . import AtomParser
+from cache import Cache
 from endnote import EndNoteParser
 from concurrent.futures import ThreadPoolExecutor
 
@@ -10,6 +11,7 @@ class Nasjonalbiblioteket:
     SEARCH = HOST + '/services/search/v2/search'
 
     def __init__(self, http_client):
+        self.cache = Cache()
         self.http_client = http_client
         self.logger = getLogger(self.__class__.__name__)
 
@@ -28,8 +30,10 @@ class Nasjonalbiblioteket:
     def read(self, identifier):
         '''Reads metadata for an identifier.'''
         parameters = ('id', identifier), ('format', 'enw')
-        endnote = self.http_client.get(self.READ, parameters)
-        return self.extract_fields(endnote) if endnote else {}
+        raw_endnote = self.cache.get_or_set(identifier,
+            lambda: self.http_client.get(self.READ, parameters)
+        )
+        return self.extract_fields(raw_endnote) if raw_endnote else {}
 
     def read_multiple(self, identifiers):
         '''Concurrently retrieves metadata for identifiers.'''
