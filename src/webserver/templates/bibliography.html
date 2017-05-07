@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block body %}
+    {% include 'bar.html' %}
+
+    <div id="bibliography">
+
+        <div id="toolbar">
+            <button id="remove">Fjern valgte</button>
+
+            <select>
+                <option>Harvard</option>
+                <option>APA</option>
+            </select>
+            <button type="submit">Bytt stil</button>
+
+            <button id="clarify" type="submit">Ferdig</button>
+        </div>
+
+        <div id="afour">
+            <h2>Litteraturliste<h2>
+
+            <img src="citation.png" />
+        </div>
+
+    </div>
+{% endblock %}

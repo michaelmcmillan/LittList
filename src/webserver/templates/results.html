@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+    {% include 'bar.html' %}
+
+    <form method="post">
+        <div id="results">
+            {% for source, result in results %}
+            {{ result }}
+            <div class="book">
+              <img src="steve.jpg" />
+              <button type="submit" name="add" value="1">Legg til</button>
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+{% endblock %}
