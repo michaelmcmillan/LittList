@@ -1,7 +1,8 @@
 from cache import Cache
 from logging import getLogger
-from concurrent.futures import ThreadPoolExecutor
 from endnote import EndNoteParser
+from http_client import HTTPClient
+from concurrent.futures import ThreadPoolExecutor
 from .html_result_parser import HTMLResultParser
 
 class Oria:
@@ -10,9 +11,9 @@ class Oria:
     READ = HOST + '/primo_library/libweb/action/PushToAction.do'
     SEARCH = HOST + '/primo_library/libweb/action/search.do'
 
-    def __init__(self, http_client):
+    def __init__(self, http_client=None):
         self.cache = Cache()
-        self.http_client = http_client
+        self.http_client = http_client or HTTPClient()
         self.logger = getLogger(self.__class__.__name__)
 
     def extract_identifiers(self, html):
@@ -27,7 +28,9 @@ class Oria:
         '''Finds identifiers that matches query.'''
         self.logger.info(query)
         parameters = ('fn', 'search'), ('vl(freeText0)', query)
-        html = self.http_client.get(self.SEARCH, parameters)
+        html = self.cache.get_or_set(query,
+            lambda: self.http_client.get(self.SEARCH, parameters)
+        )
         identifiers = self.extract_identifiers(html)
         return identifiers
 

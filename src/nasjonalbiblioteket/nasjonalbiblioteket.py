@@ -2,6 +2,7 @@ from logging import getLogger
 from . import AtomParser
 from cache import Cache
 from endnote import EndNoteParser
+from http_client import HTTPClient
 from concurrent.futures import ThreadPoolExecutor
 
 class Nasjonalbiblioteket:
@@ -10,9 +11,9 @@ class Nasjonalbiblioteket:
     READ = HOST + '/nbsok/content/reference'
     SEARCH = HOST + '/services/search/v2/search'
 
-    def __init__(self, http_client):
+    def __init__(self, http_client=None):
         self.cache = Cache()
-        self.http_client = http_client
+        self.http_client = http_client or HTTPClient()
         self.logger = getLogger(self.__class__.__name__)
 
     def extract_identifiers(self, xml):
@@ -45,5 +46,7 @@ class Nasjonalbiblioteket:
         '''Finds identifiers that matches query.'''
         self.logger.info(query)
         parameters = ('itemsPerPage', 10), ('q', query)
-        xml = self.http_client.get(self.SEARCH, parameters)
+        xml = self.cache.get_or_set(query,
+            lambda: self.http_client.get(self.SEARCH, parameters)
+        )
         return self.extract_identifiers(xml) if xml else []

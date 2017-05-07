@@ -43,6 +43,22 @@ class TestOriaSearchResults(TestCase):
 
 class TestOriaCache(TestCase):
 
+    def test_does_not_hit_server_twice_for_same_query(self):
+        http_client = MagicMock()
+        http_client.get.return_value = load_fixture('oria/one_result.html')
+        oria = Oria(http_client)
+        oria.search('ambjørnsen')
+        oria.search('ambjørnsen')
+        self.assertEqual(http_client.get.call_count, 1)
+
+    def test_does_hit_server_twice_if_first_read_failed(self):
+        http_client = MagicMock()
+        http_client.get.side_effect = [None, load_fixture('oria/one_result.html')]
+        oria = Oria(http_client)
+        oria.search('ambjørnsen')
+        oria.search('ambjørnsen')
+        self.assertEqual(http_client.get.call_count, 2)
+
     def test_does_not_hit_server_twice_for_same_identifier(self):
         http_client = MagicMock()
         http_client.post.return_value = load_fixture('oria/ambjørnsen.enw')
@@ -51,7 +67,7 @@ class TestOriaCache(TestCase):
         oria.read('BIBSYS_ILS71466426580002201')
         self.assertEqual(http_client.post.call_count, 1)
 
-    def test_does_hit_server_twice_if_first_request_failed(self):
+    def test_does_hit_server_twice_if_first_search_failed(self):
         http_client = MagicMock()
         http_client.post.side_effect = [None, load_fixture('oria/ambjørnsen.enw')]
         oria = Oria(http_client)
