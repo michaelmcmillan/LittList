@@ -5,38 +5,33 @@ from datetime import datetime as dt, timedelta as delta
 class Paywall:
 
     STATUS = {
-        'PLEASE_PAY': 'Vennligst overfør %d,- for å få tilgang.' \
-            % Settings.PRICE_NOK,
-        'EXPIRED': 'Tiden din er utløpt. Vennligst betal på nytt.',
-        'THANK_YOU': 'Tusen takk! Du har nå tilgang i %d minutter.' \
-            % Settings.MINUTES_OF_ACCESS,
-        'PROCESSING': 'Vennligst vent 1 minutt til overføringen er godkjent.' \
+        'ACCESS': 'Du har nå tilgang!',
+        'PAY': 'Vennligst tast inn mobilnummeret for å få tilgang.',
+        'HOLD': 'Vennligst litt til overføringen er godkjent.'
     }
 
     def __init__(self):
         self.ledger = Ledger()
         self.logger = getLogger(self.__class__.__name__)
 
-    def mark_as_paid(self, user, timestamp=None):
-        payment = Payment(user, Settings.PRICE_NOK, timestamp)
-        self.ledger.insert_payment(payment)
-        self.logger.info('Purchase from %r.' % user)
+    def customer_asks_to_pay(self, user):
+        payment = Payment(user, 10, verified=False)
+        self.ledger.insert(payment)
+        self.logger.info(payment)
 
-    def has_expired(self, payment):
-        threshold = Settings.MINUTES_OF_ACCESS
-        return payment.timestamp + delta(minutes=threshold) < dt.now()
+    def customer_asks_to_start_over(self, user):
+        self.ledger.reset(user)
+        self.customer_asks_to_pay(user)
 
-    def has_access(self, user):
-        payment = self.ledger.retrieve_payment(user)
-        return payment and not self.has_expired(payment)
+    def owner_received_payment(self, user):
+        payment = Payment(user, 10, verified=True)
+        self.ledger.insert(payment)
 
     def get_status(self, user):
-        payment = self.ledger.retrieve_payment(user)
-        if not payment:
-            return self.STATUS['PLEASE_PAY']
-        elif self.has_access(user):
-            return self.STATUS['THANK_YOU']
-        elif self.has_expired(payment):
-            return self.STATUS['EXPIRED']
+        payments = self.ledger.retrieve(user)
+        if any(payment.verified for payment in payments):
+            return self.STATUS['ACCESS']
+        elif payments:
+            return self.STATUS['HOLD']
         else:
-            return self.STATUS['PROCESSING']
+            return self.STATUS['PAY']

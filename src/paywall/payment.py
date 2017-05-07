@@ -3,11 +3,12 @@ from datetime import datetime as dt
 
 class Payment:
 
-    def __init__(self, user, amount, timestamp):
+    def __init__(self, user, amount, verified):
         self.user = user
         self.amount = amount
-        self.timestamp = timestamp if timestamp else dt.now()
+        self.verified = verified
+        self.timestamp = dt.now()
 
     def __repr__(self):
-        return '<Payment user=%r, amount=%d, timestamp=%s>' % \
-            (self.user, self.amount, self.timestamp)
+        return '<Payment user=%r, amount=%d, verified=%r, timestamp=%s>' % \
+            (self.user, self.amount, self.verified, self.timestamp)
