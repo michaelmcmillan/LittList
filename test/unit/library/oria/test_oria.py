@@ -1,7 +1,7 @@
 from unittest import TestCase, skip
 from unittest.mock import MagicMock
 from fixtures import load_fixture
-from oria import Oria
+from library import Oria
 
 class TestOriaSearchResults(TestCase):
 

@@ -2,7 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 from fixtures import load_fixture
 from endnote import endnote_to_csl
-from nasjonalbiblioteket import Nasjonalbiblioteket
+from library import Nasjonalbiblioteket
 
 class TestNBSearchResults(TestCase):
 

@@ -34,6 +34,10 @@ class Oria:
         identifiers = self.extract_identifiers(html)
         return identifiers
 
+    def search_concurrently(self, query):
+        with ThreadPoolExecutor() as concurrent:
+            return concurrent.submit(self.search, query).result()
+
     def read(self, identifier):
         '''Reads metadata for an identifier.'''
         endnote_parser = EndNoteParser()
