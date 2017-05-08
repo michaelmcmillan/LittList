@@ -1,0 +1,12 @@
+digraph { 
+    Request [shape=rect];
+    Response [shape=rect];
+    Request -> Library [label=" Query"];
+    Library -> Response [label=" Books"];
+    {rank = same; Request; Response;}
+
+    subgraph cluster_0 {
+        node [style=filled];
+        Library -> Oria, Nasjonalbiblioteket, Wikipedia -> Cache -> HTTPClient;
+    }
+}
