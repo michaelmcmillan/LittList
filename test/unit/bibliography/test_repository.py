@@ -19,6 +19,13 @@ class TestCreateRepository(TestCase):
         repository.create(user_id='95015843', bibliography=[])
         self.assertTrue(isdir(self.fixture_directory + '/95015843'))
 
+    def test_bibliography_after_10_is_11(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        for i in range(10):
+            repository.create(user_id='95015843', bibliography=[])
+        bibliography_id = repository.create(user_id='95015843', bibliography=[])
+        self.assertEqual(bibliography_id, 11)
+
     def test_maliciously_crafted_user_id_does_not_break_out_of_path(self):
         repository = BibliographyRepository(self.fixture_directory)
         with TemporaryDirectory() as directory_outside_scope:
@@ -91,6 +98,26 @@ class TestRemoveRepository(TestCase):
         repository.remove('95015843', bibliography_id, None)
         bibliography = repository.read('95015843', bibliography_id)
         self.assertEqual(bibliography, [])
+
+    def test_bibliography_has_nothing_removed_if_identifier_is_not_in_list(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(user_id='95015843', bibliography=[])
+        repository.remove('95015843', bibliography_id, '1234')
+        bibliography = repository.read('95015843', bibliography_id)
+        self.assertEqual(bibliography, [])
+
+    def test_bibliography_has_the_correct_state_after_removing_two_references(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography = [
+            'oria:BIBSYS_ILS71513221680002201',
+            'oria:BIBSYS_ILS71466426580002201',
+            'oria:BIBSYS_ILS71492651770002201'
+        ]
+        bibliography_id = repository.create(user_id='95015843', bibliography=bibliography)
+        repository.remove('95015843', bibliography_id, 'oria:BIBSYS_ILS71466426580002201')
+        repository.remove('95015843', bibliography_id, 'oria:BIBSYS_ILS71513221680002201')
+        bibliography = repository.read('95015843', bibliography_id)
+        self.assertEqual(bibliography, ['oria:BIBSYS_ILS71492651770002201'])
 
 class TestReadRepository(TestCase):
 

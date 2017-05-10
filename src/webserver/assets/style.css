@@ -28,7 +28,7 @@ body {
     margin-left: 25px;
 }
 
-#bar button {
+#bar #show button {
     font-size: 16px;
     height: 70px;
     width: 140px;
@@ -38,7 +38,7 @@ body {
     margin: 0 auto;
 }
 
-#bar form input {
+#bar #query input {
     height: 20px;
     width: 400px;
     font-size: 16px;
@@ -98,23 +98,39 @@ body {
   background-color: white;
 }
 
-#results .shelf {
-    display: flex;
-    width: 50%;
-    margin-left: 50px;
-    margin-bottom: 50px;
-    border-bottom: 20px solid #BE7D4D;
+#results {
+    padding-top: 20px;
+    padding-left: 20px;
 }
 
-#results .shelf .book {
-    flex-direction: column;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: -4px;
+#results .book {
+    min-height: 150px;
+    max-width: 600px;
+    margin-bottom: 20px;
 }
 
-#results .shelf .book img {
-    max-height: 150px;
+.book span {
+    display: block;
+}
+
+.book button {
+    width: 100px;
+    height: 150px;
+    margin-right: 20px;
+    display: inline-block;
+    float: left;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+button[name="add"] {
+    background-color: #0E9E5D;
+}
+
+button[name="remove"] {
+    background-color: #D72828;
 }
 
 #toolbar {
@@ -124,7 +140,7 @@ body {
     background-color: #e2e2e2;
 }
 
-#toolbar #remove {
+#toolbar button[name="remove"] {
     background-color: #D72828;
     color: white;
     margin-right: 50px;
@@ -144,6 +160,24 @@ body {
     border: 0;
     margin-bottom: 10px;
     cursor: pointer;
+}
+
+#clarify {
+    align-items: flex-start;
+    box-sizing: border-box;
+    display: block;
+    float: right;
+    height: 70px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    text-align: center;
+    text-rendering: auto;
+    width: 140px;
+    writing-mode: horizontal-tb;
+    line-height: 70px;
+    text-decoration: none;
 }
 
 #toolbar select {
@@ -184,6 +218,16 @@ body {
 #afour h2 {
     font-family: 'Times New Roman';
     font-weight: 200;
+}
+
+#afour input[name="identifier[]"] {
+    top: 40px;
+    position: relative;
+    margin-left: -30px;
+}
+
+#afour .reference {
+    width: 650px;
 }
 
 #vipps {

@@ -1,15 +1,19 @@
+from blur import Blur
+from paywall import User
 from library import Library
 from paywall import Paywall
-from bibliography import BibliographyRepository
-from flask import Flask, render_template, request as req, redirect, url_for, session
+from bibliography import BibliographyRepository, BibliographyGenerator
+from flask import Flask, render_template, request as req, redirect, url_for, session, send_file
 
 app = Flask(__name__, static_folder='assets', static_url_path='')
-library, paywall, repo = Library(), Paywall(), BibliographyRepository('./data')
 app.secret_key = 'secret'
+
+library, paywall, repo, generator = \
+    Library(), Paywall(), BibliographyRepository('./data'), BibliographyGenerator()
 
 @app.before_request
 def assign_user():
-    if not 'user_id' not in session:
+    if 'user_id' not in session:
         session['user_id'] = 'anonymous'
         session['bibliography_id'] = repo.create(session['user_id'], [])
 
@@ -19,25 +23,34 @@ def search():
 
 @app.route('/search')
 def results():
-    query = req.args.get('q', None)
+    query = req.args.get('q', '')
     results = library.search(query)
     bibliography = repo.read(**session)
-    return render_template('results.html', results=results, bibliography=bibliography)
+    return render_template('results.html', query=query, results=results, bibliography=bibliography)
 
 @app.route('/search', methods=['POST'])
 def modify():
     repo.add(**session, identifier=req.form.get('add', None))
     repo.remove(**session, identifier=req.form.get('remove', None))
-    return redirect(url_for('results', query=req.args.get('q')))
+    return redirect(url_for('results', q=req.args.get('q', '')))
+
+@app.route('/bibliography', methods=['POST'])
+def remove():
+    for identifier in req.form.getlist('identifier[]'):
+        repo.remove(**session, identifier=identifier)
+    return redirect(url_for('bibliography'))
 
 @app.route('/bibliography')
 def bibliography():
     bibliography = repo.read(**session)
-    return render_template('bibliography.html', bibliography=bibliography)
+    user = User(session['user_id'])
+    bibliography_id = session['bibliography_id']
+    output, formatted_bibliography = generator.get_formatted_bibliography(user, bibliography_id)
+    return render_template('bibliography.html', output=output, formatted_bibliography=formatted_bibliography, bibliography=bibliography)
 
 @app.route('/paywall')
 def pay():
-    customer = 'lol'
+    customer = User('95015843')
     status = paywall.get_status(customer)
     return render_template('paywall.html', status=status)
 

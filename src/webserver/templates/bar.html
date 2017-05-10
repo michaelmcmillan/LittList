@@ -1,8 +1,12 @@
     <div id="bar">
       <a href="/"><img id="logo" src="logo.svg" /></a>
-      <form>
-        <input type="text" name="q" placeholder="Søk etter bøker, forfattere eller nettsider" required>
+
+      <form id="query" action="/search">
+          <input type="text" name="q" placeholder="Søk etter bøker, forfattere eller nettsider" value="{{ query }}" required>
         <button type="submit">Søk</button>
       </form>
-      <button>Vis litteraturlisten</button>
+
+      <form id="show" action="/bibliography">
+          <button type="submit">Vis litteraturlisten</button>
+      </form>
     </div>

@@ -17,7 +17,7 @@ const generateBibliography = references => {
   const engine = new CSL.Engine(citeprocSys, citeprocSys.retrieveStyle());
   engine.updateItems(references.map(reference => reference.id));
   const bibliography = engine.makeBibliography();
-  return bibliography[1].join(''); 
+  return bibliography; 
 }
 
 process.stdin.on('end', () => {

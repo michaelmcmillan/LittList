@@ -1,16 +1,25 @@
 {% extends "base.html" %}
 {% block body %}
     {% include 'bar.html' %}
-
     <form method="post">
         <div id="results">
-            {% for source, result in results %}
-            {{ result }}
-            <div class="book">
-              <img src="steve.jpg" />
-              <button type="submit" name="add" value="1">Legg til</button>
-            </div>
-            {% endfor %}
+        {% for book in results %}
+
+          <div class="book">
+
+            {% if book.id not in bibliography %}
+            <button type="submit" name="add" value="{{ book.id }}">Legg til</button>
+            {% else %}
+            <button type="submit" name="remove" value="{{ book.id }}">Fjern</button>
+            {% endif %}
+
+            <h2>{{ book.title }}</h2>
+            <span class="authors"><em>{% for author in book.authors %}{{ author.name }}{% if loop.last %}{% else %}, {% endif %}{% endfor %}</em></span>
+            <span class="publisher">Utgitt av: {{ book.publisher or 'Ukjent'}}</span>
+            <span class="publisher_place">Sted: {{ book.publisher_place or 'Ukjent'}}</span>
+            <span class="publication_year">År: {{ book.publication_year or 'Ukjent' }}</span>
+          </div>
+        {% endfor %}
         </div>
     </form>
 {% endblock %}

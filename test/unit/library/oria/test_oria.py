@@ -11,7 +11,7 @@ class TestOriaSearchResults(TestCase):
         oria = Oria(http_client)
         identifiers = oria.search('utsikt til paradiset')
         books = oria.read_multiple(identifiers)
-        print(books[0], len(books))
+        print(books[1], len(books))
 
     def test_returns_zero_results_if_no_matches(self):
         http_client = MagicMock()
@@ -81,15 +81,15 @@ class TestOriaRead(TestCase):
         http_client = MagicMock()
         http_client.post.return_value = load_fixture('oria/ambjørnsen.enw')
         oria = Oria(http_client)
-        fields = oria.read('BIBSYS_ILS71466426580002201')
-        self.assertEqual(fields['TI'], 'Ingvar Ambjørnsen : et forfatterhefte')
+        book = oria.read('BIBSYS_ILS71466426580002201')
+        self.assertEqual(book.title, 'Ingvar Ambjørnsen : et forfatterhefte')
 
     def test_it_returns_no_fields_if_enw_could_not_be_fetched(self):
         http_client = MagicMock()
         http_client.post.return_value = None
         oria = Oria(http_client)
-        fields = oria.read('BIBSYS_ILS71466426580002201')
-        self.assertEqual(fields, {})
+        book = oria.read('BIBSYS_ILS71466426580002201')
+        self.assertEqual(book, None)
 
     def test_it_concurrently_fetches_enw_data(self):
         http_client = MagicMock()

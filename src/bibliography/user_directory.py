@@ -12,9 +12,10 @@ class UserDirectory:
             makedirs(self.path)
 
     def get_bibliographies(self):
-        '''Returns a list of bibliography identifiers.'''
+        '''Returns a sorted list of bibliography identifiers.'''
         try:
-            return list(map(int, listdir(self.path)))
+            identifiers = list(map(int, listdir(self.path)))
+            return sorted(identifiers)
         except FileNotFoundError:
             return []
 

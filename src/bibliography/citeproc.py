@@ -13,6 +13,12 @@ class Citeproc:
 
     def render(self, references):
         json_references = dumps(references)
-        json_bibliography = self.call(json_references)
-        bibliography = loads(json_bibliography)
-        return bibliography
+        output = self.call(json_references)
+        metadata, bibliography = loads(output)
+        references = self.flatten(metadata['entry_ids'])
+        return list(zip(references, bibliography))
+
+    @staticmethod
+    def flatten(iterable):
+        return [item[0] for item in iterable]
+        

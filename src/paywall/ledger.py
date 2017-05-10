@@ -4,6 +4,7 @@ from . import Settings
 class Ledger:
 
     def get_key(self, user):
+        # TODO: This needs to be a lot safer. Only store numbers.
         return user.phone_number.replace('+47', '').replace(' ', '')
 
     def insert(self, payment):

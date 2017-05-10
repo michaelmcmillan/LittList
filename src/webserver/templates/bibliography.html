@@ -2,25 +2,35 @@
 {% block body %}
     {% include 'bar.html' %}
 
-    <div id="bibliography">
 
-        <div id="toolbar">
-            <button id="remove">Fjern valgte</button>
+    <form method="post">
 
-            <select>
-                <option>Harvard</option>
-                <option>APA</option>
-            </select>
-            <button type="submit">Bytt stil</button>
+        <div id="bibliography">
 
-            <button id="clarify" type="submit">Ferdig</button>
+            <div id="toolbar">
+                <button type="submit" name="remove">Fjern valgte</button>
+
+                <select>
+                    <option>Harvard</option>
+                    <option>APA</option>
+                </select>
+                <button type="submit">Bytt stil</button>
+
+                <a href="/paywall" id="clarify">Ferdig</a>
+            </div>
+
+            <div id="afour">
+                <h2>Litteraturliste<h2>
+
+                {% for identifier, formatted in formatted_bibliography %}
+                {% if output == 'blur' %}
+                    <input type="checkbox" name="identifier[]" value="{{ identifier }}" />
+                    <div class="reference">
+                        <img src="data:image/png;base64,{{ formatted }}" />
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-
-        <div id="afour">
-            <h2>Litteraturliste<h2>
-
-            <img src="citation.png" />
-        </div>
-
-    </div>
+    </form>
 {% endblock %}

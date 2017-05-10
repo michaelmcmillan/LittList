@@ -7,7 +7,7 @@ class Paywall:
     STATUS = {
         'ACCESS': 'Du har nå tilgang!',
         'PAY': 'Vennligst tast inn mobilnummeret for å få tilgang.',
-        'HOLD': 'Vennligst litt til overføringen er godkjent.'
+        'HOLD': 'Vennligst vent litt til overføringen er godkjent.'
     }
 
     def __init__(self):
@@ -26,6 +26,10 @@ class Paywall:
     def owner_received_payment(self, user):
         payment = Payment(user, 10, verified=True)
         self.ledger.insert(payment)
+
+    def has_access(self, user):
+        payments = self.ledger.retrieve(user)
+        return any(payment.verified for payment in payments)
 
     def get_status(self, user):
         payments = self.ledger.retrieve(user)

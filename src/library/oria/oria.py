@@ -4,6 +4,7 @@ from endnote import EndNoteParser
 from http_client import HTTPClient
 from concurrent.futures import ThreadPoolExecutor
 from .html_result_parser import HTMLResultParser
+from .converter import OriaConverter
 
 class Oria:
 
@@ -34,10 +35,6 @@ class Oria:
         identifiers = self.extract_identifiers(html)
         return identifiers
 
-    def search_concurrently(self, query):
-        with ThreadPoolExecutor() as concurrent:
-            return concurrent.submit(self.search, query).result()
-
     def read(self, identifier):
         '''Reads metadata for an identifier.'''
         endnote_parser = EndNoteParser()
@@ -46,7 +43,8 @@ class Oria:
         raw_endnote = self.cache.get_or_set(identifier,
             lambda: self.http_client.post(self.READ, parameters, data)
         )
-        return endnote_parser.parse(raw_endnote)
+        parsed_endnote = endnote_parser.parse(raw_endnote)
+        return OriaConverter.convert(parsed_endnote)
 
     def read_multiple(self, identifiers):
         '''Concurrently retrieves metadata for identifiers.'''
