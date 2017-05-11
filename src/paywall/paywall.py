@@ -6,7 +6,7 @@ class Paywall:
 
     STATUS = {
         'ACCESS': 'Du har nå tilgang!',
-        'PAY': 'Vennligst tast inn mobilnummeret for å få tilgang.',
+        'PAY': 'Litteraturlisten vil ikke være uthvisket etter at du har betalt.',
         'HOLD': 'Vennligst vent litt til overføringen er godkjent.'
     }
 
