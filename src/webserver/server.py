@@ -1,9 +1,8 @@
-from blur import Blur
 from paywall import User
 from library import Library
 from paywall import Paywall
 from bibliography import BibliographyRepository, BibliographyGenerator
-from flask import Flask, render_template, request as req, redirect, url_for, session, send_file
+from flask import Flask, render_template, request, redirect, url_for, session, send_file
 
 app = Flask(__name__, static_folder='assets', static_url_path='')
 app.secret_key = 'secret'
@@ -23,20 +22,20 @@ def search():
 
 @app.route('/search')
 def results():
-    query = req.args.get('q', '')
+    query = request.args.get('q', '')
     results = library.search(query)
     bibliography = repo.read(**session)
     return render_template('results.html', query=query, results=results, bibliography=bibliography)
 
 @app.route('/search', methods=['POST'])
 def modify():
-    repo.add(**session, identifier=req.form.get('add', None))
-    repo.remove(**session, identifier=req.form.get('remove', None))
-    return redirect(url_for('results', q=req.args.get('q', '')))
+    repo.add(**session, identifier=request.form.get('add', None))
+    repo.remove(**session, identifier=request.form.get('remove', None))
+    return redirect(url_for('results', q=request.args.get('q', '')))
 
 @app.route('/bibliography', methods=['POST'])
 def remove():
-    for identifier in req.form.getlist('identifier[]'):
+    for identifier in request.form.getlist('identifier[]'):
         repo.remove(**session, identifier=identifier)
     return redirect(url_for('bibliography'))
 
@@ -56,6 +55,6 @@ def pay():
 
 @app.route('/paywall', methods=['POST'])
 def asks_to_pay():
-    customer = User(req.form.get('phone_number', None))
+    customer = User(request.form.get('phone_number'))
     paywall.customer_asks_to_pay(customer)
-    return redirect(url_for('paywall'))
+    return redirect(url_for('pay'))

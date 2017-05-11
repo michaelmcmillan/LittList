@@ -2,15 +2,19 @@
 {% block body %}
     {% include 'bar.html' %}
 
-    <div id="vipps">
-        <div id="receipt">
-            <img id="logo" src="vipps.png" />
-            <span id="price">Kr <span id="amount">15,</span>00</span>
-            <span id="product">Litteraturliste fra LittList</span>
-        </div>
+    <form method="post">
+        <div id="vipps">
+            <p>{{ status }}</p>
 
-        <input type="tel" name="phone_number" placeholder="Ditt mobilnummer" />
-        <button>Betal</button>
-    </div>
+            <div id="receipt">
+                <img id="logo" src="vipps.png" />
+                <span id="price">Kr <span id="amount">15,</span>00</span>
+                <span id="product">Litteraturliste fra LittList</span>
+            </div>
+
+            <input type="tel" name="phone_number" placeholder="Ditt mobilnummer" />
+            <button type="submit">Betal</button>
+        </div>
+    </form>
 
 {% endblock %}

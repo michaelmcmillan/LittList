@@ -237,6 +237,12 @@ button[name="remove"] {
     width: 100%;
 }
 
+#vipps p {
+    color: white;
+    text-align: center;
+    font-size: 22px;
+}
+
 #vipps button {
     text-align: center;
     border: 0px;
@@ -278,7 +284,7 @@ button[name="remove"] {
     background-color: white;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-
+    margin-top: 50px;
 }
 
 #vipps img {
