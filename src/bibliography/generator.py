@@ -20,6 +20,6 @@ class BibliographyGenerator:
         if self.paywall.has_access(user):
             return ('bibliography', formatted_bibliography)
         else:
-            blurred = [(reference, Blur(formatted).render_base64()) \
+            blurred_bibliography = [(reference, Blur(formatted).render_base64()) \
                     for reference, formatted in formatted_bibliography]
-            return ('blur', blurred)
+            return ('blur', blurred_bibliography)
