@@ -5,7 +5,7 @@ from library import Book
 from paywall import User, Paywall
 from bibliography import BibliographyGenerator, BibliographyRepository
 
-class TestGenerator(TestCase):
+class TestGenerator:
 
     def setUp(self):
         self.paywall = MagicMock()
@@ -16,14 +16,14 @@ class TestGenerator(TestCase):
         generator = BibliographyGenerator(self.library, self.paywall, self.repository)
         self.library.retrieve.return_value = Book(id=1, title='Snømannen')
         self.paywall.has_access.return_value = False
-        output, formatted = generator.get_formatted_bibliography(User('95015843'), 1)
+        output, formatted = generator.render(User('95015843'), 1)
         self.assertEqual(output, 'blur')
 
     def test_returns_ids_with_blurred_images(self):
         generator = BibliographyGenerator(self.library, self.paywall, self.repository)
         self.paywall.has_access.return_value = False
         self.library.retrieve.return_value = Book(id=1, title='Snømannen')
-        output, formatted = generator.get_formatted_bibliography(User('95015843'), 1)
+        output, formatted = generator.render(User('95015843'), 1)
         identifier, image = formatted[0]
         self.assertEqual(identifier, '1')
 
