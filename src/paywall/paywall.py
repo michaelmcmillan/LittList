@@ -5,9 +5,9 @@ from datetime import datetime as dt, timedelta as delta
 class Paywall:
 
     STATUS = {
-        'ACCESS': 'Du har nå tilgang!',
-        'PAY': 'Litteraturlisten vil ikke være uthvisket etter at du har betalt.',
-        'HOLD': 'Vennligst vent litt til overføringen er godkjent.'
+        'PAY': 'PAY',
+        'HOLD': 'HOLD',
+        'ACCESS': 'ACCESS'
     }
 
     def __init__(self):
