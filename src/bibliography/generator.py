@@ -12,7 +12,7 @@ class BibliographyGenerator:
         self.paywall = paywall or Paywall()
         self.repository = repository or BibliographyRepository()
 
-    def get_formatted_bibliography(self, user, bibliography_id):
+    def render(self, user, bibliography_id):
         bibliography = self.repository.read(user.phone_number, bibliography_id)
         references = [self.library.retrieve(reference) for reference in bibliography if reference]
         csl = [BookToCSL.convert(reference) for reference in references]
@@ -20,6 +20,5 @@ class BibliographyGenerator:
         if self.paywall.has_access(user):
             return ('bibliography', formatted_bibliography)
         else:
-            blurred_bibliography = [(reference, Blur(formatted).render_base64()) \
-                    for reference, formatted in formatted_bibliography]
-            return ('blur', blurred_bibliography)
+            return ('blur', [(identifier, Blur(entry).render_base64()) \
+                for identifier, entry in formatted_bibliography])
