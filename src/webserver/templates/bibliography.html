@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %} - Vis litteraturliste{% endblock %}
 {% block body %}
     {% include 'bar.html' %}
 
@@ -30,7 +31,7 @@
                     <img src="data:image/png;base64,{{ reference }}" />
                 </div>
                 {% elif output == 'bibliography' %}
-                {{ reference|e }}
+                {{ reference|safe }}
                 {% endif %}
 
             {% endfor %}
