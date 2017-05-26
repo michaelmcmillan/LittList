@@ -28,7 +28,7 @@ class TestPublicationYear(TestCase):
         book = Book()
         book.publication_year = 2009
         csl = BookToCSL.convert(book)
-        self.assertEqual(csl['issued'], [{'date-parts': [2009]}])
+        self.assertEqual(csl['issued'], {'raw': '2009'})
 
 class TestAuthor(TestCase):
 
