@@ -2,6 +2,7 @@ from unittest import TestCase, skip
 from unittest.mock import MagicMock
 from fixtures import load_fixture
 from library import Oria
+from cache import Cache
 
 class TestOriaSearchResults(TestCase):
 
@@ -43,6 +44,9 @@ class TestOriaSearchResults(TestCase):
 
 class TestOriaCache(TestCase):
 
+    def setUp(self):
+        Cache.flush()
+
     def test_does_not_hit_server_twice_for_same_query(self):
         http_client = MagicMock()
         http_client.get.return_value = load_fixture('oria/one_result.html')
@@ -76,6 +80,9 @@ class TestOriaCache(TestCase):
         self.assertEqual(http_client.post.call_count, 2)
 
 class TestOriaRead(TestCase):
+
+    def setUp(self):
+        Cache.flush()
 
     def test_it_fetches_enw_data_for_the_id(self):
         http_client = MagicMock()
