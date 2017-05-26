@@ -2,8 +2,12 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 from fixtures import load_fixture
 from library import Nasjonalbiblioteket
+from cache import Cache
 
 class TestNBSearchResults(TestCase):
+
+    def setUp(self):
+        Cache.flush()
 
     def xtest_real_deal(self):
         from http_client import HTTPClient
@@ -46,6 +50,9 @@ class TestNBSearchResults(TestCase):
 
 class TestNBCache(TestCase):
 
+    def setUp(self):
+        Cache.flush()
+
     def test_does_not_hit_server_twice_for_same_query(self):
         http_client = MagicMock()
         http_client.get.return_value = load_fixture('nasjonalbiblioteket/one_result.xml')
@@ -79,6 +86,9 @@ class TestNBCache(TestCase):
         self.assertEqual(http_client.get.call_count, 2)
 
 class TestNBRead(TestCase):
+
+    def setUp(self):
+        Cache.flush()
 
     def test_it_fetches_enw_data_for_the_id(self):
         http_client = MagicMock()
