@@ -17,7 +17,7 @@ class BibliographyGenerator:
         references = [self.library.retrieve(reference) for reference in bibliography if reference]
         csl = [BookToCSL.convert(reference) for reference in references]
         formatted_bibliography = self.citeproc.render(csl)
-        if self.paywall.has_access(user):
+        if not self.paywall.has_access(user):
             return ('bibliography', formatted_bibliography)
         else:
             return ('blur', [(identifier, Blur(entry).render_base64()) \
