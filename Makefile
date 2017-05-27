@@ -1,6 +1,6 @@
 # System binaries
 SYSTEM_PIP=$(shell which pip3)
-SYSTEM_PYTHON=$(shell which python3)
+SYSTEM_PYTHON=$(shell which python3.6)
 SYSTEM_VIRTUALENV=$(shell which virtualenv)
 
 # Project binaries
