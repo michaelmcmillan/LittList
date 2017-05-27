@@ -7,6 +7,7 @@ SYSTEM_VIRTUALENV=$(shell which virtualenv)
 PYLINT=$(ENV_DIR)/bin/pylint
 PYTHON=$(ENV_DIR)/bin/python3
 PIP=$(ENV_DIR)/bin/pip3
+UWSGI=$(ENV_DIR)/bin/uwsgi 
 
 # Directories
 LIB_DIR=./lib
@@ -23,6 +24,7 @@ TEST_RUNNER=$(PYTHON) -m unittest
 TEST_FILES=test_*.py
 FLASK_SERVER=$(WEBSERVER_DIR)/server.py
 REQUIREMENTS=$(LIB_DIR)/requirements.txt
+UWSGI_CONFIG=$(WEBSERVER_DIR)/uwsgi_config
 
 # Environment variables
 export PYTHONPATH=$(MODULES)
@@ -31,6 +33,7 @@ export PYTHONDONTWRITEBYTECODE=true
 install: pip-install
 test: unit-test
 serve: flask
+start: uwsgi
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
@@ -43,6 +46,9 @@ flask: export FLASK_APP=$(FLASK_SERVER)
 flask: export FLASK_DEBUG=1
 flask:
 	@$(PYTHON) -m flask run
+
+uwsgi:
+	@$(UWSGI) --ini $(UWSGI_CONFIG)
 
 unit-test:
 	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p $(TEST_FILES)
