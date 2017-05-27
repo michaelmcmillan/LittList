@@ -7,7 +7,7 @@ SYSTEM_VIRTUALENV=$(shell which virtualenv)
 PYLINT=$(ENV_DIR)/bin/pylint
 PYTHON=$(ENV_DIR)/bin/python3
 PIP=$(ENV_DIR)/bin/pip3
-UWSGI=$(ENV_DIR)/bin/uwsgi 
+GUNICORN=$(ENV_DIR)/bin/gunicorn
 
 # Directories
 LIB_DIR=./lib
@@ -24,7 +24,7 @@ TEST_RUNNER=$(PYTHON) -m unittest
 TEST_FILES=test_*.py
 FLASK_SERVER=$(WEBSERVER_DIR)/server.py
 REQUIREMENTS=$(LIB_DIR)/requirements.txt
-UWSGI_CONFIG=$(WEBSERVER_DIR)/uwsgi_config
+GUNICORN_CONFIG=$(WEBSERVER_DIR)/gunicorn_config
 
 # Environment variables
 export PYTHONPATH=$(MODULES)
@@ -33,7 +33,7 @@ export PYTHONDONTWRITEBYTECODE=true
 install: pip-install
 test: unit-test
 serve: flask
-start: uwsgi
+start: gunicorn
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
@@ -45,10 +45,10 @@ pip-install: virtualenv-install
 flask: export FLASK_APP=$(FLASK_SERVER)
 flask: export FLASK_DEBUG=1
 flask:
-	@$(PYTHON) -m flask run
+	@$(PYTHON) -m flask run --host 0.0.0.0 --port 5000
 
-uwsgi:
-	@$(UWSGI) --ini $(UWSGI_CONFIG)
+gunicorn:
+	@$(GUNICORN) -c $(GUNICORN_CONFIG) webserver.server:app
 
 unit-test:
 	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p $(TEST_FILES)
