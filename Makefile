@@ -48,7 +48,7 @@ flask:
 	@$(PYTHON) -m flask run --host 0.0.0.0 --port 5000
 
 gunicorn:
-	@$(GUNICORN) -c $(GUNICORN_CONFIG) webserver.server:app
+	@$(GUNICORN) -c $(GUNICORN_CONFIG) webserver.server:app &
 
 unit-test:
 	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p $(TEST_FILES)
