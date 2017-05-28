@@ -9,6 +9,7 @@ body {
 
 body, input, button {
     font-family: "Open Sans", FreeSans, Arial, sans-serif;
+    outline-color: #BE7D4D;
 }
 
 #bar {
@@ -91,7 +92,6 @@ body, input, button {
     width: 70px;
     border: 0;
     background-color: white;
-    outline-color: #BE7D4D;
     cursor: pointer;
 }
 
