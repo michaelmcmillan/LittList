@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+<html lang="no" class="desktop">
+    <head>
+        <meta charset="utf-8">
+        <meta id="serverTime" data-offset="2" data-time="2017-05-28 13:46:06">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(2),u=e(3),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}finally{f.emit("fn-end",[c.now()],t)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],3:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],4:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=m(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){v[e]=m(e).concat(n)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(t)}function g(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var v={},y={},b={on:l,emit:t,get:w,listeners:m,context:n,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(2),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=h.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+h.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===d.readyState&&i()}function i(){f("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),f=e("handle"),c=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1026.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=n.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),f("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>        <base href="/">
+        <link rel="dns-prefetch" href="//acdn.adnxs.com">
+        <link rel="preconnect" href="//acdn.adnxs.com" crossorigin>
+        <link rel="dns-prefetch" href="//ib.adnxs.com">
+        <link rel="preconnect" href="//ib.adnxs.com" crossorigin>
+        <link rel="dns-prefetch" href="//cdn.adnxs.com">
+        <link rel="preconnect" href="//cdn.adnxs.com" crossorigin>
+        <link rel="dns-prefetch" href="//pixel.glimr.io">
+        <link rel="preconnect" href="//pixel.glimr.io" crossorigin>
+        <link rel="dns-prefetch" href="//api.vg.no">
+        <link rel="preconnect" href="//api.vg.no" crossorigin>
+        <link rel="dns-prefetch" href="//static.vg.no">
+        <link rel="preconnect" href="//static.vg.no" crossorigin>
+        <link rel="dns-prefetch" href="//cdn.vgc.no">
+        <link rel="preconnect" href="//cdn.vgc.no" crossorigin>
+        <link rel="dns-prefetch" href="//1.vgc.no">
+        <link rel="preconnect" href="//1.vgc.no" crossorigin>
+        <link rel="dns-prefetch" href="//imbo.vgc.no">
+        <link rel="preconnect" href="//imbo.vgc.no" crossorigin>
+        <link rel="dns-prefetch" href="//collector.schibsted.io">
+        <link rel="preconnect" href="//collector.schibsted.io" crossorigin>
+        <link rel="dns-prefetch" href="//session.payment.schibsted.no">
+        <link rel="preconnect" href="//session.payment.schibsted.no" crossorigin>
+                        <link href="//1.vgc.no/vgnett-prod/css/desktop.css?7f0ff452fc83134c880723db4bfbfc8a" media="all" rel="stylesheet" type="text/css">
+        <!--[if lte IE 8]> <link href="//1.vgc.no/vgnett-prod/css/ie8.css?f7c9f7e918db30abe87d546f3c3307e7" media="all" rel="stylesheet" type="text/css"><![endif]-->        <script>
+if (!window.Promise) {
+    document.write('<script src="//cdn.vgc.no/libs/promise-polyfill/Promise.min.js"><\/script>');
+}
+
+if (!window.EventSource) {
+    document.write('<script src="//cdn.vgc.no/js/libs/polyfills/eventsource.min.js"><\/script>');
+}
+
+if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame =
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        (function () {
+            var startTime = (new Date()).getTime(),
+                lastTime = startTime;
+            return function (callback) {
+                var currentTime = (new Date()).getTime(),
+                    delay = Math.max(0, 16 - (currentTime - lastTime));
+
+                lastTime = currentTime;
+
+                return window.setTimeout(function () {
+                    lastTime = (new Date()).getTime();
+
+                    callback(lastTime - startTime);
+                }, delay);
+            };
+        })();
+}
+</script>
+                <!--[if lte IE 8]>
+        <script>
+        if (typeof Array.prototype.forEach !== 'function') {
+            Array.prototype.forEach = function(callback){
+                for (var i = 0; i < this.length; i++){
+                    callback.apply(this, [this[i], i, this]);
+                }
+            };
+        }
+        </script>
+        <script src="//cdn.vgc.no/js/libs/html5-shiv/html5shiv-3.7.0.min.js"></script>
+        <script src="//cdn.vgc.no/js/libs/respond/respond.min.js"></script>
+        <style>
+            #main-nav-bar .button-container { display: none; }
+            .bg-size {behavior:url(/css/backgroundsize.min.htc); }
+            .section-forsiden .main-navbar-content { background: url(//cdn.vgc.no/img/ie8-front-header-bg.gif) repeat-x; }
+            .main-navbar-content { background: url(//cdn.vgc.no/img/ie8-fallback-bg.gif) repeat-x; }
+            .section-sport .main-navbar-content { background: url(//cdn.vgc.no/img/ie8-sporten-header-bg.gif?1) repeat-x; }
+            .section-sport.desktop .section-nav-top-stripe .main h2 a { font-size: 0; }
+            .section-sport #article-bottom-elements .related h2 { margin-top: 0px; }
+            .section-sport.desktop #article-bottom-elements h2,
+            .section-sport.tablet #article-bottom-elements h2 { height: 20px; line-height: 20px; margin-top: 0px; }
+            .section-forbruker .main-navbar-content { background: url(//cdn.vgc.no/img/ie8-forbruker-header-bg.gif) repeat-x; }
+            .section-rampelys .main-navbar-content { background: url(//cdn.vgc.no/img/ie8-rampelys-header-bg.gif) repeat-x; }
+            .desktop #section-nav-bar .nav-header li.menu-active > a:before { background: url(//cdn.vgc.no/img/ie8-menu-active-item.png); background-size: initial; }
+
+            .twitter-shares, .facebook-shares { padding-left: 18px; }
+        </style>
+        <![endif]-->
+        <!--[if lte IE 10]>
+        <script src="//cdn.vgc.no/js/libs/polyfill/classList.min.js"></script>
+        <![endif]-->
+        
+<script src="//acdn.adnxs.com/ast/ast.js" async defer onload="apntag.l=true"></script>
+<script>
+    var apntag = apntag || {};
+    apntag.anq = apntag.anq || [];
+
+    (function() {
+    var keywords = {
+        'aa-sch-country_code': 'no',
+        'aa-sch-publisher': 'vg',
+        'aa-sch-inventory_type': 'editorial',
+        'no-sno-publishergroup': 'schibsted',
+        'no-sno-news-section': 'vg_sport',
+        'no-sno-news-subsection': 'vg_langrenn',
+        'no-sno-news-sponsors': 'vg_johaug-tatt-i-doping',
+        'aa-sch-page_type': 'article',
+        'aa-sch-supply_type': 'web_desktop',
+    };
+    var tags = [];
+    if (window.adtags && window.adtags.getTags instanceof Function) {
+        var localTags = window.adtags.getTags();
+
+        if (localTags) {
+            if (typeof localTags === 'string') {
+                localTags = localTags.split(',');
+            }
+
+            tags = tags.concat(localTags);
+        }
+    }
+
+    !function(t){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var e;e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,e.Glimr=t()}}(function(){return function t(e,r,n){function i(o,s){if(!r[o]){if(!e[o]){var u="function"==typeof require&&require;if(!s&&u)return u(o,!0);if(a)return a(o,!0);var c=new Error("Cannot find module '"+o+"'");throw c.code="MODULE_NOT_FOUND",c}var h=r[o]={exports:{}};e[o][0].call(h.exports,function(t){var r=e[o][1][t];return i(r?r:t)},h,h.exports,t,e,r,n)}return r[o].exports}for(var a="function"==typeof require&&require,o=0;o<n.length;o++)i(n[o]);return i}({1:[function(t,e,r){"use strict";e.exports={GLIMR_HOST:"//pixel.glimr.io",GLIMR_PATHS:{tags:"/v4/iptags/:id/",store:"/v4/collect/:id/"},MAX_CACHE_TIME:300,CACHE_TIMINGS:{tags:0},V2_PREFIX:"[v2]:"}},{}],2:[function(t,e,r){"use strict";function n(){this.data={},this.hasData=!1}n.prototype={storePosition:function(t){if("number"!=typeof t.longitude&&isNaN(parseFloat(t.longitude))||"number"!=typeof t.latitude&&isNaN(parseFloat(t.latitude)))throw new Error("Glimr.storePosition requires one argument, an object with a numeric .longitude and .latitude");this._store("u_pos",[t.latitude,t.longitude].join(","))},_store:function(t,e){this.hasData=!0,this.data[t]=e},_flush:function(){var t=this.data;return this.data={},this.hasData=!1,t},_needsToFlush:function(){return this.hasData}},e.exports=n},{}],3:[function(t,e,r){"use strict";function n(t,e){l.prototype[t]=function(){return this[e][t].apply(this[e],arguments)}}var i=t("./lib/functools"),a=t("./constants"),o=t("./serialize"),s=t("./tags"),u=t("./glimr_id"),c=t("./tag_cache"),h=t("./storage"),g=t("./enrichment"),l=function(){this.constructor=l,this.initialize()};l.prototype={initialize:function(){this.url={host:a.GLIMR_HOST,tags:a.GLIMR_PATHS.tags,store:a.GLIMR_PATHS.store},this.glimrId=new u,this.storage=new h(i.bindFunction(this,function(){return this.useLocalStorage})),this.enrichment=new g,this.tagCache=new c(this.storage),this.tags=new s(this.storage,this.tagCache,this.glimrId,this.url,this.enrichment),this.useLocalStorage=h.isSupportedByBrowser()}};var d,f=["objectToQuery","arrayToQuery","queryToObject","escapeStringForQuery","unescapeStringForQuery"];for(d=0;d<f.length;d+=1){var p=f[d];l.prototype[p]=o[p]}var T=["getPixelLastUpdated","getCachedURLTags","getCachedBehaviorTags","getCachedBehaviorTagsAndUpdateInBackground","getTagsAndPushToDataLayer","getTags"];for(d=0;d<T.length;d+=1)n(T[d],"tags");var y=["usesTagCache","isTagCacheValid","setTagCacheTimeInSeconds","getTagCacheTimeInSeconds","currentURLIdentifier"];for(d=0;d<y.length;d+=1)n(y[d],"tagCache");var m=["storePosition"];for(d=0;d<m.length;d+=1)n(m[d],"enrichment");e.exports=new l},{"./constants":1,"./enrichment":2,"./glimr_id":4,"./lib/functools":6,"./serialize":12,"./storage":13,"./tag_cache":14,"./tags":15}],4:[function(t,e,r){"use strict";function n(){this.initialize()}var i=t("./lib/cookies"),a=t("./lib/uuid");n.prototype={initialize:function(){this._id=i.readCookie("__glmrid"),this._id||this.setId(a.generate())},setGlimrCookie:function(){i.createCookie("__glmrid",this._id)},getId:function(){return this._id},setId:function(t){this._id=t,this.setGlimrCookie()}},e.exports=n},{"./lib/cookies":5,"./lib/uuid":11}],5:[function(t,e,r){"use strict";var n={createCookie:function(t,e,r){var n=window.document.location.hostname.split("."),i=n.slice(n.length-2,n.length).join("."),a="";if(r){var o=new Date;o.setTime(o.getTime()+24*r*60*60*1e3),a="; expires="+o.toGMTString()}window.document.cookie=t+"="+e+a+"; path=/; domain="+i},readCookie:function(t){for(var e=t+"=",r=window.document.cookie.split(";"),n=0;n<r.length;n+=1){for(var i=r[n];" "===i.charAt(0);)i=i.substring(1,i.length);if(0===i.indexOf(e))return i.substring(e.length,i.length)}return null}};e.exports=n},{}],6:[function(t,e,r){"use strict";var n={bindFunction:function(t,e){var r=Array.prototype.slice.call(arguments,2),n=e,i=function(){},a=function(){return n.apply(this instanceof i?this:t,r.concat(Array.prototype.slice.call(arguments)))};return e.prototype&&(i.prototype=e.prototype),a.prototype=new i,a}};e.exports=n},{}],7:[function(t,e,r){"use strict";var n=function(t,e){var r=(new Date).getTime(),n="glmrjsonp"+Math.round(r+1000001*Math.random()),i=window.document.createElement("script");window[n]=function(t){e(t);try{delete window[n]}catch(t){window[n]=void 0}try{i.parentNode.removeChild(i)}catch(t){}},t+=t.indexOf("?")===-1?"?":"&",t+="callback="+n,"function"==typeof i.addEventListener&&i.addEventListener("error",function(){e(!1)},!1),i.setAttribute("src",t),window.document.getElementsByTagName("head")[0].appendChild(i)};e.exports=n},{}],8:[function(t,e,r){"use strict";var n=function(t){function e(t,e){return t<<e|t>>>32-e}function r(t,e){var r,n,i,a,o;return i=2147483648&t,a=2147483648&e,r=1073741824&t,n=1073741824&e,o=(1073741823&t)+(1073741823&e),r&n?2147483648^o^i^a:r|n?1073741824&o?3221225472^o^i^a:1073741824^o^i^a:o^i^a}function n(t,e,r){return t&e|~t&r}function i(t,e,r){return t&r|e&~r}function a(t,e,r){return t^e^r}function o(t,e,r){return e^(t|~r)}function s(t,i,a,o,s,u,c){return t=r(t,r(r(n(i,a,o),s),c)),r(e(t,u),i)}function u(t,n,a,o,s,u,c){return t=r(t,r(r(i(n,a,o),s),c)),r(e(t,u),n)}function c(t,n,i,o,s,u,c){return t=r(t,r(r(a(n,i,o),s),c)),r(e(t,u),n)}function h(t,n,i,a,s,u,c){return t=r(t,r(r(o(n,i,a),s),c)),r(e(t,u),n)}function g(t){for(var e,r=t.length,n=r+8,i=(n-n%64)/64,a=16*(i+1),o=Array(a-1),s=0,u=0;u<r;)e=(u-u%4)/4,s=u%4*8,o[e]=o[e]|t.charCodeAt(u)<<s,u+=1;return e=(u-u%4)/4,s=u%4*8,o[e]=o[e]|128<<s,o[a-2]=r<<3,o[a-1]=r>>>29,o}function l(t){var e,r,n="",i="";for(r=0;r<=3;r+=1)e=t>>>8*r&255,i="0"+e.toString(16),n+=i.substr(i.length-2,2);return n}function d(t){t=t.replace(/\r\n/g,"\n");for(var e="",r=0;r<t.length;r+=1){var n=t.charCodeAt(r);n<128?e+=String.fromCharCode(n):n>127&&n<2048?(e+=String.fromCharCode(n>>6|192),e+=String.fromCharCode(63&n|128)):(e+=String.fromCharCode(n>>12|224),e+=String.fromCharCode(n>>6&63|128),e+=String.fromCharCode(63&n|128))}return e}var f,p,T,y,m,C,v,_,w,b=[],x=7,I=12,S=17,L=22,A=5,U=9,E=14,R=20,j=4,F=11,M=16,O=23,P=6,k=10,Q=15,q=21;for(t=d(t),b=g(t),C=1732584193,v=4023233417,_=2562383102,w=271733878,f=0;f<b.length;f+=16)p=C,T=v,y=_,m=w,C=s(C,v,_,w,b[f+0],x,3614090360),w=s(w,C,v,_,b[f+1],I,3905402710),_=s(_,w,C,v,b[f+2],S,606105819),v=s(v,_,w,C,b[f+3],L,3250441966),C=s(C,v,_,w,b[f+4],x,4118548399),w=s(w,C,v,_,b[f+5],I,1200080426),_=s(_,w,C,v,b[f+6],S,2821735955),v=s(v,_,w,C,b[f+7],L,4249261313),C=s(C,v,_,w,b[f+8],x,1770035416),w=s(w,C,v,_,b[f+9],I,2336552879),_=s(_,w,C,v,b[f+10],S,4294925233),v=s(v,_,w,C,b[f+11],L,2304563134),C=s(C,v,_,w,b[f+12],x,1804603682),w=s(w,C,v,_,b[f+13],I,4254626195),_=s(_,w,C,v,b[f+14],S,2792965006),v=s(v,_,w,C,b[f+15],L,1236535329),C=u(C,v,_,w,b[f+1],A,4129170786),w=u(w,C,v,_,b[f+6],U,3225465664),_=u(_,w,C,v,b[f+11],E,643717713),v=u(v,_,w,C,b[f+0],R,3921069994),C=u(C,v,_,w,b[f+5],A,3593408605),w=u(w,C,v,_,b[f+10],U,38016083),_=u(_,w,C,v,b[f+15],E,3634488961),v=u(v,_,w,C,b[f+4],R,3889429448),C=u(C,v,_,w,b[f+9],A,568446438),w=u(w,C,v,_,b[f+14],U,3275163606),_=u(_,w,C,v,b[f+3],E,4107603335),v=u(v,_,w,C,b[f+8],R,1163531501),C=u(C,v,_,w,b[f+13],A,2850285829),w=u(w,C,v,_,b[f+2],U,4243563512),_=u(_,w,C,v,b[f+7],E,1735328473),v=u(v,_,w,C,b[f+12],R,2368359562),C=c(C,v,_,w,b[f+5],j,4294588738),w=c(w,C,v,_,b[f+8],F,2272392833),_=c(_,w,C,v,b[f+11],M,1839030562),v=c(v,_,w,C,b[f+14],O,4259657740),C=c(C,v,_,w,b[f+1],j,2763975236),w=c(w,C,v,_,b[f+4],F,1272893353),_=c(_,w,C,v,b[f+7],M,4139469664),v=c(v,_,w,C,b[f+10],O,3200236656),C=c(C,v,_,w,b[f+13],j,681279174),w=c(w,C,v,_,b[f+0],F,3936430074),_=c(_,w,C,v,b[f+3],M,3572445317),v=c(v,_,w,C,b[f+6],O,76029189),C=c(C,v,_,w,b[f+9],j,3654602809),w=c(w,C,v,_,b[f+12],F,3873151461),_=c(_,w,C,v,b[f+15],M,530742520),v=c(v,_,w,C,b[f+2],O,3299628645),C=h(C,v,_,w,b[f+0],P,4096336452),w=h(w,C,v,_,b[f+7],k,1126891415),_=h(_,w,C,v,b[f+14],Q,2878612391),v=h(v,_,w,C,b[f+5],q,4237533241),C=h(C,v,_,w,b[f+12],P,1700485571),w=h(w,C,v,_,b[f+3],k,2399980690),_=h(_,w,C,v,b[f+10],Q,4293915773),v=h(v,_,w,C,b[f+1],q,2240044497),C=h(C,v,_,w,b[f+8],P,1873313359),w=h(w,C,v,_,b[f+15],k,4264355552),_=h(_,w,C,v,b[f+6],Q,2734768916),v=h(v,_,w,C,b[f+13],q,1309151649),C=h(C,v,_,w,b[f+4],P,4149444226),w=h(w,C,v,_,b[f+11],k,3174756917),_=h(_,w,C,v,b[f+2],Q,718787259),v=h(v,_,w,C,b[f+9],q,3951481745),C=r(C,p),v=r(v,T),_=r(_,y),w=r(w,m);var z=l(C)+l(v)+l(_)+l(w);return z.toLowerCase()};e.exports=n},{}],9:[function(t,e,r){"use strict";var n={flattenObjectIntoArray:function(t){var e=[];for(var r in t)if(Object.prototype.hasOwnProperty.call(t,r)){var i=t[r];if("object"==typeof i&&i.constructor===Array)for(var a=0,o=i.length;a<o;a+=1)e.push(i[a]);else"object"==typeof i?e=e.concat(n.flattenObjectIntoArray(i)):e.push(i)}return e}};e.exports=n},{}],10:[function(t,e,r){"use strict";var n=function(){var t,e,r=(new Date).getTime().toString();try{return(t=window.localStorage).setItem(r,r),e=t.getItem(r)===r,t.removeItem(r),e&&t}catch(t){}}();e.exports=n},{}],11:[function(t,e,r){"use strict";var n={generate:function(){var t=(new Date).getTime();return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(e){var r=(t+16*Math.random())%16|0;return t=Math.floor(t/16),("x"===e?r:3&r|8).toString(16)})}};e.exports=n},{}],12:[function(t,e,r){"use strict";var n={objectToQuery:function(t,e){e=e||"";var r=[];for(var i in t)if(Object.prototype.hasOwnProperty.call(t,i)){var a,o=t[i];if(a=e.length?e+"["+n.escapeStringForQuery(i)+"]":n.escapeStringForQuery(i),"object"==typeof o&&o.constructor===Array){for(var s=0,u=o.length;s<u;s+=1)r.push(a+"="+n.escapeStringForQuery(o[s])),r.push("&");r.pop()}else"object"==typeof o?r.push(n.objectToQuery(o,a)):r.push(a+"="+n.escapeStringForQuery(o));r.push("&")}return r.pop(),r.join("")},arrayToQuery:function(t,e){e=e||"";for(var r=n.escapeStringForQuery(e),i=[],a=0,o=t.length;a<o;a+=1){var s=n.escapeStringForQuery(t[a]);i.push(r+"="+s)}return i.join("&")},queryToObject:function(t){for(var e={},r=t.split("&"),i=0,a=r.length;i<a;i+=1){var o=r[i].split("="),s=n.unescapeStringForQuery(o[0]||""),u=n.unescapeStringForQuery(o[1]||"");"undefined"==typeof e[s]&&(e[s]=[]),u.length>0&&e[s].push(u)}return e},escapeStringForQuery:function(t){return encodeURIComponent(t)},unescapeStringForQuery:function(t){return decodeURIComponent(t)}};e.exports=n},{}],13:[function(t,e,r){"use strict";function n(t){this._isEnabledCallback=t}var i=t("./lib/storage");n.prototype={set:function(t,e){i[t]=e},get:function(t){return i[t]},isEnabled:function(){return this._isEnabledCallback()}},n.isSupportedByBrowser=function(){return!!i},e.exports=n},{"./lib/storage":10}],14:[function(t,e,r){"use strict";function n(t,e){return new TypeError("Parameter #"+t+" is required: "+e)}function i(t){this.storage=t,this.state={urlCache:{},currentURLCacheKey:!1}}var a=t("./lib/md5"),o=t("./constants"),s=t("./serialize");i.prototype={usesTagCache:function(){return o.CACHE_TIMINGS.tags>0&&this.storage.isEnabled()},isTagCacheValid:function(t){if("undefined"==typeof t)throw n(0,"pixelId");var e=parseInt(this.storage.get("glimrTags_"+t+"_lastUpdate"),10),r=(new Date).getTime();return!isNaN(e)&&(r-e)/1e3<o.CACHE_TIMINGS.tags},setTagCacheTimeInSeconds:function(t){t>o.MAX_CACHE_TIME&&(t=o.MAX_CACHE_TIME),o.CACHE_TIMINGS.tags=t},getTagCacheTimeInSeconds:function(){return o.CACHE_TIMINGS.tags},currentURLIdentifier:function(){return window.document.location.hash&&window.document.location.hash.indexOf("#!")!==-1?window.document.location.hash.replace("#!",""):window.document.location.pathname},_currentURLCacheKey:function(){return this.state.currentURLCacheKey?this.state.currentURLCacheKey:a(this.currentURLIdentifier()).substr(0,10)},_unmarshalTags:function(t){if(!t)return{};for(var e=t.split("|"),r={},n=0;n<e.length;n+=1){var i=e[n].indexOf("="),a=e[n].substring(0,i);r[a]=this._deserializeTags(e[n].substring(i+1))}return r},_marshalTags:function(t){var e=[];for(var r in t)t.hasOwnProperty(r)&&e.push(r.substr(0,10)+"="+this._serializeTags(t[r]));return e.join("|")},_getOrUnmarshalCache:function(t){return this.storage.isEnabled()&&this.storage.get("glimrArticleTags_"+t)&&(this.state.urlCache[t]=this._unmarshalTags(this.storage.get("glimrArticleTags_"+t))),this.state.urlCache[t]||{}},_serializeTags:function(t){return"object"==typeof t&&t.constructor===Array?t.join(","):o.V2_PREFIX+s.objectToQuery(t)},_deserializeTags:function(t){return t=t||"",t.substr(0,o.V2_PREFIX.length)===o.V2_PREFIX?s.queryToObject(t.substr(o.V2_PREFIX.length)):""===t?[]:t.split(",")},_updateTagCache:function(t,e){this.storage.isEnabled()&&(this.storage.set("glimrTags_"+t+"_lastUpdate",(new Date).getTime()),this.storage.set("glimrTags_"+t,this._serializeTags(e)))},_updateURLCache:function(t,e){this.storage.isEnabled()&&(this.storage.set("glimrArticleTags_"+t,this._marshalTags(e)),this.storage.set("glimrArticleTags_"+t+"_lastUpdate",(new Date).getTime())),this.state.urlCache[t]||(this.state.urlCache[t]={});for(var r in e)e.hasOwnProperty(r)&&(this.state.urlCache[t][r.substr(0,10)]=e[r])}},e.exports=i},{"./constants":1,"./lib/md5":8,"./serialize":12}],15:[function(t,e,r){"use strict";function n(t,e){return new TypeError("Parameter #"+t+" is required: "+e)}function i(t,e,r,n,i){this.storage=t,this.tagCache=e,this.state={loadingTags:{},loadedTags:{},currentURLCacheKey:!1},this.networkRequests=0,this.glimrId=r,this.url=n,this.enrichment=i}var a=t("./lib/functools"),o=t("./lib/objecttools"),s=(t("./lib/md5"),t("./lib/jsonp")),u=t("./serialize");t("./constants");i.prototype={getPixelLastUpdated:function(t){return!!this.storage.isEnabled()&&(this.storage.get("glimrArticleTags_"+t+"_lastUpdate")||!1)},getCachedURLTags:function(t){if("undefined"==typeof t)throw n(0,"pixelId");var e=this.tagCache._getOrUnmarshalCache(t),r=this.tagCache._currentURLCacheKey();return e[r]||(e[r]=[]),e[r]},getCachedBehaviorTags:function(t){if("undefined"==typeof t)throw n(0,"pixelId");if(this.tagCache.usesTagCache()&&this.tagCache.isTagCacheValid(t)){var e=this._getLocalTags(t);return e[0]}return!1},getCachedBehaviorTagsAndUpdateInBackground:function(t,e){if("undefined"==typeof t)throw n(0,"pixelId");if(e=e||{},e.onUpdate="function"==typeof e.onUpdate?e.onUpdate:function(){},!this.tagCache.usesTagCache())return window.console&&window.console.error("Caching not enabled. Enable with Glimr.setTagCacheTimeInSeconds(number)"),[];var r=this._getLocalTags(t);return this.tagCache.isTagCacheValid(t)||this.getTags(t,e.onUpdate),r[0]||!1},getTagsAndPushToDataLayer:function(t,e){if("undefined"==typeof t)throw n(0,"pixelId");this.getTags(t,function(t){window.dataLayer&&window.dataLayer.push&&window.dataLayer.push({glimrTags:t,event:"glimr.tags"}),e&&"function"==typeof e&&e()})},getTags:function(t,e){if("undefined"==typeof t)throw n(0,"pixelId");var r=t+this.tagCache._currentURLCacheKey();if(!this._needsToMakeRequest()&&this.state.loadedTags[r]){var i=this.state.loadedTags[r];return void e(i[0],i[1])}return"undefined"!=typeof this.state.loadingTags[r]?void this.state.loadingTags[r].push(e):void this._requestTags(t,r,e,a.bindFunction(this,function(e){var n=[],i={},a=n;e&&e.tags&&(n=e.tags,a=n),e&&e.mapping&&(i=e.mapping,a=i),e&&e.cache&&this.tagCache._updateURLCache(t,e.cache),this.tagCache.usesTagCache()&&this.tagCache._updateTagCache(t,a);for(var o=this.getCachedURLTags(t),s=0;s<o.length;s+=1)n.indexOf(o[s])===-1&&(n.push(o[s]),i.urlTags=i.urlTags||[],i.urlTags.push(o[s]));this.state.loadedTags[r]=[n,i];var u=this.state.loadingTags[r];delete this.state.loadingTags[r];for(var c=0;c<u.length;c+=1)u[c](n,i);"string"==typeof e.id&&e.id!==this.glimrId.getId()&&this.glimrId.setId(e.id)}))},_getLocalTags:function(t){var e=this.tagCache._deserializeTags(this.storage.get("glimrTags_"+t)),r=this.getCachedURLTags(t);if("object"==typeof e&&e.constructor===Array)return[e.concat(r),{urlTags:r}];e.urlTags=r;var n=o.flattenObjectIntoArray(e);return[n,e]},_requestTags:function(t,e,r,n){var i=this.getPixelLastUpdated(t);if(!this._needsToMakeRequest()&&this.tagCache.usesTagCache()&&this.tagCache.isTagCacheValid(t)){var a=this._getLocalTags(t);return void r(a[0],a[1])}var o="";i&&(o+="&keywords_last_updated="+i),window.document.location.hash&&(o+="&fragment="+encodeURIComponent(window.document.location.hash)),o+="&"+u.objectToQuery(this.enrichment._flush());var c=(this.url.host+this.url.tags).replace(":id",t)+"?id="+this.glimrId.getId()+o;this.state.loadingTags[e]=[],this.state.loadingTags[e].push(r),this.networkRequests+=1,s(c,n)},_needsToMakeRequest:function(){return this.enrichment._needsToFlush()}},e.exports=i},{"./constants":1,"./lib/functools":6,"./lib/jsonp":7,"./lib/md5":8,"./lib/objecttools":9,"./serialize":12}]},{},[3])(3)});
+Glimr.setTagCacheTimeInSeconds(300);;
+Glimr.getTags('H3IYO2A4LD43YPFZIJLN', fetchGlimrTags);
+    function fetchGlimrTags(_tags) {
+    if (_tags) {
+        tags = tags.concat(_tags);
+    }
+    
+
+            function getAdId() {
+    var cookie = decodeURIComponent(
+        document.cookie.replace(
+            new RegExp(
+                '(?:(?:^|.*;)\\s*' + encodeURIComponent('_pulse2data').replace(/[\-\.\+\*]/g, '\\$&'
+            ) + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1'
+        )
+    ) || false;
+    if (cookie) {
+        return cookie.split(',')[9];
+    }
+    return;
+}
+    
+    if (tags.length) {
+        tags = tags.slice(0, 20);
+        tags.forEach(function(tag) {
+            if (tag) {
+                keywords['no-sno-glimr-' + tag.toLowerCase()] = 'true';
+            }
+        });
+    }
+
+    apntag.anq.push(function() {
+        var pageOpts = {
+            member: 3296,
+            disablePsa: true,
+
+            noBidIfUnsold: true,
+            keywords: keywords
+        };
+
+                pageOpts['user'] = {
+            externalUid: getAdId()
+        }
+        
+        apntag.setPageOpts(pageOpts);
+    });
+
+    apntag.anq.push(function() {
+                    var placements = {"test_1":{"invCode":"no-vg-wde-front_test_1","sizes":[[1,2]],"group":"smartboard","lazyload":false,"adFormat":"test_1"},"topboard":{"sizes":[[980,150],[1000,150],[1010,150],[980,300],[1010,300],[728,90],[928,120],[980,240]],"group":"horseshoe","invCode":"no-vg-wde-article_topboard","safeFrame":false,"placementIdPrefix":"","adFormat":"topboard"},"skyscraperleft_1":{"sizes":[[180,701],[180,501]],"group":"horseshoe","lazyload":false,"invCode":"no-vg-wde-article_skyscraperleft_1","safeFrame":false,"placementIdPrefix":"","adFormat":"skyscraperleft_1"},"skyscraperright_1":{"sizes":[[160,600],[180,500],[180,700],[300,600]],"group":"horseshoe","lazyload":false,"invCode":"no-vg-wde-article_skyscraperright_1","safeFrame":false,"placementIdPrefix":"","adFormat":"skyscraperright_1"},"wallpaper":{"sizes":[[2,2]],"group":"horseshoe","lazyload":false,"invCode":"no-vg-wde-article_wallpaper","safeFrame":false,"placementIdPrefix":"","adFormat":"wallpaper"},"netboard_1":{"sizes":[[580,400],[580,500],[1,1]],"group":"netboard","refresh":false,"invCode":"no-vg-wde-article_netboard_1","safeFrame":false,"placementIdPrefix":"","adFormat":"netboard_1"},"smartboard_1":{"sizes":[[1,1],[300,250],[320,250]],"group":"smartboard","refresh":false,"invCode":"no-vg-wde-article_smartboard_1","safeFrame":false,"placementIdPrefix":"","adFormat":"smartboard_1"},"smartboard_2":{"sizes":[[1,1],[300,250],[320,250]],"group":"smartboard","refresh":false,"invCode":"no-vg-wde-article_smartboard_2","safeFrame":false,"placementIdPrefix":"","adFormat":"smartboard_2"},"smartboard_3":{"sizes":[[1,1],[300,250],[320,250]],"group":"smartboard","refresh":false,"invCode":"no-vg-wde-article_smartboard_3","safeFrame":false,"placementIdPrefix":"","adFormat":"smartboard_3"}};
+            for (var name in placements) {
+                (function(placement, name) {
+                    apntag.defineTag({invCode: placement.invCode, sizes: placement.sizes, targetId: 'ad-' + name, keywords: {'no-sno-adformat': placement.adFormat }, alwaysUseXDomainIframe: placement.safeFrame });
+                    apntag.onEvent('adNoBid', 'ad-' + name, function() {
+                        apntag.requests.tags['ad-' + name].empty = true;
+                    });
+                })(placements[name], name);
+            }
+
+                        (function render() {
+                if (document.hidden) {
+                    document.addEventListener('visibilitychange', render);
+                } else {
+                    apntag.loadTags();
+                }
+            })();
+                        });
+        }
+        })();
+
+(function() {
+    var threshold = 200;
+    var thresholdAbove = 150;
+    var thresholdRefresh = 300;
+    var thresholdAboveRefresh = 300;
+    var aboveTheFold = false;
+    var bound = null;
+    var items = [];
+    var showTag;
+    var cachedElements = {};
+    var refreshItems = [];
+    var shouldRefreshItems = [];
+
+    apntag.anq.push(function() {
+        showTag = apntag.showTag;
+        apntag.showTag = function(item) {
+            items.push(item);
+
+            if (visible(item)) {
+                showTag(item);
+                items.splice(items.length-1, 1);
+
+                if (shouldRefresh(item)) {
+                    refreshItems.push(item);
+                }
+            }
+        };
+    });
+
+    var throttle = (function() {
+        var tasks = [];
+        var wait = false;
+
+        function flush() {
+            if (!wait) {
+                wait = true;
+                requestAnimationFrame(runTasks.bind(null, tasks));
+            }
+        }
+
+        function runTasks(tasks) {
+            var task;
+            while (task = tasks.shift()) {
+                task();
+            }
+
+            wait = false;
+        }
+
+        function throttle(fn, scope) {
+            scope = scope || this;
+
+            return function () {
+                tasks.push(fn.bind(scope));
+                flush();
+            };
+        }
+
+        return throttle;
+    })();
+
+    function resolveElement(id) {
+        if (typeof id === 'string') {
+            var element;
+            if (!(id in cachedElements)) {
+                element = cachedElements[id] = document.getElementById(id);
+            } else {
+                element = cachedElements[id];
+            }
+            return element;
+        }
+        return null;
+    }
+
+    function visible(id, _threshold, _thresholdAbove) {
+        _threshold = _threshold || threshold;
+        _thresholdAbove = _thresholdAbove || thresholdAbove;
+        var element = resolveElement(id);
+
+        if (!element) {
+            return false;
+        }
+
+        var offset = element.getBoundingClientRect();
+
+        return (
+            (offset.top-window.innerHeight-_threshold) <= 0 &&
+            (offset.bottom+_thresholdAbove >= 0 || aboveTheFold === true)
+        );
+    }
+
+    function isEmpty(name) {
+        if (apntag.requests.tags[name]) {
+            return apntag.requests.tags[name].empty === false;
+        } else {
+            return false;
+        }
+    }
+
+    function shouldLazyload(id) {
+        if (resolveElement(id)) {
+            return resolveElement(id).getAttribute('data-lazyload') === 'true';
+        } else {
+            return false;
+        }
+    }
+
+    function shouldRefresh(id) {
+        if (resolveElement(id)) {
+            return resolveElement(id).getAttribute('data-refresh') === 'true';
+        } else {
+            return false;
+        }
+    }
+
+    function refresh(id) {
+        apntag.anq.push(function() {
+            apntag.refresh([id]);
+        });
+    }
+
+    function setContainerHeight(elem) {
+        if (elem.className.indexOf('ad-refreshed') > -1) {
+            return;
+        }
+
+        elem.className += ' ad-refreshed';
+        elem.style.minHeight = elem.clientHeight + 'px';
+    }
+
+    function queueRefreshItems() {
+        refreshItems.forEach(function(item) {
+            var shouldRefreshItem = shouldRefreshItems.indexOf(item) > -1;
+            var isVisible = visible(item, thresholdRefresh, thresholdAboveRefresh);
+
+            if (!isVisible && !shouldRefreshItem) {
+                shouldRefreshItems.push(item);
+                var elem = resolveElement(item);
+                setContainerHeight(elem);
+            } else if (shouldRefreshItem && isVisible) {
+                var idx = shouldRefreshItems.indexOf(item);
+                refresh(item);
+                shouldRefreshItems.splice(idx, 1);
+            }
+        });
+    }
+
+    
+    function load(event) {
+        items.forEach(function(item, i) {
+            if (visible(item) || !shouldLazyload(item)) {
+                apntag.anq.push(function() {
+                    if (!isEmpty(item)) {
+                        showTag(item);
+                    }
+
+                                    });
+
+                items.splice(i, 1);
+            }
+        });
+
+        if (bound && items.length === 0 && event) {
+            window.removeEventListener('scroll', bound);
+        }
+    }
+
+    (function addOnScroll() {
+        bound = throttle(load);
+        load();
+        window.addEventListener('scroll', bound);
+    })();
+})();
+</script>
+
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//1.vgc.no/vgnett-prod/img/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="//1.vgc.no/vgnett-prod/img/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="//1.vgc.no/vgnett-prod/img/icons/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+        <link rel="author" href="/humans.txt">
+
+        <script>
+!function(e,t,n){n=e.getElementsByTagName(t)[0],this.getScript=function(a,o,c){var r=e.createElement(t)
+r.src=r.async=a,r.onreadystatechange=r.onload=function(){(!r.readyState||/loaded|complete/.test(r.readyState))&&(o&&o(),r.onreadystatechange=r.onload=null)},c&&(r.id=c),(!n||!n.parentNode)&&(n=e.getElementsByTagName(t)[0]),n.parentNode.insertBefore(r,n); return r;}}(document,"script")
+</script>
+
+        
+        <script src="//1.vgc.no/vgnett-prod/js/ably.min.js?v=2.0.3"></script>
+
+        <script async data-main="//1.vgc.no/vgnett-prod/js/scripts20170524130720" src="//cdn.vgc.no/js/libs/require/require-2.1.20.min.js"></script>
+
+        <meta property="lp:url" content="http://www.vg.no/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/"><!--
+<PageMap>
+            <DataObject type="thumbnail">
+            <Attribute name="src" value="https://imbo.vgc.no/users/vgno/images/d93327ad8130f1cf629721eddc3d47bd.jpg?t%5B%5D=crop%3Awidth%3D5472%2Cheight%3D3648%2Cx%3D0%2Cy%3D0&t%5B%5D=maxSize%3Awidth%3D654&publicKey=drpublish&accessToken=8357c54ca06106abf0899e1414b3780ef5ac3f97af725a32c4ebc41e58154d30"/>
+            <Attribute name="width" value="654"/>
+            <Attribute name="height" value="0"/>
+        </DataObject>
+    </PageMap>
+-->
+
+        <meta name="theme-color" content="#2b2b2b">
+        <meta name="msapplication-navbutton-color" content="#2b2b2b">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#2b2b2b">
+
+        <meta name="google-play-app" content="app-id=com.agens.android.vgsnarvei">
+        <meta name="title" content="Slik blir Johaugs skjebnedøgn i Sveits">
+        <meta name="description" content="SANDVIKA (VG) Therese Johaug (28) reiser til Sveits for å        
+slåss for sin egen karriere som langrennsløper. Rundt seg har hun fem advokater.">
+        <meta name="twitter:title" content="Slik blir Johaugs skjebnedøgn i Sveits">
+        <meta name="twitter:url" content="http://www.vg.no/a/24008092">
+        <meta name="twitter:description" content="SANDVIKA (VG) Therese Johaug (28) reiser til Sveits for å        
+slåss for sin egen karriere som langrennsløper. Rundt seg har hun fem advokater.">
+
+        <meta property="og:title" content="Slik blir Johaugs skjebnedøgn i Sveits">
+        <meta property="og:description" content="SANDVIKA (VG) Therese Johaug (28) reiser til Sveits for å        
+slåss for sin egen karriere som langrennsløper. Rundt seg har hun fem advokater.">
+        <meta property="og:url" content="http://www.vg.no/a/24008092">
+        <meta property="og:type" content="article">
+        <meta property="article:publisher" content="https://www.facebook.com/vgnett">
+
+        <meta name="twitter:image" content="https://imbo.vgc.no/users/vgno/images/d93327ad8130f1cf629721eddc3d47bd?t[0]=crop:width=5472,height=3648,x=0,y=0&t[1]=maxSize:width=990&t[2]=resize:width=990&accessToken=427b480881f7aa2c2ed4c25a2c29d29563555c718effe2972737fa5fb7e85815">
+        <meta property="og:image" content="https://imbo.vgc.no/users/vgno/images/d93327ad8130f1cf629721eddc3d47bd?t[0]=crop:width=5472,height=3648,x=0,y=0&t[1]=maxSize:width=990&t[2]=resize:width=990&accessToken=427b480881f7aa2c2ed4c25a2c29d29563555c718effe2972737fa5fb7e85815">
+        <meta property="og:site_name" content="VG">
+        <meta property="fb:admins" content="100001267707307">
+        <meta property="fb:admins" content="725375931">
+        <meta property="fb:admins" content="521285702">
+        <meta property="fb:app_id" content="152316758161786">
+        <meta property="fb:pages" content="137059286994">
+        <meta property="article:section" content="Langrenn">
+        <meta property="article:tag" content="Johaug tatt i doping">
+        <meta property="article:tag" content="Doping">
+        <meta property="article:tag" content="Therese Johaug">
+        <meta property="al:ios:url" content="vg.no:///a/24008092">
+        <meta property="al:ios:app_store_id" content="381071021">
+        <meta property="al:ios:app_name" content="VG">
+        <meta property="al:android:url" content="vg.no://www.vg.no/a/24008092">
+        <meta property="al:android:package" content="com.agens.android.vgsnarvei">
+        <meta property="al:android:app_name" content="VG">
+        <meta property="al:web:url" content="http://www.vg.no/a/24008092/">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="google-site-verification" content="MLm3DHfNZRq9rzqHRktoUtYV0ZBtYfImmmqKByf_RJM">
+        <meta name="apple-itunes-app" content="app-id=381071021, affiliate-data=&uo=4&at=10lugu, app-argument=http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/">
+        <meta name="twitter:app:country" content="NO">
+        <meta name="twitter:app:name:iphone" content="VG">
+        <meta name="twitter:app:id:iphone" content="381071021">
+        <meta name="twitter:app:url:iphone" content="vg.no:///a/24008092">
+        <meta name="twitter:app:name:ipad" content="VG">
+        <meta name="twitter:app:id:ipad" content="381071021">
+        <meta name="twitter:app:url:ipad" content="vg.no:///a/24008092">
+        <meta name="twitter:app:name:googleplay" content="VG">
+        <meta name="twitter:app:id:googleplay" content="com.agens.android.vgsnarvei">
+        <meta name="twitter:app:url:googleplay" content="vg.no://www.vg.no/a/24008092">
+
+    <link rel="alternate"
+                    type="application/rss+xml"
+                            title="VG"
+            href="http://www.vg.no/rss/feed/?categories=&keywords=&format=rss&limit=10"/>
+    <link rel="alternate"
+                    type="application/atom+xml"
+                            title="VG"
+            href="http://www.vg.no/rss/feed/?categories=&keywords=&format=atom&limit=10"/>
+    <link rel="alternate"
+                    type="application/rss+xml"
+                            title="VG :: Sport"
+            href="http://www.vg.no/rss/feed/?categories=1072&keywords=&format=rss&limit=10"/>
+    <link rel="alternate"
+                    type="application/atom+xml"
+                            title="VG :: Sport"
+            href="http://www.vg.no/rss/feed/?categories=1072&keywords=&format=atom&limit=10"/>
+    <link rel="alternate"
+                    type="application/rss+xml"
+                            title="VG :: Langrenn"
+            href="http://www.vg.no/rss/feed/?categories=1076&keywords=&format=rss&limit=10"/>
+    <link rel="alternate"
+                    type="application/atom+xml"
+                            title="VG :: Langrenn"
+            href="http://www.vg.no/rss/feed/?categories=1076&keywords=&format=atom&limit=10"/>
+    <link rel="alternate"
+                    type="application/rss+xml"
+                            title="VG :: Johaug tatt i doping"
+            href="http://www.vg.no/rss/feed/?categories=&keywords=14450&format=rss&limit=10"/>
+    <link rel="alternate"
+                    type="application/atom+xml"
+                            title="VG :: Johaug tatt i doping"
+            href="http://www.vg.no/rss/feed/?categories=&keywords=14450&format=atom&limit=10"/>
+    <link rel="alternate"
+                    href="android-app://com.agens.android.vgsnarvei/vg.no/www.vg.no/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/"/>
+
+            </head>
+    <body id="frontpage" class="section-keyword-article desktop section-sport johaug-tatt-i-doping">
+        <script type="text/javascript">
+                    </script>
+        <!--googleoff: index-->
+
+        <a class="screen-reader-hidden" href="/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/#skip-nav">Hopp til hovedinnhold</a>
+        <div id="top-bar">
+    <div class="top-bar-content">
+        <div class="vg-service">
+            <ul class="section-nav-topbar">
+    <li>
+        <a href="http://www.vektklubb.no">Vektklubb</a>
+    </li>
+    <li>
+        <a href="http://www.minmote.no">MinMote</a>
+    </li>
+    <li>
+        <a href="http://www.godt.no">Godt</a>
+    </li>
+    <li>
+        <a href="http://vgd.no/">VGD</a>
+    </li>
+    <li>
+        <a href="http://tipster.no/">Tipster</a>
+    </li>
+    <li>
+        <a href="http://www.dinepenger.no">Dine Penger</a>
+    </li>
+    <li>
+        <a href="http://www.e24.no">E24</a>
+    </li>
+    <li>
+        <a href="http://mittanbud.no/?vgmenu=true&amp;utm_source=vgnett&amp;utm_medium=link&amp;utm_content=mittanbud&amp;utm_campaign=forsidelink_topbar">Mittanbud</a>
+    </li>
+    <li>
+        <a href="http://www.pent.no">Pent</a>
+    </li>
+    <li>
+        <a href="http://www.vg.no/rabattkode/">Rabattkode</a>
+    </li>
+</ul>        </div>
+        <div class="login-form"></div>
+    </div>
+</div>
+        <div class="reg-grid-container">
+                        <div id="ad-topboard"
+    class="ad appnexus topboard"
+    data-lazyload="true"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_topboard"
+    data-sizes="[[980,150],[1000,150],[1010,150],[980,300],[1010,300],[728,90],[928,120],[980,240]]"
+        data-format="topboard"
+></div>
+            
+                        <div class="ad-wrapper">
+            <div id="ad-skyscraperright_1"
+    class="ad appnexus skyscraperright_1"
+    data-lazyload="false"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_skyscraperright_1"
+    data-sizes="[[160,600],[180,500],[180,700],[300,600]]"
+        data-format="skyscraperright_1"
+></div>
+            </div>
+            <div class="ad-wrapper ad-wrapper-left">
+            <div id="ad-skyscraperleft_1"
+    class="ad appnexus skyscraperleft_1"
+    data-lazyload="false"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_skyscraperleft_1"
+    data-sizes="[[180,701],[180,501]]"
+        data-format="skyscraperleft_1"
+></div>
+            </div>
+            
+            <div class="reg-grid-main-content">
+            <a name="top"></a>
+            <header role="banner">
+            <div id="main-nav-bar">
+        <div class="main-navbar-content">
+            <h1 class="main-logo">
+                <a href="/" title="Klikk for å komme til VGs forside">
+                    <svg class="logo-red" viewBox="0 0 495 115" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Imported-Layers" transform="translate(1.000000, 1.000000)">
+                                <path d="M-0.012,-0.5 L493.703,-0.5 L493.703,113.199 L-0.012,113.199 L-0.012,-0.5 Z" id="Fill-1" fill="#DD0000"></path>
+                                <path d="M429.86,99.098 L275.461,99.098 C275.461,99.098 256.76,100.163 256.76,83.45 L256.76,32.242 C256.76,12.335 275.461,13.546 275.461,13.546 L431.453,13.546 C450.58,13.546 450.243,32.346 450.243,32.346 L450.243,35.482 L389.287,35.482 L389.287,32.057 C389.287,32.057 388.565,23.363 378.159,23.363 L330.931,23.363 C318.087,23.363 318.432,34.036 318.432,34.036 L318.432,77.223 C318.432,77.223 317,89.496 330.086,89.496 L377.704,89.496 C388.494,89.496 389.539,78.878 389.539,78.878 L389.539,62.758 L354.861,62.758 L354.861,52.822 L450.213,52.822 L450.213,80.975 C450.213,80.975 450.213,99.098 429.86,99.098" id="Fill-2" fill="#FFFFFF"></path>
+                                <path d="M93.868,99.204 L20.459,13.494 L96.131,13.494 L134.388,71.365 L175.662,13.494 L250.464,13.494 L176.154,99.204 L93.868,99.204" id="Fill-3" fill="#FFFFFF"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <!--[if lte IE 8]>
+                    <img class="logo-red" src="//1.vgc.no/vgnett-prod/img/vgLogoDesktop.png?20170524130720" alt="VG.no" />
+                    <![endif]-->
+                </a>
+            </h1>
+            <div class="section-nav-top-stripe bg-size">
+                <div class="main">
+                                                                                                                                                                        <h2><a href="/sport/ski">Ski</a></h2>
+                                    </div>
+            </div>
+
+            <div id="nav-bar-search">
+                <form method="get" action="/sok/" id="search-form">
+                    <input type="search" name="q" id="search-input" placeholder="Søk på VG">
+                    <input type="submit" class="submit" value="Søk" />
+                </form>
+            </div><!-- nav-bar-search -->
+            <div id="nav-bar-form" class="contact-form">
+                
+    <div class="inner">
+        <div class="form-template-header">
+             TIPS 2200
+        </div>
+
+        <div class="form-template-content">
+            <form action="/_kontakt/submit" method="POST" name="headerContactForm" enctype="multipart/form-data" novalidate="" class="form-poster" id="headerContactForm"><input type="hidden" name="name" value="headerContactForm"><input type="hidden" name="journalist-receiver" id="journalistReceiver" value=""><label><span>Tips:</span><textarea name="message" required="required" placeholder="Henvendelsen gjelder"></textarea></label><div class="fileupload fileupload-new" data-provides="fileupload">
+    <div class="input-append">
+        <div class="uneditable-input span3">
+            <i class="icon-file fileupload-exists"></i>
+            <span class="fileupload-preview"></span>
+        </div>
+        <span class="btn btn-file">
+            <span class="fileupload-new">Velg bilde</span>
+            <span class="fileupload-exists">Velg bilde</span>
+
+            <input type="file" capture="gallery"
+                name="upload-image"
+                class=""
+                accept="image/*" />
+        </span>
+
+                                        <span class="btn btn-file fileupload-video">
+                    <a target="_blank" href="https://www.filemail.com/incoming/vg02943870363">
+                        Video                    </a>
+                </span>
+                            <span class="btn btn-file fileupload-document">
+                    <a target="_blank" href="https://www.filemail.com/incoming/4724212109">
+                        Dokument                    </a>
+                </span>
+                        </div>
+</div>
+<input type="submit" name="submit" value="Send inn"><input type="hidden" name="article-url" value="http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/"><fieldset><legend>Kontaktinfo:</legend><input type="text" name="sender[important-field]" required="required" class="important-field" value=""><input type="text" name="sender[sender-name]" placeholder="Navn" id="sender-name" value=""><input type="email" name="sender[sender-mail]" placeholder="E-postadresse" value=""><input type="text" name="sender[sender-phone]" placeholder="Telefon" class="sender-phone" value=""></fieldset></form>        </div>
+
+        <div class="form-template-footer">
+            <p>SMS: <a class="sms-link" href="sms:2200">2200</a> Tlf: <a class="call-link" href="tel:22000000">22 000 000</a></p>
+            <p>VG AS | Akersgata 55, Postboks 1185 Sentrum, 0107 Oslo</p>
+        </div>
+    </div>
+            </div><!-- nav-bar-form -->
+            <div id="section-nav-bar">
+                <nav class="section-nav-bar-content" role="navigation">
+                    <ul class="nav-header">
+                                            </ul>
+                </nav>
+            </div><!-- section-nav-bar -->
+
+            <ul class="button-container">
+                <li><a class="menu-menu-btn bg-size" data-for="#section-nav-bar" id="menu-btn" href="/a-aa">Meny</a></li>
+                <li><a class="menu-tip-btn bg-size" data-for="#nav-bar-form" id="tip-btn" href="/tips-oss">Tips 2200</a></li>
+                <li><a class="menu-search-btn bg-size" data-for="#nav-bar-search" id="search-btn" href="/sok/">Søk</a></li>
+            </ul>
+                    </div>
+    </div><!-- main-nav-bar -->
+        <div class="navbar-content">
+                    <ul class="section-nav-submenu">
+            <li class="submenu-link">
+            <a class="virtual-section submenu-link" href="/sport/ski" data-parent="Mer sport::Ski">&lt; Ski</a>
+                    </li>
+            <li >
+            <a class="" href="/sport/alpint/" data-parent="Mer sport::Ski">Alpint</a>
+                    </li>
+            <li >
+            <a class=" active" href="/sport/langrenn/" data-parent="Mer sport::Ski">Langrenn</a>
+                    </li>
+            <li >
+            <a class="" href="/sport/skiskyting/" data-parent="Mer sport::Ski">Skiskyting</a>
+                    </li>
+            <li >
+            <a class="" href="/sport/hopp/" data-parent="Mer sport::Ski">Hopp</a>
+                    </li>
+    </ul>                <div class="clearer"></div>
+    </div>
+</header>
+
+            <div id="wid-header-below"></div>
+
+            <div class="reg-grid-wrapper">
+                        <!--[if lte IE 8 | IEMobile 7 ]>
+            <style>
+            .browserupgrade {
+                background: #b41c0a;
+                color: #fff;
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .browserupgrade .browserupgrade-bold {
+                margin-bottom: 10px;
+                font-size: 18px;
+            }
+            .browserupgrade a {
+                color: #fff;
+                font-weight: bold;
+            }
+            </style>
+            <div class="browserupgrade"><p class="browserupgrade-bold"><strong>Du bruker en eldre versjon av nettleseren Internet Explorer.</strong></p><p>For å få en best mulig opplevelse av våre nettsider, bør du <a href="http://browsehappy.com/" target="_blank">gratis oppgradere nettleseren din her</a>.</p></div>
+        <![endif]-->
+                
+                <div id="page-wrapper" class="pag-article">
+    <div id="content-wrapper">
+                <div class="right-ad-wrapper">
+                    </div>
+                <a id="skip-nav"></a>
+        <main id="main" role="main">
+            <h2 class="visuallyhidden" >Hovedinnhold</h2>
+            <article id="wid-data" role="article" itemscope itemtype="http://schema.org/Article"
+                     class="vg-article reg-article"
+                     data-page-type="article"
+                     data-section-path="sport/langrenn/"
+                     data-section-name="Langrenn"
+                     data-section-parent-id="1072"
+                     data-section-parent-path="sport"
+                     data-section-parent-name="Sport"
+                     data-keyword-id="14450"
+                     data-keyword-path="johaug-tatt-i-doping"
+                     data-keyword-name="Johaug tatt i doping"
+                     data-id="24008092"
+                     data-keywords-ids="14450|1470|10143"
+                     data-keywords-names="Johaug tatt i doping|Doping|Therese Johaug"
+                     data-persistentUrl="http://www.vg.no/a/24008092"
+                     data-article-url="http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/"
+                     data-section-id="1076"
+                     data-section=""
+                     data-movieid="0"
+                     data-published="2017-05-28T12:15:58+0200"
+                     data-updated="2017-05-28T13:34:11+0200"
+                     data-author-emails="anders.christiansen@vg.no"
+                     data-main-tag="Johaug tatt i doping"
+                >
+
+                <div class="reg-grid-full">
+                                        <div class="article-ad">
+                                            </div>
+
+                    <!--googleon: index-->
+
+<a id="title"></a>
+<h1 class="main-title" itemprop="name" >Slik blir Johaugs skjebnedøgn i Sveits</h1><h2 class="sub-title">Manager til VG: – Therese gruer seg ikke, men er spent</h2>
+<div class="article-main-lead">
+    <figure style="max-width:992px; width: 100%" class="dp-picture dp-plugin-element dp-plugin-imbo"><img src="https://imbo.vgc.no/users/vgno/images/d93327ad8130f1cf629721eddc3d47bd?t%5B0%5D=crop%3Awidth%3D5472%2Cheight%3D3648%2Cx%3D0%2Cy%3D0&amp;t%5B1%5D=maxSize%3Awidth%3D990%2Cheight%3D0&amp;t%5B2%5D=resize%3Awidth%3D990&amp;accessToken=c382d3ffd51ec2a70bc7343743021486f870ca949f429478950eb161bcda70ef" alt="&lt;p&gt;AVGJØRELSEN: 6. juni avgjøres Therese Johaugs langrennsskjebne for de neste månedene, når saken hennes skal opp i Idrettens voldgiftsdomstol.&lt;/p&gt;" aria-describedby="figcaption#24008165"/><figcaption id="figcaption#24008165"><p>AVGJØRELSEN: 6. juni avgjøres Therese Johaugs langrennsskjebne for de neste månedene, når saken hennes skal opp i Idrettens voldgiftsdomstol.</p>  <span class="uppercase">Foto: Frode Hansen</span>, <span class="uppercase">VG</span></figcaption></figure></div>
+                </div>
+
+                <div class="reg-grid-main">
+                                        <div class="inline-ad-text">
+                        <div id="ad-netboard_1"
+    class="ad appnexus netboard_1"
+    data-lazyload="true"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_netboard_1"
+    data-sizes="[[580,400],[580,500],[1,1]]"
+        data-format="netboard_1"
+></div>
+                    </div>
+                    
+                    <div id="byline">
+                        <ul class="mailto-list has-byline"><li class="info"><h5>Send en melding til</h5></li><li class="byline-author"><a itemprop="author" href="/profil/18130/">Anders K. Christiansen </a></li></ul>
+<div class="byline-source">
+            <a class="static comments-icon scroll-to-facebook-comments"
+           href="http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/#comments"
+           title="Antall kommentarer på artikkelen"><span class="visuallyhidden">Antall kommentarer på artikkelen</span>
+            <span class="facebook-comments facebook-top-comments"></span></a>
+    
+    <span class="source">
+            </span>
+
+                    <time class="published" itemprop="datePublished">
+            28.05.2017 12:15        </time>
+    
+        <span class="recently-updated">- oppdatert <time class="updated">28.05.2017 13:34</time></span>
+    </div>
+                    </div>
+
+                    <div class="reg-tools">
+                        <div class="right">
+                            <div>
+    <button class="static decrease-font-size" title="Reduser skriftstørrelse">Reduser skriftstørrelse</button>
+    <button class="static increase-font-size" title="Øk skriftstørrelse">Øk skriftstørrelse</button>
+</div>                        </div>
+                        
+<div class="social">
+    <a rel="nofollow" class="facebook" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.vg.no%2Fsport%2Flangrenn%2Fjohaug-tatt-i-doping%2Fslik-blir-johaugs-skjebnedoegn-i-sveits%2Fa%2F24008092%2F%23xtor%3DCS6-6-%5B24008092+slik_blir_johaugs_skjebnedoegn_i_sveits%5D&amp;title=Slik+blir+Johaugs+skjebned%C3%B8gn+i+Sveits" title="Del denne artikkelen på Facebook"
+       target="_blank">
+        <span class="icon"></span>
+        <span class="text">Del på Facebook</span>
+    </a>
+    <a rel="nofollow" class="twitter" href="http://twitter.com/home?status=Slik blir Johaugs skjebnedøgn i Sveits http%3A%2F%2Fwww.vg.no%2Fsport%2Flangrenn%2Fjohaug-tatt-i-doping%2Fslik-blir-johaugs-skjebnedoegn-i-sveits%2Fa%2F24008092%2F%23xtor%3DCS6-7" title="Del denne artikkelen på Twitter" target="_blank">
+        <span class="icon"></span>
+        <span class="text">Del på Twitter</span>
+    </a>
+
+    <a class="mail" href="mailto:?subject=Les%20denne%20VG-artikkelen:%20Slik blir Johaugs skjebnedøgn i Sveits&amp;body=http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/#xtor=CS4-1" title="Del denne artikkelen på e-post">
+        <span class="icon"></span>
+    </a>
+</div>                    </div>
+                    <div id="wid-above-body-text"></div>
+                    <div itemprop="articleBody" class="article-body-text fs-3">
+                        <meta itemprop="wordCount" content="914" />
+
+                                                        <div id="preamble" itemprop="description">SANDVIKA (VG) Therese Johaug (28) reiser til Sveits for å        
+slåss for sin egen karriere som langrennsløper. Rundt seg har hun fem advokater.</div>
+                                                    
+                        <div id="wid-article-body-full"></div>
+                        <div id="wid-article-body">
+                            
+    <!--googleoff: index-->
+    <div class="widget wid-container vg-folger">
+        <div class="wid-follow-tags">
+            <h2>Denne saken handler om:</h2>
+            <ul>
+                                    <li>
+                        <svg transform="scale(-1.2,1.2)" xmlns="http://www.w3.org/2000/svg" viewBox="-7 -9 30 30" height="20" width="20"><path transform="scale(1,1)" d="M.205 8.1c.224.515.494.94.808 1.255L9.97 18.31c.29.315.672.473 1.12.473.428 0 .81-.158 1.146-.472l6.128-6.15c.314-.313.47-.695.47-1.12 0-.45-.156-.832-.47-1.146L9.43.96C9.094.647 8.667.378 8.15.154 7.613-.072 7.12-.184 6.67-.184H1.46c-.426 0-.808.157-1.122.47C.025.603-.132.984-.132 1.41v5.207c0 .45.113.943.337 1.482zm3.66-5.882c.448 0 .83.157 1.143.47.315.315.472.697.472 1.123 0 .45-.157.832-.472 1.146-.314.314-.695.47-1.144.47-.427 0-.808-.156-1.123-.47-.313-.314-.47-.696-.47-1.145 0-.425.157-.807.47-1.12.316-.315.697-.472 1.124-.472z" fill="#222"></path></svg>
+                        <a href="/sport/langrenn/johaug-tatt-i-doping/">Johaug tatt i doping</a></li>
+                                    <li>
+                        <svg transform="scale(-1.2,1.2)" xmlns="http://www.w3.org/2000/svg" viewBox="-7 -9 30 30" height="20" width="20"><path transform="scale(1,1)" d="M.205 8.1c.224.515.494.94.808 1.255L9.97 18.31c.29.315.672.473 1.12.473.428 0 .81-.158 1.146-.472l6.128-6.15c.314-.313.47-.695.47-1.12 0-.45-.156-.832-.47-1.146L9.43.96C9.094.647 8.667.378 8.15.154 7.613-.072 7.12-.184 6.67-.184H1.46c-.426 0-.808.157-1.122.47C.025.603-.132.984-.132 1.41v5.207c0 .45.113.943.337 1.482zm3.66-5.882c.448 0 .83.157 1.143.47.315.315.472.697.472 1.123 0 .45-.157.832-.472 1.146-.314.314-.695.47-1.144.47-.427 0-.808-.156-1.123-.47-.313-.314-.47-.696-.47-1.145 0-.425.157-.807.47-1.12.316-.315.697-.472 1.124-.472z" fill="#222"></path></svg>
+                        <a href="/sport/doping/">Doping</a></li>
+                                    <li>
+                        <svg transform="scale(-1.2,1.2)" xmlns="http://www.w3.org/2000/svg" viewBox="-7 -9 30 30" height="20" width="20"><path transform="scale(1,1)" d="M.205 8.1c.224.515.494.94.808 1.255L9.97 18.31c.29.315.672.473 1.12.473.428 0 .81-.158 1.146-.472l6.128-6.15c.314-.313.47-.695.47-1.12 0-.45-.156-.832-.47-1.146L9.43.96C9.094.647 8.667.378 8.15.154 7.613-.072 7.12-.184 6.67-.184H1.46c-.426 0-.808.157-1.122.47C.025.603-.132.984-.132 1.41v5.207c0 .45.113.943.337 1.482zm3.66-5.882c.448 0 .83.157 1.143.47.315.315.472.697.472 1.123 0 .45-.157.832-.472 1.146-.314.314-.695.47-1.144.47-.427 0-.808-.156-1.123-.47-.313-.314-.47-.696-.47-1.145 0-.425.157-.807.47-1.12.316-.315.697-.472 1.124-.472z" fill="#222"></path></svg>
+                        <a href="/sport/langrenn/therese-johaug/">Therese Johaug</a></li>
+                            </ul>
+        </div>
+    </div>
+    <!--googleon: index-->
+
+
+
+                        </div>
+
+                        <p>Advokatene jobber i disse dager med å forberede ankesaken FIS krevde, etter at Johaug først fikk en utestengelse på 13 måneder i Norge for en positiv test på stoffet clostebol i fjor høst.</p>
+<p>Både Antidoping Norge og domsutvalget til NIF trodde på den norske skiyndlingens forklaring om at dette skyldtes bruk av en medisin kjøpt på et apotek i Italia. FIS valgte likevel å anke dommen.</p>
+<p><b>Så du denne?</b> <a href="http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/bendiksen-til-sveits-som-johaug-vitne/a/24005289/" target="_blank" class="">Johaug-legen skal vitne i Sveits</a></p>
+<p class="">I CAS risikerer Johaug en langt strengere straff, og neste års OL i Sør-Korea står på spill når 28-åringen møter i «idrettens høyesterett» tirsdag 6. juni.</p>
+<p class=""><b>– Vi er trygge på dem vi har rundt oss, og føler at Therese har fått optimal juridisk bistand. Samtidig er det godt å ha med oss noen som har vært i CAS før, sier manager Jørn Ernst til VG.</b></p>
+<figure style="max-width:272px; width: 100%" class="dp-picture dp-plugin-element dp-plugin-imbo dp-float-right dp-image-size-small tablet-images"><img src="https://imbo.vgc.no/users/vgno/images/02f6566a35c0882ea26cbbd46e10f9e4?t%5B%5D=crop%3Awidth%3D1300%2Cheight%3D1782%2Cx%3D1493%2Cy%3D29&amp;t%5B%5D=maxSize%3Awidth%3D270&amp;publicKey=drpublish&amp;accessToken=8e2960e5737dba70026072b05badc75b7cceda0a66e765ed4540bd7d3976e2a2" alt="&lt;p&gt;JOHAUG-MANAGER: J&#xF8;rn Ernst.&lt;/p&gt;" aria-describedby="figcaption#24008095" /><figcaption id="figcaption#24008095"><p>JOHAUG-MANAGER: Jørn Ernst.</p>  <span class="uppercase">Foto: Terje Bringedal</span>, <span class="uppercase">VG</span></figcaption></figure>
+<p class="">Han reiser selv til Sveits for å støtte Johaug når 28-åringen skal møte for idrettens voldgiftsrett 6. juni. Det samme gjør Johaugs kjæreste, roeren Nils Jakob Hoff.</p>
+<p class=""><b>VG møtte den engelske toppadvokaten som skal redde Johaugs OL-drøm:</b> <a href="http://pluss.vg.no/2017/04/12/2760/2760_23973791?row=a23988693&amp;row=a24005289" target="_blank" class=""><b>– Vi har gode resultater (VG+)</b></a> <a href="http://www.vg.no/sport/langrenn/langrenn/johaug-faar-tolk-i-cas-vil-snakke-norsk/a/23972765/" target="_blank"><br /></a></p>
+<p class="">I tillegg har advokat Christian B. Hjort og hans assistent Mikkel Toft Gimse kjøpt hver sin flybillett. Det har også stjerneadvokaten Mike Morgan gjort. Samt to engelske kolleger av Morgan.</p>
+<p class="">Morgan regnes som en av verdens beste advokater med kompetanse på voldgiftsretten CAS. Han har tidligere hatt store navn som Alberto Contador, Johan Bruyneel, Marin Cilic og Maria Sjarapova på klientlisten, og regnes som en av verdens beste advokater med kompetanse på voldgiftsretten CAS. Norges Skiforbund har varslet at de vil dekke Johaugs advokatutgifter.</p>
+<p class="">I tillegg vil lege Fredrik Bendiksen være til stede. Han er etter det VG forstår den eneste personen advokatene til Therese Johaug har kalt inn til å vitne i ankesaken i CAS. Å forklare seg på video fra Norge har ikke vært et tema.</p>
+<p class="">Den profilerte legen har tatt på seg skylden for at Johaug testet positivt på det forbudte stoffet clostebol i fjor høst. Han har tidligere forklart at det var han som kjøpte en krem langrennsløperen brukte på en sår leppe.</p>
+<figure class="video-figure"><div class="video svpContainer" id="svpVideo141701-902817124" data-vendor="vgtv" data-videoid="141701" data-svp-autoplay="false" data-bgPlay="false" data-svp-autoplaynext="true" data-svp-recommended="true" data-svp-loop="false" data-svp-ad="true" data-iframewidth="" data-float="left"></div></figure>
+<p class="">Nå skal han fortelle historien foran tre internasjonale dommere i idrettens voldgiftsrett (CAS) i Sveits</p>
+<p class="">– Bendiksen skulle helst sett at Johaug ble frifunnet da saken gikk for NIFs domsutvalg. Når saken er anket, er Bendiksen opptatt av å forsøke å belyse saken best mulig for CAS, uttalte advokat Anders Schrøder Amundsen til VG tidligere denne uken.</p>
+<p class=""><b>Forvirret?</b> <a href="http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/saa-streng-straff-taaler-johaugs-ol-plan/a/23954042/" target="_blank" class="">Så streng straff tåler Johaugs OL-plan</a></p>
+<figure style="max-width:272px; width: 100%" class="dp-picture dp-plugin-element dp-plugin-imbo dp-float-right dp-image-size-small tablet-images"><img src="https://imbo.vgc.no/users/vgno/images/26e513e2c7d028292359ef07da0f5590?t%5B%5D=crop%3Awidth%3D2019%2Cheight%3D2832%2Cx%3D1022%2Cy%3D324&amp;t%5B%5D=maxSize%3Awidth%3D270&amp;publicKey=drpublish&amp;accessToken=757bdfc8c3e7cb3c3beb4c60853045d67663d445721aead53a58d365a19f9396" alt="&lt;p&gt;ENGELSK JOHAUG-ADVOKAT: Mike Morgan, her i m&#xF8;te med VG i v&#xE5;r.&lt;/p&gt;" aria-describedby="figcaption#24008096" /><figcaption id="figcaption#24008096"><p>ENGELSK JOHAUG-ADVOKAT: Mike Morgan, her i møte med VG i vår.</p>  <span class="uppercase">Foto: Anders K. Christiansen</span>, <span class="uppercase">VG</span></figcaption></figure>
+<p class="">Mike Morgan har ført rundt 50 saker for CAS, og kommer til å lede advokatteamet når Johaug om et par uker skal slåss for OL-deltagelse i 2018.</p>
+<p>– Therese er godt forberedt. Hun gruer seg ikke, men er spent. Hun ser frem til å bli ferdig og sette et endelig punktum, sier Ernst.</p>
+<p><b><i>– Er hun mentalt sliten av denne saken?</i></b></p>
+<p class="">– Hun har i alle fall vært det. Det har vi alle vært. Men hun har kommet godt gjennom det og fått god støtte underveis, sier manageren.</p>
+<p class="">Med på reisen er også, som VG tidligere har omtalt, en tolk. Vedkommende vil trolig ikke oversette alt som blir sagt i retten til engelsk for Therese Johaug, men heller være en sikkerhet slik at man unngår eventuelle misforståelser. Johaug vil trolig snakke norsk i sitt vitnemål, og få dette oversatt til engelsk av tolken.</p>
+<p class="">Johaug og hennes følge reiser til Lausanne allerede søndag 4. juni. Dagen etter møter hun sine engelske advokater for første gang. Sammen vil de forberede Johaug på det som skal skje i et lite høringsrom i et sjarmerende slott, der CAS holder til, tirsdag 6. juni.</p>
+<p class="">– Det er snakk om et helt vanlig saksforberedende møte, som vi vil ha med de engelske advokatene. Mike Morgan har sine folk rundt seg, og det er han som leder det engelske teamet, sier Johaug-advokat Christian B. Hjort.</p>
+<p class=""><b>Så du denne?</b> <a href="http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/armstrongs-overmann-galskap-aa-anke-johaug-dommen/a/23948643/" target="_blank" class="">Armstrongs overmann: – Galskap å anke Johaug-dommen</a></p>
+<p class="">Selve høringen foregår for lukkede dører. Dermed får ikke media overhøre hva som skjer når Johaug skal kjempe for sin videre karriere som langrennsløper. Det er ventet at alt er over i løpet av en arbeidsdag.</p>
+<p class="">CAS har gitt uttrykk for at de ikke ønsker journalister innenfor portene sine i Lausanne. Etter det VG forstår kommer Therese Johaug derfor til å gjennomføre en presseseanse utenfor portene, eller et annet sted i den sveitsiske byen.</p>
+<p class="">Mens langrennsstjernen tidligere syntes det var svært vanskelig å prate om den positive dopingprøven, føler hun seg nå «klar» til å møte norske journalister etter endt dag i CAS.</p>
+<p class="">Allerede tirsdag kveld 6. juni er to døgn i Lausanne historie: Da flyr Johaug etter det VG forstår hjem til Norge igjen.</p>
+<p class="">– Denne saken kommer til å følge Therese Johaug resten av livet. Men hun har vært sterk, det ser jeg nå. Hun har vist en ekstrem evne til å fokusere og prioritere, mener Jørn Ernst.</p>
+<figure class="video-figure"><div class="video svpContainer" id="svpVideo141223-1334284252" data-vendor="vgtv" data-videoid="141223" data-svp-autoplay="false" data-bgPlay="false" data-svp-autoplaynext="true" data-svp-recommended="true" data-svp-loop="false" data-svp-ad="true" data-iframewidth="" data-float="left"></div></figure>
+                                            </div>
+
+                    
+                    <div id="wid-after-body-text"></div>
+
+                    <section id="article-bottom-elements" class="reg-grid-footer">
+                        <div class="reg-tools">
+                                                    <section id="comments" class="widget comments">
+    <!--googleoff: index-->
+    <div class="hide comments-introduction clearfix">
+        <h2>
+            Kommentarer
+            <a class="comments-icon scroll-to-facebook-comments" href="http://www.vg.no/sport/langrenn/johaug-tatt-i-doping/slik-blir-johaugs-skjebnedoegn-i-sveits/a/24008092/#comments" title="Antall kommentarer på artikkelen"><span class="visuallyhidden">Antall kommentarer på artikkelen</span> <span class="facebook-comments"></span></a>
+        </h2>
+        <img alt="&Oslash;yvind Solstad" src="//1.vgc.no/img/sunnyplace.jpg"/>
+        <p>
+            Har du en mening om denne saken? Vi løfter ofte opp de beste kommentarene! Du må bruke ditt egentlige navn, vær saklig, respekter andres meninger og husk at mange kan se hva du skriver. Brudd på <a href="/informasjon/moderering/">reglene</a> kan føre til utestengelse.<br>
+            <em>Vennlig hilsen Øyvind Solstad, ansv. for brukerinvolvering og sosiale medier i VG.</em><br>
+            <a class="kontaktoss thickbox" href="/informasjon/moderering/">Les mer om vår moderering</a>
+        </p>
+    </div>
+
+    <div style="text-align: left;" class="disabled-comments">
+                    <b>VGs journalister og moderatorer overvåker denne debatten kontinuerlig mellom <span>kl. 07 og 24</span>.</b>
+            Kommentarfeltet er nå stengt og åpner igjen <span>kl. 07.00</span>. Velkommen tilbake da!
+            </div>
+
+    <a href="javascript:void(0);" class="show-facebook-comments button" data-start="00:00" data-stop="07:00"  data-permanent-disable="" role="button"><span class="facebook-comments facebook-bottom-comments"></span>Klikk for å se kommentarene </a>
+
+            <!--googleon: index-->
+    <div class="fb-comments" data-href="http://www.vg.no/a/24008092" data-width="654" data-num-posts="10" data-version="v2.2"></div>
+    <!--googleoff: index-->
+</section>
+                                                </div>
+                            <!--googleon: index-->
+    <section class="widget articles related list list-internal">
+            <h2>Les også</h2>
+    <article role="article">
+    <a data-id="24005289" href="/sport/langrenn/johaug-tatt-i-doping/bendiksen-til-sveits-som-johaug-vitne/a/24005289/">
+
+                    <img src="https://imbo.vgc.no/users/vgno/images/7212330650262732fa68806e9ea5c6b6?t%5B0%5D=crop%3Awidth%3D4464%2Cheight%3D2976%2Cx%3D0%2Cy%3D0&t%5B1%5D=maxSize%3Awidth%3D200&t%5B2%5D=resize%3Awidth%3D200&accessToken=eebbe7313cc7b105e550c294465e3d73e85489988b75c7c0d64c3bd6a63cb2d2" alt="Bendiksen til Sveits som Johaug-vitne" />
+        
+        <h4>Bendiksen til Sveits som Johaug-vitne</h4>
+
+        <span>
+            Tidligere landslagslege Fredrik Bendiksen (62) står i   
+vitneboksen når ankesaken mot Therese Johaug (28) kommer opp i Sveits om to uker.        </span>
+    </a>
+    <time datetime="2017-05-24T07:46:24+02:00" class="published" title="24.05.2017, 07:46">24.05.2017, 07:46</time>
+
+</article>
+<article role="article">
+    <a data-id="23996357" href="/sport/langrenn/johaug-tatt-i-doping/johaug-til-vg-jeg-er-forberedt-paa-at-ol-kan-ryke/a/23996357/">
+
+        
+        <h4>Johaug til VG: Jeg er forberedt på at OL kan ryke</h4>
+
+        <span>
+            MATHALLEN I OSLO (VG) Snart skal saken til Therese Johaug (28) opp i CAS. Langrennsstjernen forteller til VG at det vil bli veldig tøft og vondt om OL i Pyeongchang neste år ryker.        </span>
+    </a>
+    <time datetime="2017-05-11T22:10:57+02:00" class="published" title="11.05.2017, 22:10">11.05.2017, 22:10</time>
+
+</article>
+<article role="article">
+    <a data-id="23988693" href="/sport/langrenn/johaug-tatt-i-doping/therese-johaugs-tredje-dommer-utnevnt-les-om-trioen-som-skal-doemme-skistjernen/a/23988693/">
+
+                    <img src="https://imbo.vgc.no/users/vgno/images/b41f35964f3a6a9339bc4afcb6a70ba4?t%5B0%5D=crop%3Awidth%3D2784%2Cheight%3D1746%2Cx%3D0%2Cy%3D0&t%5B1%5D=maxSize%3Awidth%3D200&t%5B2%5D=resize%3Awidth%3D200&accessToken=a673b03828cab03f3238364234a2a3868f917312def1a7fe8a8c16f6192d8142" alt="Therese Johaugs tredje dommer utnevnt  – les om trioen som skal dømme skistjernen" />
+        
+        <h4>Therese Johaugs tredje dommer utnevnt  – les om trioen som skal dømme skistjernen</h4>
+
+        <span>
+            Den tredje og siste dommeren som skal avgjøre OL-skjebnen til Therese Johaug (27) er på plass.        </span>
+    </a>
+    <time datetime="2017-05-04T07:01:56+02:00" class="published" title="04.05.2017, 07:01">04.05.2017, 07:01</time>
+
+</article>
+<article role="article">
+    <a data-id="23972765" href="/sport/langrenn/langrenn/johaug-faar-tolk-i-cas-vil-snakke-norsk/a/23972765/">
+
+                    <img src="https://imbo.vgc.no/users/vgno/images/52a90e4360e21622e2b860974967b249?t%5B0%5D=crop%3Awidth%3D5568%2Cheight%3D3712%2Cx%3D0%2Cy%3D0&t%5B1%5D=maxSize%3Awidth%3D200&t%5B2%5D=resize%3Awidth%3D200&accessToken=b6148fb410820976dd26ca270b944ec23dd601b027cdba07a00096f0d8461ea6" alt="Johaug får tolk i CAS - vil snakke norsk" />
+        
+        <h4>Johaug får tolk i CAS - vil snakke norsk</h4>
+
+        <span>
+            Therese Johaug (28) kommer til å snakke norsk når hun møter til dopinghøring i Sveits i løpet av noen måneder.        </span>
+    </a>
+    <time datetime="2017-04-11T07:51:06+02:00" class="published" title="11.04.2017, 07:51">11.04.2017, 07:51</time>
+
+</article>
+<article role="article">
+    <a data-id="23961885" href="/sport/langrenn/langrenn/johaug-leiren-reagerer-sterkt-paa-at-saken-mot-lege-bendiksen-henlegges/a/23961885/">
+
+                    <img src="https://imbo.vgc.no/users/vgno/images/732a5b0cc1bc3530e52a06e7ac14c616?t%5B0%5D=crop%3Awidth%3D4464%2Cheight%3D2976%2Cx%3D0%2Cy%3D0&t%5B1%5D=maxSize%3Awidth%3D200&t%5B2%5D=resize%3Awidth%3D200&accessToken=0467874ec02a0bd9cb211a255072c0318ddbf78a229b52ca746c2bd2e51b9868" alt="Johaug-leiren reagerer sterkt på at saken mot lege Bendiksen henlegges" />
+        
+        <h4>Johaug-leiren reagerer sterkt på at saken mot lege Bendiksen henlegges</h4>
+
+        <span>
+            Påtalenemnda opplyste i dag om at saken mot Fredrik Bendiksen (62) henlegges. Therese Johaugs advokat Christian B. Hjort forteller at skistjernen reagerer sterkt på avgjørelsen.        </span>
+    </a>
+    <time datetime="2017-03-29T13:16:53+02:00" class="published" title="29.03.2017, 13:16">29.03.2017, 13:16</time>
+
+</article>
+    </section>
+    <!--googleoff: index-->
+    
+            <div class="clearfix widget related list list-internal">
+        <div id="ad-smartboard_2"
+    class="ad appnexus smartboard_2"
+    data-lazyload="true"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_smartboard_2"
+    data-sizes="[[1,1],[300,250],[320,250]]"
+        data-format="smartboard_2"
+></div>
+        <div id="ad-smartboard_3"
+    class="ad appnexus smartboard_3"
+    data-lazyload="true"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_smartboard_3"
+    data-sizes="[[1,1],[300,250],[320,250]]"
+        data-format="smartboard_3"
+></div>
+        </div>
+    
+
+
+<div id="wid-article-footer-before-ad"></div>
+
+<style>.widget.articles article[data-id="24008092"] { display: none; }</style>
+<section class="widget articles image-list">
+    <h2>Siste saker fra Langrenn</h2>
+            <a href="/sport/langrenn/?format=json" class="more-btn button" data-section="/sport/langrenn/?format=json" data-sectionname="Langrenn" data-offset="0" data-limit="4" data-json='[]' role="button">Se neste 5 fra Langrenn</a>
+        </section>
+
+
+
+    <!--googleon: index-->
+    <section class="widget articles related list list-external">
+        <h2>Saker fra samarbeidende aviser</h2>
+<article role="article" class="external ext-k">
+    <a href="http://www.aftenposten.no/100Sport/vintersport/langrenn/Kulturministeren-gjor-helomvending-Vil-ta-opp-Johaug-saken-pa-WADAs-styremote-235364b.html" target="_blank">
+        <h4>Kulturministeren gjør helomvending: Vil ta opp Johaug-saken på WADAs ...</h4>
+        <span class="source">aftenposten.no</span>
+    </a>
+</article><article role="article" class="external ext-k">
+    <a href="http://www.aftenposten.no/100Sport/vintersport/langrenn/Bjorgen-og-Johaug-trener-sammen--Hun-har-gjort-en-fantastisk-jobb--235366b.html" target="_blank">
+        <h4>Bjørgen og Johaug trener sammen: – Hun har gjort en fantastisk jobb</h4>
+        <span class="source">aftenposten.no</span>
+    </a>
+</article><article role="article" class="external ext-k">
+    <a href="http://www.bt.no/100Sport/idrettspolitikk/Idrettspresidenten-nadelos-mot-synderne-235333b.html" target="_blank">
+        <h4>Idrettspresidenten nådeløs mot synderne</h4>
+        <span class="source">bt.no</span>
+    </a>
+</article><article role="article" class="external ext-i">
+    <a href="http://www.aftenbladet.no/100Sport/vintersport/langrenn/Bendiksen-skal-vitne-i-Johaug-horingen-236134b.html" target="_blank">
+        <h4>Bendiksen skal vitne i Johaug-høringen</h4>
+        <span class="source">aftenbladet.no</span>
+    </a>
+</article>    </section>
+    <!--googleoff: index-->
+                    </section>
+                </div>
+                <aside id="wid-aside-taxonomy" class="reg-grid-aside">
+                                            <div id="ad-smartboard_1"
+    class="ad appnexus smartboard_1 ad-defer"
+    data-lazyload="true"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_smartboard_1"
+    data-sizes="[[1,1],[300,250],[320,250]]"
+        data-defer="true"
+        data-format="smartboard_1"
+></div>
+                                                                    <div class="kickback-widget widget hide">
+    <!--googleoff: index-->
+    <div class="ad-text">Kommersielt samarbeid</div>
+    <h3>VG Rabattkoder</h3>
+    <ul>
+            <li>
+            <a href="http://www.vg.no/rabattkode/sportamore?utm_source=vg&utm_medium=textlink&utm_campaign=widget">Sportamore rabattkode            <time style="text-align: left; float: none;">Oppdatert onsdag, 24. mai 2017</time>
+            </a>
+        </li>
+            <li>
+            <a href="http://www.vg.no/rabattkode/zalando?utm_source=vg&utm_medium=textlink&utm_campaign=widget">Zalando rabattkoder            <time style="text-align: left; float: none;">Oppdatert mandag, 22. mai 2017</time>
+            </a>
+        </li>
+            <li>
+            <a href="http://www.vg.no/rabattkode/get-inspired?utm_source=vg&utm_medium=textlink&utm_campaign=widget">Get Inspired rabattkoder            <time style="text-align: left; float: none;">Oppdatert mandag, 22. mai 2017</time>
+            </a>
+        </li>
+            <li>
+            <a href="http://www.vg.no/rabattkode/gymgrossisten?utm_source=vg&utm_medium=textlink&utm_campaign=widget">Gymgrossisten rabattkoder            <time style="text-align: left; float: none;">Oppdatert tirsdag, 23. mai 2017</time>
+            </a>
+        </li>
+            <li>
+            <a href="http://www.vg.no/rabattkode/junkyard?utm_source=vg&utm_medium=textlink&utm_campaign=widget">Junkyard rabattkoder            <time style="text-align: left; float: none;">Oppdatert tirsdag, 23. mai 2017</time>
+            </a>
+        </li>
+        <li hidden></li>
+    </ul>
+    <!--googleon: index-->
+    </div>
+                                    </aside>
+                <footer id="wid-footer-taxonomy" class="reg-grid-footer">
+                </footer>
+            </article>
+        </main>
+        <noscript>
+            <img src="https://click.vgnett.no/vg/artview.gif?p=art-24008092&d=desktop" style="display:none" alt="" id="vgclick" />
+        </noscript>
+    </div>
+</div>
+            </div>
+
+            <!--googleoff: index-->
+<footer id="page-footer-desktop" class="clearfix" role="contentinfo">
+    <a href="" class="logo bg-size" title="Klikk for å komme til VGs forside">
+                <svg class="logo-red" viewBox="0 0 495 115" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background-color: #dd0000;">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Imported-Layers" transform="translate(1.000000, 1.000000)">
+                    <path d="M-0.012,-0.5 L493.703,-0.5 L493.703,113.199 L-0.012,113.199 L-0.012,-0.5 Z" fill="#DD0000"></path>
+                    <path d="M429.86,99.098 L275.461,99.098 C275.461,99.098 256.76,100.163 256.76,83.45 L256.76,32.242 C256.76,12.335 275.461,13.546 275.461,13.546 L431.453,13.546 C450.58,13.546 450.243,32.346 450.243,32.346 L450.243,35.482 L389.287,35.482 L389.287,32.057 C389.287,32.057 388.565,23.363 378.159,23.363 L330.931,23.363 C318.087,23.363 318.432,34.036 318.432,34.036 L318.432,77.223 C318.432,77.223 317,89.496 330.086,89.496 L377.704,89.496 C388.494,89.496 389.539,78.878 389.539,78.878 L389.539,62.758 L354.861,62.758 L354.861,52.822 L450.213,52.822 L450.213,80.975 C450.213,80.975 450.213,99.098 429.86,99.098" fill="#FFFFFF"></path>
+                    <path d="M93.868,99.204 L20.459,13.494 L96.131,13.494 L134.388,71.365 L175.662,13.494 L250.464,13.494 L176.154,99.204 L93.868,99.204" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </svg>
+    </a>
+    <div class="footer-bar">
+        <ul class="section-nav-topbar">
+    <li>
+        <a class="submenu-link cursor-default" href="http://www.vg.no/rampelys/tv/media/medieprisene-vg-aarets-avis-og-aarets-nettsted/a/23993698/"><span class="red">Årets avis</span> og årets nettsted!</a>
+    </li>
+    <li>
+        <a href="/nyheter/">NYHETER</a>
+    </li>
+    <li>
+        <a href="/nyheter/meninger/">MENINGER</a>
+    </li>
+    <li>
+        <a href="/sport/">VG SPORTEN</a>
+    </li>
+    <li>
+        <a href="http://vglive.no/">VG LIVE</a>
+    </li>
+    <li>
+        <a href="/rampelys/">RAMPELYS</a>
+    </li>
+    <li>
+        <a href="/forbruker/bil-baat-og-motor/">BIL</a>
+    </li>
+    <li>
+        <a href="http://www.vg.no/tv-guide/">TV-GUIDE</a>
+    </li>
+    <li>
+        <a href="http://www.vgtv.no/">VGTV</a>
+    </li>
+    <li>
+        <a href="http://pluss.vg.no/">VG +</a>
+    </li>
+    <li>
+        <a class="eavis" href="http://vg.no/eavis/?tag=meny">E-AVIS</a>
+    </li>
+</ul>        <div class="clearfix"></div>
+    </div>
+    <div class="footer-content reg-grid-footer">
+        <section class="editors">
+            <p>Ans. redaktør og adm. direktør: <a href="mailto:Gard.Steiro@vg.no">Gard Steiro</a></p>
+            <p>Politisk redaktør: <a href="mailto:Hanne.Skartveit@vg.no">Hanne Skartveit</a></p>
+            <p>Digitalredaktør: <a href="http://www.vg.no/profil/19341/">Ola E. Stenberg</a></p>
+            <p>Magasinredaktør: <a href="mailto:Jane.Throndsen@vg.no">Jane Throndsen</a></p>
+            <p>Sentralbord VG: <strong>22 00 00 00</strong></p>
+        </section>
+        <section class="contact">
+            <p><a href="https://vgsupport.vg.no/hc/no/categories/200171306-VG-no">Ofte stilte spørsmål og kontaktinfo</a></p>
+            <p>VG har ikke ansvar for innhold på eksterne nettsider som det lenkes til. Kopiering av materiale fra VG for bruk annet sted er ikke tillatt uten avtale.</p>
+            <p><a href="/informasjon/copyright/">&copy; 2017 VG</a> | <a href="/informasjon/privacy/">Personvernerklæring og informasjonskapsler (cookies)</a></p>
+        </section>
+        <section class="tips">
+            <p>Tips oss! SMS / MMS til <strong>2200</strong></p>
+            <p>Ring <strong>22 00 00 00</strong></p>
+            <p>E-post til <a href="mailto:2200@vg.no">tusentipset</a></p>
+            <p>Annonseinfo: <a href="http://annonseinfo.vg.no/">VG Papir, VG og VG Mobil</a></p>
+        </section>
+        <div class="clearfix"></div>
+    </div>
+</footer>
+        </div>
+
+                        <div class="floater-ad">
+                    </div>
+        
+        <script>
+var appIdentifier = function() {
+    if (navigator.userAgent.match(/VG-App$/)) {
+        return 'snarvei2';
+    }
+
+    var fromApp = !!location.search.match(/[?&]app=[^&#]+/), cached;
+
+    try {
+        if (typeof localStorage !== 'undefined') {
+            cached = localStorage.getItem('VG_app') === '1';
+        }
+    } catch (error) {}
+
+    return (cached || fromApp) ? 'snarvei' : '';
+};
+</script>
+    <script async src="//1.vgc.no/stats/unispring.js?1.7.1"></script>
+    <script>
+        var unispringq = unispringq || [];
+        unispringq.ns = true;
+        var cp = "vgnett/sport/langrenn";
+
+        
+        unispringq.push({
+            "s": "vg",
+            "cp": cp,
+            "url": window.location.toString()
+        });
+    </script>
+
+    <noscript>
+        <div><img width="1" height="1" src="//vg.tns-cs.net/j0=,,,;+,cp=vgnett/sport/langrenn;;;" alt="" /></div>
+    </noscript>
+
+
+    <script type="text/javascript">
+        xtnv     = document;
+        xtsd     = window.location.protocol === "https:" ? "https://logs1189" : "http://logc189";
+        xtsite   = "543510";
+        xtn2     = "14";
+        xtpage   = "Johaug_tatt_i_doping%3A%3A24008092_Slik_blir_Johaugs_skjebned%C3%B8gn_i_Sveits";
+        xt_an    = "";
+        xt_ac    = "";
+
+    xt_multc = "&x1=2&x2=1&x3=24008092_Slik_blir_Johaugs_skjebnedøgn_i_Sveits";
+            xt_pagetype = "3-0-0";
+        if (window.xtparam!=null){ window.xtparam+="&ptype="+xt_pagetype; }
+        else { window.xtparam="&ptype="+xt_pagetype; }
+    
+            xt_pageID   = "24008092";
+        xt_pageDate = "201705281215";
+        xt_chap     = "Johaug_tatt_i_doping";
+    
+            xt_tags     = "%5BJohaug+tatt+i+doping%5D%7C%5BDoping%5D%7C%5BTherese+Johaug%5D";
+        if (window.xtparam!=null){ window.xtparam+="&tag="+xt_tags; }
+        else { window.xtparam="&tag="+xt_tags; }
+    
+            //do not modify below
+        if (window.xtparam!=null){window.xtparam+="&ac="+xt_ac+"&an="+xt_an+xt_multc;}
+        else{window.xtparam="&ac="+xt_ac+"&an="+xt_an+xt_multc;};
+        </script>
+                    <script async src="//1.vgc.no/xiti/xtcore_vgno-4.5.8.js"></script>
+            
+    <noscript>
+        <img width="1" height="1" alt="" src="https://logs1189.xiti.com/hit.xiti?s=543510&s2=14&p=Johaug_tatt_i_doping::24008092_Slik_blir_Johaugs_skjebnedøgn_i_Sveits&di=&an=&ac=">
+    </noscript>
+    <script src="//1.vgc.no/stats/linkpulse/linkpulse.js" async></script>
+
+
+    <script>(function() { function revsci(){getScript("//js.revsci.net/gateway/gw.js?csid=B09809&auto=t");}
+                                    if (window.addEventListener) { window.addEventListener("load", revsci, false); }
+                                    else if (window.attachEvent) { window.attachEvent("onload", revsci); }
+                                    })()
+                        </script>
+        
+        
+                        <noscript>
+        <link rel="stylesheet" href="//1.vgc.no/vgnett-prod/css/defer.css?709dc2833aec51e051c01218b9005e9e">
+        </noscript>
+        <script>
+        (function() {
+            function loadCSS(url, cb) {
+                requestAnimationFrame(function() {
+                    var link = document.createElement('link');
+                    var supportOnLoad = link.onload !== undefined;
+
+                    link.rel = 'stylesheet';
+                    link.media = 'only x';
+                    link.href = url;
+
+                    document.head.appendChild(link);
+                    setTimeout(onLoad, 0);
+
+                    function onLoad() {
+                        link.media = 'all';
+                        document.documentElement.className += ' deferred-css-loaded';
+
+                        if (cb) {
+                            cb();
+                        }
+                    }
+                });
+            };
+                        loadCSS('//1.vgc.no/vgnett-prod/css/defer.css?709dc2833aec51e051c01218b9005e9e');
+        })();
+        </script>
+        
+        <div id="ad-wallpaper"
+    class="ad appnexus wallpaper"
+    data-lazyload="false"
+    data-refresh="false"
+    data-invcode="no-vg-wde-article_wallpaper"
+    data-sizes="[[2,2]]"
+        data-format="wallpaper"
+></div>
+
+                        <script>
+            window.__AB__ = function() {
+                var dummy = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5),
+                    css =
+                        dummy + '.' + dummy + '{' +
+                            'display: block;' +
+                            'position: absolute;' +
+                            'top: 0;' +
+                            'left: -180px;' +
+                            'width: 180px;' +
+                            'height: 700px;' +
+                            'background: #19C url(//1.vgc.no/img/vgab.png) no-repeat bottom;' +
+                            'color: #FFF;' +
+                            'line-height: 1.4em;' +
+                        '}' +
+                        dummy + '.' + dummy + ' .t1 {' +
+                            'padding: 260px 10px 67px;' +
+                            'font-size: 18px;' +
+                        '}' +
+                        dummy + '.' + dummy + ' .t2 {' +
+                            'padding: 0 451px 0 11px;' +
+                            'margin: 0;' +
+                            'font-size: 18px;' +
+                        '}' +
+                        dummy + '.' + dummy + ' h1 {' +
+                            'margin: 0 0 16px;' +
+                            'padding: 18px 11px 0;' +
+                            'font-size: 26px;' +
+                            'font-weight: normal;' +
+                        '}' +
+                        dummy + '.' + dummy + ' .zwei {' +
+                            'padding: 11px 40px;' +
+                            'position: absolute;' +
+                            'right: 11px;' +
+                            'top: 81px;' +
+                            'background-color: #FFF;' +
+                            'border: 1px solid #227196;' +
+                            'color: #D00;' +
+                            'font-size: 18px;' +
+                            'text-transform: uppercase;' +
+                        '}' +
+                        dummy + '.' + dummy + ' button {' +
+                            'padding: 11px 0;' +
+                            'margin: 0 10px;' +
+                            'background-color: #FFF;' +
+                            'border: 1px solid #227196;' +
+                            'color: #D00;' +
+                            'font-size: 18px;' +
+                            'text-align: center;' +
+                            'font-weight: normal;' +
+                            'width: auto;' +
+                            'text-transform: uppercase;' +
+                            'height: auto;' +
+                            'line-height: 1.2em;' +
+
+                        '}' +
+                        '.tablet .reg-grid-main .ad[class*=smartboard], .desktop .reg-grid-main .ad[class*=smartboard], .tablet .reg-grid-main .ad[class*=netboard], .desktop .reg-grid-main .ad[class*=netboard] { min-height: auto; }',
+                        text = '<p class="t1"> Ved å skru på annonser, hjelper du å finansiere tidkrevende og viktig journalistikk. </p>',
+                        topText = ' <h1>Hei, kjære VG-leser!</h1><p class="t2">Vi har oppdaget at du blokkerer annonser. Vi i VG hadde satt stor pris på om du hvitlister oss slik at vi kan finansiere vår journalistikk med reklame og fortsette å være en gratis nyhetskilde.</p>',
+                        browser;
+
+                if (navigator.userAgent.indexOf('Firefox') > -1 ? true : false) {
+                    browser = 'firefox';
+                }
+                else {
+                    browser = 'chrome';
+                }
+
+                var style = document.createElement('style');
+                if (style.styleSheet){
+                      style.styleSheet.cssText = css;
+                }
+                else {
+                      style.appendChild(document.createTextNode(css));
+                }
+
+                var left = document.createElement(dummy);
+                left.className = dummy;
+                left.innerHTML = '<!--googleoff: index-->' + text + '<!--googleon: index-->';
+
+                var right = left.cloneNode(true);
+                right.style.right = '-180px';
+                right.style.left = 'auto';
+
+                var topEl = right.cloneNode();
+                topEl.style.position = 'relative';
+                topEl.style.right = 'auto';
+                topEl.style.width = '100%';
+                topEl.style.height = '150px';
+                topEl.style.marginTop = '-1px';
+                topEl.style.backgroundImage = 'none';
+                topEl.innerHTML = '<!--googleoff: index-->' + topText + '<!--googleon: index-->';
+
+                var open = function(e) {
+                    var pop = document.createElement('div'),
+                        dim = 1000,
+                        over = document.createElement('div'),
+                        btn = document.createElement('a');
+
+                    function close(e) {
+                        e.preventDefault();
+                        btn.removeEventListener('click', close);
+                        pop.parentNode.removeChild(pop);
+                        over.parentNode.removeChild(over);
+                        return false;
+                    }
+
+                    btn.addEventListener('click', close);
+
+                    pop.style.cssText = 'width:' + dim + 'px; height: auto; position: absolute; top: 50%; left: 50%; background-color: #fff; padding: 10px; margin-left: -' + (dim/2) + 'px; margin-top:-390px;z-index: 2000;';
+                    over.style.cssText = 'width: 100%; height: 100%; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background-color: #000; z-index: 1999; opacity: .8;';
+
+                    over.addEventListener('click', close);
+
+                    var popText = '<h3>Slik skrur du på annonser</h3>';
+                    if (browser === 'chrome') {
+                        popText += '<div style="float: left; margin-right: 16px; padding-right: 16px; border-right: 2px solid #19C;"><p><strong>For Adblock</strong></p>';
+                        popText += '<img src="//1.vgc.no/ab/chrome-1.png"><br>';
+                        popText += '<img src="//1.vgc.no/ab/chrome-2.png"></div>';
+                        popText += '<p><strong>For Adblock Plus</strong></p>';
+                        popText += '<img src="//1.vgc.no/ab/chrome-plus.png">';
+                    }
+                    else if (browser === 'firefox') {
+                        popText += '<div style="text-align: center;"><p><strong>For Adblock Plus</strong></p>';
+                        popText += '<img src="//1.vgc.no/ab/firefox.png"></div>';
+                    }
+
+                    popText += '<div style="text-align: center; padding: 20px 0; clear: both;"><strong>Takk for at du skrur på annonser på VG.no :-)</strong></div>';
+
+                    pop.innerHTML = popText;
+
+
+                    btn.innerHTML = 'Lukk';
+                    btn.className = 'close';
+                    btn.href = '#';
+
+                    document.body.appendChild(pop);
+                    pop.appendChild(btn);
+                    document.body.appendChild(over);
+                    return false;
+                };
+
+                var topBoard = document.querySelector('#ad-topboard, #ad-front-topboard');
+                if (topBoard) {
+                    topBoard.style.display = 'none';
+                }
+
+                var btn = document.createElement('button');
+                btn.addEventListener('click', open);
+                btn.className = 'action-click';
+                btn.setAttribute('data-stats-type', 'exit');
+                btn.setAttribute('data-stats-string', 'Adblock::OpenPopup');
+                btn.innerHTML = 'Skru på annonser';
+                left.appendChild(btn);
+
+                var btn2 = btn.cloneNode(true);
+                btn2.addEventListener('click', open);
+                right.appendChild(btn2);
+
+                var btn3 = btn.cloneNode(true);
+                btn3.addEventListener('click', open);
+                btn3.className = 'zwei';
+                topEl.appendChild(btn3);
+
+
+                document.head.appendChild(style);
+                var con = document.querySelector('.reg-grid-container');
+                con.appendChild(right);
+                con.appendChild(left);
+                if (con.insertAdjacentElement) {
+                    con.insertAdjacentElement('afterbegin', topEl);
+                }
+                else {
+                    con.insertBefore(topEl, con.firstChild)
+                }
+
+                if (window.xt_med) {
+                    window.xt_med('C', 0, 'Adblock::Enabled', 'N');
+                }
+
+                (window.dablockTrigger = window.dablockTrigger || []).push('survey');
+
+                                window.__AB__ = function() {};
+            };
+            </script>
+        <script>
+(function() {
+    var urls = ["\/\/advertisement.vg.no\/","\/\/advert.vg.no\/"];
+    var reportUrl = '//www.vg.no/fluepapir';
+        !function(){function n(){if(void 0!==e.ads&&void 0!==e.tns&&void 0!==e.xiti&&void 0!==e.click){var n=new Image;n.src=reportUrl+"?raphael="+e.ads+"&donatello="+e.tns+"&michelangelo="+e.xiti+"&leonardo="+e.click}}var t=function(n,t,e){return n.addEventListener?n.addEventListener(t,e,!1):n.attachEvent("on"+t,e)},e={tns:void 0,ads:void 0,xiti:void 0,click:0},o=function(){setTimeout(function(){function o(){var n=new Date,t=(n.getFullYear()+n.getMonth()+0).toString(32)+".js?v=1";return t}function i(){var n=!!document.querySelectorAll;if(!n)return!1;var t=document.querySelectorAll(p);if(t.length<=0)return!0;for(var e,o=0,i=t.length;i>o;o++)return e=t[o],e.contentWindow.adtech?!1:!0}function r(){i()?(e.ads=1,"function"==typeof window.__AB__&&window.__AB__()):e.ads=0,m(w),n()}function d(){void 0===w.contentWindow.fluepapir?r():(e.ads=0,n())}function a(){e.tns=1,n()}function c(){e.tns=0,n()}function l(){e.xiti=1,n()}function u(){e.xiti=0,n()}function f(){if("undefined"!=typeof tnsUrl){var n=new Image;n.onerror=a,n.onload=c,n.src=tnsUrl}else c()}function s(){if("undefined"!=typeof xitiUrl){var n=new Image;n.onerror=l,n.onload=u,n.src=xitiUrl}else u()}function v(){var n=document.createElement("iframe");return t(n,"load",function(){n.contentDocument.write("<html><body></body></html>")}),void 0===n.hidden&&(n.style.display="none"),n.hidden=!0,n}function m(n){n.parentNode.removeChild(n)}function h(n,t){var e=t.contentDocument,o=e.createElement("script");o.src=n,o.onload=d,o.onerror=r,e.body.appendChild(o)}var p=".ad iframe",w=v();t(w,"load",function(){h(urls[Math.floor(Math.random()*urls.length)]+o(),w),f(),s()}),document.body.appendChild(w)},10)};t(window,"load",o)}();
+})();
+</script>
+    <div class="hide">
+    <div id="ad-test_1"
+    class="ad appnexus test_1"
+    data-lazyload="false"
+    data-refresh="false"
+    data-invcode="no-vg-wde-front_test_1"
+    data-sizes="[[1,2]]"
+        data-format="test_1"
+></div>
+    </div>
+    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"9a55b59261","applicationID":"2298386","transactionName":"NFEDYBRSXRICUEdcDQ0bIkEVR1wMTEBWVhYKWw8bDVZKFgxBVxoDEUAIVwpW","queueTime":1,"applicationTime":324,"atts":"GBYAFlxIThw=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
