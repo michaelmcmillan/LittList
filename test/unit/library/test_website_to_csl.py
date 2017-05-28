@@ -7,7 +7,7 @@ class TestType(TestCase):
     def test_type_is_converted(self):
         website = Website()
         csl = WebsiteToCSL.convert(website)
-        self.assertEqual(csl['type'], 'website')
+        self.assertEqual(csl['type'], 'webpage')
 
 class TestTitle(TestCase):
 

@@ -4,7 +4,7 @@ class WebsiteToCSL:
     def convert(cls, website):
         csl = {}
         csl['id'] = website.url
-        csl['type'] = 'website'
+        csl['type'] = 'webpage'
         csl['title'] = website.title
         csl['author'] = [author.__dict__ for author in website.authors]
         csl['issued'] = {'raw': str(website.publication_date) if website.publication_date else None}
