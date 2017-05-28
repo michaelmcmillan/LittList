@@ -20,6 +20,7 @@ class TestPaywall(TestCase):
         paywall.customer_asks_to_pay(user)
         self.assertEqual(paywall.get_status(user), paywall.STATUS['HOLD'])
 
+    @skip('pending')
     def test_user_that_did_not_request_payment_is_asked_to_do_so(self):
         user = User('95015843')
         paywall = Paywall()
