@@ -7,6 +7,7 @@ class WebConverter:
     @classmethod
     def convert(cls, fields):
         website = Website()
+        website.id = 'web:%s' % fields['url']
         website.published = fields['publish_date']
         website.url = fields['url']
         website.name = cls.extract_site_name(fields['meta_data'])

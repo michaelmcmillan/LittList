@@ -13,6 +13,13 @@ class TestWebsite(TestCase):
         website = web.read('http://www.vg.no/a/24008092')
         self.assertEqual(website.title, 'Slik blir Johaugs skjebnedøgn i Sveits')
 
+    def test_returns_url_as_id(self):
+        http_client = MagicMock()
+        http_client.get.return_value = load_fixture('web/vg-2408092.html')
+        web = Web(http_client)
+        website = web.read('http://www.vg.no/a/24008092')
+        self.assertEqual(website.id, 'web:http://www.vg.no/a/24008092')
+
     def test_returns_url(self):
         http_client = MagicMock()
         http_client.get.return_value = load_fixture('web/vg-2408092.html')
