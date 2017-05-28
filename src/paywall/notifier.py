@@ -6,6 +6,22 @@ class Notifier:
     enabled = False
 
     @classmethod
+    def customer_rendered(self):
+        if not self.enabled:
+            return
+
+        message = Message(
+            sender=Configuration.email_username,
+            recipient=Configuration.email_username,
+            subject=None,
+            body='\r\nRender!'
+        )
+        gmail = Gmail()
+        gmail.connect()
+        gmail.send(message)
+        gmail.disconnect()
+
+    @classmethod
     def customer_requested_payment(self, customer):
         if not self.enabled:
             return

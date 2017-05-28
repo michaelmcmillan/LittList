@@ -1,11 +1,12 @@
 from paywall import Customer
-from webserver.services import paywall, repository, generator
-from flask import session, request, redirect, url_for, render_template, g
+from flask import session, request, redirect, url_for, render_template
+from webserver.services import paywall, repository, generator, notifier
 
 class BibliographyController:
 
     @staticmethod
     def render():
+        notifier.customer_rendered()
         customer = Customer(session['customer_id'])
         bibliography_id = session['bibliography_id']
         bibliography = repository.read(bibliography_id)
