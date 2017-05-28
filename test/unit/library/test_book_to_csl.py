@@ -36,6 +36,34 @@ class TestPublicationYear(TestCase):
         csl = BookToCSL.convert(book)
         self.assertEqual(csl['issued'], {'raw': None})
 
+class TestPublisher(TestCase):
+
+    def test_publisher_is_converted(self):
+        book = Book()
+        book.publisher = 'Aschehoug'
+        csl = BookToCSL.convert(book)
+        self.assertEqual(csl['publisher'], 'Aschehoug')
+
+    def test_publisher_is_not_converted_if_missing(self):
+        book = Book()
+        book.publisher = None
+        csl = BookToCSL.convert(book)
+        self.assertEqual(csl['publisher'], None)
+
+class TestPublisherPlace(TestCase):
+
+    def test_publisher_place_is_converted(self):
+        book = Book()
+        book.publisher_place = 'Oslo'
+        csl = BookToCSL.convert(book)
+        self.assertEqual(csl['publisher-place'], 'Oslo')
+
+    def test_publisher_place_is_not_converted_if_missing(self):
+        book = Book()
+        book.publisher_place = None
+        csl = BookToCSL.convert(book)
+        self.assertEqual(csl['publisher-place'], False)
+
 class TestAuthor(TestCase):
 
     def test_single_author_is_converted(self):
