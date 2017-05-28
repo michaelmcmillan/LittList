@@ -4,6 +4,7 @@ from .oria import Oria, OriaConverter
 from .nasjonalbiblioteket import Nasjonalbiblioteket, NasjonalbiblioteketConverter
 
 from .book_to_csl_converter import BookToCSL
+from .website_to_csl_converter import WebsiteToCSL
 
 from .book import Book
 from .website import Website
