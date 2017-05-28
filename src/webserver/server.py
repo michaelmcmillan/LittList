@@ -1,8 +1,9 @@
 from flask import Flask, g
 from webserver.controllers import *
+from configuration import Configuration
 
 app = Flask(__name__, static_folder='assets', static_url_path='')
-app.secret_key = 'secret'
+app.secret_key = Configuration.session_secret
 
 app.before_request(SessionController.initiate)
 app.add_url_rule('/', 'index', view_func=SearchController.index)
