@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block head %}{% if status == 'HOLD' %}<meta http-equiv="refresh" content="5;url={{ request.url }}" />{% endif %}{% endblock %}
+{% block head %}{% if status in (statuses['unacknowledged'], statuses['acknowledged'], statuses['responded']) %}<meta http-equiv="refresh" content="5;url={{ request.url }}" />{% endif %}{% endblock %}
 {% block title %} - Vipps{% endblock %}
 {% block body %}
     {% include 'bar.html' %}
