@@ -18,6 +18,8 @@ class Web:
 
     def read(self, url):
         '''Fetches the HTML from the url.'''
+        if not url.startswith('http'):
+            url = 'http://%s' % url
         fields = self.cache.get_or_set(url, lambda: 
             self.parse(url, self.http_client.get(url, {}))
         )

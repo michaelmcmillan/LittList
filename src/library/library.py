@@ -1,5 +1,5 @@
-from .web import Web
 from .oria import Oria
+from .web import Web, URLRecognizer
 from .nasjonalbiblioteket import Nasjonalbiblioteket
 
 class Library:
@@ -19,7 +19,7 @@ class Library:
             return self.nasjonalbiblioteket.read(identifier)
 
     def search(self, query):
-        if query.startswith('http://'):
+        if URLRecognizer.is_url(query):
             web_results = [self.web.read(query)]
             return web_results
         else:
