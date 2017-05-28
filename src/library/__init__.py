@@ -1,5 +1,5 @@
 from .library import Library
-from .web import Web, WebConverter
+from .web import Web, WebConverter, URLRecognizer
 from .oria import Oria, OriaConverter
 from .nasjonalbiblioteket import Nasjonalbiblioteket, NasjonalbiblioteketConverter
 
