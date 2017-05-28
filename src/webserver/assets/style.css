@@ -1,11 +1,14 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Open Sans", FreeSans, Arial, sans-serif;
 }
 
 body {
     background-color: #F7F7F7;
+}
+
+body, input, button {
+    font-family: "Open Sans", FreeSans, Arial, sans-serif;
 }
 
 #bar {
@@ -211,11 +214,16 @@ button[name="remove"] {
     max-width: 670px;
     min-height: 1000px;
     margin: 0 auto;
+}
+
+#afour * {
     font-family: 'Times New Roman';
     line-height: 1.5em;
+    font-size: 16px;
 }
 
 #afour h2 {
+    line-height: 1.5em;
     font-family: 'Times New Roman';
     font-weight: 200;
 }
