@@ -1,5 +1,4 @@
-from .book import Book
-from .website import Website
+from library import Book, Website
 from .book_to_csl_converter import BookToCSL
 from .website_to_csl_converter import WebsiteToCSL
 

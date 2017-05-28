@@ -1,6 +1,7 @@
 from unittest import TestCase
 from datetime import datetime
-from library import Website, Author, WebsiteToCSL
+from library import Website, Author
+from bibliography import WebsiteToCSL
 
 class TestType(TestCase):
 

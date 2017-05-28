@@ -1,5 +1,6 @@
 from unittest import TestCase
-from library import Book, Author, BookToCSL
+from library import Book, Author
+from bibliography import BookToCSL
 
 class TestType(TestCase):
 
