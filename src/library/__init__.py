@@ -5,6 +5,7 @@ from .nasjonalbiblioteket import Nasjonalbiblioteket, NasjonalbiblioteketConvert
 
 from .book_to_csl_converter import BookToCSL
 from .website_to_csl_converter import WebsiteToCSL
+from .reference_to_csl_converter import ReferenceToCSL
 
 from .book import Book
 from .website import Website
