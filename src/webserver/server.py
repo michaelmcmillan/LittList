@@ -12,3 +12,4 @@ app.add_url_rule('/bibliography', 'render', view_func=BibliographyController.ren
 app.add_url_rule('/bibliography', 'remove', view_func=BibliographyController.remove, methods=['POST'])
 app.add_url_rule('/paywall', 'status', view_func=PaywallController.status)
 app.add_url_rule('/paywall', 'ask_to_pay', view_func=PaywallController.ask_to_pay, methods=['POST'])
+app.add_url_rule('/paywall/admin', 'admin', view_func=PaywallController.admin, methods=['GET'])

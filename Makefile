@@ -14,8 +14,9 @@ LIB_DIR=./lib
 TEST_DIR=./test
 SRC_DIR=./src
 ENV_DIR=$(LIB_DIR)/env
+CONF_DIR=./config
 WEBSERVER_DIR=$(SRC_DIR)/webserver
-MODULES=$(SRC_DIR):$(TEST_DIR)
+MODULES=$(SRC_DIR):$(TEST_DIR):$(CONF_DIR)
 
 # Flags
 TEST_RUNNER=$(PYTHON) -m unittest

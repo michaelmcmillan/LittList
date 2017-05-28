@@ -1,3 +1,4 @@
+from .notifier import Notifier
 from datetime import datetime as dt, timedelta as delta
 
 class Paywall:
@@ -71,3 +72,4 @@ class Paywall:
         self.payments[customer.phone_number] = [
             ('request_payment', when or dt.now())
         ]
+        Notifier.customer_requested_payment(customer)
