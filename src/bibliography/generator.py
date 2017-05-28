@@ -1,6 +1,6 @@
 from blur import Blur
 from paywall import User, Paywall
-from library import Library, Book, BookToCSL
+from library import Library, Book, ReferenceToCSL
 from .citeproc import Citeproc
 from .repository import BibliographyRepository
 
@@ -15,7 +15,7 @@ class BibliographyGenerator:
     def render(self, user, bibliography_id):
         bibliography = self.repository.read(user.phone_number, bibliography_id)
         references = [self.library.retrieve(reference) for reference in bibliography if reference]
-        csl = [BookToCSL.convert(reference) for reference in references]
+        csl = [ReferenceToCSL.convert(reference) for reference in references]
         formatted_bibliography = self.citeproc.render(csl)
         if not self.paywall.has_access(user):
             return ('bibliography', formatted_bibliography)
