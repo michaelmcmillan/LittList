@@ -9,8 +9,8 @@ const generateBibliography = references => {
     retrieveItem: (id) =>
       references.find(reference => reference.id == id),
     retrieveStyle: (style) =>
-        fs.readFileSync(__dirname + '/styles/apa.csl', 'utf-8'),
-        //fs.readFileSync(__dirname + '/styles/harvard-cite-them-right.csl', 'utf-8'),
+        //fs.readFileSync(__dirname + '/styles/apa.csl', 'utf-8'),
+        fs.readFileSync(__dirname + '/styles/harvard-cite-them-right.csl', 'utf-8'),
     retrieveLocale: (lang) => 
       fs.readFileSync(__dirname + '/locales/locales-nb-NO.xml', 'utf-8')
   };

@@ -12,10 +12,10 @@ class TestCiteproc(TestCase):
         expected_bibliography = \
             [('2656243/WJUV5TCE',
             '  <div class="csl-entry">' \
-            + 'Asimow, M. (1995–1996). When Lawyers Were Heroes Symposium: ' \
+            + 'Asimow, M. (1995–1996) «When Lawyers Were Heroes Symposium: ' \
             + 'Picturing Justice: Images of Law and Lawyers in the Visual ' \
-            + 'Media: Essay. <i>University of San Francisco Law Review</i>, ' \
-            + '<i>30</i>, 1131–1138.</div>\n')]
+            + 'Media: Essay», <i>University of San Francisco Law Review</i>, ' \
+            + '30, s. 1131–1138.</div>\n')]
         self.assertEqual(formatted_bibliography, expected_bibliography)
 
     def test_bibliography_is_correctly_rendered_with_two_journals(self):
@@ -25,14 +25,14 @@ class TestCiteproc(TestCase):
         formatted_bibliography = citeproc.render([asimow, abrams])
         first_entry = ('2656243/G7B3GE28', \
             '  <div class="csl-entry">' \
-            + 'Abrams, D. E. (2013). The Little League Champions Benched by ' \
+            + 'Abrams, D. E. (2013) «The Little League Champions Benched by ' \
             + 'Jim Crow in 1955: Resistance and Reform after Brown v. Board ' \
-            + 'of Education. <i>Journal of Supreme Court History</i>, <i>38</i>' \
-            + '(1), 51–62. https://doi.org/10.1111/j.1540-5818.2013.12003.x</div>\n')
+            + 'of Education», <i>Journal of Supreme Court History</i>, 38(1), s. ' \
+            + '51–62. doi: 10.1111/j.1540-5818.2013.12003.x.</div>\n')
         second_entry = ('2656243/WJUV5TCE', \
             '  <div class="csl-entry">' \
-            + 'Asimow, M. (1995–1996). When Lawyers Were Heroes Symposium: ' \
+            + 'Asimow, M. (1995–1996) «When Lawyers Were Heroes Symposium: ' \
             + 'Picturing Justice: Images of Law and Lawyers in the Visual ' \
-            + 'Media: Essay. <i>University of San Francisco Law Review</i>, ' \
-            + '<i>30</i>, 1131–1138.</div>\n')
+            + 'Media: Essay», <i>University of San Francisco Law Review</i>, ' \
+            + '30, s. 1131–1138.</div>\n')
         self.assertEqual(formatted_bibliography, [first_entry, second_entry])
