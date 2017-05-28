@@ -18,11 +18,11 @@ class Notifier:
             recipient=Configuration.email_username,
             subject=None,
             body='\r\n' + \
-            '1. Anerkjenn: %s?phone_number=%s&action=acknowledge&secret=%s' %
+            '\n1. Anerkjenn: %s?phone_number=%s&action=acknowledge&secret=%s' %
                 (url, phone_number, Configuration.admin_secret) + \
-            '2. Sendt Vipps-request: %s?phone_number=%s&action=responded&secret=%s' %
+            '\n2. Sendt Vipps-request: %s?phone_number=%s&action=responded&secret=%s' %
                 (url, phone_number, Configuration.admin_secret) + \
-            '3. Motatt betaling: %s?phone_number=%s&action=received_payment&secret=%s' %
+            '\n3. Motatt betaling: %s?phone_number=%s&action=received_payment&secret=%s' %
                 (url, phone_number, Configuration.admin_secret)
         )
         gmail = Gmail()
