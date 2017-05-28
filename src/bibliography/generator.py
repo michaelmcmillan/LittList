@@ -1,5 +1,5 @@
 from blur import Blur
-from paywall import User, Paywall
+from paywall import Paywall
 from library import Library, Book
 from .citeproc import Citeproc
 from .repository import BibliographyRepository
