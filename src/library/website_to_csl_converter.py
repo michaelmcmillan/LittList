@@ -7,6 +7,7 @@ class WebsiteToCSL:
         csl['type'] = 'webpage'
         csl['title'] = website.title
         csl['author'] = [author.__dict__ for author in website.authors]
-        csl['issued'] = {'raw': str(website.publication_date) if website.publication_date else None}
-        csl['accessed'] = {'raw': str(website.accessed_date)}
+        csl['issued'] = {'raw': website.publication_date.strftime('%Y-%m-%d') \
+            if website.publication_date else None}
+        csl['accessed'] = {'raw': website.accessed_date.strftime('%Y-%m-%d')}
         return csl

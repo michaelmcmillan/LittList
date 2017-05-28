@@ -21,9 +21,9 @@ class TestSerial(TestCase):
 
     def test_id_is_converted(self):
         website = Website()
-        website.url = 'web:http://vg.no'
+        website.url = 'http://vg.no'
         csl = WebsiteToCSL.convert(website)
-        self.assertEqual(csl['id'], 'web:http://vg.no')
+        self.assertEqual(csl['id'], 'http://vg.no')
 
 class TestAccessedDate(TestCase):
 
@@ -31,7 +31,7 @@ class TestAccessedDate(TestCase):
         website = Website()
         website.accessed_date = datetime(2009, 1, 2)
         csl = WebsiteToCSL.convert(website)
-        self.assertEqual(csl['accessed'], {'raw': '2009-01-02 00:00:00'})
+        self.assertEqual(csl['accessed'], {'raw': '2009-01-02'})
 
 class TestPublicationDate(TestCase):
 
@@ -39,7 +39,7 @@ class TestPublicationDate(TestCase):
         website = Website()
         website.publication_date = datetime(2009, 1, 2)
         csl = WebsiteToCSL.convert(website)
-        self.assertEqual(csl['issued'], {'raw': '2009-01-02 00:00:00'})
+        self.assertEqual(csl['issued'], {'raw': '2009-01-02'})
 
     def test_publication_date_is_not_converted_if_missing(self):
         website = Website()
