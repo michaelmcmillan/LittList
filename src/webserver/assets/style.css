@@ -7,7 +7,7 @@ body {
     background-color: #F7F7F7;
 }
 
-body, input, button {
+body, input, button, select, a {
     font-family: "Open Sans", FreeSans, Arial, sans-serif;
     outline-color: #BE7D4D;
 }
