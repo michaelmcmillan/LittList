@@ -4,3 +4,4 @@ idea
 *.pickle
 data
 todo
+*.db

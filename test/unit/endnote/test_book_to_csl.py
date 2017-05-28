@@ -30,6 +30,12 @@ class TestPublicationYear(TestCase):
         csl = BookToCSL.convert(book)
         self.assertEqual(csl['issued'], {'raw': '2009'})
 
+    def test_publication_year_is_not_converted_if_missing(self):
+        book = Book()
+        book.publication_year = None
+        csl = BookToCSL.convert(book)
+        self.assertEqual(csl['issued'], None)
+
 class TestAuthor(TestCase):
 
     def test_single_author_is_converted(self):
