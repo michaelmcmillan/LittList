@@ -48,6 +48,7 @@ class TestPaywall(TestCase):
         paywall.acknowledge(customer, when=dt.now()-delta(minutes=3))
         status = paywall.get_status(customer)
         self.assertEqual(status, paywall.status['timeout'])
+        self.assertTrue(paywall.has_access(customer))
 
     def test_customer_is_responded_if_admin_has_sent_request(self):
         paywall = Paywall()

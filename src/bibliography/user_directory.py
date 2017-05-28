@@ -3,8 +3,8 @@ from os.path import isdir, isfile, join, basename
 
 class UserDirectory:
 
-    def __init__(self, root_directory, user_id):
-        self.path = join(root_directory, basename(user_id))
+    def __init__(self, root_directory):
+        self.path = root_directory
 
     def create(self):
         '''Creates a directory for a user if it does not exist.'''
@@ -14,7 +14,9 @@ class UserDirectory:
     def get_bibliographies(self):
         '''Returns a sorted list of bibliography identifiers.'''
         try:
-            identifiers = list(map(int, listdir(self.path)))
+            identifiers = [identifier for identifier in listdir(self.path) \
+                if not identifier.startswith('.')]
+            identifiers = list(map(int, identifiers))
             return sorted(identifiers)
         except FileNotFoundError:
             return []

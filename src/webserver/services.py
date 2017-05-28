@@ -4,5 +4,5 @@ from bibliography import BibliographyRepository, BibliographyGenerator
 
 paywall = Paywall()
 library = Library()
-generator = BibliographyGenerator()
+generator = BibliographyGenerator(paywall=paywall)
 repository = BibliographyRepository('./data')

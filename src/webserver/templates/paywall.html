@@ -4,14 +4,22 @@
 {% block body %}
     {% include 'bar.html' %}
 
+    {{ customer }}
+
     <form method="post">
         <div id="vipps">
-            {% if status == 'PAY' %}
+            {% if not status %}
             <p>Vennligst tast inn mobilnummeret ditt for å kopiere litteraturlisten.</p>
-            {% elif status == 'HOLD' %}
+            {% elif status == statuses['unacknowledged'] %}
             <p>Vennligst vent til forespørselen din har blit behandlet.</p>
-            {% elif status == 'REQUESTED' %}
-            <p>Du har motatt en Vipps-forespørsel. Vennligst godta transkajonen for å få tilgang.</p>
+            {% elif status == statuses['timeout'] %}
+            <p>Vi brukte for lang tid. Det betyr at du får tilgang gratis!</p>
+            {% elif status == statuses['acknowledged'] %}
+            <p>Betalingen din blir behandlet. Vi sender straks en Vipps-forespørsel.</p>
+            {% elif status == statuses['responded'] %}
+            <p>Du har motatt en Vipps-forespørsel. Vennligst godta transaksjonen for å få tilgang.</p>
+            {% elif status == statuses['paid'] %}
+            <p>Vi har motatt betalingen din. Du har nå tilgang til litteraturlisten!</p>
             {% endif %}
 
             <div id="receipt">
@@ -20,7 +28,7 @@
                 <span id="product">Litteraturliste fra LittList</span>
             </div>
 
-            {% if status == 'PAY' %}
+            {% if not status %}
             <input type="tel" name="phone_number" placeholder="Ditt mobilnummer" />
             <button type="submit">Betal</button>
             {% endif %}

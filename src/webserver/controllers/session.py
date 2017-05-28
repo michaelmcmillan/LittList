@@ -5,6 +5,6 @@ class SessionController:
 
     @staticmethod
     def initiate():
-        if 'user_id' not in session:
-            session['user_id'] = 'anonymous'
-            session['bibliography_id'] = repository.create(session['user_id'], [])
+        if 'customer_id' not in session:
+            session['customer_id'] = 'anonymous'
+            session['bibliography_id'] = repository.create([])
