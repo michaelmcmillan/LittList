@@ -36,8 +36,10 @@ serve: flask
 start: gunicorn
 
 virtualenv-install:
+ifndef SYSTEM_VIRTUALENV
 	$(SYSTEM_PIP) install virtualenv
 	$(SYSTEM_VIRTUALENV) -p $(SYSTEM_PYTHON) --no-site-packages $(ENV_DIR)
+endif
 
 pip-install: virtualenv-install
 	@$(PIP) install -r $(REQUIREMENTS)
