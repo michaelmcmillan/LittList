@@ -1,57 +1,81 @@
 from unittest import TestCase, skip
-from os import remove
 from datetime import datetime as dt, timedelta as delta
-from concurrent.futures import ThreadPoolExecutor
-from paywall import Paywall, User
+from paywall import Paywall, Customer
 
 class TestPaywall(TestCase):
 
-    def setUp(self): self.cleanUp()
-    def tearDown(self): self.cleanUp()
-    def cleanUp(self):
-        try:
-            remove('ledger.pickle')
-        except:
-            pass
-
-    def test_user_that_requests_payment_is_put_on_hold(self):
-        user = User('95015843')
+    def test_customer_has_no_state_by_default(self):
         paywall = Paywall()
-        paywall.customer_asks_to_pay(user)
-        self.assertEqual(paywall.get_status(user), paywall.STATUS['HOLD'])
+        customer = Customer('95015843')
+        status = paywall.get_status(customer)
+        self.assertEqual(status, None)
 
-    @skip('pending')
-    def test_user_that_did_not_request_payment_is_asked_to_do_so(self):
-        user = User('95015843')
+    def test_customer_is_unackknowledged_after_requesting_payment(self):
         paywall = Paywall()
-        self.assertEqual(paywall.get_status(user), paywall.STATUS['PAY'])
+        customer = Customer('95015843')
+        paywall.request_payment(customer)
+        status = paywall.get_status(customer)
+        self.assertEqual(status, paywall.status['unacknowledged'])
 
-    def test_owner_is_pinged_when_customer_asks_to_pay(self):
-        user = User('95015843')
+    def test_customer_is_not_allowed_to_request_payment_if_he_has_access(self):
         paywall = Paywall()
-        with self.assertLogs('Paywall') as logger:
-            paywall.customer_asks_to_pay(user)
-            self.assertIn('95015843', logger.output[0])
+        customer = Customer('95015843')
+        paywall.request_payment(customer)
+        paywall.received_payment(customer)
+        with self.assertRaises(Exception):
+            paywall.request_payment(customer)
 
-    def test_user_is_granted_access_when_owner_receives_payment(self):
-        user = User('95015843')
+    def test_customer_is_granted_access_if_unacknowledged_for_1_minute(self):
         paywall = Paywall()
-        paywall.customer_asks_to_pay(user)
-        paywall.owner_received_payment(user)
-        self.assertEqual(paywall.get_status(user), paywall.STATUS['ACCESS'])
+        customer = Customer('95015843')
+        paywall.request_payment(customer, when=dt.now()-delta(minutes=1))
+        status = paywall.get_status(customer)
+        self.assertEqual(status, paywall.status['timeout'])
+        self.assertTrue(paywall.has_access(customer))
 
-    def test_user_loses_access_if_he_starts_over(self):
-        user = User('95015843')
+    def test_customer_is_acknowledged_after_admin_acknowledges(self):
         paywall = Paywall()
-        paywall.customer_asks_to_pay(user)
-        paywall.owner_received_payment(user)
-        paywall.customer_asks_to_start_over(user)
-        self.assertEqual(paywall.get_status(user), paywall.STATUS['HOLD'])
+        customer = Customer('95015843')
+        paywall.request_payment(customer)
+        paywall.acknowledge(customer)
+        status = paywall.get_status(customer)
+        self.assertEqual(status, paywall.status['acknowledged'])
 
-    def test_user_does_not_lose_access_if_asks_to_pay_after_granted_access(self):
-        user = User('95015843')
+    def test_customer_is_granted_access_if_acknowledged_for_2_minutes(self):
         paywall = Paywall()
-        paywall.customer_asks_to_pay(user)
-        paywall.owner_received_payment(user)
-        paywall.customer_asks_to_pay(user)
-        self.assertEqual(paywall.get_status(user), paywall.STATUS['ACCESS'])
+        customer = Customer('95015843')
+        paywall.request_payment(customer, when=dt.now()-delta(minutes=5))
+        paywall.acknowledge(customer, when=dt.now()-delta(minutes=3))
+        status = paywall.get_status(customer)
+        self.assertEqual(status, paywall.status['timeout'])
+
+    def test_customer_is_responded_if_admin_has_sent_request(self):
+        paywall = Paywall()
+        customer = Customer('95015843')
+        paywall.request_payment(customer)
+        paywall.acknowledge(customer)
+        paywall.responded(customer)
+        status = paywall.get_status(customer)
+        self.assertEqual(status, paywall.status['responded'])
+
+    def test_customer_has_paid_if_admin_received_payment(self):
+        paywall = Paywall()
+        customer = Customer('95015843')
+        paywall.request_payment(customer)
+        paywall.acknowledge(customer)
+        paywall.responded(customer)
+        paywall.received_payment(customer)
+        status = paywall.get_status(customer)
+        self.assertEqual(status, paywall.status['paid'])
+        self.assertTrue(paywall.has_access(customer))
+
+    def test_customer_is_not_granted_access_if_paid_for_20_minutes_ago(self):
+        paywall = Paywall()
+        customer = Customer('95015843')
+        paywall.request_payment(customer)
+        paywall.acknowledge(customer)
+        paywall.responded(customer)
+        paywall.received_payment(customer, when=dt.now()-delta(minutes=20))
+        status = paywall.get_status(customer)
+        self.assertEqual(status, None)
+        self.assertFalse(paywall.has_access(customer))

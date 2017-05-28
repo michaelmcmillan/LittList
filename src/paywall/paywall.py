@@ -1,41 +1,73 @@
-from logging import getLogger
-from . import User, Payment, Ledger, Settings
 from datetime import datetime as dt, timedelta as delta
 
 class Paywall:
 
-    STATUS = {
-        'PAY': 'PAY',
-        'HOLD': 'HOLD',
-        'ACCESS': 'ACCESS'
+    status = {
+        'paid': 1,
+        'timeout': 2,
+        'responded': 3,
+        'acknowledged': 4,
+        'unacknowledged': 5
     }
 
     def __init__(self):
-        self.ledger = Ledger()
-        self.logger = getLogger(self.__class__.__name__)
+        self.payments = {}
 
-    def customer_asks_to_pay(self, user):
-        payment = Payment(user, 10, verified=False)
-        self.ledger.insert(payment)
-        self.logger.info(payment)
+    def get_status(self, customer):
+        expired = False
+        responded = False
+        acknowledged = False
+        waited_too_long = False
+        received_payment = False
+        requested_payment = False
 
-    def customer_asks_to_start_over(self, user):
-        self.ledger.reset(user)
-        self.customer_asks_to_pay(user)
+        for action in self.payments.get(customer.phone_number, []):
+            name, when = action
+            if name == 'request_payment':
+                requested_payment = True
+                waited_too_long = dt.now() - delta(seconds=30) > when
+            elif name == 'acknowledge':
+                acknowledged = True
+                waited_too_long = dt.now() - delta(seconds=120) > when
+            elif name == 'received_payment':
+                received_payment = True
+                expired = dt.now() - delta(minutes=20) > when
+            elif name == 'responded':
+                responded = True
+ 
+        if not requested_payment or (received_payment and expired):
+            return None
+        elif received_payment:
+            return self.status['paid']
+        elif responded:
+            return self.status['responded']
+        elif acknowledged and waited_too_long:
+            return self.status['timeout']
+        elif acknowledged:
+            return self.status['acknowledged']
+        elif not acknowledged and waited_too_long:
+            return self.status['timeout']
+        elif not acknowledged:
+            return self.status['unacknowledged']
 
-    def owner_received_payment(self, user):
-        payment = Payment(user, 10, verified=True)
-        self.ledger.insert(payment)
+    def has_access(self, customer):
+        return self.get_status(customer) in (self.status['timeout'], self.status['paid'])
 
-    def has_access(self, user):
-        payments = self.ledger.retrieve(user)
-        return any(payment.verified for payment in payments)
+    def received_payment(self, customer, when=None):
+        action = ('received_payment', when or dt.now())
+        self.payments[customer.phone_number].append(action)
 
-    def get_status(self, user):
-        payments = self.ledger.retrieve(user)
-        if any(payment.verified for payment in payments):
-            return self.STATUS['ACCESS']
-        elif payments:
-            return self.STATUS['HOLD']
-        else:
-            return self.STATUS['PAY']
+    def responded(self, customer, when=None):
+        action = ('responded', when or dt.now())
+        self.payments[customer.phone_number].append(action)
+
+    def acknowledge(self, customer, when=None):
+        action = ('acknowledge', when or dt.now())
+        self.payments[customer.phone_number].append(action)
+
+    def request_payment(self, customer, when=None):
+        if self.has_access(customer):
+            raise Exception
+        self.payments[customer.phone_number] = [
+            ('request_payment', when or dt.now())
+        ]

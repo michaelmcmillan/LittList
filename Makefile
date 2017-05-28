@@ -53,6 +53,6 @@ gunicorn:
 	@$(GUNICORN) -c $(GUNICORN_CONFIG) webserver.server:app &
 
 unit-test:
-	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p $(TEST_FILES)
+	@$(TEST_RUNNER) discover -s $(TEST_DIR)/unit/paywall -p $(TEST_FILES)
 
 .PHONY: test install
