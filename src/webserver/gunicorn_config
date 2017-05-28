@@ -1,5 +1,5 @@
 workers = 1
 bind = 'unix:///tmp/littlist.socket'
 loglevel = 'debug'
-pidfile = 'data/gunicorn.pid'
+pidfile = 'data/.gunicorn.pid'
 errorlogfile = '/tmp/error.log'
