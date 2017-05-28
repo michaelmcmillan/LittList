@@ -2,7 +2,8 @@ lib/env
 .DS_Store
 idea
 *.pickle
-data
+data/*
+!data/.gitkeep
 todo
 *.db
 *.pid
