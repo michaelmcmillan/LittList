@@ -29,8 +29,8 @@ class Oria:
         '''Finds identifiers that matches query.'''
         self.logger.info(query)
         parameters = ('fn', 'search'), ('vl(freeText0)', query)
-        identifiers = self.cache.get_or_set(query,
-            lambda: self.extract_identifiers(self.http_client.get(self.SEARCH, parameters))
+        identifiers = self.cache.get_or_set(query, lambda:
+            self.extract_identifiers(self.http_client.get(self.SEARCH, parameters))
         )
         return identifiers or []
 
@@ -39,8 +39,8 @@ class Oria:
         endnote_parser = EndNoteParser()
         data = {'encode': 'UTF-8'}
         parameters = ('pushToType', 'EndNote'), ('docs', identifier)
-        parsed_endnote = self.cache.get_or_set(identifier,
-            lambda: endnote_parser.parse(self.http_client.post(self.READ, parameters, data))
+        parsed_endnote = self.cache.get_or_set(identifier, lambda: 
+            endnote_parser.parse(self.http_client.post(self.READ, parameters, data))
         )
         return OriaConverter.convert(parsed_endnote)
 
