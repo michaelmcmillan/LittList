@@ -25,17 +25,25 @@ class TestSerial(TestCase):
         csl = WebsiteToCSL.convert(website)
         self.assertEqual(csl['id'], 'web:http://vg.no')
 
-class TestPublicationYear(TestCase):
+class TestAccessedDate(TestCase):
+
+    def test_todays_date_is_converted_to_accessed(self):
+        website = Website()
+        website.accessed_date = datetime(2009, 1, 2)
+        csl = WebsiteToCSL.convert(website)
+        self.assertEqual(csl['accessed'], {'raw': '2009-01-02 00:00:00'})
+
+class TestPublicationDate(TestCase):
 
     def test_publication_date_is_converted_to_issued(self):
         website = Website()
         website.publication_date = datetime(2009, 1, 2)
         csl = WebsiteToCSL.convert(website)
-        self.assertEqual(csl['issued'], {'raw': '2009'})
+        self.assertEqual(csl['issued'], {'raw': '2009-01-02 00:00:00'})
 
-    def test_publication_year_is_not_converted_if_missing(self):
+    def test_publication_date_is_not_converted_if_missing(self):
         website = Website()
-        website.publication_year = None
+        website.publication_date = None
         csl = WebsiteToCSL.convert(website)
         self.assertEqual(csl['issued'], {'raw': None})
 
