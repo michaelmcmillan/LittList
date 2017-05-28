@@ -5,3 +5,4 @@ idea
 data
 todo
 *.db
+*.pid
