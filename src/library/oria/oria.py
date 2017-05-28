@@ -29,21 +29,19 @@ class Oria:
         '''Finds identifiers that matches query.'''
         self.logger.info(query)
         parameters = ('fn', 'search'), ('vl(freeText0)', query)
-        html = self.cache.get_or_set(query,
-            lambda: self.http_client.get(self.SEARCH, parameters)
+        identifiers = self.cache.get_or_set(query,
+            lambda: self.extract_identifiers(self.http_client.get(self.SEARCH, parameters))
         )
-        identifiers = self.extract_identifiers(html)
-        return identifiers
+        return identifiers or []
 
     def read(self, identifier):
         '''Reads metadata for an identifier.'''
         endnote_parser = EndNoteParser()
         data = {'encode': 'UTF-8'}
         parameters = ('pushToType', 'EndNote'), ('docs', identifier)
-        raw_endnote = self.cache.get_or_set(identifier,
-            lambda: self.http_client.post(self.READ, parameters, data)
+        parsed_endnote = self.cache.get_or_set(identifier,
+            lambda: endnote_parser.parse(self.http_client.post(self.READ, parameters, data))
         )
-        parsed_endnote = endnote_parser.parse(raw_endnote)
         return OriaConverter.convert(parsed_endnote)
 
     def read_multiple(self, identifiers):
