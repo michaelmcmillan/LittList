@@ -48,7 +48,7 @@ class TestPublisher(TestCase):
         book = Book()
         book.publisher = None
         csl = BookToCSL.convert(book)
-        self.assertEqual(csl['publisher'], None)
+        self.assertEqual(csl['publisher'], False)
 
 class TestPublisherPlace(TestCase):
 
