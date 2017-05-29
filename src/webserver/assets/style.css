@@ -229,7 +229,7 @@ button[name="remove"] {
 }
 
 #afour input[name="identifier[]"] {
-    top: 40px;
+    top: 25px;
     position: relative;
     margin-left: -30px;
 }
@@ -351,3 +351,200 @@ button[name="remove"] {
     background-position: 0 -10px;
 }
 
+@-webkit-keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: rotate-forever;
+  -moz-animation-name: rotate-forever;
+  animation-name: rotate-forever;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  animation-timing-function: linear;
+  height: 30px;
+  width: 30px;
+  border: 4px solid #007272;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.loading-spinner {
+    margin-top: 25px;
+}
+
+.checkmark-circle {
+  margin-top: 25px;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.checkmark-circle .background {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #007272;
+  position: absolute;
+}
+.checkmark-circle .checkmark {
+  border-radius: 5px;
+}
+.checkmark-circle .checkmark.draw:after {
+  -webkit-animation-delay: 100ms;
+  -moz-animation-delay: 100ms;
+  animation-delay: 100ms;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease;
+  -moz-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-name: checkmark;
+  -moz-animation-name: checkmark;
+  animation-name: checkmark;
+  -webkit-transform: scaleX(-1) rotate(135deg);
+  -moz-transform: scaleX(-1) rotate(135deg);
+  -ms-transform: scaleX(-1) rotate(135deg);
+  -o-transform: scaleX(-1) rotate(135deg);
+  transform: scaleX(-1) rotate(135deg);
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.checkmark-circle .checkmark:after {
+  opacity: 1;
+  height: 20px;
+  width: 10px;
+  -webkit-transform-origin: left top;
+  -moz-transform-origin: left top;
+  -ms-transform-origin: left top;
+  -o-transform-origin: left top;
+  transform-origin: left top;
+  border-right: 2px solid white;
+  border-top: 2px solid white;
+  border-radius: 2.5px !important;
+  content: '';
+  left: 8px;
+  top: 20px;
+  position: absolute;
+}
+
+@-webkit-keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: 10px;
+    opacity: 1;
+  }
+  40% {
+    height: 20px;
+    width: 10px;
+    opacity: 1;
+  }
+  100% {
+    height: 20px;
+    width: 10px;
+    opacity: 1;
+  }
+}
+@-moz-keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: 10px;
+    opacity: 1;
+  }
+  40% {
+    height: 20px;
+    width: 10px;
+    opacity: 1;
+  }
+  100% {
+    height: 20px;
+    width: 10px;
+    opacity: 1;
+  }
+}
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: 10px;
+    opacity: 1;
+  }
+  40% {
+    height: 20px;
+    width: 10px;
+    opacity: 1;
+  }
+  100% {
+    height: 20px;
+    width: 10px;
+    opacity: 1;
+  }
+}

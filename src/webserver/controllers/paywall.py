@@ -8,8 +8,10 @@ class PaywallController:
     @staticmethod
     def status():
         customer = Customer(session['customer_id'])
+        statuses = paywall.status
         status = paywall.get_status(customer)
-        return render_template('paywall.html', status=status, statuses=paywall.status)
+        on_hold = status in (statuses['unacknowledged'], statuses['acknowledged'], statuses['responded'])
+        return render_template('paywall.html', status=status, on_hold=on_hold, statuses=statuses)
 
     @staticmethod
     def ask_to_pay():

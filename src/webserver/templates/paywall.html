@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block head %}{% if status in (statuses['unacknowledged'], statuses['acknowledged'], statuses['responded']) %}<meta http-equiv="refresh" content="5;url={{ request.url }}" />{% endif %}{% endblock %}
+{% block head %}{% if on_hold %}<meta http-equiv="refresh" content="5;url={{ request.url }}" />{% endif %}{% endblock %}
 {% block title %} - Vipps{% endblock %}
 {% block body %}
     {% include 'bar.html' %}
@@ -24,6 +24,17 @@
                 <img id="logo" src="vipps.png" />
                 <span id="price">Kr <span id="amount">5,</span>00</span>
                 <span id="product">Litteraturliste fra LittList</span>
+                
+                {% if status == statuses['paid'] or status == statuses['timeout'] %}
+                <div class="checkmark-circle">
+                    <div class="background"></div>
+                    <div class="checkmark draw"></div>
+                </div>
+                {% endif %}
+                
+                {% if on_hold %}
+                <span class="loading-spinner"></span>
+                {% endif %}
             </div>
 
             {% if not status %}
