@@ -153,6 +153,7 @@ button[name="remove"] {
     background-color: #0E9F5D;
     color: white;
     float: right;
+    font-weight: 600;
 }
 
 #toolbar button {
