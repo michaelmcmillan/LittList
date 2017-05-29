@@ -26,7 +26,7 @@ class Notifier:
         if not self.enabled:
             return
 
-        url = 'http://littlist.no/paywall/admin'
+        url = 'http://localhost:5000/paywall/admin'
         phone_number = str(customer.phone_number)
 
         message = Message(

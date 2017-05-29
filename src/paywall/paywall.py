@@ -27,16 +27,21 @@ class Paywall:
             if name == 'request_payment':
                 requested_payment = True
                 waited_too_long = dt.now() - delta(seconds=30) > when
+                expired = dt.now() - delta(minutes=20) > when
             elif name == 'acknowledge':
                 acknowledged = True
                 waited_too_long = dt.now() - delta(seconds=120) > when
+                expired = dt.now() - delta(minutes=20) > when
             elif name == 'received_payment':
                 received_payment = True
                 expired = dt.now() - delta(minutes=20) > when
             elif name == 'responded':
                 responded = True
  
-        if not requested_payment or (received_payment and expired):
+        if not requested_payment \
+        or (acknowledged and expired) \
+        or (received_payment and expired) \
+        or (requested_payment and expired):
             return None
         elif received_payment:
             return self.status['paid']
@@ -51,8 +56,19 @@ class Paywall:
         elif not acknowledged:
             return self.status['unacknowledged']
 
+    def on_hold(self, customer):
+        return self.get_status(customer) in (
+            self.status['responded'],
+            self.status['acknowledged'],
+            self.status['unacknowledged']
+        )
+
     def has_access(self, customer):
-        return self.get_status(customer) in (self.status['timeout'], self.status['paid'])
+        status = self.get_status(customer)
+        return status in (
+            self.status['paid'],
+            self.status['timeout']
+        )
 
     def received_payment(self, customer, when=None):
         action = ('received_payment', when or dt.now())

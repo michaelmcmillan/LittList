@@ -80,3 +80,20 @@ class TestPaywall(TestCase):
         status = paywall.get_status(customer)
         self.assertEqual(status, None)
         self.assertFalse(paywall.has_access(customer))
+
+    def test_customer_is_not_granted_access_if_acknowledged_for_20_minutes_ago(self):
+        paywall = Paywall()
+        customer = Customer('95015843')
+        paywall.request_payment(customer)
+        paywall.acknowledge(customer, when=dt.now()-delta(minutes=20))
+        status = paywall.get_status(customer)
+        self.assertEqual(status, None)
+        self.assertFalse(paywall.has_access(customer))
+
+    def test_customer_is_not_granted_access_if_requested_for_20_minutes_ago(self):
+        paywall = Paywall()
+        customer = Customer('95015843')
+        paywall.request_payment(customer, when=dt.now()-delta(minutes=20))
+        status = paywall.get_status(customer)
+        self.assertEqual(status, None)
+        self.assertFalse(paywall.has_access(customer))
