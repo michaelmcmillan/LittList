@@ -9,20 +9,20 @@
             {% if not status %}
             <p>Vennligst tast inn mobilnummeret ditt for å kopiere litteraturlisten.</p>
             {% elif status == statuses['unacknowledged'] %}
-            <p>Vennligst vent til forespørselen din har blit behandlet.</p>
+            <p>Vennligst vent til forespørselen din har blitt behandlet.</p>
             {% elif status == statuses['timeout'] %}
             <p>Vi brukte for lang tid. Det betyr at du får tilgang gratis!</p>
             {% elif status == statuses['acknowledged'] %}
             <p>Betalingen din blir behandlet. Vi sender straks en Vipps-forespørsel.</p>
             {% elif status == statuses['responded'] %}
-            <p>Du har motatt en Vipps-forespørsel. Vennligst godta transaksjonen for å få tilgang.</p>
+            <p>Du har mottatt en Vipps-forespørsel. Vennligst godta transaksjonen for å få tilgang.</p>
             {% elif status == statuses['paid'] %}
-            <p>Vi har motatt betalingen din. Du har nå tilgang til litteraturlisten!</p>
+            <p>Vi har mottatt betalingen din. Du har nå tilgang til litteraturlisten!</p>
             {% endif %}
 
             <div id="receipt">
                 <img id="logo" src="vipps.png" />
-                <span id="price">Kr <span id="amount">15,</span>00</span>
+                <span id="price">Kr <span id="amount">5,</span>00</span>
                 <span id="product">Litteraturliste fra LittList</span>
             </div>
 
