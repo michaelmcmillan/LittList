@@ -26,7 +26,7 @@ class Notifier:
         if not self.enabled:
             return
 
-        url = 'http://localhost:5000/paywall/admin'
+        url = Configuration.hostname + '/paywall/admin'
         phone_number = str(customer.phone_number)
 
         message = Message(
