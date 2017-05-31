@@ -6,10 +6,17 @@ class Notifier:
     enabled = False
 
     @classmethod
-    def customer_rendered(self, customer, bibliography):
-        if not self.enabled:
+    def send(cls, message):
+        if not cls.enabled:
             return
 
+        gmail = Gmail()
+        gmail.connect()
+        gmail.send(message)
+        gmail.disconnect()
+
+    @classmethod
+    def customer_rendered(cls, customer, bibliography):
         message = Message(
             sender=Configuration.email_username,
             recipient=Configuration.email_username,
@@ -18,35 +25,32 @@ class Notifier:
                 + customer.phone_number \
                 + '\n' + '\n'.join(bibliography)
         )
-        gmail = Gmail()
-        gmail.connect()
-        gmail.send(message)
-        gmail.disconnect()
+        cls.send(message)
 
     @classmethod
-    def customer_entered_paywall(self):
-        if not self.enabled:
-            return
+    def modified(cls, query):
+        message = Message(
+            sender=Configuration.email_username,
+            recipient=Configuration.email_username,
+            subject=None,
+            body='\r\nModified: ' + query
+        )
+        cls.send(message)
 
+    @classmethod
+    def customer_entered_paywall(cls):
         message = Message(
             sender=Configuration.email_username,
             recipient=Configuration.email_username,
             subject=None,
             body='\r\nPaywall'
         )
-        gmail = Gmail()
-        gmail.connect()
-        gmail.send(message)
-        gmail.disconnect()
+        cls.send(message)
 
     @classmethod
-    def customer_requested_payment(self, customer):
-        if not self.enabled:
-            return
-
+    def customer_requested_payment(cls, customer):
         url = Configuration.hostname + '/paywall/admin'
         phone_number = str(customer.phone_number)
-
         message = Message(
             sender=Configuration.email_username,
             recipient=Configuration.email_username,
@@ -59,7 +63,4 @@ class Notifier:
             '\n3. Motatt betaling: %s?phone_number=%s&action=received_payment&secret=%s' %
                 (url, phone_number, Configuration.admin_secret)
         )
-        gmail = Gmail()
-        gmail.connect()
-        gmail.send(message)
-        gmail.disconnect()
+        cls.send(message)

@@ -1,5 +1,5 @@
 from flask import render_template as render, session, request, redirect, url_for, g
-from webserver.services import library, repository
+from webserver.services import library, repository, notifier
 
 class SearchController:
 
@@ -11,6 +11,7 @@ class SearchController:
     def search():
         query = request.args.get('q', '')
         results = library.search(query)
+        notifier.modified(query)
         bibliography = repository.read(session['bibliography_id'])
         return render('results.html', query=query, results=results, bibliography=bibliography)
 
