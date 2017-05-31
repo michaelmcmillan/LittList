@@ -6,10 +6,10 @@ class BibliographyController:
 
     @staticmethod
     def render():
-        notifier.customer_rendered()
         customer = Customer(session['customer_id'])
         bibliography_id = session['bibliography_id']
         bibliography = repository.read(bibliography_id)
+        notifier.customer_rendered(customer, bibliography)
         output, formatted_bibliography = generator.render(customer, bibliography_id)
         return render_template(
             'bibliography.html',

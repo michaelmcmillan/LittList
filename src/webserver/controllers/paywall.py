@@ -1,5 +1,5 @@
 from configuration import Configuration
-from webserver.services import paywall
+from webserver.services import paywall, notifier
 from flask import render_template, session, request, redirect, url_for
 from paywall import Customer
 
@@ -10,6 +10,7 @@ class PaywallController:
         customer = Customer(session['customer_id'])
         on_hold = paywall.on_hold(customer)
         status = paywall.get_status(customer)
+        notifier.customer_entered_paywall()
         return render_template('paywall.html', status=status, on_hold=on_hold, statuses=paywall.status)
 
     @staticmethod

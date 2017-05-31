@@ -6,7 +6,7 @@ class Notifier:
     enabled = False
 
     @classmethod
-    def customer_rendered(self):
+    def customer_rendered(self, customer, bibliography):
         if not self.enabled:
             return
 
@@ -14,7 +14,25 @@ class Notifier:
             sender=Configuration.email_username,
             recipient=Configuration.email_username,
             subject=None,
-            body='\r\nRender!'
+            body='\r\nRender\r\n'\
+                + customer.phone_number \
+                + '\n' + '\n'.join(bibliography)
+        )
+        gmail = Gmail()
+        gmail.connect()
+        gmail.send(message)
+        gmail.disconnect()
+
+    @classmethod
+    def customer_entered_paywall(self):
+        if not self.enabled:
+            return
+
+        message = Message(
+            sender=Configuration.email_username,
+            recipient=Configuration.email_username,
+            subject=None,
+            body='\r\nPaywall'
         )
         gmail = Gmail()
         gmail.connect()
