@@ -1,4 +1,5 @@
 # System binaries
+SYSTEM_GIT=$(shell which git)
 SYSTEM_PIP=$(shell which pip3)
 SYSTEM_PYTHON=$(shell which python3.6)
 SYSTEM_VIRTUALENV=$(shell which virtualenv)
@@ -16,6 +17,10 @@ SRC_DIR=./src
 ENV_DIR=$(LIB_DIR)/env
 CONF_DIR=./config
 WEBSERVER_DIR=$(SRC_DIR)/webserver
+BIBLIOGRAPHY_DIR=$(SRC_DIR)/bibliography
+CITEPROC_DIR=$(LIB_DIR)/citeproc-js
+STYLES_DIR=$(BIBLIOGRAPHY_DIR)/styles
+LOCALES_DIR=$(BIBLIOGRAPHY_DIR)/locales
 MODULES=$(SRC_DIR):$(TEST_DIR):$(CONF_DIR)
 
 # Flags
@@ -31,7 +36,7 @@ GUNICORN_CONFIG=$(WEBSERVER_DIR)/gunicorn_config
 export PYTHONPATH=$(MODULES)
 export PYTHONDONTWRITEBYTECODE=true
 
-install: pip-install
+install: pip-install clone-submodules
 test: unit-test
 serve: flask
 start: gunicorn
@@ -39,11 +44,14 @@ start: gunicorn
 virtualenv-install:
 ifndef SYSTEM_VIRTUALENV
 	$(SYSTEM_PIP) install virtualenv
-	$(SYSTEM_VIRTUALENV) -p $(SYSTEM_PYTHON) --no-site-packages $(ENV_DIR)
 endif
+	$(SYSTEM_VIRTUALENV) -p $(SYSTEM_PYTHON) --no-site-packages $(ENV_DIR)
 
 pip-install: virtualenv-install
 	@$(PIP) install -r $(REQUIREMENTS)
+
+clone-submodules: $(STYLES_DIR) $(LOCALES_DIR) $(CITEPROC_DIR)
+	@$(SYSTEM_GIT) submodule update --init --recursive
 
 flask: export FLASK_APP=$(FLASK_SERVER)
 flask: export FLASK_DEBUG=1
