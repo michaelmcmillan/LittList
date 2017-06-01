@@ -9,7 +9,7 @@ class OriaConverter:
         if not fields:
             return None
         book = Book()
-        book.title = fields.get('TI', None)
+        book.title = cls.extract_title(fields.get('TI', None))
         book.publisher_place = fields.get('CY', None)
         book.id = cls.generate_identifier(fields.get('ID', None))
         author_fields = fields.get('A1', []) + fields.get('AU', [])
@@ -23,6 +23,10 @@ class OriaConverter:
     @staticmethod
     def generate_identifier(ID):
         return 'oria:%s' % ID if ID else None
+
+    @staticmethod
+    def extract_title(TI):
+        return TI.replace(' :', ':') if TI else None
 
     @classmethod
     def extract_publisher(cls, PB, publication_year):

@@ -33,6 +33,11 @@ class TestBookTitle(TestCase):
         book = OriaConverter.convert(fields)
         self.assertEqual(book.title, 'Snømannen')
 
+    def test_returns_title_without_space_in_front_of_colon(self):
+        fields = {'TY': 'BOOK', 'TI': 'Silicon Valley : the history in pictures'}
+        book = OriaConverter.convert(fields)
+        self.assertEqual(book.title, 'Silicon Valley: the history in pictures')
+
     def test_returns_None_if_TI_is_not_provided(self):
         fields = {'TY': 'BOOK'}
         book = OriaConverter.convert(fields)

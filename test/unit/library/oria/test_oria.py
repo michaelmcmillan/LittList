@@ -89,7 +89,7 @@ class TestOriaRead(TestCase):
         http_client.post.return_value = load_fixture('oria/ambjørnsen.enw')
         oria = Oria(http_client)
         book = oria.read('BIBSYS_ILS71466426580002201')
-        self.assertEqual(book.title, 'Ingvar Ambjørnsen : et forfatterhefte')
+        self.assertEqual(book.title, 'Ingvar Ambjørnsen: et forfatterhefte')
 
     def test_it_returns_no_fields_if_enw_could_not_be_fetched(self):
         http_client = MagicMock()
