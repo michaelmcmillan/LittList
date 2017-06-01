@@ -1,4 +1,11 @@
+# Pillow is used for generating blurred bibliographies.
 Pillow==4.1.1
+
+# Flask takes care of the HTTP.
 Flask==0.12.1
+
+# Gunicorn hooks Flask up to Nginx for threads.
 gunicorn==19.7.1
+
+# Newspaper applies heuristics to HTML for finding metadata.
 newspaper3k==0.1.9
