@@ -70,6 +70,12 @@ class TestAddRepository(TestCase):
         bibliography = repository.read(bibliography_id)
         self.assertEqual(bibliography, [])
 
+    def test_bibliography_does_not_store_new_version_if_adding_none(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(bibliography=[])
+        updated_bibliography_id = repository.add(bibliography_id, None)
+        self.assertEqual(bibliography_id, updated_bibliography_id)
+
     def test_bibliography_stores_its_previous_version(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography_id = repository.create(bibliography=[])
@@ -101,6 +107,12 @@ class TestRemoveRepository(TestCase):
         bibliography_id = repository.remove(bibliography_id, None)
         bibliography = repository.read(bibliography_id)
         self.assertEqual(bibliography, [])
+
+    def test_bibliography_does_not_store_new_version_if_removing_none(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(bibliography=[])
+        updated_bibliography_id = repository.remove(bibliography_id, None)
+        self.assertEqual(bibliography_id, updated_bibliography_id)
 
     def test_bibliography_has_nothing_removed_if_identifier_is_not_in_list(self):
         repository = BibliographyRepository(self.fixture_directory)

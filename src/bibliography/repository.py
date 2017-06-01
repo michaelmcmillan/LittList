@@ -27,13 +27,15 @@ class BibliographyRepository:
     def add(self, bibliography_id, identifier):
         '''Creates a copy of the old bibliography with added reference.'''
         bibliography = self.read(bibliography_id)
-        bibliography.append(identifier) \
-            if identifier else None
+        if not identifier:
+            return bibliography_id
+        bibliography.append(identifier)
         return self.create(bibliography, previous_bibliography_id=bibliography_id)
 
     def remove(self, bibliography_id, identifier):
         '''Creates a copy of the old bibliography with removed reference.'''
         bibliography = self.read(bibliography_id)
-        bibliography.remove(identifier) \
-            if identifier in bibliography else None
+        if identifier not in bibliography:
+            return bibliography_id
+        bibliography.remove(identifier)
         return self.create(bibliography, previous_bibliography_id=bibliography_id)
