@@ -23,20 +23,17 @@ class BibliographyRepository:
         with open(directory.get_path_to_bibliography(bibliography_id), 'r') as f:
             return loads(f.read())
 
-    def update(self, method, bibliography_id, identifier):
-        if not identifier:
-            return
-        directory = UserDirectory(self.root_directory)
-        bibliography = self.read(bibliography_id)
-        try:
-            getattr(bibliography, method)(identifier)
-        except ValueError:
-            return
-        with open(directory.get_path_to_bibliography(bibliography_id), 'w') as f:
-            f.write(dumps(bibliography))
-
     def add(self, bibliography_id, identifier):
-        self.update('append', bibliography_id, identifier)
+        '''Creates a copy of the old bibliography with added reference.'''
+        bibliography = self.read(bibliography_id)
+        bibliography.append(identifier)
+        updated_bibliography_id = self.create(bibliography)
+        return updated_bibliography_id
 
     def remove(self, bibliography_id, identifier):
-        self.update('remove', bibliography_id, identifier)
+        '''Creates a copy of the old bibliography with removed reference.'''
+        bibliography = self.read(bibliography_id)
+        bibliography.remove(identifier) \
+            if identifier in bibliography else None
+        updated_bibliography_id = self.create(bibliography)
+        return updated_bibliography_id

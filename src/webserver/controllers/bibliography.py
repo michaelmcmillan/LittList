@@ -21,5 +21,5 @@ class BibliographyController:
     @staticmethod
     def remove():
         for identifier in request.form.getlist('identifier[]'):
-            repository.remove(session['bibliography_id'], identifier=identifier)
+            session['bibliography_id'] = repository.remove(session['bibliography_id'], identifier=identifier)
         return redirect(url_for('render'))

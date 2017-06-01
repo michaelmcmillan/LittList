@@ -51,7 +51,7 @@ class TestAddRepository(TestCase):
     def test_bibliography_has_identifier_added(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography_id = repository.create(bibliography=[])
-        repository.add(bibliography_id, 'BIBSYS_ISL1234')
+        bibliography_id = repository.add(bibliography_id, 'BIBSYS_ISL1234')
         bibliography = repository.read(bibliography_id)
         self.assertEqual(bibliography, ['BIBSYS_ISL1234'])
 
@@ -102,8 +102,8 @@ class TestRemoveRepository(TestCase):
             'oria:BIBSYS_ILS71492651770002201'
         ]
         bibliography_id = repository.create(bibliography=bibliography)
-        repository.remove(bibliography_id, 'oria:BIBSYS_ILS71466426580002201')
-        repository.remove(bibliography_id, 'oria:BIBSYS_ILS71513221680002201')
+        bibliography_id = repository.remove(bibliography_id, 'oria:BIBSYS_ILS71466426580002201')
+        bibliography_id = repository.remove(bibliography_id, 'oria:BIBSYS_ILS71513221680002201')
         bibliography = repository.read(bibliography_id)
         self.assertEqual(bibliography, ['oria:BIBSYS_ILS71492651770002201'])
 

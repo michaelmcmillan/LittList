@@ -18,6 +18,6 @@ class SearchController:
     def add_or_remove():
         identifier_to_add = request.form.get('add', None)
         identifier_to_remove = request.form.get('remove', None)
-        repository.add(session['bibliography_id'], identifier=identifier_to_add)
-        repository.remove(session['bibliography_id'], identifier=identifier_to_remove)
+        session['bibliography_id'] = repository.add(session['bibliography_id'], identifier=identifier_to_add)
+        session['bibliography_id'] = repository.remove(session['bibliography_id'], identifier=identifier_to_remove)
         return redirect(url_for('search', q=request.args.get('q', '')))
