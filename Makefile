@@ -17,10 +17,10 @@ SRC_DIR=./src
 ENV_DIR=$(LIB_DIR)/env
 CONF_DIR=./config
 WEBSERVER_DIR=$(SRC_DIR)/webserver
-BIBLIOGRAPHY_DIR=$(SRC_DIR)/bibliography
+CSL_DIR=$(SRC_DIR)/citeproc
 CITEPROC_DIR=$(LIB_DIR)/citeproc-js
-STYLES_DIR=$(BIBLIOGRAPHY_DIR)/styles
-LOCALES_DIR=$(BIBLIOGRAPHY_DIR)/locales
+STYLES_DIR=$(CSL_DIR)/styles
+LOCALES_DIR=$(CSL_DIR)/locales
 MODULES=$(SRC_DIR):$(TEST_DIR):$(CONF_DIR)
 
 # Flags
