@@ -1,9 +1,8 @@
 from blur import Blur
 from paywall import Paywall
 from library import Library, Book
-from .citeproc import Citeproc
+from citeproc import Citeproc, ReferenceToCSL
 from .repository import BibliographyRepository
-from .reference_to_csl_converter import ReferenceToCSL
 
 class BibliographyGenerator:
 

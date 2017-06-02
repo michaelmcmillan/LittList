@@ -1,7 +1,7 @@
 from json import loads
 from unittest import TestCase
 from fixtures import load_fixture
-from bibliography import Citeproc
+from citeproc import Citeproc
 
 class TestCiteproc(TestCase):
 

@@ -1,6 +1,6 @@
 from unittest import TestCase
 from library import Book, Author
-from bibliography import ReferenceToCSL
+from citeproc import ReferenceToCSL
 
 class TestType(TestCase):
 

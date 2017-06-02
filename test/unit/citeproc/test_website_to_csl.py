@@ -1,7 +1,7 @@
 from unittest import TestCase
 from datetime import datetime
 from library import Website, Author
-from bibliography import ReferenceToCSL
+from citeproc import ReferenceToCSL
 
 class TestType(TestCase):
 
