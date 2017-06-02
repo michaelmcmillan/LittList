@@ -40,8 +40,7 @@ class BibliographyRepository:
     def read(self, bibliography_id):
         '''Returns an existing bibliography if it exists.'''
         try:
-            path = join(self.root_directory, str(bibliography_id))
-            with open(path, 'r') as f:
+            with open(self.get_path_to_bibliography(bibliography_id), 'r') as f:
                 return from_json_to_bibliography(f.read())
         except IOError:
             return None
