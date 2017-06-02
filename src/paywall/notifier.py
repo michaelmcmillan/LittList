@@ -23,7 +23,7 @@ class Notifier:
             subject=None,
             body='\r\nRender\r\n'\
                 + customer.phone_number \
-                + '\n' + '\n'.join(bibliography)
+                + '\n' + '\n'.join(bibliography.references)
         )
         cls.send(message)
 

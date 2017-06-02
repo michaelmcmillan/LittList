@@ -1,8 +1,9 @@
 from unittest import TestCase
+from os import makedirs
 from shutil import rmtree
-from os.path import isdir, isfile
+from os.path import isdir, isfile, join
 from tempfile import TemporaryDirectory
-from bibliography import BibliographyRepository
+from bibliography import Bibliography, BibliographyRepository
 from fixtures import load_fixture
 
 class TestCreateRepository(TestCase):
@@ -11,40 +12,30 @@ class TestCreateRepository(TestCase):
 
     def setUp(self):
         rmtree(self.fixture_directory, ignore_errors=True)
+        makedirs(self.fixture_directory)
 
     def tearDown(self):
         rmtree(self.fixture_directory, ignore_errors=True)
 
-    def test_bibliography_after_10_is_11(self):
-        repository = BibliographyRepository(self.fixture_directory)
-        for i in range(10):
-            repository.create(bibliography=[])
-        bibliography_id = repository.create(bibliography=[])
-        self.assertEqual(bibliography_id, 11)
-
     def test_creating_a_bibliography_creates_a_bibliography_file(self):
         repository = BibliographyRepository(self.fixture_directory)
-        repository.create(bibliography=[])
-        self.assertTrue(isfile(self.fixture_directory + '/1'))
-
-    def test_creating_a_another_bibliography_creates_a_new_bibliography_file(self):
-        repository = BibliographyRepository(self.fixture_directory)
-        repository.create(bibliography=[])
-        repository.create(bibliography=[])
-        self.assertTrue(isfile(self.fixture_directory + '/2'))
+        bibliography = Bibliography()
+        bibliography_id = repository.create(bibliography)
+        self.assertTrue(isfile(join(self.fixture_directory, str(bibliography_id))))
 
     def test_creating_a_bibliography_stores_its_previous_version(self):
         repository = BibliographyRepository(self.fixture_directory)
-        repository.create(bibliography=['BIBSYS_ISL2000'], previous_bibliography_id=3)
-        bibliography = repository.read(bibliography_id=1)
-        data = load_fixture('bibliography/create/1')
-        self.assertIn('"previous_bibliography_id": 3', data)
+        bibliography = Bibliography(set(['BIBSYS_ISL2000']), previous_bibliography_id=3)
+        bibliography_id = repository.create(bibliography)
+        stored_bibliography = repository.read(bibliography_id=bibliography_id)
+        self.assertEqual(stored_bibliography.previous_bibliography_id, 3)
 
     def test_creating_a_bibliography_stores_its_contents(self):
         repository = BibliographyRepository(self.fixture_directory)
-        repository.create(bibliography=['BIBSYS_ISL2000'])
-        bibliography = repository.read(bibliography_id=1)
-        self.assertTrue(bibliography, ['BIBSYS_ISL2000'])
+        bibliography = Bibliography(set(['BIBSYS_ISL2000']))
+        bibliography_id = repository.create(bibliography)
+        stored_bibliography = repository.read(bibliography_id=bibliography_id)
+        self.assertTrue(bibliography, stored_bibliography)
 
 class TestAddRepository(TestCase):
 
@@ -52,36 +43,30 @@ class TestAddRepository(TestCase):
 
     def setUp(self):
         rmtree(self.fixture_directory, ignore_errors=True)
+        makedirs(self.fixture_directory)
 
     def tearDown(self):
         rmtree(self.fixture_directory, ignore_errors=True)
 
     def test_bibliography_has_identifier_added(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
+        bibliography_id = repository.create(Bibliography())
         bibliography_id = repository.add(bibliography_id, 'BIBSYS_ISL1234')
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, ['BIBSYS_ISL1234'])
+        self.assertEqual(bibliography, Bibliography(set(['BIBSYS_ISL1234'])))
 
     def test_bibliography_has_nothing_added_if_identifier_is_none(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
+        bibliography_id = repository.create(Bibliography())
         bibliography_id = repository.add(bibliography_id, None)
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, [])
+        self.assertEqual(bibliography, Bibliography(set([])))
 
     def test_bibliography_does_not_store_new_version_if_adding_none(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
+        bibliography_id = repository.create(Bibliography())
         updated_bibliography_id = repository.add(bibliography_id, None)
         self.assertEqual(bibliography_id, updated_bibliography_id)
-
-    def test_bibliography_stores_its_previous_version(self):
-        repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
-        bibliography_id = repository.add(bibliography_id, 'BIBSYS_ISL1234')
-        data = load_fixture('bibliography/add/2')
-        self.assertIn('"previous_bibliography_id": 1', data)
 
 class TestRemoveRepository(TestCase):
 
@@ -89,57 +74,51 @@ class TestRemoveRepository(TestCase):
 
     def setUp(self):
         rmtree(self.fixture_directory, ignore_errors=True)
+        makedirs(self.fixture_directory)
 
     def tearDown(self):
         rmtree(self.fixture_directory, ignore_errors=True)
 
     def test_bibliography_has_identifier_removed(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
+        bibliography_id = repository.create(Bibliography())
         repository.add(bibliography_id, 'BIBSYS_ISL1234')
         bibliography_id = repository.remove(bibliography_id, 'BIBSYS_ISL1234')
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, [])
+        self.assertEqual(bibliography, Bibliography())
 
     def test_bibliography_has_nothing_removed_if_identifier_is_none(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
+        bibliography_id = repository.create(Bibliography())
         bibliography_id = repository.remove(bibliography_id, None)
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, [])
+        self.assertEqual(bibliography, Bibliography())
 
     def test_bibliography_does_not_store_new_version_if_removing_none(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
+        bibliography_id = repository.create(Bibliography())
         updated_bibliography_id = repository.remove(bibliography_id, None)
         self.assertEqual(bibliography_id, updated_bibliography_id)
 
     def test_bibliography_has_nothing_removed_if_identifier_is_not_in_list(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=[])
+        bibliography_id = repository.create(Bibliography())
         bibliography_id = repository.remove(bibliography_id, '1234')
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, [])
+        self.assertEqual(bibliography, Bibliography())
 
     def test_bibliography_has_the_correct_state_after_removing_two_references(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography = [
+        references = [
             'oria:BIBSYS_ILS71513221680002201',
             'oria:BIBSYS_ILS71466426580002201',
             'oria:BIBSYS_ILS71492651770002201'
         ]
-        bibliography_id = repository.create(bibliography=bibliography)
+        bibliography_id = repository.create(Bibliography(set(references)))
         bibliography_id = repository.remove(bibliography_id, 'oria:BIBSYS_ILS71466426580002201')
         bibliography_id = repository.remove(bibliography_id, 'oria:BIBSYS_ILS71513221680002201')
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, ['oria:BIBSYS_ILS71492651770002201'])
-
-    def test_bibliography_stores_its_previous_version(self):
-        repository = BibliographyRepository(self.fixture_directory)
-        bibliography_id = repository.create(bibliography=['BIBSYS_ISL1234'])
-        bibliography_id = repository.remove(bibliography_id, 'BIBSYS_ISL1234')
-        data = load_fixture('bibliography/remove/2')
-        self.assertIn('"previous_bibliography_id": 1', data)
+        self.assertEqual(bibliography, Bibliography({'oria:BIBSYS_ILS71492651770002201'}))
 
 class TestReadRepository(TestCase):
 
@@ -148,7 +127,7 @@ class TestReadRepository(TestCase):
     def test_bibliography_is_returned_if_it_exists(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography = repository.read(bibliography_id=1)
-        self.assertEqual(bibliography, ['BIBSYS_ISL1234'])
+        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL1234'}))
 
     def test_none_is_returned_if_bibliography_does_not_exist(self):
         repository = BibliographyRepository(self.fixture_directory)
@@ -158,4 +137,4 @@ class TestReadRepository(TestCase):
     def test_other_bibliography_is_returned_if_it_exists(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography = repository.read(bibliography_id=3)
-        self.assertEqual(bibliography, ['BIBSYS_ISL4321'])
+        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL4321'}))
