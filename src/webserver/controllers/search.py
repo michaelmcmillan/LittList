@@ -16,6 +16,7 @@ class SearchController:
 
     @staticmethod
     def add_or_remove():
+        assert False
         identifier_to_add = request.form.get('add', None)
         identifier_to_remove = request.form.get('remove', None)
         session['bibliography_id'] = repository.add(session['bibliography_id'], identifier=identifier_to_add)

@@ -8,21 +8,21 @@ class TestCiteproc(TestCase):
     def test_bibliography_is_correctly_rendered_with_one_journal(self):
         citeproc = Citeproc()
         asimow = loads(load_fixture('bibliography/asimow.json'))
-        formatted_bibliography = citeproc.render([asimow])
+        formatted_bibliography = citeproc.render([asimow], 'apa')
         expected_bibliography = \
             [('2656243/WJUV5TCE',
             '  <div class="csl-entry">' \
-            + 'Asimow, M. (1995–1996) «When Lawyers Were Heroes Symposium: ' \
+            + 'Asimow, M. (1995–1996). When Lawyers Were Heroes Symposium: ' \
             + 'Picturing Justice: Images of Law and Lawyers in the Visual ' \
-            + 'Media: Essay», <i>University of San Francisco Law Review</i>, ' \
-            + '30, s. 1131–1138.</div>\n')]
+            + 'Media: Essay. <i>University of San Francisco Law Review</i>, ' \
+            + '<i>30</i>, 1131–1138.</div>\n')]
         self.assertEqual(formatted_bibliography, expected_bibliography)
 
     def test_bibliography_is_correctly_rendered_with_two_journals(self):
         citeproc = Citeproc()
         asimow = loads(load_fixture('bibliography/asimow.json'))
         abrams = loads(load_fixture('bibliography/abrams.json'))
-        formatted_bibliography = citeproc.render([asimow, abrams])
+        formatted_bibliography = citeproc.render([asimow, abrams], 'harvard')
         first_entry = ('2656243/G7B3GE28', \
             '  <div class="csl-entry">' \
             + 'Abrams, D. E. (2013) «The Little League Champions Benched by ' \

@@ -37,6 +37,30 @@ class TestCreateRepository(TestCase):
         stored_bibliography = repository.read(bibliography_id=bibliography_id)
         self.assertTrue(bibliography, stored_bibliography)
 
+class TestChangeStyleRepository(TestCase):
+
+    fixture_directory = 'test/fixtures/bibliography/add'
+
+    def setUp(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+        makedirs(self.fixture_directory)
+
+    def tearDown(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+
+    def test_bibliography_has_style_stored(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography(style='harvard'))
+        bibliography = repository.read(bibliography_id)
+        self.assertEqual(bibliography, Bibliography(style='harvard'))
+
+    def test_bibliography_has_style_changed(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography(style='harvard'))
+        bibliography_id = repository.change_style(bibliography_id, 'apa')
+        bibliography = repository.read(bibliography_id)
+        self.assertEqual(bibliography, Bibliography(style='apa'))
+
 class TestAddRepository(TestCase):
 
     fixture_directory = 'test/fixtures/bibliography/add'
@@ -127,7 +151,7 @@ class TestReadRepository(TestCase):
     def test_bibliography_is_returned_if_it_exists(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography = repository.read(bibliography_id=1)
-        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL1234'}))
+        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL1234'}, style='harvard'))
 
     def test_none_is_returned_if_bibliography_does_not_exist(self):
         repository = BibliographyRepository(self.fixture_directory)
@@ -137,4 +161,4 @@ class TestReadRepository(TestCase):
     def test_other_bibliography_is_returned_if_it_exists(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography = repository.read(bibliography_id=3)
-        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL4321'}))
+        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL4321'}, style='harvard'))

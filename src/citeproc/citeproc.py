@@ -11,9 +11,9 @@ class Citeproc:
         stdout, errors = node.communicate()
         return stdout.decode('utf-8')
 
-    def render(self, references):
-        json_references = dumps(references)
-        output = self.call(json_references)
+    def render(self, references, style):
+        json = dumps({'references': references, 'style': style})
+        output = self.call(json)
         metadata, bibliography = loads(output)
         references = self.flatten(metadata['entry_ids'])
         return list(zip(references, bibliography))
@@ -21,4 +21,3 @@ class Citeproc:
     @staticmethod
     def flatten(iterable):
         return [item[0] for item in iterable]
-        

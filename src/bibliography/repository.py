@@ -31,12 +31,18 @@ class BibliographyRepository:
         except IOError:
             return None
 
+    def change_style(self, bibliography_id, style):
+        '''Creates a copy of the old bibliography with given style.'''
+        bibliography = self.read(bibliography_id)
+        bibliography = Bibliography(bibliography.references, bibliography_id, style) 
+        return self.create(bibliography)
+
     def add(self, bibliography_id, identifier):
         '''Creates a copy of the old bibliography with added reference.'''
         bibliography = self.read(bibliography_id)
         if not identifier:
             return bibliography_id
-        bibliography = Bibliography(bibliography.references.union({identifier}), bibliography_id)
+        bibliography = Bibliography(bibliography.references | {identifier}, bibliography_id)
         return self.create(bibliography)
 
     def remove(self, bibliography_id, identifier):
@@ -44,20 +50,22 @@ class BibliographyRepository:
         bibliography = self.read(bibliography_id)
         if identifier not in bibliography:
             return bibliography_id
-        bibliography = Bibliography(bibliography.references.difference({identifier}), bibliography_id)
+        bibliography = Bibliography(bibliography.references - {identifier}, bibliography_id)
         return self.create(bibliography)
 
     @staticmethod
     def from_json_to_bibliography(json):
         json = loads(json)
         return Bibliography(
-            set(json['references']),
-            json['previous_bibliography_id']
+            style=json['style'],
+            references=set(json['references']),
+            previous_bibliography_id=json['previous_bibliography_id']
         )
 
     @staticmethod
     def from_bibliography_to_json(bibliography):
         json = {
+            'style': bibliography.style,
             'references': list(bibliography.references),
             'previous_bibliography_id': bibliography.previous_bibliography_id
         }

@@ -19,7 +19,9 @@ class BibliographyController:
         )
 
     @staticmethod
-    def remove():
+    def modify():
+        style = request.form.get('style', None)
+        session['bibliography_id'] = repository.change_style(session['bibliography_id'], style=style)
         for identifier in request.form.getlist('identifier[]'):
             session['bibliography_id'] = repository.remove(session['bibliography_id'], identifier=identifier)
         return redirect(url_for('render'))

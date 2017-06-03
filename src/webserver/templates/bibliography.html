@@ -11,9 +11,12 @@
             <div id="toolbar">
                 <button type="submit" name="remove">Fjern valgte</button>
 
-                <select>
-                    <option>Harvard</option>
-                    <option>APA</option>
+                <select name="style">
+                    <option value="apa" {% if bibliography.style == 'apa' %}selected{% endif %}>APA</option>
+                    <option value="chicago" {% if bibliography.style == 'chicago' %}selected{% endif %}>Chicago</option>
+                    <option value="harvard" {% if bibliography.style == 'harvard' %}selected{% endif %}>Harvard</option>
+                    <option value="vancouver" {% if bibliography.style == 'vancouver' %}selected{% endif %}>Vancouver</option>
+                    <option value="american-medical-association" {% if bibliography.style == 'american-medical-association' %}selected{% endif %}>American Medical Association</option>
                 </select>
                 <button type="submit">Bytt stil</button>
 
