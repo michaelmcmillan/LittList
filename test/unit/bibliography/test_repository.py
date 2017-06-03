@@ -25,14 +25,14 @@ class TestCreateRepository(TestCase):
 
     def test_creating_a_bibliography_stores_its_previous_version(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography = Bibliography(set(['BIBSYS_ISL2000']), previous_bibliography_id=3)
+        bibliography = Bibliography({'BIBSYS_ISL2000'}, previous_bibliography_id=3)
         bibliography_id = repository.create(bibliography)
         stored_bibliography = repository.read(bibliography_id=bibliography_id)
         self.assertEqual(stored_bibliography.previous_bibliography_id, 3)
 
     def test_creating_a_bibliography_stores_its_contents(self):
         repository = BibliographyRepository(self.fixture_directory)
-        bibliography = Bibliography(set(['BIBSYS_ISL2000']))
+        bibliography = Bibliography({'BIBSYS_ISL2000'})
         bibliography_id = repository.create(bibliography)
         stored_bibliography = repository.read(bibliography_id=bibliography_id)
         self.assertTrue(bibliography, stored_bibliography)
@@ -53,14 +53,14 @@ class TestAddRepository(TestCase):
         bibliography_id = repository.create(Bibliography())
         bibliography_id = repository.add(bibliography_id, 'BIBSYS_ISL1234')
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, Bibliography(set(['BIBSYS_ISL1234'])))
+        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL1234'}))
 
     def test_bibliography_has_nothing_added_if_identifier_is_none(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography_id = repository.create(Bibliography())
         bibliography_id = repository.add(bibliography_id, None)
         bibliography = repository.read(bibliography_id)
-        self.assertEqual(bibliography, Bibliography(set([])))
+        self.assertEqual(bibliography, Bibliography())
 
     def test_bibliography_does_not_store_new_version_if_adding_none(self):
         repository = BibliographyRepository(self.fixture_directory)
