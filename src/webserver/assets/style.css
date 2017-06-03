@@ -155,6 +155,7 @@ button[name="remove"] {
     float: right;
     font-weight: 600;
     font-size: 18px;
+    animation: wiggle 2s linear infinite;
 }
 
 #toolbar button {
@@ -351,6 +352,30 @@ button[name="remove"] {
     );
     background-size: 8px 20px;
     background-position: 0 -10px;
+}
+
+@keyframes wiggle {
+  0%, 2% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
 }
 
 @-webkit-keyframes rotate-forever {
