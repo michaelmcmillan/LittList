@@ -12,7 +12,7 @@ class HTMLResultParser(HTMLParser):
         if tag == 'td' and ('class', 'EXLThumbnail') in attributes:
             self.digesting = True
         elif self.digesting and tag == 'a':
-            identifier = dict(attributes)['name']
+            identifier = dict(attributes).get('name')
             self.identifiers.append(identifier)
 
     def handle_endtag(self, tag):
