@@ -2,20 +2,20 @@ from .tlds import tlds
 
 class URLRecognizer:
 
-    @staticmethod
-    def is_url(url):
-        if not url:
-            return False
+    @classmethod
+    def is_url(cls, url):
+        return url is not None and (
+          cls.starts_with_protocol(url) \
+          or cls.contains_top_level_domain(url) \
+          and '/' in url
+        )
 
-        starts_with_protocol = \
-            (url.startswith('http://') \
+    @staticmethod
+    def starts_with_protocol(url):
+        return (url.startswith('http://') \
             or url.startswith('https://') \
             or url.startswith('www.'))
-        if starts_with_protocol:
-            return True
 
-        contains_tld = any(tld in url for tld in tlds)
-        if contains_tld and '/' in url:
-            return True
-
-        return False
+    @staticmethod
+    def contains_top_level_domain(url):
+        return any(tld in url for tld in tlds)
