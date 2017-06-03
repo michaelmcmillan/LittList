@@ -1,4 +1,5 @@
 from paywall import Customer
+from configuration import Configuration
 from flask import session, request, redirect, url_for, render_template
 from webserver.services import paywall, repository, generator, notifier
 
@@ -13,6 +14,7 @@ class BibliographyController:
         output, formatted_bibliography = generator.render(customer, bibliography_id)
         return render_template(
             'bibliography.html',
+            price=Configuration.price,
             output=output,
             formatted_bibliography=formatted_bibliography,
             bibliography=bibliography

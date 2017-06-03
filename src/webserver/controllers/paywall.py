@@ -11,7 +11,13 @@ class PaywallController:
         on_hold = paywall.on_hold(customer)
         status = paywall.get_status(customer)
         notifier.customer_entered_paywall()
-        return render_template('paywall.html', status=status, on_hold=on_hold, statuses=paywall.status)
+        return render_template(
+            'paywall.html',
+            price=Configuration.price,
+            status=status,
+            on_hold=on_hold,
+            statuses=paywall.status
+        )
 
     @staticmethod
     def ask_to_pay():

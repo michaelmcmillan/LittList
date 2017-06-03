@@ -22,7 +22,7 @@
 
             <div id="receipt">
                 <img id="logo" src="vipps.png" />
-                <span id="price">Kr <span id="amount">5,</span>00</span>
+                <span id="price">Kr <span id="amount">{{ price }},</span>00</span>
                 <span id="product">Litteraturliste fra LittList</span>
                 
                 {% if status == statuses['paid'] or status == statuses['timeout'] %}
