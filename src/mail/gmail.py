@@ -16,4 +16,5 @@ class Gmail:
         self.connection.close()
 
     def send(self, message):
-        self.connection.sendmail(message.sender, message.recipient, '\r\n' + message.body)
+        header = 'Subject: %s\r\n\r\n' % message.subject
+        self.connection.sendmail(message.sender, message.recipient, header + message.body)

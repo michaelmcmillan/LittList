@@ -18,11 +18,8 @@ class Notifier:
     @classmethod
     def customer_rendered(cls, customer, bibliography):
         message = Message(
-            sender=Configuration.email_username,
-            recipient=Configuration.email_username,
-            subject=None,
-            body='\r\nRender\r\n'\
-                + customer.phone_number \
+            subject='Render',
+            body=customer.phone_number \
                 + '\n' + '\n'.join(bibliography.references)
         )
         cls.send(message)
@@ -30,20 +27,16 @@ class Notifier:
     @classmethod
     def modified(cls, query):
         message = Message(
-            sender=Configuration.email_username,
-            recipient=Configuration.email_username,
             subject=None,
-            body='\r\nModified: ' + query
+            body='Modified: ' + query
         )
         cls.send(message)
 
     @classmethod
     def customer_entered_paywall(cls):
         message = Message(
-            sender=Configuration.email_username,
-            recipient=Configuration.email_username,
-            subject=None,
-            body='\r\nPaywall'
+            subject='Paywall',
+            body='Paywall'
         )
         cls.send(message)
 
@@ -52,9 +45,7 @@ class Notifier:
         url = Configuration.hostname + '/paywall/admin'
         phone_number = str(customer.phone_number)
         message = Message(
-            sender=Configuration.email_username,
-            recipient=Configuration.email_username,
-            subject=None,
+            subject='Requested payment',
             body='\r\n' + \
             '\n1. Anerkjenn: %s?phone_number=%s&action=acknowledge&secret=%s' %
                 (url, phone_number, Configuration.admin_secret) + \
