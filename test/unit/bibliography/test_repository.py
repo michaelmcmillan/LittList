@@ -54,6 +54,12 @@ class TestChangeStyleRepository(TestCase):
         bibliography = repository.read(bibliography_id)
         self.assertEqual(bibliography, Bibliography(style='harvard'))
 
+    def test_bibliography_has_not_style_changed_if_same_style_is_given(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography(style='harvard'))
+        updated_bibliography_id = repository.change_style(bibliography_id, 'harvard')
+        self.assertEqual(bibliography_id, updated_bibliography_id)
+
     def test_bibliography_has_style_changed(self):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography_id = repository.create(Bibliography(style='harvard'))

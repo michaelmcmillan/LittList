@@ -9,7 +9,7 @@ class BibliographyRepository:
         self.root_directory = root_directory
 
     def get_path_to_bibliography(self, bibliography_id):
-        '''Returns the path to a bibliography directory.'''
+        '''Returns the path to a bibliography file.'''
         return join(self.root_directory, basename(str(bibliography_id)))
 
     def get_next_identifier(self):
@@ -34,6 +34,8 @@ class BibliographyRepository:
     def change_style(self, bibliography_id, style):
         '''Creates a copy of the old bibliography with given style.'''
         bibliography = self.read(bibliography_id)
+        if bibliography.style == style:
+            return bibliography_id
         bibliography = Bibliography(bibliography.references, bibliography_id, style) 
         return self.create(bibliography)
 
