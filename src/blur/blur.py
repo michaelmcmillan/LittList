@@ -11,7 +11,7 @@ class Blur:
         self.text = fill(text, width=100)
 
         self.font = ImageFont.truetype(join(dirname(__file__), 'times.ttf'), 16)
-        self.blur = ImageFilter.GaussianBlur(radius=2.5)
+        self.blur = ImageFilter.GaussianBlur(radius=3.5)
 
         self.width = 670
         self.black = (0, 0, 0)
