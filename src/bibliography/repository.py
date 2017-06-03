@@ -1,7 +1,7 @@
 from .bibliography import Bibliography
-from uuid import uuid4
-from os.path import join
+from os.path import join, basename
 from json import loads, dumps
+from uuid import uuid4
 
 class BibliographyRepository:
 
@@ -10,7 +10,7 @@ class BibliographyRepository:
 
     def get_path_to_bibliography(self, bibliography_id):
         '''Returns the path to a bibliography directory.'''
-        return join(self.root_directory, str(bibliography_id))
+        return join(self.root_directory, basename(str(bibliography_id)))
 
     def get_next_identifier(self):
         '''Generates a random and unique identifier.'''

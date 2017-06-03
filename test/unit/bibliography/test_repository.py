@@ -162,3 +162,8 @@ class TestReadRepository(TestCase):
         repository = BibliographyRepository(self.fixture_directory)
         bibliography = repository.read(bibliography_id=3)
         self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL4321'}, style='harvard'))
+
+    def test_maliciously_crafted_ids_do_not_break_out_of_directory(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        path = repository.get_path_to_bibliography(bibliography_id='../../../../etc/passwd')
+        self.assertEqual(path, self.fixture_directory + '/passwd')
