@@ -21,6 +21,10 @@
             <span class="publication_year">År: {{ book.publication_year or 'Ukjent' }}</span>
           </div>
         {% endfor %}
+
+        {% if not results %}
+            <h1>Beklager, men vi fant ingen treff.</h1>
+        {% endif %}
         </div>
     </form>
 {% endblock %}
