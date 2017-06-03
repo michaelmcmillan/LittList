@@ -8,12 +8,6 @@ class TestType(TestCase):
         book = OriaConverter.convert(fields)
         self.assertIsInstance(book, Book)
 
-    @skip('lets be a little flexible here')
-    def test_result_is_none_if_type_is_not_book(self):
-        fields = {'TY': 'GEN'}
-        other_than_book = OriaConverter.convert(fields)
-        self.assertEqual(other_than_book, None)
-
 class TestBookId(TestCase):
 
     def test_returns_id_if_ID_is_provided(self):
