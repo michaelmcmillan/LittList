@@ -154,6 +154,7 @@ button[name="remove"] {
     color: white;
     float: right;
     font-weight: 600;
+    font-size: 18px;
 }
 
 #toolbar button {
