@@ -1,8 +1,12 @@
+from cache import Cache
 from json import dumps, loads
 from os.path import join, dirname
 from subprocess import call, Popen, PIPE
 
 class Citeproc:
+
+    def __init__(self):
+        self.cache = Cache()
 
     def call(self, stdin):
         script = join(dirname(__file__), 'citeproc.js')
@@ -13,7 +17,7 @@ class Citeproc:
 
     def render(self, references, style):
         json = dumps({'references': references, 'style': style})
-        output = self.call(json)
+        output = self.cache.get_or_set(json, lambda: self.call(json))
         metadata, bibliography = loads(output)
         references = self.flatten(metadata['entry_ids'])
         return list(zip(references, bibliography))

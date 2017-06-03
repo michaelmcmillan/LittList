@@ -3,8 +3,12 @@ from textwrap import fill
 from base64 import b64encode
 from os.path import dirname, join
 from PIL import Image, ImageFont, ImageDraw, ImageFilter
+from cache import Cache
+
 
 class Blur:
+
+    cache = Cache()
 
     def __init__(self, text):
         self.original_text = text
@@ -68,5 +72,6 @@ class Blur:
         return image_contents
 
     def render_base64(self):
-        image = self.render().getvalue()
-        return b64encode(image).decode('utf-8')
+        image = self.cache.get_or_set(self.text, lambda: 
+            b64encode(self.render().getvalue()).decode('utf-8'))
+        return image
