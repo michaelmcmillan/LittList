@@ -150,7 +150,7 @@ button[name="remove"] {
 }
 
 #toolbar #clarify {
-    background-color: #0E9F5D;
+    background-color: #007272;
     color: white;
     float: right;
     font-weight: 600;
@@ -182,8 +182,12 @@ button[name="remove"] {
     text-rendering: auto;
     width: 140px;
     writing-mode: horizontal-tb;
-    line-height: 70px;
+    line-height: 35px;
     text-decoration: none;
+}
+
+#clarify > img {
+    width: 50%;
 }
 
 #toolbar select {
