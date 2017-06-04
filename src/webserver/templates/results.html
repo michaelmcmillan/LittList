@@ -4,22 +4,33 @@
     {% include 'bar.html' %}
     <form method="post">
         <div id="results">
-        {% for book in results %}
+        {% for reference in results %}
 
           <div class="book">
 
-            {% if book.id not in bibliography %}
-            <button type="submit" name="add" value="{{ book.id }}">Legg til</button>
+            {% if reference not in bibliography %}
+            <button type="submit" name="add" value="{{ reference.id }}">Legg til</button>
             {% else %}
-            <button type="submit" name="remove" value="{{ book.id }}">Fjern</button>
+            <button type="submit" name="remove" value="{{ reference.id }}">Fjern</button>
             {% endif %}
 
-            <h2>{{ book.title }}</h2>
-            <span class="authors"><em>{% for author in book.authors %}{{ author.name }}{% if loop.last %}{% else %}, {% endif %}{% endfor %}</em></span>
-            <span class="publisher">Utgitt av: {{ book.publisher or 'Ukjent'}}</span>
-            <span class="publisher_place">Sted: {{ book.publisher_place or 'Ukjent'}}</span>
-            <span class="publication_year">År: {{ book.publication_year or 'Ukjent' }}</span>
+            {% if type(reference) == 'Book' %}
+
+            <h2>{{ reference.title }}</h2>
+            <span class="authors"><em>{% for author in reference.authors %}{{ author.name }}{% if loop.last %}{% else %}, {% endif %}{% endfor %}</em></span>
+            <span class="publisher">Utgitt av: {{ reference.publisher or 'Ukjent'}}</span>
+            <span class="publisher_place">Sted: {{ reference.publisher_place or 'Ukjent'}}</span>
+            <span class="publication_year">År: {{ reference.publication_year or 'Ukjent' }}</span>
+
+            {% elif type(reference) == 'Website' %}
+
+            <h2>{{ reference.title }}</h2>
+            <span class="authors"><em>{% for author in reference.authors %}{{ author.name }}{% if loop.last %}{% else %}, {% endif %}{% endfor %}</em></span>
+            <span class="publisher">Utgitt av: {{ reference.name or 'Ukjent'}}</span>
+            <span class="publication_date">Dato: {{ reference.publication_date or 'Ukjent' }}</span>
+            {% endif %}
           </div>
+
         {% endfor %}
 
         {% if not results %}

@@ -1,6 +1,6 @@
 from pprint import pprint as print
-from ..website import Website
-from ..author import Author
+#from ..website import Website
+#from ..author import Author
 
 class WebConverter:
 
@@ -21,5 +21,5 @@ class WebConverter:
     def extract_site_name(meta_data):
         try:
             return meta_data['og']['site_name']
-        except KeyError:
+        except (TypeError, KeyError):
             return None

@@ -1,26 +1,33 @@
+from . import SNL, General
 from cache import Cache
-from newspaper import Article
-from http_client import HTTPClient
-from .converter import WebConverter
+from urllib.parse import urlparse
 
 class Web:
 
+    handlers = {
+        'snl.no': SNL,
+        'general': General
+    }
+
     def __init__(self, http_client=None):
         self.cache = Cache()
-        self.http_client = http_client or HTTPClient()
 
-    def parse(self, url, html):
-        '''Parses HTML using Newspaper.'''
-        article = Article(url)
-        article.set_html(html)
-        article.parse()
-        return article.__dict__
+    def get_handler(self, url):
+        '''Returns an appropriate handler for the url.'''
+        hostname = urlparse(url).hostname
+        return self.handlers.get(hostname, self.handlers['general'])
+
+    def retrieve_and_parse(self, url):
+        '''Requests and parses response.'''
+        handler_class = self.get_handler(url)
+        handler = handler_class(url)
+        data = handler.request()
+        website = handler.parse(data)
+        return website
 
     def read(self, url):
-        '''Fetches the HTML from the url.'''
+        '''Returns a Website with metadata.'''
         if not url.startswith('http'):
             url = 'http://%s' % url
-        fields = self.cache.get_or_set(url, lambda: 
-            self.parse(url, self.http_client.get(url, {}))
-        )
-        return WebConverter.convert(fields)
+        website = self.cache.get_or_set(url, lambda: self.retrieve_and_parse(url))
+        return website
