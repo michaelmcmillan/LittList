@@ -8,7 +8,7 @@
 
           <div class="book">
 
-            {% if reference not in bibliography %}
+            {% if reference.id not in bibliography %}
             <button type="submit" name="add" value="{{ reference.id }}">Legg til</button>
             {% else %}
             <button type="submit" name="remove" value="{{ reference.id }}">Fjern</button>
