@@ -16,12 +16,12 @@ class General:
 
     def extract_with_newspaper(self, html):
         '''Parses HTML using Newspaper.'''
+        article = Article(self.url)
+        article.set_html(html)
         filterwarnings('ignore', category=DeprecationWarning)
         with catch_warnings():
-            article = Article(self.url)
-            article.set_html(html)
             article.parse()
-            return article.__dict__
+        return article.__dict__
 
     def parse(self, html):
         '''Converts Newspaper fields into Website.'''
