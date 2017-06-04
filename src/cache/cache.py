@@ -1,6 +1,11 @@
+from collections import OrderedDict
+
 class Cache:
 
-    pairs = {}
+    pairs = OrderedDict()
+
+    def __init__(self, capacity=4098):
+        self.capacity = capacity
 
     def get(self, key):
         '''Gets a key value pair.'''
@@ -10,6 +15,8 @@ class Cache:
         '''Sets a key value pair.'''
         if not value:
             return
+        if self.capacity <= len(self.pairs):
+            self.pairs.popitem(last=False)
         pair = {key: value}
         self.pairs.update(pair)
 
@@ -22,4 +29,4 @@ class Cache:
     @classmethod
     def flush(cls):
         '''Empties all the pairs.'''
-        cls.pairs = {}
+        cls.pairs.clear()
