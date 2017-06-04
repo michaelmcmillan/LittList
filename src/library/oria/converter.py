@@ -10,7 +10,7 @@ class OriaConverter:
             return None
         book = Book()
         book.title = cls.extract_title(fields.get('TI', None))
-        book.publisher_place = fields.get('CY', None)
+        book.publisher_place = cls.extract_publisher_place(fields.get('CY', None))
         book.id = cls.generate_identifier(fields.get('ID', None))
         author_fields = fields.get('A1', []) + fields.get('AU', [])
         book.authors = list(map(cls.extract_author, author_fields))
@@ -27,6 +27,11 @@ class OriaConverter:
     @staticmethod
     def extract_title(TI):
         return TI.replace(' :', ':') if TI else None
+
+    @staticmethod
+    def extract_publisher_place(CY):
+        bracketed = CY and CY.startswith('[') and CY.endswith(']')
+        return CY[1:-1] if bracketed else CY
 
     @classmethod
     def extract_publisher(cls, PB, publication_year):
@@ -51,7 +56,7 @@ class OriaConverter:
         # Try converting the potential year to an integer
         try:
             return int(year) 
-        except:
+        except ValueError:
             return None
 
     @staticmethod

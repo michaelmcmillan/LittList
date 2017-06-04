@@ -6,14 +6,6 @@ from cache import Cache
 
 class TestOriaSearchResults(TestCase):
 
-    def xtest_real_deal(self):
-        from http_client import HTTPClient
-        http_client = HTTPClient()
-        oria = Oria(http_client)
-        identifiers = oria.search('utsikt til paradiset')
-        books = oria.read_multiple(identifiers)
-        print(books[1], len(books))
-
     def test_returns_zero_results_if_no_matches(self):
         http_client = MagicMock()
         http_client.get.return_value = load_fixture('oria/no_results.html')
