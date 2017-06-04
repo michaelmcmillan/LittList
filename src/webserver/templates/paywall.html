@@ -8,6 +8,7 @@
         <div id="vipps">
             {% if not status %}
             <p>Tast inn mobilnummeret ditt for å synliggjøre litteraturlisten.</p>
+            <script>ga('send', 'event', 'paywall', 'enter');</script>
             {% elif status == statuses['unacknowledged'] %}
             <p>Vennligst vent til forespørselen din har blitt behandlet.</p>
             {% elif status == statuses['timeout'] %}
