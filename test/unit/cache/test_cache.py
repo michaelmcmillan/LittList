@@ -38,7 +38,7 @@ class TestCache(TestCase):
         value = cache.get_or_set('foo', lambda: 'bar')
         self.assertEqual(value, 'rab')
 
-    def test_evicts_first_key_if_full(self):
+    def xtest_evicts_first_key_if_full(self):
         cache = Cache(capacity=2)
         cache.set('foo', 'bar')
         cache.set('baz', 'baz')
@@ -46,3 +46,25 @@ class TestCache(TestCase):
         self.assertEqual(cache.get('foo'), None)
         self.assertEqual(cache.get('baz'), 'baz')
         self.assertEqual(cache.get('bar'), 'foo')
+
+    def test_evicts_coldest_key_if_full(self):
+        cache = Cache(capacity=2)
+        cache.set('foo', 'bar')
+        cache.get('foo')
+        cache.get('foo')
+
+        cache.set('baz', 'baz')
+        cache.get('baz')
+
+        cache.set('bar', 'foo')
+
+        self.assertEqual(cache.get('foo'), 'bar')
+        self.assertEqual(cache.get('baz'), None)
+        self.assertEqual(cache.get('bar'), 'foo')
+
+    def test_evicts_oldest_key_if_full_and_no_key_is_ever_accessed(self):
+        cache = Cache(capacity=1)
+        cache.set('foo', 'bar')
+        cache.set('baz', 'baz')
+        cache.set('bar', 'foo')
+        self.assertEqual(cache.get('foo'), None)
