@@ -29,7 +29,7 @@ class TestGeneralHandler(TestCase):
     def test_returns_published_time_as_none_if_no_og_tag(self):
         html = load_fixture('web/vg-2408092.html')
         website = General('http://www.vg.no/a/24008092').parse(html)
-        self.assertEqual(website.published, None)
+        self.assertEqual(website.publication_date, None)
 
     def test_returns_author(self):
         html = load_fixture('web/vg-2408092.html')

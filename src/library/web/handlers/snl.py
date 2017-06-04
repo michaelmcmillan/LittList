@@ -7,7 +7,6 @@ from library.website import Website
 class SNL:
 
     def __init__(self, url):
-        print("GO")
         self.url = url
         self.http_client = HTTPClient()
 
