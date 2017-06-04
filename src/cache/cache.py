@@ -12,10 +12,10 @@ class Cache:
         '''Gets a key value pair.'''
         accessed, value = self.pairs.get(key, (None, None))
         if value:
-            self.increment_access_number(accessed, key, value)
+            self.increment_times_accessed(accessed, key, value)
         return value
 
-    def increment_access_number(self, previous_access_count, key, value):
+    def increment_times_accessed(self, previous_access_count, key, value):
         '''Increments the access counter to make key warm.'''
         updated_access_count = previous_access_count + 1
         self.pairs[key] = (updated_access_count, value)
