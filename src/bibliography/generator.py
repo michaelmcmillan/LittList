@@ -1,7 +1,7 @@
 from blur import Blur
 from paywall import Paywall
+from citeproc import Citeproc
 from library import Library, Book
-from citeproc import Citeproc, ReferenceToCSL
 from .repository import BibliographyRepository
 
 class BibliographyGenerator:
@@ -13,12 +13,27 @@ class BibliographyGenerator:
         self.repository = repository or BibliographyRepository()
 
     def render(self, customer, bibliography_id):
+        customer_paid = self.paywall.has_access(customer)
         bibliography = self.repository.read(bibliography_id)
-        references = [self.library.retrieve(reference) for reference in bibliography if reference]
-        csl = [ReferenceToCSL.convert(reference) for reference in references]
-        formatted_bibliography = self.citeproc.render(csl, bibliography.style, bibliography.language)
-        if self.paywall.has_access(customer):
-            return ('bibliography', formatted_bibliography)
+        references = [self.library.retrieve(reference) for reference in bibliography]
+        rendered_bibliography = self.citeproc.render(references, bibliography.style, bibliography.language)
+        return self.render_only_books(customer_paid, rendered_bibliography)
+
+    def render_only_if_paid(self, paid, rendered_bibliography):
+        '''Blurs all references if customer has not paid.'''
+        if paid:
+            return [(True, reference, rendered) \
+                for reference, rendered in rendered_bibliography]
         else:
-            return ('blur', [(identifier, Blur(entry).render_base64()) \
-                for identifier, entry in formatted_bibliography])
+            return [(False, reference, Blur(rendered).render_base64()) \
+                for reference, rendered in rendered_bibliography]
+
+    def render_only_books(self, paid, rendered_bibliography):
+        '''Blurs website references if customer has not paid.'''
+        if paid:
+            return [(True, reference, rendered) \
+                for reference, rendered in rendered_bibliography]
+        else:
+            return [(isinstance(reference, Book), reference, \
+                    rendered if isinstance(reference, Book) else Blur(rendered).render_base64()) \
+                for reference, rendered in rendered_bibliography]

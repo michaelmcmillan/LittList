@@ -1,3 +1,4 @@
+from .reference_to_csl_converter import ReferenceToCSL
 from cache import Cache
 from json import dumps, loads
 from os.path import join, dirname
@@ -16,11 +17,18 @@ class Citeproc:
         return stdout.decode('utf-8')
 
     def render(self, references, style, language):
-        json = dumps({'references': references, 'style': style, 'locale': language})
+        csl = [ReferenceToCSL.convert(reference) for reference in references]
+        json = dumps({'references': csl, 'style': style, 'locale': language})
         output = self.cache.get_or_set(json, lambda: self.call(json))
         metadata, bibliography = loads(output)
-        references = self.flatten(metadata['entry_ids'])
-        return list(zip(references, bibliography))
+        identifiers = self.flatten(metadata['entry_ids'])
+        rendered_entries = list(zip(identifiers, bibliography))
+
+        zipped = []
+        for identifier, entry in rendered_entries:
+            ref = next(ref for ref in references if ref.id == identifier)
+            zipped.append((ref, entry))
+        return zipped
 
     @staticmethod
     def flatten(iterable):

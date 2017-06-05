@@ -24,7 +24,7 @@
                 </select>
                 <button type="submit">Endre</button>
 
-                {% if output == 'blur' %}
+                {% if blurred %}
                 <a href="/paywall" id="clarify">Synliggjør med <img src="/vipps_button.png" /></a>
                 {% endif %}
             </div>
@@ -32,15 +32,15 @@
             <div id="afour">
                 <h2>Litteraturliste<h2>
 
-            {% for identifier, reference in formatted_bibliography %}
-                <button name="identifier" value="{{ identifier }}" type="submit">✖</button>
+            {% for clear, reference, rendered in rendered_bibliography %}
+                <button name="identifier" value="{{ reference.id }}" type="submit">✖</button>
 
-                {% if output == 'blur' %}
+                {% if clear %}
+                {{ rendered|safe }}
+                {% else %}
                 <div class="reference">
-                    <img src="data:image/png;base64,{{ reference }}" />
+                    <img src="data:image/png;base64,{{ rendered }}" />
                 </div>
-                {% elif output == 'bibliography' %}
-                {{ reference|safe }}
                 {% endif %}
 
             {% endfor %}

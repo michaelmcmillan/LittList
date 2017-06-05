@@ -244,6 +244,11 @@ button[name="remove"] {
     cursor: pointer;
     font-weight: 600;
     color: #a71a19;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 #afour .reference {
