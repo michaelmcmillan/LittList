@@ -1,4 +1,4 @@
-from . import SNL, General
+from . import SNL, NDLA, General
 from cache import Cache
 from urllib.parse import urlparse
 
@@ -6,6 +6,7 @@ class Web:
 
     handlers = {
         'snl.no': SNL,
+        'ndla.no': NDLA,
         'general': General
     }
 

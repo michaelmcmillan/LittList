@@ -9,3 +9,6 @@ gunicorn==19.7.1
 
 # Newspaper applies heuristics to HTML for finding metadata.
 newspaper3k==0.1.9
+
+# BeautifulSoup for easily parsing HTML.
+beautifulsoup4==4.6.0
