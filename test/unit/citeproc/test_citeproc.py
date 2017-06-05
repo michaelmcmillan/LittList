@@ -8,7 +8,7 @@ class TestCiteproc(TestCase):
     def test_bibliography_is_correctly_rendered_with_one_journal(self):
         citeproc = Citeproc()
         asimow = loads(load_fixture('bibliography/asimow.json'))
-        formatted_bibliography = citeproc.render([asimow], 'apa')
+        formatted_bibliography = citeproc.render([asimow], 'apa', 'norwegian-bokmål')
         expected_bibliography = \
             [('2656243/WJUV5TCE',
             '  <div class="csl-entry">' \
@@ -22,7 +22,7 @@ class TestCiteproc(TestCase):
         citeproc = Citeproc()
         asimow = loads(load_fixture('bibliography/asimow.json'))
         abrams = loads(load_fixture('bibliography/abrams.json'))
-        formatted_bibliography = citeproc.render([asimow, abrams], 'harvard')
+        formatted_bibliography = citeproc.render([asimow, abrams], 'harvard', 'norwegian-bokmål')
         first_entry = ('2656243/G7B3GE28', \
             '  <div class="csl-entry">' \
             + 'Abrams, D. E. (2013) «The Little League Champions Benched by ' \

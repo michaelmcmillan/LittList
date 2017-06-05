@@ -1,8 +1,9 @@
 class Bibliography:
 
-    def __init__(self, references=None, previous_bibliography_id=None, style=None):
+    def __init__(self, references=None, previous_bibliography_id=None, style=None, language=None):
         self.style = style or 'harvard'
         self.references = references or set()
+        self.language = language or 'norwegian-bokmål'
         self.previous_bibliography_id = previous_bibliography_id
 
     def __iter__(self):

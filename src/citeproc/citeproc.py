@@ -15,8 +15,8 @@ class Citeproc:
         stdout, errors = node.communicate()
         return stdout.decode('utf-8')
 
-    def render(self, references, style):
-        json = dumps({'references': references, 'style': style})
+    def render(self, references, style, language):
+        json = dumps({'references': references, 'style': style, 'locale': language})
         output = self.cache.get_or_set(json, lambda: self.call(json))
         metadata, bibliography = loads(output)
         references = self.flatten(metadata['entry_ids'])

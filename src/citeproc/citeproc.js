@@ -9,17 +9,23 @@ const stylesPaths = {
   'american-medical-association': 'american-medical-association.csl',
 }
 
+const localesPaths = {
+  'english': 'locales-en-US.xml',
+  'norwegian-bokmål': 'locales-nb-NO.xml',
+  'norwegian-nynorsk': 'locales-nn-NO.xml'
+}
+
 let buffer = '';
 process.stdin.on('data', chunk => buffer += chunk);
 
-const generateBibliography = (references, style) => {
+const generateBibliography = (references, style, locale) => {
   const citeprocSys = {
     retrieveItem: (id) =>
       references.find(reference => reference.id == id),
     retrieveStyle: (style) =>
         fs.readFileSync(__dirname + '/styles/' + stylesPaths[style], 'utf-8'),
-    retrieveLocale: (lang) => 
-      fs.readFileSync(__dirname + '/locales/locales-nb-NO.xml', 'utf-8')
+    retrieveLocale: () => 
+      fs.readFileSync(__dirname + '/locales/' + localesPaths[locale], 'utf-8')
   };
 
   const engine = new CSL.Engine(citeprocSys, citeprocSys.retrieveStyle(style));
@@ -30,7 +36,7 @@ const generateBibliography = (references, style) => {
 
 process.stdin.on('end', () => {
   const input = JSON.parse(buffer);
-  const bibliography = generateBibliography(input['references'], input['style']);
+  const bibliography = generateBibliography(input['references'], input['style'], input['locale']);
   const output = JSON.stringify(bibliography);
   process.stdout.write(output);
 });

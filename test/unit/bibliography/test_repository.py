@@ -37,6 +37,67 @@ class TestCreateRepository(TestCase):
         stored_bibliography = repository.read(bibliography_id=bibliography_id)
         self.assertTrue(bibliography, stored_bibliography)
 
+class TestChangeLanguageRepository(TestCase):
+
+    fixture_directory = 'test/fixtures/bibliography/add'
+
+    def setUp(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+        makedirs(self.fixture_directory)
+
+    def tearDown(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+
+    def test_bibliography_has_language_stored(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography(language='norwegian-bokmål'))
+        bibliography = repository.read(bibliography_id)
+        self.assertEqual(bibliography, Bibliography(language='norwegian-bokmål'))
+
+    def test_bibliography_has_not_language_changed_if_same_language_is_given(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography(language='norwegian-bokmål'))
+        updated_bibliography_id = repository.change_language(bibliography_id, 'norwegian-bokmål')
+        self.assertEqual(bibliography_id, updated_bibliography_id)
+
+    def test_bibliography_has_language_changed(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography(language='norwegian-bokmål'))
+        bibliography_id = repository.change_language(bibliography_id, 'english')
+        bibliography = repository.read(bibliography_id)
+        self.assertEqual(bibliography, Bibliography(language='english'))
+
+class TestAddRepository(TestCase):
+
+    fixture_directory = 'test/fixtures/bibliography/add'
+
+    def setUp(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+        makedirs(self.fixture_directory)
+
+    def tearDown(self):
+        rmtree(self.fixture_directory, ignore_errors=True)
+
+    def test_bibliography_has_identifier_added(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography())
+        bibliography_id = repository.add(bibliography_id, 'BIBSYS_ISL1234')
+        bibliography = repository.read(bibliography_id)
+        self.assertEqual(bibliography, Bibliography({'BIBSYS_ISL1234'}))
+
+    def test_bibliography_has_nothing_added_if_identifier_is_none(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography())
+        bibliography_id = repository.add(bibliography_id, None)
+        bibliography = repository.read(bibliography_id)
+        self.assertEqual(bibliography, Bibliography())
+
+    def test_bibliography_does_not_store_new_version_if_adding_none(self):
+        repository = BibliographyRepository(self.fixture_directory)
+        bibliography_id = repository.create(Bibliography())
+        updated_bibliography_id = repository.add(bibliography_id, None)
+        self.assertEqual(bibliography_id, updated_bibliography_id)
+
 class TestChangeStyleRepository(TestCase):
 
     fixture_directory = 'test/fixtures/bibliography/add'

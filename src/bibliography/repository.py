@@ -36,7 +36,25 @@ class BibliographyRepository:
         bibliography = self.read(bibliography_id)
         if bibliography.style == style:
             return bibliography_id
-        bibliography = Bibliography(bibliography.references, bibliography_id, style) 
+        bibliography = Bibliography(
+            bibliography.references,
+            bibliography_id,
+            style,
+            bibliography.language
+        ) 
+        return self.create(bibliography)
+
+    def change_language(self, bibliography_id, language):
+        '''Creates a copy of the old bibliography with given language.'''
+        bibliography = self.read(bibliography_id)
+        if bibliography.language == language:
+            return bibliography_id
+        bibliography = Bibliography(
+            bibliography.references,
+            bibliography_id,
+            bibliography.style,
+            language
+        ) 
         return self.create(bibliography)
 
     def add(self, bibliography_id, identifier):
@@ -44,7 +62,12 @@ class BibliographyRepository:
         bibliography = self.read(bibliography_id)
         if not identifier:
             return bibliography_id
-        bibliography = Bibliography(bibliography.references | {identifier}, bibliography_id)
+        bibliography = Bibliography(
+            bibliography.references | {identifier},
+            bibliography_id,
+            bibliography.style,
+            bibliography.language
+        )
         return self.create(bibliography)
 
     def remove(self, bibliography_id, identifier):
@@ -52,7 +75,12 @@ class BibliographyRepository:
         bibliography = self.read(bibliography_id)
         if identifier not in bibliography:
             return bibliography_id
-        bibliography = Bibliography(bibliography.references - {identifier}, bibliography_id)
+        bibliography = Bibliography(
+            bibliography.references - {identifier},
+            bibliography_id,
+            bibliography.style,
+            bibliography.language
+        )
         return self.create(bibliography)
 
     @staticmethod
@@ -60,6 +88,7 @@ class BibliographyRepository:
         json = loads(json)
         return Bibliography(
             style=json['style'],
+            language=json['language'],
             references=set(json['references']),
             previous_bibliography_id=json['previous_bibliography_id']
         )
@@ -68,6 +97,7 @@ class BibliographyRepository:
     def from_bibliography_to_json(bibliography):
         json = {
             'style': bibliography.style,
+            'language': bibliography.language,
             'references': list(bibliography.references),
             'previous_bibliography_id': bibliography.previous_bibliography_id
         }

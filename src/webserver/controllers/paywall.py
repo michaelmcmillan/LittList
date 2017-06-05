@@ -10,7 +10,6 @@ class PaywallController:
         customer = Customer(session['customer_id'])
         on_hold = paywall.on_hold(customer)
         status = paywall.get_status(customer)
-        notifier.customer_entered_paywall()
         return render_template(
             'paywall.html',
             price=Configuration.price,
