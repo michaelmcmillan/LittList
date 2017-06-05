@@ -39,6 +39,15 @@ class TestBookTitle(TestCase):
 
 class TestBookPublisher(TestCase):
 
+    def test_author_is_removed_if_identical_to_publisher(self):
+        fields = {
+            'TY': 'BOOK',
+            'PB': 'Silicon Valley Historical Association',
+            'AU': ['Silicon Valley Historical Association']
+        }
+        book = OriaConverter.convert(fields)
+        self.assertEqual(book.authors, [])
+
     def test_returns_publisher_if_PB_is_provided(self):
         fields = {'TY': 'BOOK', 'PB': 'Aschehoug'}
         book = OriaConverter.convert(fields)

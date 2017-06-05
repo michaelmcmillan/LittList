@@ -12,13 +12,19 @@ class OriaConverter:
         book.title = cls.extract_title(fields.get('TI', None))
         book.publisher_place = cls.extract_publisher_place(fields.get('CY', None))
         book.id = cls.generate_identifier(fields.get('ID', None))
-        author_fields = fields.get('A1', []) + fields.get('AU', [])
-        book.authors = list(map(cls.extract_author, author_fields))
+        book.authors = cls.generate_authors(fields)
         publication_year = fields.get('Y1', None) or fields.get('PB', None)
         book.publication_year = cls.extract_year(publication_year)
         publisher = fields.get('PB', None)
         book.publisher = cls.extract_publisher(publisher, book.publication_year)
         return book
+
+    @classmethod
+    def generate_authors(cls, fields):
+        author_fields = fields.get('A1', []) + fields.get('AU', [])
+        author_fields = [field for field in author_fields \
+            if field != fields.get('PB', None)]
+        return list(map(cls.extract_author, author_fields))
 
     @staticmethod
     def generate_identifier(ID):
