@@ -62,6 +62,10 @@ gunicorn:
 	@$(GUNICORN) -c $(GUNICORN_CONFIG) webserver.server:app &
 
 unit-test:
+ifeq (, ${file})
 	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p $(TEST_FILES)
+else
+	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p ${file}
+endif
 
 .PHONY: test install
