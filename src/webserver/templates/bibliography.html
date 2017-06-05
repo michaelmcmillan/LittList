@@ -33,7 +33,7 @@
                 <h2>Litteraturliste<h2>
 
             {% for identifier, reference in formatted_bibliography %}
-                <button name="identifier" value="{{ identifier }}" type="submit">✕</button>
+                <button name="identifier" value="{{ identifier }}" type="submit">✖</button>
 
                 {% if output == 'blur' %}
                 <div class="reference">
