@@ -9,8 +9,6 @@
         <div id="bibliography">
 
             <div id="toolbar">
-                <button type="submit" name="remove">Fjern valgte</button>
-
                 <select name="style">
                     <option value="apa" {% if bibliography.style == 'apa' %}selected{% endif %}>APA</option>
                     <option value="chicago" {% if bibliography.style == 'chicago' %}selected{% endif %}>Chicago</option>
@@ -29,7 +27,7 @@
                 <h2>Litteraturliste<h2>
 
             {% for identifier, reference in formatted_bibliography %}
-                <input type="checkbox" name="identifier[]" value="{{ identifier }}" />
+                <button name="identifier" value="{{ identifier }}" type="submit">✕</button>
 
                 {% if output == 'blur' %}
                 <div class="reference">

@@ -22,7 +22,7 @@ class BibliographyController:
     @staticmethod
     def modify():
         style = request.form.get('style', None)
+        identifier = request.form.get('identifier', None)
         session['bibliography_id'] = repository.change_style(session['bibliography_id'], style=style)
-        for identifier in request.form.getlist('identifier[]'):
-            session['bibliography_id'] = repository.remove(session['bibliography_id'], identifier=identifier)
+        session['bibliography_id'] = repository.remove(session['bibliography_id'], identifier=identifier)
         return redirect(url_for('render'))

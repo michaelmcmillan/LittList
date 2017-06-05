@@ -235,10 +235,15 @@ button[name="remove"] {
     font-weight: 200;
 }
 
-#afour input[name="identifier[]"] {
-    top: 25px;
+#afour button[name="identifier"] {
+    top: 30px;
     position: relative;
     margin-left: -30px;
+    background-color: white;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 #afour .reference {
