@@ -1,38 +1,38 @@
 from json import loads
 from unittest import TestCase
-from fixtures import load_fixture
 from citeproc import Citeproc
+from library import Book, Author
 
 class TestCiteproc(TestCase):
 
-    def test_bibliography_is_correctly_rendered_with_one_journal(self):
+    def setUp(self):
+        self.book = Book()
+        self.book.id = '1'
+        self.book.title = 'Title'
+        self.book.publisher = 'Publisher'
+        self.book.publication_year = 2008
+        self.book.publication_place = 'Place'
+
+        self.other_book = Book()
+        self.other_book.id = '2'
+        self.other_book.title = 'Title'
+        self.other_book.publisher = 'Publisher'
+        self.other_book.publication_year = 2008
+        self.other_book.publication_place = 'Place'
+
+    def test_bibliography_is_correctly_rendered_with_one_book(self):
         citeproc = Citeproc()
-        asimow = loads(load_fixture('bibliography/asimow.json'))
-        formatted_bibliography = citeproc.render([asimow], 'apa', 'norwegian-bokmål')
-        expected_bibliography = \
-            [('2656243/WJUV5TCE',
-            '  <div class="csl-entry">' \
-            + 'Asimow, M. (1995–1996). When Lawyers Were Heroes Symposium: ' \
-            + 'Picturing Justice: Images of Law and Lawyers in the Visual ' \
-            + 'Media: Essay. <i>University of San Francisco Law Review</i>, ' \
-            + '<i>30</i>, 1131–1138.</div>\n')]
+        formatted_bibliography = citeproc.render([self.book], 'apa', 'norwegian-bokmål')
+        expected_bibliography = [
+            (self.book, '  <div class="csl-entry"><i>Title</i>. (2008). Publisher.</div>\n')
+        ]
         self.assertEqual(formatted_bibliography, expected_bibliography)
 
     def test_bibliography_is_correctly_rendered_with_two_journals(self):
         citeproc = Citeproc()
-        asimow = loads(load_fixture('bibliography/asimow.json'))
-        abrams = loads(load_fixture('bibliography/abrams.json'))
-        formatted_bibliography = citeproc.render([asimow, abrams], 'harvard', 'norwegian-bokmål')
-        first_entry = ('2656243/G7B3GE28', \
-            '  <div class="csl-entry">' \
-            + 'Abrams, D. E. (2013) «The Little League Champions Benched by ' \
-            + 'Jim Crow in 1955: Resistance and Reform after Brown v. Board ' \
-            + 'of Education», <i>Journal of Supreme Court History</i>, 38(1), s. ' \
-            + '51–62. doi: 10.1111/j.1540-5818.2013.12003.x.</div>\n')
-        second_entry = ('2656243/WJUV5TCE', \
-            '  <div class="csl-entry">' \
-            + 'Asimow, M. (1995–1996) «When Lawyers Were Heroes Symposium: ' \
-            + 'Picturing Justice: Images of Law and Lawyers in the Visual ' \
-            + 'Media: Essay», <i>University of San Francisco Law Review</i>, ' \
-            + '30, s. 1131–1138.</div>\n')
-        self.assertEqual(formatted_bibliography, [first_entry, second_entry])
+        formatted_bibliography = citeproc.render([self.book, self.other_book], 'harvard', 'norwegian-bokmål')
+        expected_bibliography = [
+            (self.book, '  <div class="csl-entry"><i>Title</i> (2008a). Publisher.</div>\n'),
+            (self.other_book, '  <div class="csl-entry"><i>Title</i> (2008b). Publisher.</div>\n')
+        ]
+        self.assertEqual(formatted_bibliography, expected_bibliography)
