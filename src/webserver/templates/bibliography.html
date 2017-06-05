@@ -31,7 +31,11 @@
             </div>
 
             <div id="afour">
-                <h2>Litteraturliste<h2>
+                {% if bibliography.language.startswith('norwegian') %}
+                <h2>Litteraturliste</h2>
+                {% else %}
+                <h2>Bibliography</h2>
+                {% endif %}
 
             {% for clear, reference, rendered in rendered_bibliography %}
                 <button name="identifier" value="{{ reference.id }}" type="submit">✖</button>
