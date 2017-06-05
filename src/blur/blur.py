@@ -21,7 +21,7 @@ class Blur:
         self.black = (0, 0, 0)
         self.white = (255, 255, 255)
         self.chars = 100
-        self.start = (10, 10)
+        self.start = (5, 5)
 
     def calculate_height(self, line_broken_text):
         linebreaks = line_broken_text.count('\n')
