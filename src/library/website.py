@@ -3,6 +3,7 @@ from datetime import datetime
 class Website:
 
     def __init__(self):
+        self.id = None
         self.url = None
         self.name = None
         self.title = None

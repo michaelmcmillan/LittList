@@ -24,7 +24,8 @@ class ReferenceToCSL:
     @classmethod
     def convert_website(cls, website):
         csl = {}
-        csl['id'] = website.url or False
+        csl['id'] = website.id or False
+        csl['URL'] = website.url or False
         csl['type'] = 'webpage'
         csl['title'] = website.title or False
         csl['author'] = [author.__dict__ for author in website.authors]

@@ -22,9 +22,17 @@ class TestSerial(TestCase):
 
     def test_id_is_converted(self):
         website = Website()
+        website.id = 'web:http://vg.no'
+        csl = ReferenceToCSL.convert(website)
+        self.assertEqual(csl['id'], 'web:http://vg.no')
+
+class TestURL(TestCase):
+
+    def test_url_is_converted(self):
+        website = Website()
         website.url = 'http://vg.no'
         csl = ReferenceToCSL.convert(website)
-        self.assertEqual(csl['id'], 'http://vg.no')
+        self.assertEqual(csl['URL'], 'http://vg.no')
 
 class TestAccessedDate(TestCase):
 
