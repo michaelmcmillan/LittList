@@ -8,19 +8,19 @@
         <div id="vipps">
             {% if not status %}
             <p>Tast inn mobilnummeret ditt for å synliggjøre hele litteraturlisten.</p>
-            <script>ga('send', 'event', 'paywall', 'enter');</script>
+            <script>ga('send', 'event', 'paywall', 'enter', '{{ bibliography_id }}');</script>
             {% elif status == statuses['unacknowledged'] %}
             <p>Vennligst vent til forespørselen din har blitt behandlet.</p>
             {% elif status == statuses['timeout'] %}
             <p>Vi brukte for lang tid. Det betyr at du får tilgang nå. Vipps-forespørsel kommer senere.</p>
-            <script>ga('send', 'event', 'paywall', 'timeout', undefined, {{ price }});</script>
+            <script>ga('send', 'event', 'paywall', 'timeout', '{{ bibliography_id }}', {{ price }});</script>
             {% elif status == statuses['acknowledged'] %}
             <p>Betalingen din blir behandlet. Vi sender straks en Vipps-forespørsel.</p>
             {% elif status == statuses['responded'] %}
             <p>Du har mottatt en Vipps-forespørsel. Vennligst godta transaksjonen for å få tilgang.</p>
             {% elif status == statuses['paid'] %}
             <p>Vi har mottatt betalingen din. Du har nå tilgang til litteraturlisten!</p>
-            <script>ga('send', 'event', 'paywall', 'paid', undefined, {{ price }});</script>
+            <script>ga('send', 'event', 'paywall', 'paid', '{{ bibliography_id }}', {{ price }});</script>
             {% endif %}
 
             <div id="receipt">

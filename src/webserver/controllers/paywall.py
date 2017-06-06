@@ -8,14 +8,16 @@ class PaywallController:
     @staticmethod
     def status():
         customer = Customer(session['customer_id'])
+        bibliography_id = session['bibliography_id']
         on_hold = paywall.on_hold(customer)
         status = paywall.get_status(customer)
         return render_template(
             'paywall.html',
-            price=Configuration.price,
             status=status,
             on_hold=on_hold,
-            statuses=paywall.status
+            statuses=paywall.status,
+            price=Configuration.price,
+            bibliography_id=bibliography_id
         )
 
     @staticmethod

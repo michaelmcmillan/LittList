@@ -20,6 +20,9 @@
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-62301312-1', 'auto');
       ga('send', 'pageview');
+      {% if session['customer_id'] != 'anonymous' %}
+      ga('set', 'userId', '{{ session['customer_id'] }}');
+      {% endif %}
     </script>
   </head>
   <body>
