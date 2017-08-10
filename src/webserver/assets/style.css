@@ -66,6 +66,10 @@ body, input, button, select, a {
     text-align: center;
 }
 
+#search p {
+  font-size: 18px;
+}
+
 #search #logo {
     width: 200px;
     height: 200px;
