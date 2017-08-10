@@ -1,5 +1,6 @@
-from .notifier import Notifier
 from datetime import datetime as dt, timedelta as delta
+from .ticket import Ticket
+from .notifier import Notifier
 
 class Paywall:
 
@@ -15,45 +16,21 @@ class Paywall:
         self.payments = {}
 
     def get_status(self, customer):
-        expired = False
-        responded = False
-        acknowledged = False
-        waited_too_long = False
-        received_payment = False
-        requested_payment = False
-
-        for action in self.payments.get(customer.phone_number, []):
-            name, when = action
-            if name == 'request_payment':
-                requested_payment = True
-                waited_too_long = dt.now() - delta(seconds=30) > when
-                expired = dt.now() - delta(minutes=20) > when
-            elif name == 'acknowledge':
-                acknowledged = True
-                waited_too_long = dt.now() - delta(seconds=120) > when
-                expired = dt.now() - delta(minutes=20) > when
-            elif name == 'received_payment':
-                received_payment = True
-                expired = dt.now() - delta(minutes=20) > when
-            elif name == 'responded':
-                responded = True
- 
-        if not requested_payment \
-        or (acknowledged and expired) \
-        or (received_payment and expired) \
-        or (requested_payment and expired):
+        actions = self.payments.get(customer.phone_number, [])
+        ticket = Ticket(actions)
+        if ticket.invalid:
             return None
-        elif received_payment:
+        elif ticket.received_payment:
             return self.status['paid']
-        elif responded:
+        elif ticket.responded:
             return self.status['responded']
-        elif acknowledged and waited_too_long:
+        elif ticket.acknowledged and ticket.waited_too_long:
             return self.status['timeout']
-        elif acknowledged:
+        elif ticket.acknowledged:
             return self.status['acknowledged']
-        elif not acknowledged and waited_too_long:
+        elif not ticket.acknowledged and ticket.waited_too_long:
             return self.status['timeout']
-        elif not acknowledged:
+        elif not ticket.acknowledged:
             return self.status['unacknowledged']
 
     def on_hold(self, customer):
