@@ -5,7 +5,6 @@ from os.path import dirname, join
 from PIL import Image, ImageFont, ImageDraw, ImageFilter
 from cache import Cache
 
-
 class Blur:
 
     cache = Cache()
