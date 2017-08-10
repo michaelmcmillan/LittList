@@ -37,7 +37,9 @@ class OriaConverter:
     @staticmethod
     def extract_publisher_place(CY):
         bracketed = CY and CY.startswith('[') and CY.endswith(']')
-        return CY[1:-1] if bracketed else CY
+        crocodiled = CY and CY.startswith('<') and CY.endswith('>')
+        parenthesised = CY and CY.startswith('(') and CY.endswith(')')
+        return CY[1:-1] if bracketed or crocodiled or parenthesised else CY
 
     @classmethod
     def extract_publisher(cls, PB, publication_year):

@@ -85,6 +85,16 @@ class TestBookPublisherPlace(TestCase):
         book = OriaConverter.convert(fields)
         self.assertEqual(book.publisher_place, 'Oslo')
 
+    def test_returns_place_stripped_of_lt_gt_symbols(self):
+        fields = {'TY': 'BOOK', 'CY': '<Oslo>'}
+        book = OriaConverter.convert(fields)
+        self.assertEqual(book.publisher_place, 'Oslo')
+
+    def test_returns_place_stripped_of_parenthesis(self):
+        fields = {'TY': 'BOOK', 'CY': '(Oslo)'}
+        book = OriaConverter.convert(fields)
+        self.assertEqual(book.publisher_place, 'Oslo')
+
     def test_returns_None_if_CY_is_not_provided(self):
         fields = {'TY': 'BOOK'}
         book = OriaConverter.convert(fields)
