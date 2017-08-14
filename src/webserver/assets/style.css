@@ -159,7 +159,7 @@ button[name="remove"] {
     font-weight: 600;
     font-size: 18px;
     animation: wiggle 2s linear infinite;
-    width: 200px;
+    width: 260px;
 }
 
 #toolbar button {
