@@ -24,12 +24,10 @@ class Paywall:
             return self.status['paid']
         elif ticket.responded:
             return self.status['responded']
-        elif ticket.acknowledged and ticket.waited_too_long:
+        elif ticket.waited_too_long:
             return self.status['timeout']
         elif ticket.acknowledged:
             return self.status['acknowledged']
-        elif not ticket.acknowledged and ticket.waited_too_long:
-            return self.status['timeout']
         elif not ticket.acknowledged:
             return self.status['unacknowledged']
 
