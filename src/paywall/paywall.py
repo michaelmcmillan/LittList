@@ -13,19 +13,19 @@ class Paywall:
     }
 
     def __init__(self):
-        self.payments = {}
+        self.actions = {}
 
     def get_status(self, customer):
-        actions = self.payments.get(customer.phone_number, [])
+        actions = self.actions.get(customer.phone_number, [])
         ticket = Ticket(actions)
         if ticket.invalid:
             return None
         elif ticket.received_payment:
             return self.status['paid']
-        elif ticket.responded:
-            return self.status['responded']
         elif ticket.waited_too_long:
             return self.status['timeout']
+        elif ticket.responded:
+            return self.status['responded']
         elif ticket.acknowledged:
             return self.status['acknowledged']
         elif not ticket.acknowledged:
@@ -39,28 +39,27 @@ class Paywall:
         )
 
     def has_access(self, customer):
-        status = self.get_status(customer)
-        return status in (
+        return self.get_status(customer) in (
             self.status['paid'],
             self.status['timeout']
         )
 
     def received_payment(self, customer, when=None):
         action = ('received_payment', when or dt.now())
-        self.payments[customer.phone_number].append(action)
+        self.actions[customer.phone_number].append(action)
 
     def responded(self, customer, when=None):
         action = ('responded', when or dt.now())
-        self.payments[customer.phone_number].append(action)
+        self.actions[customer.phone_number].append(action)
 
     def acknowledge(self, customer, when=None):
         action = ('acknowledge', when or dt.now())
-        self.payments[customer.phone_number].append(action)
+        self.actions[customer.phone_number].append(action)
 
     def request_payment(self, customer, when=None):
         if self.has_access(customer):
             raise Exception
-        self.payments[customer.phone_number] = [
+        self.actions[customer.phone_number] = [
             ('request_payment', when or dt.now())
         ]
         Notifier.customer_requested_payment(customer)
