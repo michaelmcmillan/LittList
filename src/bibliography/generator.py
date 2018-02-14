@@ -17,7 +17,11 @@ class BibliographyGenerator:
         bibliography = self.repository.read(bibliography_id)
         references = [self.library.retrieve(reference) for reference in bibliography]
         rendered_bibliography = self.citeproc.render(references, bibliography.style, bibliography.language)
-        return self.render_only_odd_ids(customer_paid, rendered_bibliography)
+        return self.render_all(customer_paid, rendered_bibliography)
+
+    def render_all(self, paid, rendered_bibliography):
+        return [(True, reference, rendered) \
+            for reference, rendered in rendered_bibliography]
 
     def render_only_if_paid(self, paid, rendered_bibliography):
         '''Blurs all references if customer has not paid.'''
