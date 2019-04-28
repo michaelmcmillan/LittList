@@ -1,5 +1,6 @@
 from mail import Gmail, Message
 from configuration import Configuration
+from urllib.parse import quote as urlencode
 
 class Notifier:
 
@@ -14,6 +15,15 @@ class Notifier:
         gmail.connect()
         gmail.send(message)
         gmail.disconnect()
+
+    @classmethod
+    def survey_was_answered(cls, selected_school):
+        selected_school = urlencode(selected_school)
+        message = Message(
+            subject='LittList: %s' % selected_school,
+            body='En bruker huket av %s' % selected_school
+        )
+        cls.send(message)
 
     @classmethod
     def customer_rendered(cls, customer, bibliography):

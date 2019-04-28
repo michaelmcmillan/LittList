@@ -8,3 +8,4 @@ todo
 *.db
 *.pid
 config/configuration.py
+*.kml*

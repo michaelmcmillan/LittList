@@ -594,3 +594,51 @@ button[name="remove"] {
     opacity: 1;
   }
 }
+
+#modal {
+  z-index: 10000;
+  position: absolute;
+  left: 25%;
+  top: 200px;
+  margin: 0 auto;
+  width: 50%;
+  height: 350px;
+  background-color: green;
+  color: white;
+  -webkit-box-shadow: 10px 10px 31px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 31px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 31px 0px rgba(0,0,0,0.75);
+}
+
+#modal p {
+  padding-top: 25px;
+  text-align: center;
+  font-size: 20px;
+}
+
+#modal h1 {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+  font-size: 40px;
+}
+
+#modal input[name=school] {
+  width: 80%;
+  padding: 25px;
+  font-size: 20px;
+  margin: 0 auto;
+  display: block;
+}
+
+#modal button {
+  font-size: 16px;
+  height: 70px;
+  width: 200px;
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  margin-top: 25px;
+}

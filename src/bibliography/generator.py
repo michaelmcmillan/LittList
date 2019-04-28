@@ -12,12 +12,12 @@ class BibliographyGenerator:
         self.paywall = paywall or Paywall()
         self.repository = repository or BibliographyRepository()
 
-    def render(self, customer, bibliography_id):
-        customer_paid = self.paywall.has_access(customer)
+    def render(self, customer, bibliography_id, override_has_payed=False):
+        customer_paid = override_has_payed or self.paywall.has_access(customer)
         bibliography = self.repository.read(bibliography_id)
         references = [self.library.retrieve(reference) for reference in bibliography]
         rendered_bibliography = self.citeproc.render(references, bibliography.style, bibliography.language)
-        return self.render_all(customer_paid, rendered_bibliography)
+        return self.render_only_if_paid(customer_paid, rendered_bibliography)
 
     def render_all(self, paid, rendered_bibliography):
         return [(True, reference, rendered) \

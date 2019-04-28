@@ -3,6 +3,23 @@
 {% block body %}
     {% include 'bar.html' %}
 
+    {% if blurred and not taken_survey %}
+    <div id="modal">
+        <p>STRAKS I MÅL</p>
+        <h1>Hvilken skole går du på?</h1>
+        <form method="POST" action="/survey">
+            <input name="school" list="schools" autocomplete=off placeholder="Navnet på skolen din" required />
+            <datalist id="schools">
+            {% for school in schools %}
+                <option>{{ school }}</option>
+            {% endfor %}
+            </datalist>
+            <button type="submit">Vis meg litteraturlisten</button>
+        </form>
+        <script>ga('send', 'event', 'survey', 'show');</script>
+    </div>
+    {% endif %}
+
     <form method="post">
 
         <div id="bibliography">
@@ -22,11 +39,6 @@
                     <option value="american-medical-association" {% if bibliography.style == 'american-medical-association' %}selected{% endif %}>American Medical Association</option>
                 </select>
                 <button type="submit">Endre</button>
-
-                {% if blurred %}
-                <a href="/paywall" id="clarify">Synliggjør listen for {{ price }},- med <img src="/vipps_button.png" /></a>
-                <script>ga('send', 'event', 'paywall', 'button');</script>
-                {% endif %}
             </div>
 
             <div id="afour">
