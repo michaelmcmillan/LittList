@@ -20,6 +20,10 @@
     </div>
     {% endif %}
 
+    {% if taken_survey %}
+        <script>ga('send', 'event', 'selected_school', '{{ selected_school }}');</script>
+    {% endif %}
+
     <form method="post">
 
         <div id="bibliography">

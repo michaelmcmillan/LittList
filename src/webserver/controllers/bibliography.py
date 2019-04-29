@@ -19,6 +19,7 @@ class BibliographyController:
             'bibliography.html',
             schools=schools,
             taken_survey=taken_survey,
+            selected_school=taken_survey,
             blurred=contains_blurred,
             price=Configuration.price,
             rendered_bibliography=rendered_bibliography,
@@ -27,8 +28,8 @@ class BibliographyController:
 
     @staticmethod
     def answer_survey():
-        selected_school = request.form.get('school', None)
-        session['taken_survey'] = True
+        selected_school = request.form.get('school', False)
+        session['taken_survey'] = selected_school
         Notifier.survey_was_answered(selected_school)
         return redirect(url_for('render'))
 
