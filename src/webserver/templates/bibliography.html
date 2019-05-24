@@ -3,25 +3,20 @@
 {% block body %}
     {% include 'bar.html' %}
 
-    {% if blurred and not taken_survey %}
+    {% if blurred and not provided_student_email %}
     <div id="modal">
         <p>STRAKS I MÅL</p>
-        <h1>Hvilken skole går du på?</h1>
+        <h1>Hva er din student-epostadresse?</h1>
         <form method="POST" action="/survey">
-            <input name="school" list="schools" autocomplete=off placeholder="Navnet på skolen din" required />
-            <datalist id="schools">
-            {% for school in schools %}
-                <option>{{ school }}</option>
-            {% endfor %}
-            </datalist>
-            <button type="submit">Vis meg litteraturlisten</button>
+            <input name="student_email" type="email" placeholder="Eksempelvis: eirik@aas.vgs.no, simen@stud.hivolda.no" required />
+            <button type="submit">Vis litteraturlisten</button>
         </form>
         <script>ga('send', 'event', 'survey', 'show');</script>
     </div>
     {% endif %}
 
-    {% if taken_survey %}
-        <script>ga('send', 'event', 'selected_school', '{{ selected_school }}');</script>
+    {% if provided_student_email %}
+        <script>ga('send', 'event', 'student_email', '{{ student_email }}');</script>
     {% endif %}
 
     <form method="post">

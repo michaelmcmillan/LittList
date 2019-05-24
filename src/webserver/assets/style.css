@@ -620,12 +620,12 @@ button[name="remove"] {
   padding-top: 25px;
   padding-bottom: 25px;
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
 }
 
-#modal input[name=school] {
+#modal input[name=school], #modal input[name=student_email] {
   width: 80%;
-  padding: 25px;
+  padding: 15px;
   font-size: 20px;
   margin: 0 auto;
   display: block;

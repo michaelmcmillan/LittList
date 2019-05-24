@@ -10,16 +10,16 @@ class BibliographyController:
     def render():
         customer = Customer(session['customer_id'])
         bibliography_id = session['bibliography_id']
-        taken_survey = session.get('taken_survey', False)
+        provided_student_email = session.get('provided_student_email', False)
         bibliography = repository.read(bibliography_id)
-        override_has_payed = taken_survey
+        override_has_payed = provided_student_email
         rendered_bibliography = generator.render(customer, bibliography_id, override_has_payed)
         contains_blurred = any((not entry[0] for entry in rendered_bibliography))
         return render_template(
             'bibliography.html',
             schools=schools,
-            taken_survey=taken_survey,
-            selected_school=taken_survey,
+            provided_student_email=provided_student_email,
+            student_email=provided_student_email,
             blurred=contains_blurred,
             price=Configuration.price,
             rendered_bibliography=rendered_bibliography,
@@ -28,9 +28,9 @@ class BibliographyController:
 
     @staticmethod
     def answer_survey():
-        selected_school = request.form.get('school', False)
-        session['taken_survey'] = selected_school
-        Notifier.survey_was_answered(selected_school)
+        student_email = request.form.get('student_email', False)
+        session['provided_student_email'] = student_email
+        Notifier.survey_was_answered(student_email)
         return redirect(url_for('render'))
 
     @staticmethod
