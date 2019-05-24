@@ -30,7 +30,10 @@ class BibliographyController:
     def answer_survey():
         student_email = request.form.get('student_email', False)
         session['provided_student_email'] = student_email
-        Notifier.survey_was_answered(student_email)
+        # We use Google Analytics instead, because this is slow
+        # and hard to get working on Digital Ocean for some security
+        # reason Google has put in place. Just go to GA and look at events.
+        # Notifier.survey_was_answered(student_email)
         return redirect(url_for('render'))
 
     @staticmethod
