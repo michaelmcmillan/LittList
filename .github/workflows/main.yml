@@ -3,9 +3,11 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest    
     steps:
-      run: make install
+      - run: make install
   test:
-    - run: make test
+    runs-on: ubuntu-latest    
+    steps:
+      - run: make test
