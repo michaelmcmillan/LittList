@@ -1,5 +1,5 @@
 # Pillow is used for generating blurred bibliographies.
-Pillow==4.1.1
+Pillow==8.1.1
 
 # Flask takes care of the HTTP.
 Flask==0.12.1
