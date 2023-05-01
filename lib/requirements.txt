@@ -2,7 +2,7 @@
 Pillow==4.1.1
 
 # Flask takes care of the HTTP.
-Flask==0.12.1
+Flask==2.3.2
 
 # Gunicorn hooks Flask up to Nginx for threads.
 gunicorn==19.7.1
